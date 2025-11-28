@@ -1,0 +1,59 @@
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import LogoTicker from "@/components/LogoTicker";
+import WhyChooseVesalius from "@/components/WhyChooseVesalius";
+import Modules from "@/components/Modules";
+import Testimonials from "@/components/Testimonials";
+import Pricing from "@/components/Pricing";
+import TeamPricing from "@/components/TeamPricing";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+
+export default function Home() {
+  return (
+    <main className="w-full bg-white relative selection:bg-primary/20">
+      <Navbar />
+      
+      {/* Section 1: Hero */}
+      <section className="w-full min-h-[calc(100vh-80px)] flex items-center justify-center bg-white relative z-0">
+         <Hero />
+      </section>
+
+      {/* Section 2: Carousel */}
+      <section className="w-full min-h-screen flex items-center justify-center bg-white">
+        <WhyChooseVesalius />
+      </section>
+
+      {/* Section 3: Modules */}
+      <section className="w-full min-h-screen flex items-center justify-center bg-white">
+        <Modules />
+      </section>
+
+      {/* Section 4: Testimonials */}
+      <section className="w-full min-h-screen flex items-center justify-center bg-white">
+        <Testimonials />
+      </section>
+
+      {/* Logo Ticker */}
+      <LogoTicker />
+
+      {/* Section 5: Pricing */}
+      <section className="w-full min-h-screen flex items-center justify-center bg-white">
+        <Pricing />
+      </section>
+
+      {/* Section 6: Team Pricing */}
+      <section className="w-full min-h-screen flex items-center justify-center bg-white">
+        <TeamPricing />
+      </section>
+
+      {/* Section 7: Contact & Footer */}
+      <section className="w-full min-h-screen flex flex-col bg-white">
+        <div className="flex-1 flex items-center justify-center">
+           <Contact />
+        </div>
+        <Footer />
+      </section>
+    </main>
+  );
+}
