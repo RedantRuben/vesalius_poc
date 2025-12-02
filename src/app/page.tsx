@@ -19,13 +19,16 @@ export default function Home() {
          <Hero />
       </section>
 
-      {/* Section 2: Carousel */}
+      {/* Logo Ticker (formerly Carousel section) */}
+      <LogoTicker />
+
+      {/* Section 2: Why Choose Vesalius (Moved from Carousel spot) */}
       <section className="w-full min-h-screen flex items-center justify-center bg-white">
         <WhyChooseVesalius />
       </section>
 
       {/* Section 3: Modules */}
-      <section className="w-full min-h-screen flex items-center justify-center bg-white">
+      <section id="product" className="w-full min-h-screen flex items-center justify-center bg-white">
         <Modules />
       </section>
 
@@ -34,11 +37,8 @@ export default function Home() {
         <Testimonials />
       </section>
 
-      {/* Logo Ticker */}
-      <LogoTicker />
-
       {/* Section 5: Pricing */}
-      <section className="w-full min-h-screen flex items-center justify-center bg-white">
+      <section id="pricing" className="w-full min-h-screen flex items-center justify-center bg-white">
         <Pricing />
       </section>
 
@@ -48,7 +48,7 @@ export default function Home() {
       </section>
 
       {/* Section 7: Contact & Footer */}
-      <section className="w-full min-h-screen flex flex-col bg-white">
+      <section id="contact" className="w-full min-h-screen flex flex-col bg-white">
         <div className="flex-1 flex items-center justify-center">
            <Contact />
         </div>

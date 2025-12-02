@@ -10,6 +10,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Vesalius.ai",
   description: "Your Digital Medical Assistant",
+  icons: {
+    icon: "/vesaliuslogo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -20,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased font-sans`}
+        className={`${inter.variable} ${inter.className} antialiased`}
       >
         {children}
       </body>

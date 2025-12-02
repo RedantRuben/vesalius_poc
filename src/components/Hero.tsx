@@ -14,16 +14,19 @@ const PlayIcon = () => (
 
 export default function Hero() {
   return (
-    <section className="relative flex flex-col items-center justify-center px-4 text-center overflow-hidden w-full h-full py-24 md:py-0">
+    <section className="relative flex flex-col items-center justify-start px-4 text-center overflow-hidden w-full min-h-[calc(100vh-80px)] pt-24 md:pt-32">
+        {/* Background Grid */}
+        <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
         {/* Background Gradient - Mobile Only */}
         <div className="absolute inset-0 overflow-hidden md:hidden pointer-events-none">
             <div className="absolute top-[10%] left-[10%] w-[70%] h-[40%] bg-[#06ACC1]/5 rounded-full blur-3xl animate-pulse" />
             <div className="absolute bottom-[10%] right-[10%] w-[70%] h-[40%] bg-[#2B3B53]/5 rounded-full blur-3xl animate-pulse delay-1000" />
         </div>
 
-        {/* Floating Elements */}
+        {/* Floating Elements - Desktop Only - Original Style & Placement */}
         {/* Left Image - 320 Views */}
-        <div className="absolute top-[20%] left-[5%] lg:left-[10%] w-64 -rotate-6 hidden md:block z-0 animate-float">
+        <div className="absolute top-[15%] left-[2%] lg:left-[5%] w-64 -rotate-6 hidden md:block z-0">
              <div className="transform transition-transform hover:scale-105 duration-500">
                 <Image 
                     src="/320.png" 
@@ -37,7 +40,7 @@ export default function Hero() {
         </div>
         
         {/* Right Image - Stats Breakdown */}
-        <div className="absolute top-[60%] right-[-2%] lg:right-[5%] xl:right-[10%] rotate-[6deg] hidden md:block z-0 animate-float-delayed">
+        <div className="absolute top-[35%] right-[2%] lg:right-[5%] rotate-[6deg] hidden md:block z-0">
             <div className="transform transition-transform hover:scale-105 duration-500">
                 <Image 
                     src="/statsright.png" 
@@ -50,8 +53,8 @@ export default function Hero() {
             </div>
         </div>
 
-        <div className="z-10 flex flex-col items-center max-w-4xl mx-auto flex-1 justify-center">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#2B3B53] mb-6 md:mb-8 leading-[1.1] pt-4">
+        <div className="z-10 flex flex-col items-center max-w-5xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#2B3B53] mb-6 md:mb-8 leading-[1.1]">
                 Your Digital <br className="hidden md:block" />
                 <span className="text-[#06ACC1]">Medical Assistant</span>
             </h1>
@@ -60,21 +63,48 @@ export default function Hero() {
                 Powered by Your Expertise, <span className="font-bold text-[#2B3B53]">Enhanced by AI</span>. Experience the next generation of clinical workflow automation.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                <button className="w-full sm:w-auto px-8 py-3 rounded-full bg-[#06ACC1] text-white font-bold hover:bg-[#0597a9] transition-all flex items-center justify-center gap-2 text-base hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-16 md:mb-24">
+                <button className="w-full sm:w-auto px-8 py-3 rounded-full bg-[#06ACC1] text-white font-bold hover:bg-[#0597a9] transition-all flex items-center justify-center gap-2 text-base hover:-translate-y-1 shadow-lg shadow-[#06ACC1]/20">
                     Meet your Digital Medical Assistant
                     <span className="text-lg leading-none mb-0.5">↗</span>
                 </button>
                 
-                <button className="w-full sm:w-auto px-8 py-3 rounded-full bg-white border border-gray-200 text-gray-600 font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center gap-3 text-base group hover:-translate-y-1">
+                <button className="w-full sm:w-auto px-8 py-3 rounded-full bg-white border border-gray-200 text-gray-600 font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center gap-3 text-base group hover:-translate-y-1 hover:shadow-md">
                     <div className="w-6 h-6 rounded-full bg-gray-100 group-hover:bg-gray-200 flex items-center justify-center transition-colors">
                         <PlayIcon />
                     </div>
                     Watch Demo
                 </button>
             </div>
+
+            {/* Dashboard Preview - Both Mobile & Desktop */}
+            <div className="w-full max-w-[90rem] relative perspective-1000 mx-auto px-2 sm:px-6 lg:px-8 mt-8">
+                <div className="relative rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+                    <Image
+                        src="/screen.png"
+                        alt="App Screenshot"
+                        width={1400}
+                        height={900}
+                        className="rounded-md shadow-2xl ring-1 ring-gray-900/10 w-full h-auto"
+                        quality={100}
+                        priority
+                    />
+                    
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                        <button className="w-24 h-24 md:w-32 md:h-32 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-xl backdrop-blur-sm transition-all hover:scale-110 group">
+                            <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-[#06ACC1]/10 flex items-center justify-center group-hover:bg-[#06ACC1]/20 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-10 h-10 md:w-14 md:h-14 text-[#06ACC1] ml-1">
+                                    <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clipRule="evenodd" />
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                {/* Gradient overlay for bottom fade integration */}
+                <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/80 to-transparent z-20"></div>
+            </div>
         </div>
     </section>
   );
 }
-

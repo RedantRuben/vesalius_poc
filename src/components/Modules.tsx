@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const ArrowUpRight = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-gray-400">
@@ -103,8 +104,9 @@ export default function Modules() {
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="lg:col-span-7 bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]"
+            className="lg:col-span-7"
           >
+            <Link href="/product/pre-consultation" scroll={true} className="block h-full bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]">
             <div className="flex justify-between items-start mb-6">
               <div className="flex gap-2">
                 <span className="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-xs font-medium">Whatsapp</span>
@@ -147,14 +149,16 @@ export default function Modules() {
                   <div className="h-1.5 bg-cyan-200/50 rounded w-full"></div>
                </motion.div>
             </div>
+            </Link>
           </motion.div>
 
           {/* Scribe - Top Right (Narrower) */}
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="lg:col-span-5 bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]"
+            className="lg:col-span-5"
           >
+            <Link href="/product/scribe" scroll={true} className="block h-full bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]">
              <div className="flex justify-between items-start mb-4">
               <div className="flex gap-2">
                 <span className="bg-pink-50 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">Desktop</span>
@@ -194,14 +198,16 @@ export default function Modules() {
                     ))}
                 </div>
             </div>
+            </Link>
           </motion.div>
 
           {/* Document Generation - Bottom Left (Narrower) */}
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="lg:col-span-5 bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]"
+            className="lg:col-span-5"
           >
+            <Link href="/product/document-generation" scroll={true} className="block h-full bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]">
             <div className="flex justify-between items-start mb-4">
               <div className="flex gap-2">
                 <span className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Automated</span>
@@ -274,14 +280,16 @@ export default function Modules() {
                    </motion.div>
                </motion.div>
             </div>
+            </Link>
           </motion.div>
 
           {/* Smart Triage - Bottom Right (Wider) */}
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="lg:col-span-7 bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]"
+            className="lg:col-span-7"
           >
+            <Link href="/product/smart-triage" scroll={true} className="block h-full bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]">
             <div className="flex justify-between items-start mb-4">
               <div className="flex gap-2">
                  <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">Coming Soon</span>
@@ -355,6 +363,7 @@ export default function Modules() {
                     Routing...
                 </div>
             </div>
+            </Link>
           </motion.div>
 
         </motion.div>
