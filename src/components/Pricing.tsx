@@ -59,7 +59,7 @@ const pricingPlans = [
 export default function Pricing() {
   return (
     <section className="w-full bg-white">
-      <div className="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center py-8 md:py-12">
+      <div className="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

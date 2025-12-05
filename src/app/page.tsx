@@ -15,7 +15,7 @@ export default function Home() {
       <Navbar />
       
       {/* Section 1: Hero */}
-      <section className="w-full min-h-[calc(100vh-80px)] flex items-center justify-center bg-white relative z-0">
+      <section className="w-full bg-white relative z-0">
          <Hero />
       </section>
 
@@ -23,33 +23,33 @@ export default function Home() {
       <LogoTicker />
 
       {/* Section 2: Why Choose Vesalius (Moved from Carousel spot) */}
-      <section className="w-full min-h-screen flex items-center justify-center bg-white">
+      <section className="w-full pt-12 md:pt-16 pb-12 md:pb-16 flex items-center justify-center bg-white">
         <WhyChooseVesalius />
       </section>
 
       {/* Section 3: Modules */}
-      <section id="product" className="w-full min-h-screen flex items-center justify-center bg-white">
+      <section id="product" className="w-full pt-0 pb-12 md:pb-16 flex items-center justify-center bg-white">
         <Modules />
       </section>
 
       {/* Section 4: Testimonials */}
-      <section className="w-full min-h-screen flex items-center justify-center bg-white">
+      <section className="w-full pt-0 pb-12 md:pb-16 flex items-center justify-center bg-white">
         <Testimonials />
       </section>
 
       {/* Section 5: Pricing */}
-      <section id="pricing" className="w-full min-h-screen flex items-center justify-center bg-white">
+      <section id="pricing" className="w-full pt-0 pb-12 md:pb-16 flex items-center justify-center bg-white">
         <Pricing />
       </section>
 
       {/* Section 6: Team Pricing */}
-      <section className="w-full min-h-screen flex items-center justify-center bg-white">
+      <section className="w-full pt-0 pb-12 md:pb-16 flex items-center justify-center bg-white">
         <TeamPricing />
       </section>
 
       {/* Section 7: Contact & Footer */}
-      <section id="contact" className="w-full min-h-screen flex flex-col bg-white">
-        <div className="flex-1 flex items-center justify-center">
+      <section id="contact" className="w-full flex flex-col bg-white">
+        <div className="flex-1 flex items-center justify-center py-12 md:py-16">
            <Contact />
         </div>
         <Footer />

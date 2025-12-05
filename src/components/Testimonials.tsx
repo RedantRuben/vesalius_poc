@@ -40,14 +40,14 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <section className="w-full bg-white">
-      <div className="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center py-4 md:py-8">
+      <div className="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 md:mb-10"
+          className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2B3B53]">
             Hear it straight from our users

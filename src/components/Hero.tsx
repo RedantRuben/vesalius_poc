@@ -14,7 +14,7 @@ const PlayIcon = () => (
 
 export default function Hero() {
   return (
-    <section className="relative flex flex-col items-center justify-start px-4 text-center overflow-hidden w-full min-h-[calc(100vh-80px)] pt-24 md:pt-32">
+    <section className="relative flex flex-col items-center justify-start px-4 text-center overflow-hidden w-full pt-24 md:pt-32 pb-12 md:pb-20">
         {/* Background Grid */}
         <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
         
@@ -26,7 +26,7 @@ export default function Hero() {
 
         {/* Floating Elements - Desktop Only - Original Style & Placement */}
         {/* Left Image - 320 Views */}
-        <div className="absolute top-[15%] left-[2%] lg:left-[5%] w-64 -rotate-6 hidden md:block z-0">
+        <div className="absolute top-[15%] left-1/2 -translate-x-[550px] lg:-translate-x-[700px] w-64 -rotate-6 hidden md:block z-0">
              <div className="transform transition-transform hover:scale-105 duration-500">
                 <Image 
                     src="/320.png" 
@@ -40,7 +40,7 @@ export default function Hero() {
         </div>
         
         {/* Right Image - Stats Breakdown */}
-        <div className="absolute top-[35%] right-[2%] lg:right-[5%] rotate-[6deg] hidden md:block z-0">
+        <div className="absolute top-[35%] left-1/2 translate-x-[350px] lg:translate-x-[500px] rotate-[6deg] hidden md:block z-0">
             <div className="transform transition-transform hover:scale-105 duration-500">
                 <Image 
                     src="/statsright.png" 

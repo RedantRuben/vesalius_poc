@@ -40,14 +40,14 @@ const teamPlans = [
 export default function TeamPricing() {
   return (
     <section className="w-full bg-white">
-      <div className="max-w-5xl mx-auto px-6 h-full flex flex-col justify-center py-8 md:py-12">
+      <div className="max-w-5xl mx-auto px-6 h-full flex flex-col justify-center">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-12 md:mb-16"
         >
           <p className="text-gray-500 text-lg">
             Need more flexibility?
