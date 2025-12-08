@@ -1,0 +1,191 @@
+{
+  "Navbar": {
+    "overview": "Overzicht",
+    "product": "Product",
+    "pricing": "Prijzen",
+    "contact": "Contact",
+    "security": "Beveiliging",
+    "tryForFree": "Probeer gratis"
+  },
+  "Hero": {
+    "titlePrefix": "Uw Digitale",
+    "titleSuffix": "Medische Assistent",
+    "subtitle": "Aangedreven door Uw Expertise, <bold>Verbeterd door AI</bold>. Ervaar de volgende generatie van klinische workflow automatisering.",
+    "ctaPrimary": "Ontmoet uw Digitale Medische Assistent",
+    "ctaSecondary": "Bekijk Demo"
+  },
+  "LogoTicker": {
+    "trustedBy": "Vertrouwd door toonaangevende instellingen"
+  },
+  "WhyChooseVesalius": {
+    "title": "Het AI-platform voor patiëntgesprekken gebouwd voor specialisten, door specialisten",
+    "features": {
+      "language": {
+        "title": "Doorbeek de taalbarrière",
+        "description": "Vesalius helpt u uw patiënten te begrijpen, ongeacht de taal."
+      },
+      "liability": {
+        "title": "Aansprakelijkheid",
+        "description": "Vesalius houdt een duidelijk overzicht van interacties bij, vermindert aansprakelijkheid en zorgt voor naleving."
+      },
+      "care": {
+        "title": "Betere zorg",
+        "description": "Automatiseer intakes om administratie te verminderen zodat u zich kunt richten op wat belangrijk is."
+      },
+      "accuracy": {
+        "title": "Verbeter uw nauwkeurigheid",
+        "description": "Elimineer handmatige fouten en zorg voor consistente patiëntendossiers."
+      }
+    }
+  },
+  "Modules": {
+    "title": "We hebben een module voor iedereen",
+    "preConsultation": {
+      "tag1": "Whatsapp",
+      "tag2": "50+ Talen",
+      "title": "Pre-consultatie",
+      "description": "Intelligente conversationele intake die de patiëntgeschiedenis structureert voordat ze de kamer binnenkomen."
+    },
+    "scribe": {
+      "tag1": "Desktop",
+      "tag2": "Mobiel",
+      "title": "Scribe",
+      "description": "De Scribe Bot luistert op de achtergrond mee tijdens het consult (via mobiel of desktop) en legt het volledige klinische gesprek nauwkeurig vast."
+    },
+    "documentGeneration": {
+      "tag1": "Geautomatiseerd",
+      "tag2": "Geïntegreerd",
+      "title": "Documentgeneratie",
+      "description": "Zet uw data aan het werk. Vesalius stopt niet bij het vastleggen van info, maar gebruikt het om uw administratie te genereren."
+    },
+    "smartTriage": {
+      "tag1": "Binnenkort beschikbaar",
+      "title": "Slimme Triage",
+      "description": "Intelligente urgentiebeoordeling en routing om ervoor te zorgen dat patiënten op het juiste moment de juiste zorg krijgen. Optimaliseer uw planning en prioriteer effectief.",
+      "routing": "Routering..."
+    }
+  },
+  "Testimonials": {
+    "title": "Hoor het direct van onze gebruikers",
+    "statsTitle": "Hoog gewaardeerd door patiënten en artsen in de hele sector",
+    "adoptionRate": "Adoptiegraad",
+    "roi": "Rendement op Investering",
+    "completionTime": "Gemiddelde Voltooiingstijd",
+    "perceivedQuality": "Waargenomen Kwaliteit",
+    "patientRating": "Patiëntbeoordeling",
+    "physiciansRating": "Artsenbeoordeling",
+    "items": {
+      "0": {
+        "quote": "Patiënten die de chatbot gebruiken voelen zich beter voorbereid op hun consult, wat leidt tot een efficiënter en gerichter gesprek met de arts.",
+        "name": "Farah",
+        "role": "Klinisch Onderzoeker"
+      },
+      "1": {
+        "quote": "Onderzoek heeft aangetoond dat patiënten die Vesalius hebben gebruikt zich beter begrepen voelen door hun arts in vergelijking met degenen die Vesalius niet hebben gebruikt.",
+        "name": "Philippe",
+        "role": "Medisch Centrum Aalst"
+      },
+      "2": {
+        "quote": "De algemene feedback van de verpleegkundigen is positief; ze vinden het platform eenvoudig te gebruiken, wat resulteert in tijdsbesparing en verhoogde efficiëntie in hun werk.",
+        "name": "Cynthia",
+        "role": "Klinisch Onderzoeker"
+      }
+    }
+  },
+  "Pricing": {
+    "title": "Transparante en eerlijke prijzen",
+    "subtitle": "Kies het plan dat bij uw praktijk past",
+    "free": {
+      "name": "Gratis",
+      "description": "Begin vandaag vrijblijvend en zie wat onze oplossing voor uw praktijk kan betekenen.",
+      "button": "Aan de slag",
+      "features": [
+        "20 gratis credits om te starten",
+        "Geen creditcard vereist",
+        "Perfect om onze service te proberen",
+        "Standaard ondersteuning"
+      ]
+    },
+    "payAsYouUse": {
+      "name": "Pay-as-you-use",
+      "description": "De flexibiliteit om alleen te betalen voor wat u gebruikt. Perfect voor variabele behoeften en seizoensgebonden praktijken.",
+      "button": "Aan de slag",
+      "features": [
+        "Betaal alleen voor wat u gebruikt",
+        "Vooraf gedefinieerde pakketten",
+        "Volumekortingen beschikbaar",
+        "Flexibel voor uw behoeften",
+        "Standaard ondersteuning"
+      ]
+    },
+    "individual": {
+      "name": "Individueel",
+      "description": "Onbeperkt gebruik voor één arts zonder credits bij te houden. Eenvoudig en voorspelbaar.",
+      "button": "Aan de slag",
+      "popularLabel": "Meest Populair",
+      "features": [
+        "Onbeperkt gebruik",
+        "Perfect voor 1 arts",
+        "Voorspelbare maandelijkse kosten",
+        "Op elk moment opzegbaar",
+        "Prioritaire ondersteuning"
+      ]
+    }
+  },
+  "TeamPricing": {
+    "title": "Meer flexibiliteit nodig?",
+    "yearlyPayment": "Jaarlijkse betaling (bespaar 15%), wissel naar <link>maandelijkse betalingen</link>",
+    "team": {
+      "name": "Team",
+      "description": "Ideaal voor praktijken met meerdere artsen. Efficiënte samenwerking, één betaalbare prijs.",
+      "button": "Aan de slag",
+      "features": [
+        "Onbeperkt gebruik",
+        "Tot 5 zorgverleners",
+        "Voorspelbare maandelijkse kosten",
+        "Gecentraliseerde werkruimte",
+        "Op elk moment opzegbaar",
+        "Prioritaire ondersteuning"
+      ]
+    },
+    "organisation": {
+      "name": "Organisatie",
+      "price": "Prijzen op maat",
+      "description": "Heeft u meer dan 5 artsen in uw organisatie? Wij bieden oplossingen op maat voor grotere praktijken en ziekenhuizen.",
+      "button": "Aan de slag",
+      "features": [
+        "Onbeperkt gebruik, speciale ondersteuning en aangepaste integraties tegen een prijs op maat."
+      ]
+    }
+  },
+  "Contact": {
+    "title": "We zijn er <span class=\"text-[#06ACC1]\">om te helpen</span>",
+    "subtitle": "Nog andere vragen? Neem contact met ons op",
+    "form": {
+      "namePlaceholder": "Uw Naam *",
+      "emailPlaceholder": "Uw Email *",
+      "orgPlaceholder": "Uw Organisatie",
+      "subjectPlaceholder": "Onderwerp *",
+      "questionPlaceholder": "Uw Vraag *",
+      "submit": "Verzenden"
+    },
+    "address": {
+      "street": "Ottergemsesteenweg Zuid 808B",
+      "city": "9000 Gent, België"
+    },
+    "mapData": "Kaartgegevens © OpenStreetMap"
+  },
+  "Footer": {
+    "legal": "Juridisch",
+    "help": "Hulp",
+    "privacyPolicy": "Privacybeleid",
+    "security": "Beveiliging",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "address": {
+        "street": "Ottergemsesteenweg Zuid 808B",
+        "city": "9000 Gent, België"
+    },
+    "copyright": "Copyright © Vesalius health"
+  }
+}

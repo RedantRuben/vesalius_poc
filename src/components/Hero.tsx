@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 const SparklesIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
@@ -13,6 +14,8 @@ const PlayIcon = () => (
 );
 
 export default function Hero() {
+  const t = useTranslations('Hero');
+
   return (
     <section className="relative flex flex-col items-center justify-start px-4 text-center overflow-hidden w-full pt-24 md:pt-32 pb-12 md:pb-20">
         {/* Background Grid */}
@@ -55,17 +58,19 @@ export default function Hero() {
 
         <div className="z-10 flex flex-col items-center max-w-5xl mx-auto">
             <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#2B3B53] mb-6 md:mb-8 leading-[1.1]">
-                Your Digital <br className="hidden md:block" />
-                <span className="text-[#06ACC1]">Medical Assistant</span>
+                {t('titlePrefix')} <br className="hidden md:block" />
+                <span className="text-[#06ACC1]">{t('titleSuffix')}</span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mb-10 md:mb-12 leading-relaxed px-4">
-                Powered by Your Expertise, <span className="font-bold text-[#2B3B53]">Enhanced by AI</span>. Experience the next generation of clinical workflow automation.
+                {t.rich('subtitle', {
+                  bold: (chunks) => <span className="font-bold text-[#2B3B53]">{chunks}</span>
+                })}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-16 md:mb-24">
                 <button className="w-full sm:w-auto px-8 py-3 rounded-full bg-[#06ACC1] text-white font-bold hover:bg-[#0597a9] transition-all flex items-center justify-center gap-2 text-base hover:-translate-y-1 shadow-lg shadow-[#06ACC1]/20">
-                    Meet your Digital Medical Assistant
+                    {t('ctaPrimary')}
                     <span className="text-lg leading-none mb-0.5">↗</span>
                 </button>
                 
@@ -73,7 +78,7 @@ export default function Hero() {
                     <div className="w-6 h-6 rounded-full bg-gray-100 group-hover:bg-gray-200 flex items-center justify-center transition-colors">
                         <PlayIcon />
                     </div>
-                    Watch Demo
+                    {t('ctaSecondary')}
                 </button>
             </div>
 

@@ -1,0 +1,191 @@
+{
+  "Navbar": {
+    "overview": "Aperçu",
+    "product": "Produit",
+    "pricing": "Tarifs",
+    "contact": "Contact",
+    "security": "Sécurité",
+    "tryForFree": "Essayer gratuitement"
+  },
+  "Hero": {
+    "titlePrefix": "Votre Assistant",
+    "titleSuffix": "Médical Numérique",
+    "subtitle": "Propulsé par Votre Expertise, <bold>Amélioré par l'IA</bold>. Découvrez la prochaine génération d'automatisation des flux de travail cliniques.",
+    "ctaPrimary": "Rencontrez votre Assistant Médical Numérique",
+    "ctaSecondary": "Voir la démo"
+  },
+  "LogoTicker": {
+    "trustedBy": "Reconnu par les plus grandes institutions"
+  },
+  "WhyChooseVesalius": {
+    "title": "La plateforme d'IA pour les conversations avec les patients, conçue pour les spécialistes, par des spécialistes",
+    "features": {
+      "language": {
+        "title": "Brisez la barrière de la langue",
+        "description": "Vesalius vous aide à comprendre vos patients, quelle que soit la langue."
+      },
+      "liability": {
+        "title": "Responsabilité",
+        "description": "Vesalius conserve un enregistrement clair des interactions, réduisant la responsabilité et assurant la conformité."
+      },
+      "care": {
+        "title": "Meilleurs soins",
+        "description": "Automatisez les admissions pour réduire l'administration afin que vous puissiez vous concentrer sur l'essentiel."
+      },
+      "accuracy": {
+        "title": "Améliorez votre précision",
+        "description": "Éliminez les erreurs manuelles et assurez la cohérence des dossiers patients."
+      }
+    }
+  },
+  "Modules": {
+    "title": "Nous avons un module pour chacun",
+    "preConsultation": {
+      "tag1": "Whatsapp",
+      "tag2": "50+ Langues",
+      "title": "Pré-consultation",
+      "description": "Prise en charge conversationnelle intelligente qui structure l'historique du patient avant qu'il n'entre dans la salle."
+    },
+    "scribe": {
+      "tag1": "Bureau",
+      "tag2": "Mobile",
+      "title": "Scribe",
+      "description": "Le Scribe Bot écoute en arrière-plan pendant la consultation (via mobile ou bureau) et capture avec précision l'intégralité de la conversation clinique."
+    },
+    "documentGeneration": {
+      "tag1": "Automatisé",
+      "tag2": "Intégré",
+      "title": "Génération de documents",
+      "description": "Mettez vos données au travail. Vesalius ne s'arrête pas à la capture d'informations mais l'utilise pour générer votre administration."
+    },
+    "smartTriage": {
+      "tag1": "Bientôt disponible",
+      "title": "Triage intelligent",
+      "description": "Évaluation intelligente de l'urgence et routage pour s'assurer que les patients reçoivent les bons soins au bon moment. Optimisez votre emploi du temps et priorisez efficacement.",
+      "routing": "Routage..."
+    }
+  },
+  "Testimonials": {
+    "title": "Écoutez-le directement de nos utilisateurs",
+    "statsTitle": "Hautement évalué par les patients et les médecins dans toute l'industrie",
+    "adoptionRate": "Taux d'adoption",
+    "roi": "Retour sur investissement",
+    "completionTime": "Temps moyen de réalisation",
+    "perceivedQuality": "Qualité perçue",
+    "patientRating": "Évaluation des patients",
+    "physiciansRating": "Évaluation des médecins",
+    "items": {
+      "0": {
+        "quote": "Les patients qui utilisent le chatbot se sentent mieux préparés pour leur consultation, ce qui conduit à une conversation plus efficace et ciblée avec le médecin.",
+        "name": "Farah",
+        "role": "Chercheuse clinique"
+      },
+      "1": {
+        "quote": "La recherche a montré que les patients ayant utilisé Vesalius se sentent mieux compris par leur médecin par rapport à ceux qui n'ont pas utilisé Vesalius.",
+        "name": "Philippe",
+        "role": "Centre médical Alost"
+      },
+      "2": {
+        "quote": "Les commentaires généraux des infirmières sont positifs ; elles trouvent la plateforme facile à utiliser, ce qui entraîne un gain de temps et une efficacité accrue dans leur travail.",
+        "name": "Cynthia",
+        "role": "Chercheuse clinique"
+      }
+    }
+  },
+  "Pricing": {
+    "title": "Tarification transparente et équitable",
+    "subtitle": "Choisissez le plan qui convient à votre pratique",
+    "free": {
+      "name": "Gratuit",
+      "description": "Commencez dès aujourd'hui sans engagement et découvrez ce que notre solution peut faire pour votre cabinet.",
+      "button": "Commencer",
+      "features": [
+        "20 crédits gratuits pour commencer",
+        "Pas de carte de crédit requise",
+        "Parfait pour essayer notre service",
+        "Support standard"
+      ]
+    },
+    "payAsYouUse": {
+      "name": "À l'usage",
+      "description": "La flexibilité de payer uniquement ce que vous utilisez. Parfait pour les besoins variables et les pratiques saisonnières.",
+      "button": "Commencer",
+      "features": [
+        "Payez uniquement pour ce que vous utilisez",
+        "Paniers prédéfinis",
+        "Remises sur volume disponibles",
+        "Flexible pour vos besoins",
+        "Support standard"
+      ]
+    },
+    "individual": {
+      "name": "Individuel",
+      "description": "Utilisation illimitée pour un médecin sans suivi de crédits. Simple et prévisible.",
+      "button": "Commencer",
+      "popularLabel": "Le plus populaire",
+      "features": [
+        "Utilisation illimitée",
+        "Parfait pour 1 médecin",
+        "Coût mensuel prévisible",
+        "Annulable à tout moment",
+        "Support prioritaire"
+      ]
+    }
+  },
+  "TeamPricing": {
+    "title": "Besoin de plus de flexibilité ?",
+    "yearlyPayment": "Paiement annuel (économisez 15%), passez aux <link>paiements mensuels</link>",
+    "team": {
+      "name": "Équipe",
+      "description": "Idéal pour les cabinets avec plusieurs médecins. Collaboration efficace, un prix abordable.",
+      "button": "Commencer",
+      "features": [
+        "Utilisation illimitée",
+        "Jusqu'à 5 prestataires de soins",
+        "Coût mensuel prévisible",
+        "Espace de travail centralisé",
+        "Annulable à tout moment",
+        "Support prioritaire"
+      ]
+    },
+    "organisation": {
+      "name": "Organisation",
+      "price": "Tarification sur mesure",
+      "description": "Vous avez plus de 5 médecins dans votre organisation ? Nous proposons des solutions personnalisées pour les grands cabinets et les hôpitaux.",
+      "button": "Commencer",
+      "features": [
+        "Utilisation illimitée, support spécial et intégrations personnalisées à un prix sur mesure."
+      ]
+    }
+  },
+  "Contact": {
+    "title": "Nous sommes là <span class=\"text-[#06ACC1]\">pour aider</span>",
+    "subtitle": "D'autres questions ? Contactez-nous",
+    "form": {
+      "namePlaceholder": "Votre Nom *",
+      "emailPlaceholder": "Votre Email *",
+      "orgPlaceholder": "Votre Organisation",
+      "subjectPlaceholder": "Sujet *",
+      "questionPlaceholder": "Votre Question *",
+      "submit": "Envoyer"
+    },
+    "address": {
+      "street": "Ottergemsesteenweg Zuid 808B",
+      "city": "9000 Gent, Belgique"
+    },
+    "mapData": "Données cartographiques © OpenStreetMap"
+  },
+  "Footer": {
+    "legal": "Juridique",
+    "help": "Aide",
+    "privacyPolicy": "Politique de confidentialité",
+    "security": "Sécurité",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "address": {
+        "street": "Ottergemsesteenweg Zuid 808B",
+        "city": "9000 Gent, Belgique"
+    },
+    "copyright": "Copyright © Vesalius health"
+  }
+}

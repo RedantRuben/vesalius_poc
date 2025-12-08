@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 const ArrowUpRight = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-gray-400">
@@ -78,6 +79,8 @@ const itemVariants = {
 };
 
 export default function Modules() {
+  const t = useTranslations('Modules');
+
   return (
     <section className="w-full bg-white">
       <div className="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
@@ -89,7 +92,7 @@ export default function Modules() {
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2B3B53]">
-            We have a module for everyone
+            {t('title')}
           </h2>
         </motion.div>
 
@@ -109,14 +112,14 @@ export default function Modules() {
             <Link href="/product/pre-consultation" scroll={true} className="block h-full bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]">
             <div className="flex justify-between items-start mb-6">
               <div className="flex gap-2">
-                <span className="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-xs font-medium">Whatsapp</span>
-                <span className="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-xs font-medium">50+ Languages</span>
+                <span className="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-xs font-medium">{t('preConsultation.tag1')}</span>
+                <span className="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-xs font-medium">{t('preConsultation.tag2')}</span>
               </div>
               <ArrowUpRight />
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-[#2B3B53] mb-2">Pre Consultation</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-[#2B3B53] mb-2">{t('preConsultation.title')}</h3>
             <p className="text-gray-500 max-w-md mb-6 text-xs md:text-sm">
-              Intelligent conversational intake that structures patient history before they enter the room.
+              {t('preConsultation.description')}
             </p>
             
             {/* Visual Visualization */}
@@ -161,14 +164,14 @@ export default function Modules() {
             <Link href="/product/scribe" scroll={true} className="block h-full bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]">
              <div className="flex justify-between items-start mb-4">
               <div className="flex gap-2">
-                <span className="bg-pink-50 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">Desktop</span>
-                <span className="bg-pink-50 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">Mobile</span>
+                <span className="bg-pink-50 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">{t('scribe.tag1')}</span>
+                <span className="bg-pink-50 text-pink-700 px-3 py-1 rounded-full text-xs font-medium">{t('scribe.tag2')}</span>
               </div>
               <ArrowUpRight />
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-[#2B3B53] mb-2">Scribe</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-[#2B3B53] mb-2">{t('scribe.title')}</h3>
             <p className="text-gray-500 mb-6 text-xs md:text-sm">
-              The Scribe Bot listens in the background during the consultation (via mobile or desktop) and accurately captures the entire clinical conversation.
+              {t('scribe.description')}
             </p>
             
             <div className="flex justify-center items-center gap-6 mt-4">
@@ -210,14 +213,14 @@ export default function Modules() {
             <Link href="/product/document-generation" scroll={true} className="block h-full bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]">
             <div className="flex justify-between items-start mb-4">
               <div className="flex gap-2">
-                <span className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Automated</span>
-                <span className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Integrated</span>
+                <span className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-medium">{t('documentGeneration.tag1')}</span>
+                <span className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-medium">{t('documentGeneration.tag2')}</span>
               </div>
               <ArrowUpRight />
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-[#2B3B53] mb-2">Document Generation</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-[#2B3B53] mb-2">{t('documentGeneration.title')}</h3>
             <p className="text-gray-500 mb-6 text-xs md:text-sm">
-              Put your data to work. Vesalius stops not at capturing info but uses it to generate your administration.
+              {t('documentGeneration.description')}
             </p>
 
             <div className="relative h-32 w-full flex justify-center transform scale-90 origin-top">
@@ -292,13 +295,13 @@ export default function Modules() {
             <Link href="/product/smart-triage" scroll={true} className="block h-full bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]">
             <div className="flex justify-between items-start mb-4">
               <div className="flex gap-2">
-                 <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">Coming Soon</span>
+                 <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">{t('smartTriage.tag1')}</span>
               </div>
               <ArrowUpRight />
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-[#2B3B53] mb-2">Smart Triage</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-[#2B3B53] mb-2">{t('smartTriage.title')}</h3>
             <p className="text-gray-500 max-w-xl mb-6 text-xs md:text-sm">
-              Intelligent urgency assessment and routing to ensure patients get the right care at the right time. Optimize your schedule and prioritize effectively.
+              {t('smartTriage.description')}
             </p>
             
             <div className="flex justify-center items-center gap-3 md:gap-6 py-4">
@@ -360,7 +363,7 @@ export default function Modules() {
                 </motion.div>
 
                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-gray-400 mt-2">
-                    Routing...
+                    {t('smartTriage.routing')}
                 </div>
             </div>
             </Link>

@@ -2,7 +2,9 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const MailIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -26,6 +28,8 @@ const LinkedinIcon = () => (
 );
 
 export default function Footer() {
+  const t = useTranslations('Footer');
+
   return (
     <footer className="w-full bg-[#F9FBFC] border-t border-[#F2F2F2]">
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
@@ -66,52 +70,44 @@ export default function Footer() {
 
           {/* Legal Links */}
           <div className="md:col-span-2 md:col-start-6">
-            <h3 className="text-[#2B3B53] font-semibold text-lg mb-6">Legal</h3>
+            <h3 className="text-[#2B3B53] font-semibold text-lg mb-6">{t('legal')}</h3>
             <ul className="space-y-4">
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">Privacy Policy</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">Security</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">FAQ</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">Legal</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">Contact</Link></li>
+              <li><Link href="/privacy-policy" className="text-gray-600 hover:text-[#06ACC1]">{t('privacyPolicy')}</Link></li>
+              <li><Link href="/security" className="text-gray-600 hover:text-[#06ACC1]">{t('security')}</Link></li>
+              <li><Link href="/faq" className="text-gray-600 hover:text-[#06ACC1]">{t('faq')}</Link></li>
+              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">{t('legal')}</Link></li>
+              <li><Link href="/#contact" className="text-gray-600 hover:text-[#06ACC1]">{t('contact')}</Link></li>
             </ul>
           </div>
 
           {/* Help Links */}
           <div className="md:col-span-2">
-            <h3 className="text-[#2B3B53] font-semibold text-lg mb-6">Help</h3>
+            <h3 className="text-[#2B3B53] font-semibold text-lg mb-6">{t('help')}</h3>
             <ul className="space-y-4">
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">Privacy Policy</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">Security</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">FAQ</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">Legal</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">Contact</Link></li>
+              <li><Link href="/privacy-policy" className="text-gray-600 hover:text-[#06ACC1]">{t('privacyPolicy')}</Link></li>
+              <li><Link href="/security" className="text-gray-600 hover:text-[#06ACC1]">{t('security')}</Link></li>
+              <li><Link href="/faq" className="text-gray-600 hover:text-[#06ACC1]">{t('faq')}</Link></li>
+              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">{t('legal')}</Link></li>
+              <li><Link href="/#contact" className="text-gray-600 hover:text-[#06ACC1]">{t('contact')}</Link></li>
             </ul>
           </div>
 
           {/* Address */}
           <div className="md:col-span-3 text-right md:text-right">
-             <h3 className="text-[#2B3B53] font-semibold text-lg mb-2">Ottergemsesteenweg Zuid 808B</h3>
-             <p className="text-gray-600">9000 Gent, Belgium</p>
+             <h3 className="text-[#2B3B53] font-semibold text-lg mb-2">{t('address.street')}</h3>
+             <p className="text-gray-600">{t('address.city')}</p>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#F2F2F2] flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-gray-500 text-sm">
-            Copyright © Vesalius health
+            {t('copyright')}
           </div>
           
-          <div className="flex items-center gap-6 text-sm">
-            <button className="text-gray-600 hover:text-[#06ACC1]">Nederlands (BE)</button>
-            <div className="h-4 w-px bg-gray-300"></div>
-            <button className="text-[#06ACC1] font-medium">English (US)</button>
-            <div className="h-4 w-px bg-gray-300"></div>
-            <button className="text-[#06ACC1] font-medium">Français (BE)</button>
-          </div>
+          <LanguageSwitcher />
         </div>
       </div>
     </footer>
   );
 }
-
-

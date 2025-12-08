@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations('Navbar');
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-sm border-b border-[#F2F2F2]">
@@ -27,19 +29,19 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-[#2B3B53]">
           <div className="relative flex flex-col items-center">
-            <Link href="/" className="text-[#2B3B53] transition-colors font-bold">Overview</Link>
+            <Link href="/" className="text-[#2B3B53] transition-colors font-bold">{t('overview')}</Link>
             <div className="absolute -bottom-1 w-1/2 h-[3px] bg-[#06ACC1] rounded-full"></div>
           </div>
-          <Link href="/#product" className="hover:text-primary transition-colors">Product</Link>
-          <Link href="/#pricing" className="hover:text-primary transition-colors">Pricing</Link>
-          <Link href="#contact" className="hover:text-primary transition-colors">Contact</Link>
-          <Link href="/security" className="hover:text-primary transition-colors">Security</Link>
+          <Link href="/#product" className="hover:text-primary transition-colors">{t('product')}</Link>
+          <Link href="/#pricing" className="hover:text-primary transition-colors">{t('pricing')}</Link>
+          <Link href="#contact" className="hover:text-primary transition-colors">{t('contact')}</Link>
+          <Link href="/security" className="hover:text-primary transition-colors">{t('security')}</Link>
         </div>
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
           <button className="rounded-[15px] border border-[#F2F2F2] px-5 py-2 text-sm font-medium text-[#2B3B53] hover:border-primary hover:text-primary transition-colors flex items-center gap-1 bg-white">
-            Try for free 
+            {t('tryForFree')}
             <span className="text-lg leading-none mb-1">↗</span>
           </button>
         </div>
@@ -72,15 +74,15 @@ export default function Navbar() {
               exit={{ opacity: 0, y: -20 }}
               className="absolute top-full left-0 right-0 bg-white border-b border-[#F2F2F2] shadow-lg md:hidden p-6 flex flex-col gap-4"
             >
-              <Link href="/" className="text-[#2B3B53] font-bold text-lg py-2" onClick={() => setIsOpen(false)}>Overview</Link>
-              <Link href="/#product" className="text-[#2B3B53] text-lg py-2" onClick={() => setIsOpen(false)}>Product</Link>
-              <Link href="/#pricing" className="text-[#2B3B53] text-lg py-2" onClick={() => setIsOpen(false)}>Pricing</Link>
-              <Link href="#contact" className="text-[#2B3B53] text-lg py-2" onClick={() => setIsOpen(false)}>Contact</Link>
-              <Link href="/security" className="text-[#2B3B53] text-lg py-2" onClick={() => setIsOpen(false)}>Security</Link>
+              <Link href="/" className="text-[#2B3B53] font-bold text-lg py-2" onClick={() => setIsOpen(false)}>{t('overview')}</Link>
+              <Link href="/#product" className="text-[#2B3B53] text-lg py-2" onClick={() => setIsOpen(false)}>{t('product')}</Link>
+              <Link href="/#pricing" className="text-[#2B3B53] text-lg py-2" onClick={() => setIsOpen(false)}>{t('pricing')}</Link>
+              <Link href="#contact" className="text-[#2B3B53] text-lg py-2" onClick={() => setIsOpen(false)}>{t('contact')}</Link>
+              <Link href="/security" className="text-[#2B3B53] text-lg py-2" onClick={() => setIsOpen(false)}>{t('security')}</Link>
               
               <div className="pt-4 mt-2 border-t border-gray-100">
                  <button className="w-full rounded-[15px] border border-[#F2F2F2] px-5 py-3 text-sm font-medium text-[#2B3B53] hover:border-primary hover:text-primary transition-colors flex items-center justify-center gap-1 bg-white">
-                  Try for free 
+                  {t('tryForFree')}
                   <span className="text-lg leading-none mb-1">↗</span>
                 </button>
               </div>

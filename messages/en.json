@@ -1,0 +1,191 @@
+{
+  "Navbar": {
+    "overview": "Overview",
+    "product": "Product",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "security": "Security",
+    "tryForFree": "Try for free"
+  },
+  "Hero": {
+    "titlePrefix": "Your Digital",
+    "titleSuffix": "Medical Assistant",
+    "subtitle": "Powered by Your Expertise, <bold>Enhanced by AI</bold>. Experience the next generation of clinical workflow automation.",
+    "ctaPrimary": "Meet your Digital Medical Assistant",
+    "ctaSecondary": "Watch Demo"
+  },
+  "LogoTicker": {
+    "trustedBy": "Trusted by leading institutions"
+  },
+  "WhyChooseVesalius": {
+    "title": "The AI platform for patient conversations built for specialists, by specialists",
+    "features": {
+      "language": {
+        "title": "Break the language barrier",
+        "description": "Vesalius helps you understand your patients, no matter the language."
+      },
+      "liability": {
+        "title": "Liability",
+        "description": "Vesalius keeps a clear record of interactions, reducing liability and ensuring compliance."
+      },
+      "care": {
+        "title": "Better care",
+        "description": "Automate intakes to reduce administration so you can focus on what matters."
+      },
+      "accuracy": {
+        "title": "Improve your accuracy",
+        "description": "Eliminate manual errors and ensure consistent patient records."
+      }
+    }
+  },
+  "Modules": {
+    "title": "We have a module for everyone",
+    "preConsultation": {
+      "tag1": "Whatsapp",
+      "tag2": "50+ Languages",
+      "title": "Pre Consultation",
+      "description": "Intelligent conversational intake that structures patient history before they enter the room."
+    },
+    "scribe": {
+      "tag1": "Desktop",
+      "tag2": "Mobile",
+      "title": "Scribe",
+      "description": "The Scribe Bot listens in the background during the consultation (via mobile or desktop) and accurately captures the entire clinical conversation."
+    },
+    "documentGeneration": {
+      "tag1": "Automated",
+      "tag2": "Integrated",
+      "title": "Document Generation",
+      "description": "Put your data to work. Vesalius stops not at capturing info but uses it to generate your administration."
+    },
+    "smartTriage": {
+      "tag1": "Coming Soon",
+      "title": "Smart Triage",
+      "description": "Intelligent urgency assessment and routing to ensure patients get the right care at the right time. Optimize your schedule and prioritize effectively.",
+      "routing": "Routing..."
+    }
+  },
+  "Testimonials": {
+    "title": "Hear it straight from our users",
+    "statsTitle": "Highly rated by patients and physicians throughout the entire industry",
+    "adoptionRate": "Adoption Rate",
+    "roi": "Return On Investment",
+    "completionTime": "Average Completion Time",
+    "perceivedQuality": "Perceived Quality",
+    "patientRating": "Patient Rating",
+    "physiciansRating": "Physicians Rating",
+    "items": {
+      "0": {
+        "quote": "Patients who use the chatbot feel better prepared for their consultation, leading to a more efficient and focused conversation with the doctor.",
+        "name": "Farah",
+        "role": "Clinical Researcher"
+      },
+      "1": {
+        "quote": "Research has shown that patients who have used Vesalius feel better understood by their doctor compared to those who haven't used Vesalius.",
+        "name": "Philippe",
+        "role": "Medisch Centrum Aalst"
+      },
+      "2": {
+        "quote": "The general feedback from the nurses is positive; they find the platform easy to use, which results in time savings and increased efficiency in their work.",
+        "name": "Cynthia",
+        "role": "Clinical Researcher"
+      }
+    }
+  },
+  "Pricing": {
+    "title": "Transparent and fair pricing",
+    "subtitle": "Choose the plan that fits your practice",
+    "free": {
+      "name": "Free",
+      "description": "Start today with no obligations and see what our solution can do for your practice.",
+      "button": "Get Started",
+      "features": [
+        "20 free credits to start",
+        "No credit card required",
+        "Perfect for trying our service",
+        "Standard support"
+      ]
+    },
+    "payAsYouUse": {
+      "name": "Pay-as-you-use",
+      "description": "The flexibility to only pay for what you use. Perfect for variable needs and seasonal practices.",
+      "button": "Get Started",
+      "features": [
+        "Pay only for what you use",
+        "Predefined buckets",
+        "Volume discounts available",
+        "Flexible for your needs",
+        "Standard support"
+      ]
+    },
+    "individual": {
+      "name": "Individual",
+      "description": "Unlimited usage for one doctor without tracking credits. Simple and predictable.",
+      "button": "Get Started",
+      "popularLabel": "Most Popular",
+      "features": [
+        "Unlimited usage",
+        "Perfect for 1 doctor",
+        "Predictable monthly cost",
+        "Cancel any time",
+        "Priority support"
+      ]
+    }
+  },
+  "TeamPricing": {
+    "title": "Need more flexibility?",
+    "yearlyPayment": "Yearly payment (save 15%), switch to <link>monthly payments</link>",
+    "team": {
+      "name": "Team",
+      "description": "Ideal for practices with multiple doctors. Efficient collaboration, one affordable price.",
+      "button": "Get Started",
+      "features": [
+        "Unlimited usage",
+        "Up to 5 healthcare providers",
+        "Predictable monthly cost",
+        "Centralised workspace",
+        "Cancel any time",
+        "Priority support"
+      ]
+    },
+    "organisation": {
+      "name": "Organisation",
+      "price": "Custom Pricing",
+      "description": "Do you have more than 5 doctors in your organisation? We offer custom solutions for larger practices and hospitals.",
+      "button": "Get Started",
+      "features": [
+        "Unlimited usage, special support, and customised integrations at a tailored price."
+      ]
+    }
+  },
+  "Contact": {
+    "title": "We are here <span class=\"text-[#06ACC1]\">to help</span>",
+    "subtitle": "Any other questions? Get in touch with us",
+    "form": {
+      "namePlaceholder": "Your Name *",
+      "emailPlaceholder": "Your Email *",
+      "orgPlaceholder": "Your Organisation",
+      "subjectPlaceholder": "Subject *",
+      "questionPlaceholder": "Your Question *",
+      "submit": "Submit"
+    },
+    "address": {
+      "street": "Ottergemsesteenweg Zuid 808B",
+      "city": "9000 Gent, Belgium"
+    },
+    "mapData": "Map Data © OpenStreetMap"
+  },
+  "Footer": {
+    "legal": "Legal",
+    "help": "Help",
+    "privacyPolicy": "Privacy Policy",
+    "security": "Security",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "address": {
+        "street": "Ottergemsesteenweg Zuid 808B",
+        "city": "9000 Gent, Belgium"
+    },
+    "copyright": "Copyright © Vesalius health"
+  }
+}
