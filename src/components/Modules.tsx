@@ -56,6 +56,19 @@ const SparklesIcon = () => (
     </svg>
 );
 
+const PillIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-violet-500">
+    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+    <path d="m8.5 8.5 7 7"/>
+  </svg>
+);
+
+const CheckCircleIconWhite = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+);
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -365,6 +378,126 @@ export default function Modules() {
                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-gray-400 mt-2">
                     {t('smartTriage.routing')}
                 </div>
+            </div>
+            </Link>
+          </motion.div>
+
+          {/* Smart Follow-ups - Now 7 cols */}
+          <motion.div 
+            variants={itemVariants}
+            whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            className="lg:col-span-7"
+          >
+             <Link href="/product/smart-follow-up" scroll={true} className="block h-full bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]">
+                <div className="flex justify-between items-start mb-6">
+                    <div className="flex gap-2">
+                        <span className="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-xs font-medium">{t('smartFollowUp.tag1')}</span>
+                        <span className="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-xs font-medium">{t('smartFollowUp.tag2')}</span>
+                    </div>
+                    <ArrowUpRight />
+                </div>
+                
+                <h3 className="text-xl md:text-2xl font-bold text-[#2B3B53] mb-2">{t('smartFollowUp.title')}</h3>
+                <p className="text-gray-500 max-w-sm mb-6 text-xs md:text-sm">
+                    {t('smartFollowUp.description')}
+                </p>
+
+                {/* Simplified visual for smaller space */}
+                <div className="relative mt-4 bg-white rounded-xl border border-gray-100 shadow-sm p-4 max-w-md mx-auto transform scale-95 origin-top">
+                    {/* Progress Bar */}
+                    <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden mb-3">
+                        <div className="h-full bg-[#06ACC1] w-[75%] rounded-full"></div>
+                    </div>
+
+                    {/* Alert Box */}
+                     <motion.div 
+                        initial={{ x: 20, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="flex items-center gap-2 p-2 bg-orange-50 border border-orange-100 rounded-lg"
+                     >
+                        <div className="shrink-0 text-orange-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-orange-700 text-xs">Deviation Detected</h4>
+                        </div>
+                     </motion.div>
+                 </div>
+             </Link>
+          </motion.div>
+
+          {/* Medication Manager - Bottom Right (Narrower) */}
+          <motion.div 
+            variants={itemVariants}
+            whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            className="lg:col-span-5"
+          >
+            <Link href="/product/medication" scroll={true} className="block h-full bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-6 md:p-8 relative overflow-hidden group hover:shadow-md transition-shadow h-[280px] md:h-[320px]">
+             <div className="flex justify-between items-start mb-4">
+              <div className="flex gap-2">
+                <span className="bg-violet-50 text-violet-700 px-3 py-1 rounded-full text-xs font-medium">{t('medication.tag1')}</span>
+                <span className="bg-violet-50 text-violet-700 px-3 py-1 rounded-full text-xs font-medium">{t('medication.tag2')}</span>
+              </div>
+              <ArrowUpRight />
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold text-[#2B3B53] mb-2">{t('medication.title')}</h3>
+            <p className="text-gray-500 mb-6 text-xs md:text-sm">
+              {t('medication.description')}
+            </p>
+            
+            <div className="flex justify-center items-center gap-4 mt-6">
+                {/* Camera/Phone Frame */}
+                <div className="relative w-24 h-32 bg-gray-50 rounded-xl border-2 border-gray-200 flex flex-col items-center pt-3 overflow-hidden">
+                    <div className="w-8 h-1 bg-gray-200 rounded-full mb-2"></div>
+                    <div className="w-16 h-16 bg-white rounded-lg shadow-sm border border-gray-100 flex items-center justify-center relative">
+                        {/* List simulation */}
+                         <div className="space-y-1 w-10">
+                             <div className="h-0.5 bg-gray-200 w-full"></div>
+                             <div className="h-0.5 bg-gray-200 w-2/3"></div>
+                             <div className="h-0.5 bg-gray-200 w-full"></div>
+                         </div>
+                    </div>
+                    
+                    {/* Scanning Line */}
+                    <motion.div 
+                        animate={{ top: ["10%", "90%", "10%"] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                        className="absolute w-full h-0.5 bg-violet-400 shadow-[0_0_8px_rgba(167,139,250,0.8)] z-10"
+                    />
+                </div>
+
+                {/* Arrow */}
+                <motion.div
+                    animate={{ x: [0, 5, 0], opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-300">
+                        <path d="M5 12h14"/>
+                        <path d="m12 5 7 7-7 7"/>
+                    </svg>
+                </motion.div>
+
+                {/* Result - Digital Pill */}
+                <motion.div 
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="w-20 h-24 bg-white rounded-xl border border-violet-100 shadow-sm flex flex-col items-center justify-center gap-2 p-2 relative"
+                >
+                    <div className="absolute -top-2 -right-2 bg-violet-500 rounded-full p-1 shadow-lg">
+                        <CheckCircleIconWhite />
+                    </div>
+                    <div className="w-10 h-10 bg-violet-50 rounded-full flex items-center justify-center">
+                        <PillIcon />
+                    </div>
+                    <div className="w-12 h-1.5 bg-gray-100 rounded"></div>
+                    <div className="w-8 h-1.5 bg-gray-100 rounded"></div>
+                </motion.div>
             </div>
             </Link>
           </motion.div>

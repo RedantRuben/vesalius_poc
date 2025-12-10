@@ -63,6 +63,18 @@
       "title": "Smart Triage",
       "description": "Intelligent urgency assessment and routing to ensure patients get the right care at the right time. Optimize your schedule and prioritize effectively.",
       "routing": "Routing..."
+    },
+    "smartFollowUp": {
+      "tag1": "Automated",
+      "tag2": "Alerts",
+      "title": "Smart Follow-ups",
+      "description": "Automated check-ins that flag at-risk patients. Get alerts when responses deviate, enabling early intervention."
+    },
+    "medication": {
+      "tag1": "OCR",
+      "tag2": "Instant",
+      "title": "Medication Manager",
+      "description": "Instantly digitize medication from photos of boxes, printed lists, or handwritten notes. Our AI extracts dosage, form, and prescription details directly into the platform."
     }
   },
   "Testimonials": {

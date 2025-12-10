@@ -1,10 +1,12 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ModuleNavigation from "@/components/ModuleNavigation";
 
 export default function DocumentGenerationPage() {
   return (
     <main className="w-full bg-white relative selection:bg-primary/20 font-sans">
       <Navbar />
+      <ModuleNavigation />
       
       {/* Hero Section */}
       <section className="w-full pt-24 pb-20 md:pt-32 md:pb-24 bg-white relative overflow-hidden border-b border-gray-100">
@@ -122,6 +124,7 @@ export default function DocumentGenerationPage() {
             </div>
          </div>
       </section>
+
 
       <section className="w-full flex flex-col bg-white border-t border-gray-100">
         <Footer />

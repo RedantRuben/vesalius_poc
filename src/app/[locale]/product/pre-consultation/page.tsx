@@ -1,14 +1,18 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import ModuleNavigation from "@/components/ModuleNavigation";
 
 export default function PreConsultationPage() {
   return (
     <main className="w-full bg-white relative selection:bg-primary/20 font-sans">
       <Navbar />
+      <ModuleNavigation />
       
       {/* Hero Section */}
       <section className="w-full pt-24 pb-20 md:pt-32 md:pb-24 bg-white relative overflow-hidden border-b border-gray-100">
+        {/* ... hero content ... */}
+
         {/* Background Grid */}
         <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
@@ -155,6 +159,7 @@ export default function PreConsultationPage() {
             </div>
          </div>
       </section>
+
 
       <section className="w-full flex flex-col bg-white border-t border-gray-100">
         <Footer />
