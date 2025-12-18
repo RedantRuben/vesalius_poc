@@ -178,7 +178,9 @@
   "Footer": {
     "legal": "Juridique",
     "help": "Aide",
+    "termsAndConditions": "Conditions générales",
     "privacyPolicy": "Politique de confidentialité",
+    "cookiePolicy": "Politique de cookies",
     "security": "Sécurité",
     "faq": "FAQ",
     "contact": "Contact",
@@ -187,5 +189,54 @@
         "city": "9000 Gent, Belgique"
     },
     "copyright": "Copyright © Vesalius health"
+  },
+  "ErrorPage": {
+    "notFound": {
+      "code": "404",
+      "title": "Page Introuvable",
+      "subtitle": "Cette page est partie chercher un deuxième avis et n'est jamais revenue.",
+      "action": "Retour à l'accueil"
+    },
+    "serverError": {
+      "code": "500",
+      "title": "Erreur Interne",
+      "subtitle": "Nos serveurs ont besoin de repos. Nous avons appelé un spécialiste.",
+      "action": "Réessayer"
+    },
+    "generic": {
+      "code": "Oups",
+      "title": "Quelque chose s'est mal passé",
+      "subtitle": "Ne vous inquiétez pas, ce n'est pas contagieux. Notre équipe diagnostique le problème.",
+      "action": "Retour à l'accueil"
+    }
+  },
+  "CookieConsent": {
+    "title": "Nous utilisons des cookies",
+    "description": "Nous utilisons des cookies pour améliorer votre expérience de navigation, analyser le trafic et personnaliser le contenu.",
+    "learnMore": "En savoir plus",
+    "acceptAll": "Tout accepter",
+    "customize": "Personnaliser",
+    "rejectAll": "Tout refuser",
+    "savePreferences": "Enregistrer les préférences",
+    "settings": {
+      "title": "Préférences de cookies",
+      "required": "Requis",
+      "necessary": {
+        "title": "Cookies nécessaires",
+        "description": "Essentiels au fonctionnement du site. Ne peuvent pas être désactivés."
+      },
+      "functionality": {
+        "title": "Cookies de fonctionnalité",
+        "description": "Mémorisent vos préférences comme la langue et la région."
+      },
+      "analytics": {
+        "title": "Cookies analytiques",
+        "description": "Nous aident à comprendre comment les visiteurs utilisent notre site."
+      },
+      "advertisement": {
+        "title": "Cookies publicitaires",
+        "description": "Utilisés pour afficher des publicités pertinentes selon vos intérêts."
+      }
+    }
   }
 }

@@ -178,7 +178,9 @@
   "Footer": {
     "legal": "Juridisch",
     "help": "Hulp",
+    "termsAndConditions": "Algemene voorwaarden",
     "privacyPolicy": "Privacybeleid",
+    "cookiePolicy": "Cookiebeleid",
     "security": "Beveiliging",
     "faq": "FAQ",
     "contact": "Contact",
@@ -187,5 +189,54 @@
         "city": "9000 Gent, België"
     },
     "copyright": "Copyright © Vesalius health"
+  },
+  "ErrorPage": {
+    "notFound": {
+      "code": "404",
+      "title": "Pagina Niet Gevonden",
+      "subtitle": "Deze pagina is een tweede mening gaan halen en nooit teruggekomen.",
+      "action": "Terug naar Homepage"
+    },
+    "serverError": {
+      "code": "500",
+      "title": "Interne Fout",
+      "subtitle": "Onze servers hebben bedrust nodig. We hebben een specialist ingeschakeld.",
+      "action": "Opnieuw Proberen"
+    },
+    "generic": {
+      "code": "Oeps",
+      "title": "Er ging iets mis",
+      "subtitle": "Geen zorgen, het is niet besmettelijk. Ons team is het probleem aan het diagnosticeren.",
+      "action": "Terug naar Homepage"
+    }
+  },
+  "CookieConsent": {
+    "title": "Wij gebruiken cookies",
+    "description": "Wij gebruiken cookies om uw browse-ervaring te verbeteren, siteverkeer te analyseren en inhoud te personaliseren.",
+    "learnMore": "Meer informatie",
+    "acceptAll": "Alles accepteren",
+    "customize": "Aanpassen",
+    "rejectAll": "Alles weigeren",
+    "savePreferences": "Voorkeuren opslaan",
+    "settings": {
+      "title": "Cookie voorkeuren",
+      "required": "Vereist",
+      "necessary": {
+        "title": "Noodzakelijke cookies",
+        "description": "Essentieel voor de werking van de website. Kunnen niet worden uitgeschakeld."
+      },
+      "functionality": {
+        "title": "Functionele cookies",
+        "description": "Onthouden uw voorkeuren zoals taal en regio."
+      },
+      "analytics": {
+        "title": "Analytische cookies",
+        "description": "Helpen ons te begrijpen hoe bezoekers onze site gebruiken."
+      },
+      "advertisement": {
+        "title": "Advertentiecookies",
+        "description": "Worden gebruikt om relevante advertenties te tonen op basis van uw interesses."
+      }
+    }
   }
 }

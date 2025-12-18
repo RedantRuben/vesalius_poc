@@ -145,10 +145,10 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <button className="rounded-[15px] border border-[#F2F2F2] px-5 py-2 text-sm font-medium text-[#2B3B53] hover:border-primary hover:text-primary transition-colors flex items-center gap-1 bg-white">
+          <a href="https://assistant.vesalius.ai/onboarding/credentials" className="rounded-[15px] border border-[#F2F2F2] px-5 py-2 text-sm font-medium text-[#2B3B53] hover:border-primary hover:text-primary transition-colors flex items-center gap-1 bg-white">
             {t('tryForFree')}
             <span className="text-lg leading-none mb-1">↗</span>
-          </button>
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -186,10 +186,10 @@ export default function Navbar() {
               <Link href="/security" className="text-[#2B3B53] text-lg py-2" onClick={() => setIsOpen(false)}>{t('security')}</Link>
               
               <div className="pt-4 mt-2 border-t border-gray-100">
-                 <button className="w-full rounded-[15px] border border-[#F2F2F2] px-5 py-3 text-sm font-medium text-[#2B3B53] hover:border-primary hover:text-primary transition-colors flex items-center justify-center gap-1 bg-white">
+                 <a href="https://assistant.vesalius.ai/onboarding/credentials" className="w-full rounded-[15px] border border-[#F2F2F2] px-5 py-3 text-sm font-medium text-[#2B3B53] hover:border-primary hover:text-primary transition-colors flex items-center justify-center gap-1 bg-white">
                   {t('tryForFree')}
                   <span className="text-lg leading-none mb-1">↗</span>
-                </button>
+                </a>
               </div>
             </motion.div>
           )}

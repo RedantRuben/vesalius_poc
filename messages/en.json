@@ -190,7 +190,9 @@
   "Footer": {
     "legal": "Legal",
     "help": "Help",
+    "termsAndConditions": "Terms & Conditions",
     "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
     "security": "Security",
     "faq": "FAQ",
     "contact": "Contact",
@@ -199,5 +201,54 @@
         "city": "9000 Gent, Belgium"
     },
     "copyright": "Copyright © Vesalius health"
+  },
+  "ErrorPage": {
+    "notFound": {
+      "code": "404",
+      "title": "Page Not Found",
+      "subtitle": "This page went to get a second opinion and never came back.",
+      "action": "Back to Homepage"
+    },
+    "serverError": {
+      "code": "500",
+      "title": "Internal Error",
+      "subtitle": "Our servers need bed rest. We've called in a specialist.",
+      "action": "Try Again"
+    },
+    "generic": {
+      "code": "Oops",
+      "title": "Something Went Wrong",
+      "subtitle": "Don't worry, it's not contagious. Our team is diagnosing the issue.",
+      "action": "Back to Homepage"
+    }
+  },
+  "CookieConsent": {
+    "title": "We use cookies",
+    "description": "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content.",
+    "learnMore": "Learn more",
+    "acceptAll": "Accept All",
+    "customize": "Customize",
+    "rejectAll": "Reject All",
+    "savePreferences": "Save Preferences",
+    "settings": {
+      "title": "Cookie Preferences",
+      "required": "Required",
+      "necessary": {
+        "title": "Necessary Cookies",
+        "description": "Essential for the website to function. Cannot be disabled."
+      },
+      "functionality": {
+        "title": "Functionality Cookies",
+        "description": "Remember your preferences like language and region."
+      },
+      "analytics": {
+        "title": "Analytics Cookies",
+        "description": "Help us understand how visitors use our site."
+      },
+      "advertisement": {
+        "title": "Advertisement Cookies",
+        "description": "Used to show relevant ads based on your interests."
+      }
+    }
   }
 }

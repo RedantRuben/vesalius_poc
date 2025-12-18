@@ -32,10 +32,10 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-[#F9FBFC] border-t border-[#F2F2F2]">
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-12">
+      <div className="max-w-7xl mx-auto px-6 py-10 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-8 md:mb-12">
           {/* Brand & Contact */}
-          <div className="md:col-span-4 space-y-6">
+          <div className="md:col-span-4 space-y-5 md:space-y-6">
             <Image
               src="/logo.webp"
               alt="Vesalius.ai Logo"
@@ -44,64 +44,60 @@ export default function Footer() {
               className="object-contain h-10 w-auto mb-4"
             />
             
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#EAF8FA] flex items-center justify-center flex-shrink-0">
+            <div className="space-y-3 md:space-y-4">
+              <div className="flex items-center gap-3 md:gap-4">
+                <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-[#EAF8FA] flex items-center justify-center flex-shrink-0">
                   <MailIcon />
                 </div>
-                <span className="text-gray-600">help@vesalius.health</span>
+                <span className="text-gray-600 text-sm md:text-base">help@vesalius.health</span>
               </div>
               
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#EAF8FA] flex items-center justify-center flex-shrink-0">
+              <div className="flex items-center gap-3 md:gap-4">
+                <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-[#EAF8FA] flex items-center justify-center flex-shrink-0">
                   <PhoneIcon />
                 </div>
-                <span className="text-gray-600">09 496 14 78</span>
+                <span className="text-gray-600 text-sm md:text-base">09 496 14 78</span>
               </div>
               
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#EAF8FA] flex items-center justify-center flex-shrink-0">
+              <div className="flex items-center gap-3 md:gap-4">
+                <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-[#EAF8FA] flex items-center justify-center flex-shrink-0">
                   <LinkedinIcon />
                 </div>
-                <span className="text-gray-600">Vesalius.health</span>
+                <span className="text-gray-600 text-sm md:text-base">Vesalius.health</span>
               </div>
             </div>
           </div>
 
           {/* Legal Links */}
           <div className="md:col-span-2 md:col-start-6">
-            <h3 className="text-[#2B3B53] font-semibold text-lg mb-6">{t('legal')}</h3>
-            <ul className="space-y-4">
-              <li><Link href="/privacy-policy" className="text-gray-600 hover:text-[#06ACC1]">{t('privacyPolicy')}</Link></li>
-              <li><Link href="/security" className="text-gray-600 hover:text-[#06ACC1]">{t('security')}</Link></li>
-              <li><Link href="/faq" className="text-gray-600 hover:text-[#06ACC1]">{t('faq')}</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">{t('legal')}</Link></li>
-              <li><Link href="/#contact" className="text-gray-600 hover:text-[#06ACC1]">{t('contact')}</Link></li>
+            <h3 className="text-[#2B3B53] font-semibold text-base md:text-lg mb-4 md:mb-6">{t('legal')}</h3>
+            <ul className="space-y-3 md:space-y-4">
+              <li><Link href="/terms-and-conditions" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('termsAndConditions')}</Link></li>
+              <li><Link href="/privacy-policy" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('privacyPolicy')}</Link></li>
+              <li><Link href="/cookie-policy" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('cookiePolicy')}</Link></li>
+              <li><Link href="/security" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('security')}</Link></li>
             </ul>
           </div>
 
           {/* Help Links */}
           <div className="md:col-span-2">
-            <h3 className="text-[#2B3B53] font-semibold text-lg mb-6">{t('help')}</h3>
-            <ul className="space-y-4">
-              <li><Link href="/privacy-policy" className="text-gray-600 hover:text-[#06ACC1]">{t('privacyPolicy')}</Link></li>
-              <li><Link href="/security" className="text-gray-600 hover:text-[#06ACC1]">{t('security')}</Link></li>
-              <li><Link href="/faq" className="text-gray-600 hover:text-[#06ACC1]">{t('faq')}</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-[#06ACC1]">{t('legal')}</Link></li>
-              <li><Link href="/#contact" className="text-gray-600 hover:text-[#06ACC1]">{t('contact')}</Link></li>
+            <h3 className="text-[#2B3B53] font-semibold text-base md:text-lg mb-4 md:mb-6">{t('help')}</h3>
+            <ul className="space-y-3 md:space-y-4">
+              <li><Link href="/faq" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('faq')}</Link></li>
+              <li><Link href="/#contact" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('contact')}</Link></li>
             </ul>
           </div>
 
           {/* Address */}
-          <div className="md:col-span-3 text-right md:text-right">
-             <h3 className="text-[#2B3B53] font-semibold text-lg mb-2">{t('address.street')}</h3>
-             <p className="text-gray-600">{t('address.city')}</p>
+          <div className="md:col-span-3 text-left md:text-right">
+             <h3 className="text-[#2B3B53] font-semibold text-base md:text-lg mb-2">{t('address.street')}</h3>
+             <p className="text-gray-600 text-sm md:text-base">{t('address.city')}</p>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#F2F2F2] flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-gray-500 text-sm">
+        <div className="pt-6 md:pt-8 border-t border-[#F2F2F2] flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-gray-500 text-xs md:text-sm text-center md:text-left">
             {t('copyright')}
           </div>
           
