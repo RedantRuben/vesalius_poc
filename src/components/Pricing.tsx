@@ -99,7 +99,7 @@ export default function Pricing() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
                 className={`relative rounded-[32px] p-8 md:p-10 flex flex-col h-full transition-transform duration-500 hover:-translate-y-2 ${
                   isDark 
                     ? 'bg-[#0B1B3D] shadow-2xl shadow-[#0B1B3D]/30 border border-white/10 lg:scale-105 z-20 glow-effect' 

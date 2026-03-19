@@ -63,7 +63,7 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
               className="glass-panel rounded-[24px] p-8 md:p-10 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 relative bg-gradient-to-br from-white/90 to-white/50 border border-white/60 flex flex-col justify-between h-full group"
             >
               <QuoteIcon />

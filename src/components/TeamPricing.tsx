@@ -70,7 +70,7 @@ export default function TeamPricing() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
               className="glass-panel bg-white/60 border border-white/80 rounded-[32px] p-8 md:p-10 flex flex-col hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 h-full group"
             >
               <div className="mb-10 border-b border-slate-100 pb-8">
