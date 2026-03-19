@@ -7,20 +7,20 @@ import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const MailIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400 group-hover:text-[#06ACC1] transition-colors">
     <rect width="20" height="16" x="2" y="4" rx="2"/>
     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
   </svg>
 );
 
 const PhoneIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400 group-hover:text-[#06ACC1] transition-colors">
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
   </svg>
 );
 
 const LinkedinIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400 group-hover:text-[#06ACC1] transition-colors">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
     <rect width="4" height="12" x="2" y="9"/>
     <circle cx="4" cy="4" r="2"/>
@@ -31,77 +31,89 @@ export default function Footer() {
   const t = useTranslations('Footer');
 
   return (
-    <footer className="w-full bg-[#F9FBFC] border-t border-[#F2F2F2]">
-      <div className="max-w-7xl mx-auto px-6 py-10 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-8 md:mb-12">
+    <footer className="w-full bg-[#0B1B3D] pt-24 pb-12 relative overflow-hidden text-slate-300 rounded-t-[40px] md:rounded-t-[80px] mt-12 shadow-[0_-20px_40px_rgba(0,0,0,0.05)]">
+      {/* Background Ornaments */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[#06ACC1]/10 to-transparent rounded-full blur-3xl pointer-events-none transform translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 mb-20">
+          
           {/* Brand & Contact */}
-          <div className="md:col-span-4 space-y-5 md:space-y-6">
-            <Image
-              src="/logo.webp"
-              alt="Vesalius.ai Logo"
-              width={150}
-              height={42}
-              className="object-contain h-10 w-auto mb-4"
-            />
+          <div className="md:col-span-4 flex flex-col space-y-8">
+            <Link href="/">
+              <Image
+                src="/vesalius.svg"
+                alt="Vesalius.ai Logo"
+                width={260}
+                height={45}
+                className="object-contain h-10 w-auto brightness-0 invert opacity-90 hover:opacity-100 transition-opacity"
+              />
+            </Link>
             
-            <div className="space-y-3 md:space-y-4">
-              <div className="flex items-center gap-3 md:gap-4">
-                <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-[#EAF8FA] flex items-center justify-center flex-shrink-0">
+            <div className="space-y-5">
+              <a href="mailto:help@vesalius.health" className="flex items-center gap-4 group w-fit">
+                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#06ACC1]/50 group-hover:bg-[#06ACC1]/10 transition-all">
                   <MailIcon />
                 </div>
-                <span className="text-gray-600 text-sm md:text-base">help@vesalius.health</span>
-              </div>
+                <span className="text-sm md:text-base font-medium group-hover:text-white transition-colors">help@vesalius.health</span>
+              </a>
               
-              <div className="flex items-center gap-3 md:gap-4">
-                <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-[#EAF8FA] flex items-center justify-center flex-shrink-0">
+              <a href="tel:094961478" className="flex items-center gap-4 group w-fit">
+                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#06ACC1]/50 group-hover:bg-[#06ACC1]/10 transition-all">
                   <PhoneIcon />
                 </div>
-                <span className="text-gray-600 text-sm md:text-base">09 496 14 78</span>
-              </div>
+                <span className="text-sm md:text-base font-medium group-hover:text-white transition-colors">09 496 14 78</span>
+              </a>
               
-              <div className="flex items-center gap-3 md:gap-4">
-                <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-[#EAF8FA] flex items-center justify-center flex-shrink-0">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group w-fit">
+                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#06ACC1]/50 group-hover:bg-[#06ACC1]/10 transition-all">
                   <LinkedinIcon />
                 </div>
-                <span className="text-gray-600 text-sm md:text-base">Vesalius.health</span>
-              </div>
+                <span className="text-sm md:text-base font-medium group-hover:text-white transition-colors">Vesalius.health</span>
+              </a>
             </div>
           </div>
 
+          {/* Spacer */}
+          <div className="hidden md:block md:col-span-2"></div>
+
           {/* Legal Links */}
-          <div className="md:col-span-2 md:col-start-6">
-            <h3 className="text-[#2B3B53] font-semibold text-base md:text-lg mb-4 md:mb-6">{t('legal')}</h3>
-            <ul className="space-y-3 md:space-y-4">
-              <li><Link href="/terms-and-conditions" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('termsAndConditions')}</Link></li>
-              <li><Link href="/privacy-policy" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('privacyPolicy')}</Link></li>
-              <li><Link href="/cookie-policy" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('cookiePolicy')}</Link></li>
-              <li><Link href="/security" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('security')}</Link></li>
+          <div className="md:col-span-3">
+            <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('legal')}</h3>
+            <ul className="space-y-4">
+              <li><Link href="/terms-and-conditions" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('termsAndConditions')}</Link></li>
+              <li><Link href="/privacy-policy" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('privacyPolicy')}</Link></li>
+              <li><Link href="/cookie-policy" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('cookiePolicy')}</Link></li>
+              <li><Link href="/security" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('security')}</Link></li>
             </ul>
           </div>
 
-          {/* Help Links */}
-          <div className="md:col-span-2">
-            <h3 className="text-[#2B3B53] font-semibold text-base md:text-lg mb-4 md:mb-6">{t('help')}</h3>
-            <ul className="space-y-3 md:space-y-4">
-              <li><Link href="/faq" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('faq')}</Link></li>
-              <li><Link href="/#contact" className="text-gray-600 hover:text-[#06ACC1] text-sm md:text-base">{t('contact')}</Link></li>
+          {/* Help Links & Address */}
+          <div className="md:col-span-3">
+            <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('help')}</h3>
+            <ul className="space-y-4 mb-10">
+              <li><Link href="/faq" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('faq')}</Link></li>
+              <li><Link href="/contactus" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('contact')}</Link></li>
+              <li><Link href="/support" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('support')}</Link></li>
             </ul>
-          </div>
 
-          {/* Address */}
-          <div className="md:col-span-3 text-left md:text-right">
-             <h3 className="text-[#2B3B53] font-semibold text-base md:text-lg mb-2">{t('address.street')}</h3>
-             <p className="text-gray-600 text-sm md:text-base">{t('address.city')}</p>
+            <div className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+               <h4 className="text-white font-bold text-sm mb-2">{t('address.street')}</h4>
+               <p className="text-sm font-medium text-slate-400">{t('address.city')}</p>
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 md:pt-8 border-t border-[#F2F2F2] flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-gray-500 text-xs md:text-sm text-center md:text-left">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-sm font-medium">
             {t('copyright')}
           </div>
           
-          <LanguageSwitcher />
+          <div className="opacity-80 hover:opacity-100 transition-opacity">
+             <LanguageSwitcher />
+          </div>
         </div>
       </div>
     </footer>

@@ -39,7 +39,7 @@
     }
   },
   "Modules": {
-    "title": "We have a module for everyone",
+    "title": "A complete toolkit for modern care teams",
     "preConsultation": {
       "tag1": "Whatsapp",
       "tag2": "50+ Languages",
@@ -78,7 +78,7 @@
     }
   },
   "Testimonials": {
-    "title": "Hear it straight from our users",
+    "title": "What healthcare teams say about Vesalius",
     "statsTitle": "Highly rated by patients and physicians throughout the entire industry",
     "adoptionRate": "Adoption Rate",
     "roi": "Return On Investment",
@@ -174,12 +174,20 @@
     "title": "We are here <span class=\"text-[#06ACC1]\">to help</span>",
     "subtitle": "Any other questions? Get in touch with us",
     "form": {
+      "nameLabel": "Name",
       "namePlaceholder": "Your Name *",
+      "emailLabel": "Email",
       "emailPlaceholder": "Your Email *",
+      "organisationLabel": "Organisation (Optional)",
       "orgPlaceholder": "Your Organisation",
+      "subjectLabel": "Subject",
       "subjectPlaceholder": "Subject *",
+      "messageLabel": "How can we help?",
       "questionPlaceholder": "Your Question *",
-      "submit": "Submit"
+      "submit": "Submit",
+      "pricingIntro": "You came from the pricing section. Share a few details and we will follow up with the right plan guidance.",
+      "pricingSubjectTemplate": "Pricing enquiry: {plan}",
+      "pricingMessageTemplate": "I would like to learn more about the {plan} plan and the best setup for my team."
     },
     "address": {
       "street": "Ottergemsesteenweg Zuid 808B",
@@ -196,11 +204,100 @@
     "security": "Security",
     "faq": "FAQ",
     "contact": "Contact",
+    "support": "Customer Care",
     "address": {
         "street": "Ottergemsesteenweg Zuid 808B",
         "city": "9000 Gent, Belgium"
     },
     "copyright": "Copyright © Vesalius health"
+  },
+  "SharedForm": {
+    "submitting": "Sending...",
+    "submitError": "We could not complete your request right now. Please try again.",
+    "pricingFallbackPlan": "selected pricing plan"
+  },
+  "SupportForm": {
+    "nameLabel": "Name",
+    "namePlaceholder": "Your Name *",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Your Email *",
+    "organisationLabel": "Organisation",
+    "organisationPlaceholder": "Clinic, hospital, or practice",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "What do you need help with? *",
+    "ticketTypeLabel": "Ticket type",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Describe the issue, expected behaviour, and any useful context.",
+    "attachmentLabel": "Attachment",
+    "attachmentHint": "Optional. PDF, image, text, or Word file up to 5 MB.",
+    "attachmentUnsupported": "Please upload a PDF, image, text file, or Word document.",
+    "attachmentTooLarge": "The attachment is too large.",
+    "submit": "Submit ticket",
+    "ticketTypes": {
+      "question": "Question",
+      "questionDescription": "Use this for general support questions or account help.",
+      "incident": "Incident",
+      "incidentDescription": "Use this when something is broken or blocking work.",
+      "billing": "Billing",
+      "billingDescription": "Use this for invoices, payments, or subscription issues.",
+      "featureRequest": "Feature request",
+      "featureRequestDescription": "Use this to suggest a product improvement."
+    }
+  },
+  "DemoForm": {
+    "nameLabel": "Name",
+    "namePlaceholder": "Your Name *",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Your Email *",
+    "organisationLabel": "Organisation",
+    "organisationPlaceholder": "Clinic, hospital, or practice",
+    "roleLabel": "Role",
+    "rolePlaceholder": "Specialist, practice manager, operations lead...",
+    "messageLabel": "What should we focus on?",
+    "messagePlaceholder": "Tell us what you want to see in the demo and who it is for.",
+    "submit": "Request demo"
+  },
+  "SupportPage": {
+    "eyebrow": "Customer Care",
+    "title": "Submit a support ticket",
+    "subtitle": "Reach the Vesalius support team with the same operational flow we use today, now inside the React site.",
+    "responseTitle": "What happens next",
+    "responseBody": "Your request is validated, sent into the Vesalius Support helpdesk flow, and confirmed only after the backend accepts it.",
+    "attachmentTitle": "Helpful attachments",
+    "attachmentBody": "Add screenshots, exported files, or a short document if that helps us reproduce the issue faster.",
+    "urgentTitle": "Need a quicker handoff?",
+    "urgentBody": "Submit the ticket with the clearest reproduction steps you can share so the support team has the right context from the start."
+  },
+  "DemoPage": {
+    "eyebrow": "Demo",
+    "title": "Request a tailored walkthrough",
+    "subtitle": "Tell us who the demo is for and what you want to evaluate so we can route the request correctly.",
+    "whatToExpectTitle": "What to expect",
+    "whatToExpectBody": "Share your role, organisation, and what you want to see. We will use that context to shape the next step in the demo flow.",
+    "tailoredTitle": "Tailored to your workflow",
+    "tailoredBody": "Whether you are validating pre-consultation, scribe, or broader platform workflows, we want the session to match your practice.",
+    "platformTitle": "Live platform access",
+    "platformBody": "If you are ready to start directly, the onboarding flow remains available unchanged through the main platform CTA."
+  },
+  "SuccessPages": {
+    "contact": {
+      "title": "Your message has been sent",
+      "body": "Thanks for reaching out. We have received your contact request and will follow up as soon as possible.",
+      "primaryAction": "Back to homepage",
+      "secondaryAction": "Send another message"
+    },
+    "support": {
+      "title": "Your support ticket is in",
+      "body": "Your request has been passed into the support workflow. You can return to the site or submit another ticket if needed.",
+      "primaryAction": "Back to homepage",
+      "secondaryAction": "Submit another ticket"
+    },
+    "demo": {
+      "title": "Your demo request is on its way",
+      "body": "Thanks for sharing your context. We have recorded your request and will follow up with the next step in the demo flow.",
+      "primaryAction": "Back to homepage",
+      "secondaryAction": "Update your request"
+    }
   },
   "ErrorPage": {
     "notFound": {

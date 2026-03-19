@@ -2,10 +2,12 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from '@/i18n/routing';
 
 const CheckIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="20 6 9 17 4 12" />
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#06ACC1]">
+    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" className="stroke-[#06ACC1]/20 fill-[#06ACC1]/5"/>
+    <path d="m9 12 2 2 4-4"/>
   </svg>
 );
 
@@ -27,80 +29,89 @@ const teamPlans = [
   },
   {
     name: "Organisation",
-    price: "Custom Pricing",
-    period: "",
+    price: "Custom",
+    period: "Pricing",
     description: "Do you have more than 5 doctors in your organisation? We offer custom solutions for larger practices and hospitals.",
-    buttonText: "Get Started",
+    buttonText: "Contact Sales",
     features: [
-      "Unlimited usage, special support, and customised integrations at a tailored price."
+      "Unlimited usage for large teams",
+      "Specialised priority support",
+      "Customised integrations",
+      "Dedicated account manager",
+      "Enterprise SLA",
+      "Tailored price plan"
     ]
   }
 ];
 
 export default function TeamPricing() {
   return (
-    <section className="w-full bg-white">
-      <div className="max-w-5xl mx-auto px-6 h-full flex flex-col justify-center">
+    <section className="w-full bg-[#FCFCFD] relative pb-24">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 h-full flex flex-col justify-center">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16"
         >
-          <p className="text-gray-500 text-lg">
+          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">Enterprise</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0B1B3D] tracking-tight mb-4">
             Need more flexibility?
-          </p>
+          </h2>
         </motion.div>
 
         {/* Plans Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
           {teamPlans.map((plan, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
-              className="bg-white rounded-[15px] border border-[#F2F2F2] shadow-sm p-8 md:p-10 flex flex-col hover:shadow-md transition-shadow h-full"
+              transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="glass-panel bg-white/60 border border-white/80 rounded-[32px] p-8 md:p-10 flex flex-col hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 h-full group"
             >
-              <div className="text-center mb-8">
-                <h3 className="text-xl font-semibold text-[#2B3B53] mb-6">
+              <div className="mb-10 border-b border-slate-100 pb-8">
+                <h3 className="text-xl font-bold tracking-tight mb-6 text-[#0B1B3D]">
                   {plan.name}
                 </h3>
-                <div className="flex items-baseline justify-center mb-6">
-                  <span className={`font-bold text-[#2B3B53] ${plan.price === "Custom Pricing" ? "text-3xl" : "text-5xl"}`}>
+                <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 mb-6">
+                  <span className="text-4xl lg:text-5xl font-extrabold tracking-tighter text-[#0B1B3D]">
                     {plan.price}
                   </span>
                   {plan.period && (
-                    <span className="text-gray-500 ml-1">{plan.period}</span>
+                    <span className="text-lg font-bold tracking-tight text-slate-400">
+                      {plan.period}
+                    </span>
                   )}
                 </div>
-                <p className="text-gray-500 text-sm leading-relaxed px-4 min-h-[60px]">
-                    {plan.description.split(/(\s+)/).map((part, i) => {
-                      if (['multiple', 'doctors.', 'custom', 'solutions'].includes(part.trim())) {
-                        return <strong key={i} className="font-bold text-[#2B3B53]">{part}</strong>
-                      }
-                      return part;
-                   })}
+                <p className="text-sm leading-relaxed font-light text-slate-500">
+                    {plan.description}
                 </p>
               </div>
 
-              <button className="w-full py-3 rounded-[15px] font-medium transition-all mb-8 bg-white text-[#06ACC1] border border-[#06ACC1] hover:bg-cyan-50">
-                {plan.buttonText}
-              </button>
-
-              <div className="space-y-4 flex-grow">
+              <div className="space-y-5 flex-grow mb-10">
                 {plan.features.map((feature, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className="mt-0.5 flex-shrink-0">
+                  <div key={i} className="flex items-start gap-4">
+                    <div className="mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                       <CheckIcon />
                     </div>
-                    <span className="text-gray-600 text-sm leading-relaxed">{feature}</span>
+                    <span className="text-sm font-medium text-slate-700">
+                      {feature}
+                    </span>
                   </div>
                 ))}
               </div>
+
+              <Link
+                href={`/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}`}
+                className="w-full py-4 rounded-full font-bold tracking-wide transition-all flex items-center justify-center gap-2 group-hover:bg-[#0B1B3D] group-hover:text-white group-hover:border-transparent bg-white text-[#0B1B3D] border border-slate-200 shadow-sm"
+              >
+                {plan.buttonText}
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -110,13 +121,15 @@ export default function TeamPricing() {
            initial={{ opacity: 0 }}
            whileInView={{ opacity: 1 }}
            viewport={{ once: true }}
-           transition={{ delay: 0.4 }}
-           className="text-center text-gray-500 text-sm"
+           transition={{ delay: 0.6 }}
+           className="text-center"
         >
-           Yearly payment (save 15%), switch to <a href="#" className="text-[#06ACC1] underline hover:text-[#0597a9]">monthly payments</a>
+           <div className="inline-flex items-center gap-2 glass-panel px-6 py-3 rounded-full text-sm font-medium text-slate-600 border-white/80 shadow-sm">
+              Yearly payment (save 15%), switch to 
+              <a href="#" className="text-[#06ACC1] underline hover:text-[#0597a9] font-bold">monthly payments</a>
+           </div>
         </motion.div>
       </div>
     </section>
   );
 }
-

@@ -162,12 +162,20 @@
     "title": "We zijn er <span class=\"text-[#06ACC1]\">om te helpen</span>",
     "subtitle": "Nog andere vragen? Neem contact met ons op",
     "form": {
+      "nameLabel": "Naam",
       "namePlaceholder": "Uw Naam *",
+      "emailLabel": "E-mail",
       "emailPlaceholder": "Uw Email *",
+      "organisationLabel": "Organisatie (optioneel)",
       "orgPlaceholder": "Uw Organisatie",
+      "subjectLabel": "Onderwerp",
       "subjectPlaceholder": "Onderwerp *",
+      "messageLabel": "Waarmee kunnen we helpen?",
       "questionPlaceholder": "Uw Vraag *",
-      "submit": "Verzenden"
+      "submit": "Verzenden",
+      "pricingIntro": "U komt uit de prijzensectie. Deel een paar details en we nemen contact op met het juiste voorstel.",
+      "pricingSubjectTemplate": "Prijsaanvraag: {plan}",
+      "pricingMessageTemplate": "Ik wil graag meer weten over het {plan}-plan en welke opzet het best past bij mijn team."
     },
     "address": {
       "street": "Ottergemsesteenweg Zuid 808B",
@@ -184,11 +192,100 @@
     "security": "Beveiliging",
     "faq": "FAQ",
     "contact": "Contact",
+    "support": "Customer care",
     "address": {
         "street": "Ottergemsesteenweg Zuid 808B",
         "city": "9000 Gent, België"
     },
     "copyright": "Copyright © Vesalius health"
+  },
+  "SharedForm": {
+    "submitting": "Verzenden...",
+    "submitError": "We konden uw aanvraag nu niet afronden. Probeer het opnieuw.",
+    "pricingFallbackPlan": "geselecteerd prijsplan"
+  },
+  "SupportForm": {
+    "nameLabel": "Naam",
+    "namePlaceholder": "Uw Naam *",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Uw E-mail *",
+    "organisationLabel": "Organisatie",
+    "organisationPlaceholder": "Kliniek, ziekenhuis of praktijk",
+    "subjectLabel": "Onderwerp",
+    "subjectPlaceholder": "Waarmee heeft u hulp nodig? *",
+    "ticketTypeLabel": "Tickettype",
+    "descriptionLabel": "Beschrijving",
+    "descriptionPlaceholder": "Beschrijf het probleem, het verwachte gedrag en nuttige context.",
+    "attachmentLabel": "Bijlage",
+    "attachmentHint": "Optioneel. PDF, afbeelding, tekst- of Word-bestand tot 5 MB.",
+    "attachmentUnsupported": "Upload een PDF, afbeelding, tekstbestand of Word-document.",
+    "attachmentTooLarge": "De bijlage is te groot.",
+    "submit": "Ticket indienen",
+    "ticketTypes": {
+      "question": "Vraag",
+      "questionDescription": "Gebruik dit voor algemene supportvragen of hulp met uw account.",
+      "incident": "Incident",
+      "incidentDescription": "Gebruik dit wanneer iets defect is of werk blokkeert.",
+      "billing": "Facturatie",
+      "billingDescription": "Gebruik dit voor facturen, betalingen of abonnementen.",
+      "featureRequest": "Featureverzoek",
+      "featureRequestDescription": "Gebruik dit om een productverbetering voor te stellen."
+    }
+  },
+  "DemoForm": {
+    "nameLabel": "Naam",
+    "namePlaceholder": "Uw Naam *",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Uw E-mail *",
+    "organisationLabel": "Organisatie",
+    "organisationPlaceholder": "Kliniek, ziekenhuis of praktijk",
+    "roleLabel": "Rol",
+    "rolePlaceholder": "Specialist, praktijkmanager, operations lead...",
+    "messageLabel": "Waar moeten we op focussen?",
+    "messagePlaceholder": "Vertel ons wat u in de demo wilt zien en voor wie ze bedoeld is.",
+    "submit": "Demo aanvragen"
+  },
+  "SupportPage": {
+    "eyebrow": "Customer care",
+    "title": "Dien een supportticket in",
+    "subtitle": "Bereik het Vesalius-supportteam via dezelfde operationele flow als vandaag, nu binnen de React-site.",
+    "responseTitle": "Wat gebeurt er daarna",
+    "responseBody": "Uw aanvraag wordt gevalideerd, naar de Vesalius Support-helpdesk gestuurd en pas bevestigd nadat de backend ze heeft aanvaard.",
+    "attachmentTitle": "Handige bijlagen",
+    "attachmentBody": "Voeg screenshots, exportbestanden of een kort document toe als dat helpt om het probleem sneller te reproduceren.",
+    "urgentTitle": "Snelle overdracht nodig?",
+    "urgentBody": "Dien het ticket in met zo duidelijk mogelijke reproductiestappen zodat het supportteam meteen de juiste context heeft."
+  },
+  "DemoPage": {
+    "eyebrow": "Demo",
+    "title": "Vraag een gerichte walkthrough aan",
+    "subtitle": "Vertel ons voor wie de demo is en wat u wilt evalueren, zodat we de aanvraag correct kunnen routeren.",
+    "whatToExpectTitle": "Wat u kunt verwachten",
+    "whatToExpectBody": "Deel uw rol, organisatie en wat u wilt zien. We gebruiken die context om de volgende stap in de demo-flow vorm te geven.",
+    "tailoredTitle": "Aangepast aan uw workflow",
+    "tailoredBody": "Of u nu pre-consultatie, scribe of bredere platformworkflows evalueert, we willen dat de sessie past bij uw praktijk.",
+    "platformTitle": "Direct platformtoegang",
+    "platformBody": "Als u meteen wilt starten, blijft de onboardingflow ongewijzigd beschikbaar via de hoofd-CTA naar het platform."
+  },
+  "SuccessPages": {
+    "contact": {
+      "title": "Uw bericht is verzonden",
+      "body": "Bedankt voor uw bericht. We hebben uw contactaanvraag ontvangen en nemen zo snel mogelijk contact op.",
+      "primaryAction": "Terug naar homepage",
+      "secondaryAction": "Nog een bericht sturen"
+    },
+    "support": {
+      "title": "Uw supportticket is ingediend",
+      "body": "Uw aanvraag is doorgestuurd naar de supportflow. U kunt terug naar de site of indien nodig nog een ticket indienen.",
+      "primaryAction": "Terug naar homepage",
+      "secondaryAction": "Nog een ticket indienen"
+    },
+    "demo": {
+      "title": "Uw demoaanvraag is onderweg",
+      "body": "Bedankt voor de context. We hebben uw aanvraag geregistreerd en nemen contact op met de volgende stap in de demo-flow.",
+      "primaryAction": "Terug naar homepage",
+      "secondaryAction": "Aanvraag aanpassen"
+    }
   },
   "ErrorPage": {
     "notFound": {

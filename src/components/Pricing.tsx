@@ -2,10 +2,19 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from '@/i18n/routing';
 
 const CheckIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="20 6 9 17 4 12" />
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#06ACC1]">
+    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" className="stroke-[#06ACC1]/20 fill-[#06ACC1]/5"/>
+    <path d="m9 12 2 2 4-4"/>
+  </svg>
+);
+
+const CheckIconWhite = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400">
+    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" className="stroke-cyan-400/30 fill-cyan-400/10"/>
+    <path d="m9 12 2 2 4-4"/>
   </svg>
 );
 
@@ -58,95 +67,108 @@ const pricingPlans = [
 
 export default function Pricing() {
   return (
-    <section className="w-full bg-white">
-      <div className="max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
+    <section className="w-full bg-[#FCFCFD] relative py-12 md:py-16">
+      <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-30 pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 h-full flex flex-col justify-center">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-16 md:mb-24 flex flex-col items-center"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2B3B53] mb-4">
+          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">Pricing</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0B1B3D] tracking-tight mb-4">
             Transparent and fair pricing
           </h2>
-          <p className="text-gray-500 text-lg">
+          <p className="text-slate-500 text-lg md:text-xl font-light">
             Choose the plan that fits your practice
           </p>
         </motion.div>
 
         {/* Pricing Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-          {pricingPlans.map((plan, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
-              className={`relative bg-white rounded-[15px] p-8 flex flex-col ${
-                plan.isPopular 
-                  ? 'border-2 border-[#06ACC1] shadow-lg z-10 scale-[1.02] md:scale-105' 
-                  : 'border border-[#F2F2F2] shadow-sm hover:shadow-md transition-shadow'
-              }`}
-            >
-              {/* Popular Badge */}
-              {plan.isPopular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#06ACC1] text-white px-6 py-1.5 rounded-[15px] text-sm font-medium">
-                  {plan.popularLabel}
-                </div>
-              )}
-
-              {/* Plan Header */}
-              <div className="text-center mb-8">
-                <h3 className="text-xl font-semibold text-[#2B3B53] mb-6">
-                  {plan.name}
-                </h3>
-                <div className="flex items-baseline justify-center mb-6">
-                  <span className="text-5xl font-bold text-[#2B3B53]">{plan.price}</span>
-                  {plan.period && (
-                    <span className="text-gray-500 ml-1">{plan.period}</span>
-                  )}
-                </div>
-                <p className="text-gray-500 text-sm leading-relaxed px-2 min-h-[60px]">
-                   {/* Bold specific keywords based on content to match design */}
-                   {plan.description.split(/(\s+)/).map((part, i) => {
-                      if (['solution', 'flexibility', 'Unlimited', 'usage'].includes(part.trim())) {
-                        return <strong key={i} className="font-bold text-[#2B3B53]">{part}</strong>
-                      }
-                      return part;
-                   })}
-                </p>
-              </div>
-
-              {/* CTA Button */}
-              <button 
-                className={`w-full py-3 rounded-[15px] font-medium transition-all mb-8 ${
-                  plan.isPopular
-                    ? 'bg-[#06ACC1] text-white hover:bg-[#0597a9] shadow-md hover:shadow-lg'
-                    : 'bg-white text-[#06ACC1] border border-[#06ACC1] hover:bg-cyan-50'
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-6xl mx-auto w-full">
+          {pricingPlans.map((plan, index) => {
+            const isDark = plan.isPopular;
+            
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className={`relative rounded-[32px] p-8 md:p-10 flex flex-col h-full transition-transform duration-500 hover:-translate-y-2 ${
+                  isDark 
+                    ? 'bg-[#0B1B3D] shadow-2xl shadow-[#0B1B3D]/30 border border-white/10 lg:scale-105 z-20 glow-effect' 
+                    : 'glass-panel bg-white/60 border border-white/80 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] z-10'
                 }`}
               >
-                {plan.buttonText}
-              </button>
-
-              {/* Features List */}
-              <div className="space-y-4 flex-grow">
-                {plan.features.map((feature, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className="mt-0.5 flex-shrink-0">
-                      <CheckIcon />
+                {/* Popular Badge */}
+                {isDark && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-[#06ACC1] blur-md opacity-50 rounded-full"></div>
+                      <div className="relative bg-gradient-to-r from-[#06ACC1] to-[#0597a9] text-white px-6 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg border border-white/20">
+                        {plan.popularLabel}
+                      </div>
                     </div>
-                    <span className="text-gray-600 text-sm">{feature}</span>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                )}
+
+                {/* Plan Header */}
+                <div className="mb-10 border-b border-white/10 pb-8">
+                  <h3 className={`text-xl font-bold tracking-tight mb-6 ${isDark ? 'text-white' : 'text-[#0B1B3D]'}`}>
+                    {plan.name}
+                  </h3>
+                  <div className="flex items-baseline mb-6">
+                    <span className={`text-5xl font-extrabold tracking-tighter ${isDark ? 'text-white' : 'text-[#0B1B3D]'}`}>
+                      {plan.price}
+                    </span>
+                    {plan.period && (
+                      <span className={`ml-2 text-sm font-medium tracking-wide ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                        {plan.period}
+                      </span>
+                    )}
+                  </div>
+                  <p className={`text-sm leading-relaxed font-light ${isDark ? 'text-slate-300' : 'text-slate-500'}`}>
+                     {plan.description}
+                  </p>
+                </div>
+
+                {/* Features List */}
+                <div className="space-y-5 flex-grow mb-10">
+                  {plan.features.map((feature, i) => (
+                    <div key={i} className="flex items-start gap-4">
+                      <div className="mt-0.5 flex-shrink-0">
+                        {isDark ? <CheckIconWhite /> : <CheckIcon />}
+                      </div>
+                      <span className={`text-sm font-medium ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <Link
+                  href={`/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}`}
+                  className={`w-full py-4 rounded-full font-bold tracking-wide transition-all flex items-center justify-center gap-2 group ${
+                    isDark
+                      ? 'bg-[#06ACC1] text-white hover:bg-white hover:text-[#0B1B3D] shadow-lg shadow-[#06ACC1]/20'
+                      : 'bg-white text-[#0B1B3D] border border-slate-200 hover:border-[#0B1B3D] hover:bg-[#0B1B3D] hover:text-white shadow-sm'
+                  }`}
+                >
+                  {plan.buttonText}
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
-

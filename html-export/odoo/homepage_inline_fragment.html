@@ -1,0 +1,1222 @@
+<div id="wrap" class="oe_structure oe_empty vo-inline-home">
+  <style type="text/css">
+    header#top,
+    #top,
+    .o_header_affixed,
+    .o_top_fixed_element {
+      display: none !important;
+    }
+
+    .vo-inline-home {
+      --vo-bg: #fcfcfd;
+      --vo-surface: rgba(255, 255, 255, 0.9);
+      --vo-ink: #0b1b3d;
+      --vo-copy: #5f6f86;
+      --vo-muted: #8c99ad;
+      --vo-line: rgba(11, 27, 61, 0.09);
+      --vo-primary: #06acc1;
+      --vo-primary-dark: #0597a9;
+      --vo-accent: #ff3366;
+      --vo-shell: min(1180px, calc(100% - 32px));
+      --vo-radius-xl: 32px;
+      --vo-radius-lg: 24px;
+      --vo-pill: 999px;
+      --vo-shadow-lg: 0 30px 60px -18px rgba(11, 27, 61, 0.12);
+      --vo-shadow-md: 0 20px 40px -18px rgba(11, 27, 61, 0.12);
+      background:
+        radial-gradient(circle at top left, rgba(6, 172, 193, 0.08), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(11, 27, 61, 0.06), transparent 24%),
+        var(--vo-bg);
+      color: var(--vo-ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    .vo-inline-home *,
+    .vo-inline-home *::before,
+    .vo-inline-home *::after {
+      box-sizing: border-box;
+    }
+
+    .vo-inline-home a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .vo-inline-shell {
+      width: var(--vo-shell);
+      margin: 0 auto;
+    }
+
+    .vo-inline-header {
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      width: var(--vo-shell);
+      margin: 0 auto;
+      padding: 18px 24px;
+      border: 1px solid var(--vo-line);
+      border-radius: var(--vo-pill);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 38px -24px rgba(11, 27, 61, 0.35);
+    }
+
+    .vo-inline-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .vo-inline-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .vo-inline-brand img {
+      display: block;
+      height: 34px;
+      width: auto;
+    }
+
+    .vo-inline-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .vo-inline-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 10px 16px;
+      border-radius: var(--vo-pill);
+      color: var(--vo-copy);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .vo-inline-nav a:hover {
+      background: rgba(11, 27, 61, 0.05);
+      color: var(--vo-ink);
+    }
+
+    .vo-inline-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 14px 28px;
+      border-radius: var(--vo-pill);
+      font-size: 15px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .vo-inline-btn--primary {
+      background: var(--vo-ink);
+      color: #ffffff;
+      box-shadow: 0 16px 30px -16px rgba(11, 27, 61, 0.7);
+    }
+
+    .vo-inline-btn--secondary {
+      background: rgba(255, 255, 255, 0.96);
+      border-color: rgba(11, 27, 61, 0.12);
+      color: var(--vo-copy);
+    }
+
+    .vo-inline-section {
+      padding: 88px 0;
+      position: relative;
+    }
+
+    .vo-inline-hero {
+      padding-top: 54px;
+      background:
+        radial-gradient(circle at center top, rgba(6, 172, 193, 0.1), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(252, 252, 253, 0.92)),
+        var(--vo-bg);
+    }
+
+    .vo-inline-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: 56px;
+      align-items: center;
+    }
+
+    .vo-inline-title {
+      margin: 0 0 22px;
+      font-size: clamp(3.3rem, 7vw, 5.7rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+      color: var(--vo-ink);
+    }
+
+    .vo-inline-subtitle {
+      max-width: 560px;
+      margin: 0 0 34px;
+      color: var(--vo-copy);
+      font-size: clamp(1.1rem, 2.5vw, 1.48rem);
+      line-height: 1.7;
+    }
+
+    .vo-inline-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .vo-inline-kicker,
+    .vo-inline-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--vo-primary);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .vo-inline-kicker::before,
+    .vo-inline-eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.4;
+    }
+
+    .vo-inline-kicker {
+      margin-top: 26px;
+    }
+
+    .vo-inline-visual {
+      display: grid;
+      gap: 18px;
+    }
+
+    .vo-inline-card,
+    .vo-inline-panel {
+      border: 1px solid var(--vo-line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--vo-shadow-lg);
+      backdrop-filter: blur(16px);
+    }
+
+    .vo-inline-card {
+      padding: 24px;
+    }
+
+    .vo-inline-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--vo-line);
+    }
+
+    .vo-inline-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(6, 172, 193, 0.1);
+      color: var(--vo-primary);
+      font-weight: 800;
+    }
+
+    .vo-inline-card-title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .vo-inline-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--vo-primary);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .vo-inline-status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .vo-inline-room {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 14px;
+      background: rgba(255, 51, 102, 0.08);
+      border: 1px solid rgba(255, 51, 102, 0.12);
+      color: #d13160;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .vo-inline-room::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .vo-inline-thread {
+      display: grid;
+      gap: 14px;
+    }
+
+    .vo-inline-bubble {
+      max-width: 88%;
+      padding: 14px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .vo-inline-bubble--system {
+      background: #f5f7fa;
+      border: 1px solid rgba(11, 27, 61, 0.06);
+      border-top-left-radius: 8px;
+      color: var(--vo-copy);
+    }
+
+    .vo-inline-bubble--user {
+      justify-self: end;
+      background: var(--vo-ink);
+      color: rgba(255, 255, 255, 0.95);
+      border-top-right-radius: 8px;
+    }
+
+    .vo-inline-wave {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      min-height: 56px;
+      margin-bottom: 20px;
+    }
+
+    .vo-inline-wave span {
+      display: block;
+      width: 6px;
+      border-radius: var(--vo-pill);
+      background: linear-gradient(180deg, var(--vo-primary), var(--vo-ink));
+    }
+
+    .vo-inline-note {
+      padding: 18px;
+      border: 1px solid var(--vo-line);
+      border-radius: 22px;
+      background: linear-gradient(135deg, #f8fbfd, #ffffff);
+    }
+
+    .vo-inline-note h4 {
+      margin: 0 0 10px;
+      color: var(--vo-ink);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .vo-inline-note p {
+      margin: 0;
+      color: var(--vo-copy);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .vo-inline-progress {
+      width: 100%;
+      height: 8px;
+      margin-top: 14px;
+      border-radius: var(--vo-pill);
+      background: rgba(11, 27, 61, 0.08);
+      overflow: hidden;
+    }
+
+    .vo-inline-progress span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, rgba(6, 172, 193, 0.18), rgba(6, 172, 193, 0.75), rgba(6, 172, 193, 0.28));
+    }
+
+    .vo-inline-head {
+      max-width: 860px;
+      margin: 0 auto 52px;
+      text-align: center;
+    }
+
+    .vo-inline-head h2 {
+      margin: 0;
+      font-size: clamp(2.35rem, 5vw, 4.4rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1.03;
+      color: var(--vo-ink);
+    }
+
+    .vo-inline-head p {
+      max-width: 620px;
+      margin: 18px auto 0;
+      color: var(--vo-copy);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.75;
+    }
+
+    .vo-inline-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .vo-span-7 { grid-column: span 7; }
+    .vo-span-5 { grid-column: span 5; }
+    .vo-span-4 { grid-column: span 4; }
+
+    .vo-inline-box {
+      position: relative;
+      min-height: 340px;
+      padding: 34px;
+      border: 1px solid var(--vo-line);
+      border-radius: var(--vo-radius-xl);
+      background: var(--vo-surface);
+      box-shadow: var(--vo-shadow-md);
+      overflow: hidden;
+    }
+
+    .vo-inline-box h3 {
+      margin: 16px 0 12px;
+      font-size: clamp(1.55rem, 2.4vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--vo-ink);
+    }
+
+    .vo-inline-box p {
+      margin: 0;
+      color: var(--vo-copy);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .vo-inline-arrow {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      color: #cad2de;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .vo-inline-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .vo-inline-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 6px 12px;
+      border-radius: var(--vo-pill);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .vo-inline-chip--cyan { background: rgba(6, 172, 193, 0.1); color: var(--vo-primary); }
+    .vo-inline-chip--rose { background: rgba(255, 51, 102, 0.1); color: var(--vo-accent); }
+    .vo-inline-chip--emerald { background: rgba(16, 185, 129, 0.1); color: #119468; }
+    .vo-inline-chip--amber { background: rgba(245, 158, 11, 0.1); color: #c67a09; }
+    .vo-inline-chip--indigo { background: rgba(99, 102, 241, 0.1); color: #5b5fe8; }
+
+    .vo-inline-visual-mini {
+      margin-top: 28px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(6, 172, 193, 0.05), rgba(11, 27, 61, 0.02));
+      border: 1px solid rgba(11, 27, 61, 0.06);
+      min-height: 140px;
+      padding: 20px;
+    }
+
+    .vo-inline-list {
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .vo-inline-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(11, 27, 61, 0.08);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+      color: var(--vo-ink);
+    }
+
+    .vo-inline-list li:first-child { border-top: 0; padding-top: 0; }
+
+    .vo-inline-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(6, 172, 193, 0.08);
+      color: var(--vo-primary);
+      font-size: 14px;
+      flex: 0 0 auto;
+    }
+
+    .vo-inline-pricing {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .vo-inline-price {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .vo-inline-price--featured {
+      background: linear-gradient(180deg, #0b1b3d, #132a59);
+      color: #ffffff;
+      transform: scale(1.03);
+    }
+
+    .vo-inline-price--featured h3,
+    .vo-inline-price--featured p,
+    .vo-inline-price--featured li,
+    .vo-inline-price--featured .vo-inline-price-period {
+      color: #ffffff;
+    }
+
+    .vo-inline-badge {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 16px;
+      border-radius: var(--vo-pill);
+      background: linear-gradient(135deg, var(--vo-primary), var(--vo-primary-dark));
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      box-shadow: 0 18px 36px -18px rgba(6, 172, 193, 0.6);
+    }
+
+    .vo-inline-price-amount {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      margin: 0 0 18px;
+    }
+
+    .vo-inline-price-amount strong {
+      font-size: clamp(2.8rem, 4vw, 4rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .vo-inline-price-period {
+      color: var(--vo-muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .vo-inline-price p {
+      margin-bottom: 24px;
+    }
+
+    .vo-inline-price .vo-inline-btn {
+      margin-top: auto;
+    }
+
+    .vo-inline-testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .vo-inline-quote {
+      margin: 18px 0 24px;
+      color: var(--vo-copy);
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .vo-inline-person {
+      padding-top: 18px;
+      border-top: 1px solid rgba(11, 27, 61, 0.08);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .vo-inline-person strong {
+      display: block;
+      color: var(--vo-ink);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .vo-inline-person span {
+      color: var(--vo-primary);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .vo-inline-stats {
+      padding: 42px;
+      border-radius: 36px;
+      background:
+        radial-gradient(circle at right top, rgba(6, 172, 193, 0.18), transparent 26%),
+        linear-gradient(135deg, #08132b, #132a59 65%, #0e2147);
+      color: #ffffff;
+      box-shadow: 0 36px 80px -34px rgba(11, 27, 61, 0.58);
+    }
+
+    .vo-inline-stats h3 {
+      max-width: 540px;
+      margin: 0 0 30px;
+      font-size: clamp(1.5rem, 2.7vw, 2.3rem);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.04em;
+    }
+
+    .vo-inline-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .vo-inline-stat strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      line-height: 1;
+    }
+
+    .vo-inline-stat span {
+      color: rgba(6, 172, 193, 0.95);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .vo-inline-contact {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 24px;
+    }
+
+    .vo-inline-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .vo-inline-field-full {
+      grid-column: 1 / -1;
+    }
+
+    .vo-inline-field label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--vo-copy);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .vo-inline-field input,
+    .vo-inline-field textarea {
+      width: 100%;
+      padding: 15px 18px;
+      border: 1px solid rgba(11, 27, 61, 0.08);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--vo-ink);
+      font-size: 15px;
+      line-height: 1.5;
+      outline: none;
+    }
+
+    .vo-inline-field textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .vo-inline-address {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .vo-inline-pin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(6, 172, 193, 0.14), rgba(255, 255, 255, 0.94));
+      border: 1px solid rgba(6, 172, 193, 0.16);
+      color: var(--vo-primary);
+      font-size: 22px;
+    }
+
+    .vo-inline-address h3 {
+      margin: 0 0 4px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .vo-inline-address p {
+      margin: 0;
+      color: var(--vo-copy);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .vo-inline-map {
+      overflow: hidden;
+      min-height: 420px;
+    }
+
+    .vo-inline-map iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border: 0;
+    }
+
+    @media (max-width: 1023px) {
+      .vo-inline-hero-grid,
+      .vo-inline-pricing,
+      .vo-inline-testimonials,
+      .vo-inline-contact,
+      .vo-inline-stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vo-span-7,
+      .vo-span-5,
+      .vo-span-4 {
+        grid-column: span 12;
+      }
+
+      .vo-inline-header-inner {
+        flex-direction: column;
+      }
+
+      .vo-inline-price--featured {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .vo-inline-home {
+        --vo-shell: calc(100% - 24px);
+      }
+
+      .vo-inline-header {
+        top: 10px;
+        padding: 16px;
+      }
+
+      .vo-inline-nav {
+        display: none;
+      }
+
+      .vo-inline-actions,
+      .vo-inline-btn,
+      .vo-inline-form-grid {
+        width: 100%;
+      }
+
+      .vo-inline-actions {
+        flex-direction: column;
+      }
+
+      .vo-inline-form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vo-inline-section {
+        padding: 70px 0;
+      }
+
+      .vo-inline-box,
+      .vo-inline-card,
+      .vo-inline-stats {
+        padding: 26px 22px;
+      }
+    }
+  </style>
+
+  <div class="vo-inline-header">
+    <div class="vo-inline-header-inner">
+      <a class="vo-inline-brand" href="/">
+        <img src="/logo.webp" alt="Vesalius logo" />
+        <span>Vesalius</span>
+      </a>
+
+      <nav class="vo-inline-nav">
+        <a href="#overview">Overview</a>
+        <a href="#product">Product</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+        <a href="/security">Security</a>
+      </nav>
+
+      <a class="vo-inline-btn vo-inline-btn--primary" href="https://assistant.vesalius.ai/onboarding/credentials">
+        Try for free
+        <span aria-hidden="true">&#8599;</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="vo-inline-section vo-inline-hero" id="overview">
+    <div class="vo-inline-shell">
+      <div class="vo-inline-hero-grid">
+        <div>
+          <h1 class="vo-inline-title">Be A Doctor<br />Again.</h1>
+          <p class="vo-inline-subtitle">Your Personal AI Assistant handles everything else.</p>
+
+          <div class="vo-inline-actions">
+            <a class="vo-inline-btn vo-inline-btn--primary" href="https://assistant.vesalius.ai/onboarding/credentials">
+              Meet your Assistant
+              <span aria-hidden="true">&#8594;</span>
+            </a>
+            <a class="vo-inline-btn vo-inline-btn--secondary" href="/demo">
+              <span aria-hidden="true">&#9654;</span>
+              Watch Demo
+            </a>
+          </div>
+
+          <div class="vo-inline-kicker">Built for specialists, by specialists</div>
+        </div>
+
+        <div class="vo-inline-visual">
+          <article class="vo-inline-card">
+            <div class="vo-inline-card-top">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <span class="vo-inline-mark">V</span>
+                <div>
+                  <h2 class="vo-inline-card-title">Pre-Consultation Agent</h2>
+                  <span class="vo-inline-status">Intake Active</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="vo-inline-thread">
+              <div class="vo-inline-bubble vo-inline-bubble--system">Hello David! I'm here to help the doctor prepare for your visit. What is the main reason for your appointment today?</div>
+              <div class="vo-inline-bubble vo-inline-bubble--user">I've been having severe headaches for the past two weeks. They seem to be getting worse.</div>
+              <div class="vo-inline-bubble vo-inline-bubble--system">I understand. Can you tell me exactly where the pain is located, and if you have any other symptoms?</div>
+            </div>
+          </article>
+
+          <article class="vo-inline-card">
+            <div class="vo-inline-card-top">
+              <div>
+                <h2 class="vo-inline-card-title">Live Consultation</h2>
+                <span class="vo-inline-status">Room 4</span>
+              </div>
+              <span class="vo-inline-room">04:12</span>
+            </div>
+
+            <div class="vo-inline-wave" aria-hidden="true">
+              <span style="height:18px;"></span>
+              <span style="height:32px;"></span>
+              <span style="height:24px;"></span>
+              <span style="height:42px;"></span>
+              <span style="height:28px;"></span>
+              <span style="height:36px;"></span>
+              <span style="height:22px;"></span>
+              <span style="height:40px;"></span>
+            </div>
+
+            <div class="vo-inline-note">
+              <h4>Clinical Note Generation</h4>
+              <p>Patient reports severe, worsening headaches over the past two weeks. Pain is localized in the frontal region and is accompanied by mild photophobia.</p>
+              <div class="vo-inline-progress"><span style="width:58%;"></span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vo-inline-section">
+    <div class="vo-inline-shell">
+      <div class="vo-inline-head">
+        <span class="vo-inline-eyebrow">Why Vesalius</span>
+        <h2>The AI platform for patient conversations built for specialists, by specialists</h2>
+      </div>
+
+      <div class="vo-inline-grid">
+        <article class="vo-inline-box vo-span-7">
+          <span class="vo-inline-arrow">&#8599;</span>
+          <h3>Break the language barrier</h3>
+          <p>Vesalius helps you understand your patients, no matter the language.</p>
+          <div class="vo-inline-visual-mini">
+            <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+              <div style="padding:14px 18px;border-radius:18px;background:#fff;border:1px solid rgba(11,27,61,.08);box-shadow:var(--vo-shadow-md);font-weight:700;color:var(--vo-copy);">Hola, &#191;como estas?</div>
+              <div style="padding:14px 18px;border-radius:18px;background:var(--vo-primary);font-weight:700;color:#fff;box-shadow:var(--vo-shadow-md);">Hello, how are you?</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="vo-inline-box vo-span-5">
+          <span class="vo-inline-arrow">&#8599;</span>
+          <h3>Liability</h3>
+          <p>Vesalius keeps a clear record of interactions, reducing liability and ensuring compliance.</p>
+          <div class="vo-inline-visual-mini" style="display:flex;align-items:center;justify-content:center;">
+            <div style="width:140px;height:176px;padding:24px 20px;border-radius:24px;background:#fff;border:1px solid rgba(11,27,61,.08);box-shadow:var(--vo-shadow-md);position:relative;">
+              <span style="display:block;height:8px;width:56%;margin-bottom:10px;border-radius:999px;background:rgba(11,27,61,.12);"></span>
+              <span style="display:block;height:8px;width:72%;margin-bottom:10px;border-radius:999px;background:rgba(11,27,61,.12);"></span>
+              <span style="display:block;height:8px;width:48%;border-radius:999px;background:rgba(11,27,61,.12);"></span>
+              <div style="position:absolute;right:-12px;bottom:18px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid rgba(255,51,102,.16);box-shadow:0 16px 32px -18px rgba(255,51,102,.35);color:var(--vo-accent);font-size:24px;">&#128737;</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="vo-inline-box vo-span-5">
+          <span class="vo-inline-arrow">&#8599;</span>
+          <h3>Better care</h3>
+          <p>Automate intakes to reduce administration so you can focus on what matters.</p>
+          <div class="vo-inline-visual-mini" style="display:flex;align-items:center;justify-content:center;">
+            <div style="width:104px;height:104px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid rgba(11,27,61,.08);box-shadow:var(--vo-shadow-md);color:var(--vo-primary);font-size:42px;">&#9825;</div>
+          </div>
+        </article>
+
+        <article class="vo-inline-box vo-span-7">
+          <span class="vo-inline-arrow">&#8599;</span>
+          <h3>Improve your accuracy</h3>
+          <p>Eliminate manual errors and ensure consistent patient records.</p>
+          <div class="vo-inline-visual-mini" style="display:flex;align-items:center;justify-content:center;">
+            <div style="width:144px;height:144px;border-radius:50%;border:1px dashed rgba(11,27,61,.18);display:flex;align-items:center;justify-content:center;">
+              <div style="width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--vo-ink),#274073);color:#fff;font-size:26px;">&#10003;</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="vo-inline-section" id="product">
+    <div class="vo-inline-shell">
+      <div class="vo-inline-head">
+        <span class="vo-inline-eyebrow">Our Products</span>
+        <h2>We have a module for everyone</h2>
+      </div>
+
+      <div class="vo-inline-grid">
+        <article class="vo-inline-box vo-span-7">
+          <span class="vo-inline-arrow">&#8599;</span>
+          <div class="vo-inline-chip-row">
+            <span class="vo-inline-chip vo-inline-chip--cyan">Whatsapp</span>
+            <span class="vo-inline-chip vo-inline-chip--cyan">50+ Languages</span>
+          </div>
+          <h3>Pre Consultation</h3>
+          <p>Intelligent conversational intake that structures patient history before they enter the room.</p>
+        </article>
+
+        <article class="vo-inline-box vo-span-5">
+          <span class="vo-inline-arrow">&#8599;</span>
+          <div class="vo-inline-chip-row">
+            <span class="vo-inline-chip vo-inline-chip--rose">Desktop</span>
+            <span class="vo-inline-chip vo-inline-chip--rose">Mobile</span>
+          </div>
+          <h3>Scribe</h3>
+          <p>The Scribe Bot listens in the background during the consultation and accurately captures the entire clinical conversation.</p>
+        </article>
+
+        <article class="vo-inline-box vo-span-5">
+          <span class="vo-inline-arrow">&#8599;</span>
+          <div class="vo-inline-chip-row">
+            <span class="vo-inline-chip vo-inline-chip--emerald">Automated</span>
+            <span class="vo-inline-chip vo-inline-chip--emerald">Integrated</span>
+          </div>
+          <h3>Document Generation</h3>
+          <p>Put your data to work. Vesalius stops not at capturing info but uses it to generate your administration.</p>
+        </article>
+
+        <article class="vo-inline-box vo-span-7">
+          <span class="vo-inline-arrow">&#8599;</span>
+          <div class="vo-inline-chip-row">
+            <span class="vo-inline-chip vo-inline-chip--amber">Coming Soon</span>
+          </div>
+          <h3>Smart Triage</h3>
+          <p>Intelligent urgency assessment and routing to ensure patients get the right care at the right time.</p>
+        </article>
+
+        <article class="vo-inline-box vo-span-7">
+          <span class="vo-inline-arrow">&#8599;</span>
+          <div class="vo-inline-chip-row">
+            <span class="vo-inline-chip vo-inline-chip--cyan">Automated</span>
+            <span class="vo-inline-chip vo-inline-chip--cyan">Alerts</span>
+          </div>
+          <h3>Smart Follow-ups</h3>
+          <p>Automated check-ins that flag at-risk patients. Get alerts when responses deviate, enabling early intervention.</p>
+        </article>
+
+        <article class="vo-inline-box vo-span-5">
+          <span class="vo-inline-arrow">&#8599;</span>
+          <div class="vo-inline-chip-row">
+            <span class="vo-inline-chip vo-inline-chip--indigo">OCR</span>
+            <span class="vo-inline-chip vo-inline-chip--indigo">Instant</span>
+          </div>
+          <h3>Medication Manager</h3>
+          <p>Instantly digitize medication from photos of boxes, printed lists, or handwritten notes.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="vo-inline-section">
+    <div class="vo-inline-shell">
+      <div class="vo-inline-head">
+        <span class="vo-inline-eyebrow">Testimonials</span>
+        <h2>Hear it straight from our users</h2>
+      </div>
+
+      <div class="vo-inline-testimonials">
+        <article class="vo-inline-box">
+          <div class="vo-inline-quote">&#8220;Patients who use the chatbot feel better prepared for their consultation, leading to a more efficient and focused conversation with the doctor.&#8221;</div>
+          <div class="vo-inline-person">
+            <strong>Farah</strong>
+            <span>Clinical Researcher</span>
+          </div>
+        </article>
+
+        <article class="vo-inline-box">
+          <div class="vo-inline-quote">&#8220;Research has shown that patients who have used Vesalius feel better understood by their doctor compared to those who haven't used Vesalius.&#8221;</div>
+          <div class="vo-inline-person">
+            <strong>Philippe</strong>
+            <span>Medisch Centrum Aalst</span>
+          </div>
+        </article>
+
+        <article class="vo-inline-box">
+          <div class="vo-inline-quote">&#8220;The general feedback from the nurses is positive; they find the platform easy to use, which results in time savings and increased efficiency in their work.&#8221;</div>
+          <div class="vo-inline-person">
+            <strong>Cynthia</strong>
+            <span>Clinical Researcher</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="vo-inline-stats">
+        <h3>Highly rated by patients and physicians throughout the entire industry.</h3>
+        <div class="vo-inline-stats-grid">
+          <div class="vo-inline-stat">
+            <strong>83%</strong>
+            <span>Adoption Rate</span>
+          </div>
+          <div class="vo-inline-stat">
+            <strong>8x</strong>
+            <span>ROI</span>
+          </div>
+          <div class="vo-inline-stat">
+            <strong>19m56s</strong>
+            <span>Avg Completion</span>
+          </div>
+          <div class="vo-inline-stat">
+            <strong>+13%</strong>
+            <span>Perceived Quality</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vo-inline-section" id="pricing">
+    <div class="vo-inline-shell">
+      <div class="vo-inline-head">
+        <span class="vo-inline-eyebrow">Pricing</span>
+        <h2>Transparent and fair pricing</h2>
+        <p>Choose the plan that fits your practice.</p>
+      </div>
+
+      <div class="vo-inline-pricing">
+        <article class="vo-inline-box vo-inline-price">
+          <h3>Free</h3>
+          <div class="vo-inline-price-amount">
+            <strong>&#8364;0</strong>
+          </div>
+          <p>Start today with no obligations and see what our solution can do for your practice.</p>
+          <ul class="vo-inline-list">
+            <li><span class="vo-inline-check">&#10003;</span>20 free credits to start</li>
+            <li><span class="vo-inline-check">&#10003;</span>No credit card required</li>
+            <li><span class="vo-inline-check">&#10003;</span>Perfect for trying our service</li>
+            <li><span class="vo-inline-check">&#10003;</span>Standard support</li>
+          </ul>
+          <a class="vo-inline-btn vo-inline-btn--secondary" href="https://assistant.vesalius.ai/onboarding/credentials">Get Started</a>
+        </article>
+
+        <article class="vo-inline-box vo-inline-price">
+          <h3>Pay-as-you-use</h3>
+          <div class="vo-inline-price-amount">
+            <strong>&#8364;1.5</strong>
+            <span class="vo-inline-price-period">/credit</span>
+          </div>
+          <p>The flexibility to only pay for what you use. Perfect for variable needs and seasonal practices.</p>
+          <ul class="vo-inline-list">
+            <li><span class="vo-inline-check">&#10003;</span>Pay only for what you use</li>
+            <li><span class="vo-inline-check">&#10003;</span>Predefined buckets</li>
+            <li><span class="vo-inline-check">&#10003;</span>Volume discounts available</li>
+            <li><span class="vo-inline-check">&#10003;</span>Flexible for your needs</li>
+            <li><span class="vo-inline-check">&#10003;</span>Standard support</li>
+          </ul>
+          <a class="vo-inline-btn vo-inline-btn--secondary" href="https://assistant.vesalius.ai/onboarding/credentials">Get Started</a>
+        </article>
+
+        <article class="vo-inline-box vo-inline-price vo-inline-price--featured">
+          <div class="vo-inline-badge">Most Popular</div>
+          <h3>Individual</h3>
+          <div class="vo-inline-price-amount">
+            <strong>&#8364;84</strong>
+            <span class="vo-inline-price-period">/month</span>
+          </div>
+          <p>Unlimited usage for one doctor without tracking credits. Simple and predictable.</p>
+          <ul class="vo-inline-list">
+            <li><span class="vo-inline-check">&#10003;</span>Unlimited usage</li>
+            <li><span class="vo-inline-check">&#10003;</span>Perfect for 1 doctor</li>
+            <li><span class="vo-inline-check">&#10003;</span>Predictable monthly cost</li>
+            <li><span class="vo-inline-check">&#10003;</span>Cancel any time</li>
+            <li><span class="vo-inline-check">&#10003;</span>Priority support</li>
+          </ul>
+          <a class="vo-inline-btn vo-inline-btn--secondary" href="https://assistant.vesalius.ai/onboarding/credentials">Get Started</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="vo-inline-section" id="contact">
+    <div class="vo-inline-shell">
+      <div class="vo-inline-head">
+        <span class="vo-inline-eyebrow">Contact</span>
+        <h2>We are here to help</h2>
+        <p>Any other questions? Get in touch with us.</p>
+      </div>
+
+      <div class="vo-inline-contact">
+        <article class="vo-inline-box">
+          <form action="/website/form/" method="post" enctype="multipart/form-data" class="s_website_form o_mark_required" data-mark="*" data-pre-fill="true" data-model_name="mail.mail" data-success-mode="redirect" data-success-page="/contactus-thank-you">
+            <div class="vo-inline-form-grid">
+              <div class="vo-inline-field">
+                <label for="vo_inline_name">Your Name</label>
+                <input id="vo_inline_name" class="s_website_form_input" type="text" name="Your Name" required="1" data-fill-with="name" placeholder="Your Name *" />
+              </div>
+
+              <div class="vo-inline-field">
+                <label for="vo_inline_email">Your Email</label>
+                <input id="vo_inline_email" class="s_website_form_input" type="email" name="email_from" required="1" data-fill-with="email" placeholder="Your Email *" />
+              </div>
+
+              <div class="vo-inline-field vo-inline-field-full">
+                <label for="vo_inline_org">Your Organisation</label>
+                <input id="vo_inline_org" class="s_website_form_input" type="text" name="Your Organisation" data-fill-with="commercial_company_name" placeholder="Your Organisation" />
+              </div>
+
+              <div class="vo-inline-field vo-inline-field-full">
+                <label for="vo_inline_subject">Subject</label>
+                <input id="vo_inline_subject" class="s_website_form_input" type="text" name="subject" required="1" placeholder="Subject *" />
+              </div>
+
+              <div class="vo-inline-field vo-inline-field-full">
+                <label for="vo_inline_question">Your Question</label>
+                <textarea id="vo_inline_question" class="s_website_form_input" name="description" required="1" placeholder="Your Question *"></textarea>
+              </div>
+
+              <input type="hidden" name="email_to" value="finance@vesalius.health" />
+
+              <div class="vo-inline-field vo-inline-field-full">
+                <button class="vo-inline-btn vo-inline-btn--primary s_website_form_send" type="submit">
+                  Submit
+                  <span aria-hidden="true">&#8594;</span>
+                </button>
+                <span id="s_website_form_result"></span>
+              </div>
+            </div>
+          </form>
+        </article>
+
+        <div>
+          <article class="vo-inline-box">
+            <div class="vo-inline-address">
+              <span class="vo-inline-pin">&#128205;</span>
+              <div>
+                <h3>Ottergemsesteenweg Zuid 808B</h3>
+                <p>9000 Gent, Belgium</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="vo-inline-box vo-inline-map" style="margin-top:24px;">
+            <iframe src="https://maps.google.com/maps?q=Gent%20Belgi%C3%AB%20Ottergemsesteenweg-zuid%20808B&amp;t=m&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" aria-label="Vesalius map"></iframe>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

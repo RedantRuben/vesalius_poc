@@ -1,115 +1,346 @@
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+'use client';
 
-const SparklesIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-  </svg>
-);
+import { motion } from 'framer-motion';
+import { Instrument_Serif } from 'next/font/google';
+import { Link } from '@/i18n/routing';
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['italic'],
+});
 
 const PlayIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 fill-gray-400 ml-0.5">
+  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-0.5">
     <polygon points="5 3 19 12 5 21 5 3"/>
   </svg>
 );
 
+const UserAvatar = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-slate-500">
+    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+);
+
+const VesaliusLogoMark = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="12" fill="#06ACC1" fillOpacity="0.1"/>
+    <path d="M14.5 16C15.8807 16 17 14.8807 17 13.5C17 12.1193 15.8807 11 14.5 11C13.1193 11 12 12.1193 12 13.5C12 14.8807 13.1193 16 14.5 16Z" fill="#06ACC1"/>
+    <path d="M9.5 13C10.8807 13 12 11.8807 12 10.5C12 9.11929 10.8807 8 9.5 8C8.11929 8 7 9.11929 7 10.5C7 11.8807 8.11929 13 9.5 13Z" fill="#0B1B3D"/>
+  </svg>
+);
+
+// Left Side Floating Card - Chat Intake
+const FloatingChatCard = () => {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }}
+      className="w-[340px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_30px_60px_-15px_rgba(11,27,61,0.08)] p-5 border border-slate-100 overflow-hidden"
+    >
+       <div className="flex items-center gap-3 mb-5 border-b border-slate-100 pb-3">
+          <VesaliusLogoMark />
+          <div className="flex flex-col">
+            <span className="text-sm font-bold text-[#0B1B3D] tracking-tight">Pre-Consultation Agent</span>
+            <span className="text-[10px] text-[#06ACC1] font-semibold tracking-wide uppercase flex items-center gap-1.5 mt-0.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#06ACC1]"></span>
+              Intake Active
+            </span>
+          </div>
+       </div>
+
+       <div className="space-y-4">
+          <div className="bg-slate-50 border border-slate-100/50 rounded-2xl rounded-tl-sm p-3.5 shadow-sm">
+            <p className="text-[13px] text-slate-700 leading-relaxed">
+              Hello David! I&apos;m here to help the doctor prepare for your visit. What is the main reason for your appointment today?
+            </p>
+          </div>
+
+          <div className="bg-[#0B1B3D] rounded-2xl rounded-tr-sm p-3.5 ml-8 shadow-md">
+            <p className="text-[13px] text-white/95 leading-relaxed">
+              I&apos;ve been having severe headaches for the past two weeks. They seem to be getting worse.
+            </p>
+          </div>
+
+          <div className="bg-slate-50 border border-slate-100/50 rounded-2xl rounded-tl-sm p-3.5 shadow-sm">
+            <p className="text-[13px] text-slate-700 leading-relaxed">
+              I understand. Can you tell me exactly where the pain is located, and if you have any other symptoms?
+            </p>
+          </div>
+       </div>
+    </motion.div>
+  );
+};
+
+// Right Side Floating Card - Live Audio Scribe
+const FloatingScribeCard = () => {
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.4, type: "spring", bounce: 0.4 }}
+      className="w-[360px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-[0_30px_60px_-15px_rgba(11,27,61,0.08)] p-6 border border-slate-100 overflow-hidden"
+    >
+       <div className="flex items-center justify-between mb-6 border-b border-slate-100 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200 text-slate-400">
+              <UserAvatar />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm font-bold text-[#0B1B3D]">Live Consultation</span>
+              <span className="text-[10px] font-medium text-slate-500 uppercase tracking-wider">Room 4</span>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-2 bg-rose-50/80 px-2.5 py-1.5 rounded-lg border border-rose-100">
+            <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+            <span className="text-[10px] font-bold text-rose-600 tracking-widest tabular-nums">04:12</span>
+          </div>
+       </div>
+
+       <div className="space-y-6">
+          {/* Audio Waveform visualization */}
+          <div className="flex items-center justify-center h-12 px-2 gap-1">
+            {[...Array(32)].map((_, i) => {
+               const distance = Math.abs(16 - i);
+               const maxH = 40 - (distance * 1.5);
+               const baseHeight = Math.max(8, maxH);
+               
+               return (
+                 <motion.div
+                   key={i}
+                   animate={{ height: [baseHeight * 0.4, baseHeight, baseHeight * 0.4] }}
+                   transition={{ duration: 0.8 + (i % 3) * 0.2, repeat: Infinity, ease: "easeInOut", delay: i * 0.05 }}
+                   className={`w-1 rounded-full ${distance < 8 ? 'bg-gradient-to-t from-[#0B1B3D] to-[#06ACC1]' : 'bg-slate-200'}`}
+                 />
+               );
+            })}
+          </div>
+
+          <div className="bg-gradient-to-br from-[#F9FBFC] to-white border border-slate-100 rounded-2xl p-4 shadow-sm">
+             <div className="flex items-center gap-2 mb-3">
+               <div className="w-5 h-5 rounded-md bg-cyan-50 flex items-center justify-center border border-cyan-100">
+                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+               </div>
+               <span className="text-[10px] font-bold text-[#0B1B3D] uppercase tracking-wider">Clinical Note Generation</span>
+             </div>
+             <p className="text-[13px] text-slate-600 leading-relaxed">
+               Patient reports severe, worsening headaches over the past two weeks. Pain is localized in the frontal region and is accompanied by mild photophobia...
+             </p>
+             <div className="mt-4 h-1.5 bg-slate-100 rounded-full w-full overflow-hidden relative">
+               <motion.div 
+                 animate={{ x: ["-100%", "200%"] }}
+                 transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+                 className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-[#06ACC1]/60 to-transparent"
+               />
+             </div>
+          </div>
+       </div>
+    </motion.div>
+  );
+};
+
+// Clean Lines
+const CleanLines = () => {
+  return (
+      <svg className="absolute inset-0 w-full h-full opacity-60 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1440 800">
+        <motion.path 
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 2.5, ease: "easeInOut" }}
+          d="M -100,300 C 400,200 800,500 1540,300" 
+          fill="none" 
+          stroke="#06ACC1" 
+          strokeWidth="1.5" 
+          strokeOpacity="0.4"
+        />
+        <motion.path 
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 3, ease: "easeInOut", delay: 0.2 }}
+          d="M -100,400 C 500,500 900,250 1540,350" 
+          fill="none" 
+          stroke="#FF3366" 
+          strokeWidth="1.5" 
+          strokeOpacity="0.3"
+        />
+        <motion.path 
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 2.8, ease: "easeInOut", delay: 0.4 }}
+          d="M -100,200 C 600,350 1000,250 1540,400" 
+          fill="none" 
+          stroke="#0B1B3D" 
+          strokeWidth="1.5" 
+          strokeOpacity="0.25"
+        />
+      </svg>
+  );
+};
+
 export default function Hero() {
-  const t = useTranslations('Hero');
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+    }
+  };
 
   return (
-    <section className="relative flex flex-col items-center justify-start px-4 text-center overflow-hidden w-full pt-24 md:pt-32 pb-12 md:pb-20">
-        {/* Background Grid */}
-        <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <section className="relative flex flex-col items-center justify-center text-center w-full pt-24 md:pt-24 pb-12 lg:pb-16 bg-[#FCFCFD] min-h-[75vh] md:min-h-[85vh] overflow-x-hidden">
         
-        {/* Background Gradient - Mobile Only */}
-        <div className="absolute inset-0 overflow-hidden md:hidden pointer-events-none">
-            <div className="absolute top-[10%] left-[10%] w-[70%] h-[40%] bg-[#06ACC1]/5 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-[10%] right-[10%] w-[70%] h-[40%] bg-[#2B3B53]/5 rounded-full blur-3xl animate-pulse delay-1000" />
+        {/* Subtle Background Mesh */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+            <div className="absolute inset-0 bg-grid-pattern opacity-[0.2]" style={{ maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)', WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)' }} />
         </div>
 
-        {/* Floating Elements - Desktop Only - Original Style & Placement */}
-        {/* Left Image - 320 Views */}
-        <div className="absolute top-[15%] left-1/2 -translate-x-[550px] lg:-translate-x-[700px] w-64 -rotate-6 hidden md:block z-0">
-             <div className="transform transition-transform hover:scale-105 duration-500">
-                <Image 
-                    src="/320.png" 
-                    alt="Stats View" 
-                    width={300} 
-                    height={150} 
-                    className="w-full h-auto rounded-[20px]"
-                    quality={100}
-                 />
+        {/* Clean, sweeping lines background */}
+        <div className="absolute inset-0 z-10 pointer-events-none">
+          <CleanLines />
+        </div>
+
+        {/* Main Layout Container */}
+        <div className="relative w-full max-w-7xl mx-auto z-40 px-4 md:px-8 mt-4 md:mt-8 mb-8">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8 h-full">
+                
+                {/* Left: Main Content Area */}
+                <div className="flex flex-col items-center lg:items-start text-center lg:text-left w-full lg:w-[45%] xl:w-[50%] relative z-40">
+                    
+                    {/* Main Title - Single Line, Single Color */}
+                    <h1 className="text-[3rem] md:text-[4rem] lg:text-[4.5rem] xl:text-[5.5rem] font-bold tracking-tight text-[#0B1B3D] mb-6 leading-[1.05] w-full">
+                        <motion.span 
+                          variants={textVariants}
+                          initial="hidden"
+                          animate="visible"
+                          className="block"
+                        >
+                          Be A Doctor <br className="hidden lg:block" />
+                          <span className={`${instrumentSerif.className} inline-block font-normal italic tracking-normal`}>
+                            Again.
+                          </span>
+                        </motion.span>
+                    </h1>
+
+                    {/* Subtitle */}
+                    <motion.p 
+                      variants={textVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: 0.1 }}
+                      className="text-lg md:text-xl xl:text-2xl text-slate-500 mb-10 leading-relaxed font-light max-w-2xl lg:max-w-md xl:max-w-lg"
+                    >
+                        Your Personal AI Assistant handles everything else.
+                    </motion.p>
+
+                    {/* CTA Buttons */}
+                    <motion.div 
+                      variants={textVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: 0.2 }}
+                      className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+                    >
+                        <a href="https://assistant.vesalius.ai/onboarding/credentials" className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#0B1B3D] text-white font-medium hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-[15px] shadow-[0_8px_20px_-6px_rgba(11,27,61,0.5)] hover:-translate-y-0.5">
+                            Meet your Assistant →
+                        </a>
+                        
+                        <Link href="/demo" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-slate-700 font-medium hover:bg-slate-50 border border-slate-200 transition-all flex items-center justify-center gap-2 text-[15px] shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                            <PlayIcon />
+                            Watch Demo
+                        </Link>
+                    </motion.div>
+                </div>
+
+                {/* Right: Floating Cards Collage (Desktop Only) */}
+                <div className="hidden lg:flex relative w-full lg:w-[55%] xl:w-[50%] h-[500px] xl:h-[600px] items-center justify-end pointer-events-none">
+                    <div className="absolute right-[15%] xl:right-[20%] top-0 xl:top-[5%] z-20 pointer-events-auto transition-all duration-300">
+                        <FloatingChatCard />
+                    </div>
+                    <div className="absolute right-0 top-[30%] xl:top-[35%] z-30 pointer-events-auto transition-all duration-300 shadow-2xl rounded-3xl">
+                        <FloatingScribeCard />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* Mobile-only compact view of cards */}
+        <div className="lg:hidden w-full px-4 mt-8 flex flex-col gap-6 relative z-30 items-center">
+             <div className="relative w-full max-w-[340px]">
+                <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] p-5 border border-slate-100">
+                   <div className="flex items-center gap-3 mb-4">
+                      <VesaliusLogoMark />
+                      <div className="flex flex-col text-left">
+                        <span className="text-sm font-bold text-[#0B1B3D]">Pre-Consultation Agent</span>
+                        <span className="text-[10px] text-[#06ACC1] font-medium tracking-wide uppercase">Intake Active</span>
+                      </div>
+                   </div>
+
+                   <div className="space-y-4 text-left">
+                    <div className="bg-slate-50 border border-slate-100/50 rounded-2xl rounded-tl-sm p-3.5 shadow-sm">
+                        <p className="text-[13px] text-slate-700 leading-relaxed">
+                          Hello David! I&apos;m here to help the doctor prepare for your visit. What is the main reason for your appointment today?
+                        </p>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-[#0B1B3D] to-[#162c5e] rounded-2xl rounded-tr-sm p-3.5 ml-6 shadow-md">
+                        <p className="text-[13px] text-white/95 leading-relaxed">
+                          I&apos;ve been having severe headaches for the past two weeks. They seem to be getting worse.
+                        </p>
+                      </div>
+                   </div>
+                </div>
+             </div>
+
+             <div className="relative w-full max-w-[340px]">
+                <div className="w-full bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] p-5 border border-slate-100">
+                   <div className="flex items-center justify-between mb-4 border-b border-slate-50 pb-3">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200">
+                          <UserAvatar />
+                        </div>
+                        <span className="text-sm font-bold text-[#0B1B3D]">Live Consultation</span>
+                      </div>
+                      
+                      <div className="flex items-center gap-2 bg-rose-50 px-2 py-1 rounded-md border border-rose-100">
+                        <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+                        <span className="text-[10px] font-bold text-rose-600 tracking-widest tabular-nums">04:12</span>
+                      </div>
+                   </div>
+
+                   <div className="space-y-4 text-left">
+                      <div className="flex items-center justify-center h-8 px-2 gap-1">
+                        {[...Array(24)].map((_, i) => {
+                             const distance = Math.abs(12 - i);
+                             const maxH = 30 - (distance * 2);
+                             return (
+                               <div
+                                 key={i}
+                                 className={`w-1 rounded-full ${distance < 6 ? 'bg-[#0B1B3D]' : 'bg-slate-200'}`}
+                                 style={{ height: `${Math.max(6, maxH)}px` }}
+                               />
+                             );
+                        })}
+                      </div>
+
+                      <div className="bg-gradient-to-br from-cyan-50/50 to-white border border-cyan-100/50 rounded-xl p-3.5">
+                         <div className="flex items-center gap-1.5 mb-2">
+                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                           <span className="text-[9px] font-bold text-[#06ACC1] uppercase tracking-wider">Clinical Note</span>
+                         </div>
+                         <p className="text-[12px] text-slate-600 leading-relaxed">
+                           Patient reports severe, worsening headaches over the past two weeks. Pain is localized in the frontal region and is accompanied by mild photophobia...
+                         </p>
+                      </div>
+                   </div>
+                </div>
              </div>
         </div>
         
-        {/* Right Image - Stats Breakdown */}
-        <div className="absolute top-[35%] left-1/2 translate-x-[350px] lg:translate-x-[500px] rotate-[6deg] hidden md:block z-0">
-            <div className="transform transition-transform hover:scale-105 duration-500">
-                <Image 
-                    src="/statsright.png" 
-                    alt="Stats Breakdown" 
-                    width={400} 
-                    height={100} 
-                    className="h-[88px] w-auto rounded-[20px]" 
-                    quality={100}
-                />
-            </div>
-        </div>
-
-        <div className="z-10 flex flex-col items-center max-w-5xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#2B3B53] mb-6 md:mb-8 leading-[1.1]">
-                {t('titlePrefix')} <br className="hidden md:block" />
-                <span className="text-[#06ACC1]">{t('titleSuffix')}</span>
-            </h1>
-
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mb-10 md:mb-12 leading-relaxed px-4">
-                {t.rich('subtitle', {
-                  bold: (chunks) => <span className="font-bold text-[#2B3B53]">{chunks}</span>
-                })}
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-16 md:mb-24">
-                <button className="w-full sm:w-auto px-8 py-3 rounded-full bg-[#06ACC1] text-white font-bold hover:bg-[#0597a9] transition-all flex items-center justify-center gap-2 text-base hover:-translate-y-1 shadow-lg shadow-[#06ACC1]/20">
-                    {t('ctaPrimary')}
-                    <span className="text-lg leading-none mb-0.5">↗</span>
-                </button>
-                
-                <button className="w-full sm:w-auto px-8 py-3 rounded-full bg-white border border-gray-200 text-gray-600 font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center gap-3 text-base group hover:-translate-y-1 hover:shadow-md">
-                    <div className="w-6 h-6 rounded-full bg-gray-100 group-hover:bg-gray-200 flex items-center justify-center transition-colors">
-                        <PlayIcon />
-                    </div>
-                    {t('ctaSecondary')}
-                </button>
-            </div>
-
-            {/* Dashboard Preview - Both Mobile & Desktop */}
-            <div className="w-full max-w-[90rem] relative perspective-1000 mx-auto px-2 sm:px-6 lg:px-8 mt-8">
-                <div className="relative rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                    <Image
-                        src="/screen.png"
-                        alt="App Screenshot"
-                        width={1400}
-                        height={900}
-                        className="rounded-md shadow-2xl ring-1 ring-gray-900/10 w-full h-auto"
-                        quality={100}
-                        priority
-                    />
-                    
-                    {/* Play Button Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center z-10">
-                        <button className="w-24 h-24 md:w-32 md:h-32 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-xl backdrop-blur-sm transition-all hover:scale-110 group">
-                            <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-[#06ACC1]/10 flex items-center justify-center group-hover:bg-[#06ACC1]/20 transition-colors">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-10 h-10 md:w-14 md:h-14 text-[#06ACC1] ml-1">
-                                    <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clipRule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-                {/* Gradient overlay for bottom fade integration */}
-                <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/80 to-transparent z-20"></div>
-            </div>
-        </div>
     </section>
   );
 }

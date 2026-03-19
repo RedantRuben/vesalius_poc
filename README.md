@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vesalius Website
+
+Public marketing site built with Next.js. The frontend replaces the Odoo website pages while preserving the current live backend behavior:
+
+- homepage contact section sends an email to `finance@vesalius.health`
+- `/contactus` sends an email to `help@vesalius.health`
+- pricing routes into the `/contactus` email flow
+- support creates a Helpdesk ticket in Odoo under `Vesalius Support`
+- demo currently uses an email-based request flow
 
 ## Getting Started
 
-First, run the development server:
+1. Copy `.env.example` to `.env.local`
+2. Fill in the values you already know
+3. Start the dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Values already known from the current Odoo setup
 
-## Learn More
+These can be filled in now:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+HOMEPAGE_CONTACT_RECIPIENT_EMAIL=finance@vesalius.health
+CONTACT_PAGE_RECIPIENT_EMAIL=help@vesalius.health
+PRICING_RECIPIENT_EMAIL=help@vesalius.health
+DEMO_RECIPIENT_EMAIL=help@vesalius.health
+ODOO_BASE_URL=https://vesalius.odoo.com
+ODOO_HELPDESK_TEAM_NAME=Vesalius Support
+DEMO_SUBMISSION_MODE=email
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Values that still need access from someone else
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### Mail / SMTP
 
-## Deploy on Vercel
+These come from whoever manages the `vesalius.health` mailbox or email provider:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+SMTP_HOST=
+SMTP_PORT=
+SMTP_USER=
+SMTP_PASS=
+SMTP_FROM=
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Without these, the contact and demo forms cannot send mail from the React app.
+
+This may be free if Vesalius already pays for domain email that includes SMTP. If not, a transactional mail provider may be needed.
+
+#### Odoo Helpdesk API
+
+These are needed for the support form:
+
+```env
+ODOO_DATABASE=
+ODOO_API_USER=
+ODOO_API_KEY=
+```
+
+`ODOO_API_KEY` is generated inside Odoo on the user account used for the integration. A dedicated integration user is recommended, but if you do not have access to user management yet, someone with Odoo admin access will need to create it.
+
+### Optional Odoo field mapping
+
+These can stay blank for now:
+
+```env
+ODOO_HELPDESK_TICKET_TYPE_FIELD=
+ODOO_HELPDESK_TICKET_TYPE_MAP={}
+ODOO_HELPDESK_ORGANISATION_FIELD=
+ODOO_HELPDESK_LOCALE_FIELD=
+ODOO_HELPDESK_SOURCE_PAGE_FIELD=
+```
+
+If they stay blank, support tickets still get created, and those values remain visible in the generated ticket description text.
+
+## Current Blockers
+
+- no SMTP credentials means email forms cannot work in production yet
+- no Odoo API credentials means the support form cannot create Helpdesk tickets yet
+
+## Verification
+
+Useful checks:
+
+```bash
+npm run lint
+npm run build
+```

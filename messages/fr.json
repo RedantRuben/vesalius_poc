@@ -162,12 +162,20 @@
     "title": "Nous sommes là <span class=\"text-[#06ACC1]\">pour aider</span>",
     "subtitle": "D'autres questions ? Contactez-nous",
     "form": {
+      "nameLabel": "Nom",
       "namePlaceholder": "Votre Nom *",
+      "emailLabel": "E-mail",
       "emailPlaceholder": "Votre Email *",
+      "organisationLabel": "Organisation (optionnel)",
       "orgPlaceholder": "Votre Organisation",
+      "subjectLabel": "Sujet",
       "subjectPlaceholder": "Sujet *",
+      "messageLabel": "Comment pouvons-nous aider ?",
       "questionPlaceholder": "Votre Question *",
-      "submit": "Envoyer"
+      "submit": "Envoyer",
+      "pricingIntro": "Vous venez de la section tarifs. Partagez quelques détails et nous reviendrons vers vous avec la bonne orientation.",
+      "pricingSubjectTemplate": "Demande tarifaire : {plan}",
+      "pricingMessageTemplate": "Je souhaite en savoir plus sur l'offre {plan} et sur la configuration la plus adaptée à mon équipe."
     },
     "address": {
       "street": "Ottergemsesteenweg Zuid 808B",
@@ -184,11 +192,100 @@
     "security": "Sécurité",
     "faq": "FAQ",
     "contact": "Contact",
+    "support": "Support client",
     "address": {
         "street": "Ottergemsesteenweg Zuid 808B",
         "city": "9000 Gent, Belgique"
     },
     "copyright": "Copyright © Vesalius health"
+  },
+  "SharedForm": {
+    "submitting": "Envoi...",
+    "submitError": "Nous n'avons pas pu traiter votre demande pour le moment. Veuillez réessayer.",
+    "pricingFallbackPlan": "offre sélectionnée"
+  },
+  "SupportForm": {
+    "nameLabel": "Nom",
+    "namePlaceholder": "Votre Nom *",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Votre E-mail *",
+    "organisationLabel": "Organisation",
+    "organisationPlaceholder": "Clinique, hôpital ou cabinet",
+    "subjectLabel": "Sujet",
+    "subjectPlaceholder": "De quoi avez-vous besoin ? *",
+    "ticketTypeLabel": "Type de ticket",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Décrivez le problème, le comportement attendu et tout contexte utile.",
+    "attachmentLabel": "Pièce jointe",
+    "attachmentHint": "Optionnel. PDF, image, fichier texte ou document Word jusqu'à 5 Mo.",
+    "attachmentUnsupported": "Veuillez envoyer un PDF, une image, un fichier texte ou un document Word.",
+    "attachmentTooLarge": "La pièce jointe est trop volumineuse.",
+    "submit": "Envoyer le ticket",
+    "ticketTypes": {
+      "question": "Question",
+      "questionDescription": "À utiliser pour les questions générales ou l'aide liée au compte.",
+      "incident": "Incident",
+      "incidentDescription": "À utiliser lorsqu'un problème bloque le travail ou qu'une fonction est cassée.",
+      "billing": "Facturation",
+      "billingDescription": "À utiliser pour les factures, paiements ou abonnements.",
+      "featureRequest": "Demande d'amélioration",
+      "featureRequestDescription": "À utiliser pour proposer une amélioration produit."
+    }
+  },
+  "DemoForm": {
+    "nameLabel": "Nom",
+    "namePlaceholder": "Votre Nom *",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Votre E-mail *",
+    "organisationLabel": "Organisation",
+    "organisationPlaceholder": "Clinique, hôpital ou cabinet",
+    "roleLabel": "Rôle",
+    "rolePlaceholder": "Spécialiste, responsable de cabinet, operations lead...",
+    "messageLabel": "Sur quoi devons-nous nous concentrer ?",
+    "messagePlaceholder": "Expliquez ce que vous souhaitez voir dans la démo et pour qui elle est destinée.",
+    "submit": "Demander une démo"
+  },
+  "SupportPage": {
+    "eyebrow": "Support client",
+    "title": "Soumettre un ticket support",
+    "subtitle": "Contactez l'équipe support Vesalius via le même flux opérationnel qu'aujourd'hui, désormais dans le site React.",
+    "responseTitle": "Ce qui se passe ensuite",
+    "responseBody": "Votre demande est validée, envoyée au flux Helpdesk Vesalius Support, puis confirmée uniquement après acceptation du backend.",
+    "attachmentTitle": "Pièces jointes utiles",
+    "attachmentBody": "Ajoutez des captures d'écran, des exports ou un court document si cela peut nous aider à reproduire le problème plus vite.",
+    "urgentTitle": "Besoin d'un transfert plus rapide ?",
+    "urgentBody": "Soumettez le ticket avec les étapes de reproduction les plus claires possible afin que l'équipe support dispose du bon contexte dès le départ."
+  },
+  "DemoPage": {
+    "eyebrow": "Démo",
+    "title": "Demandez une démonstration ciblée",
+    "subtitle": "Expliquez pour qui la démo est prévue et ce que vous souhaitez évaluer afin que nous orientions correctement la demande.",
+    "whatToExpectTitle": "À quoi s'attendre",
+    "whatToExpectBody": "Partagez votre rôle, votre organisation et ce que vous souhaitez voir. Nous utiliserons ce contexte pour préparer la suite du flux démo.",
+    "tailoredTitle": "Adapté à votre workflow",
+    "tailoredBody": "Que vous évaluiez la pré-consultation, le scribe ou des workflows plateforme plus larges, nous voulons que la session corresponde à votre pratique.",
+    "platformTitle": "Accès direct à la plateforme",
+    "platformBody": "Si vous êtes prêt à démarrer immédiatement, le parcours d'onboarding reste disponible sans changement via le CTA principal vers la plateforme."
+  },
+  "SuccessPages": {
+    "contact": {
+      "title": "Votre message a bien été envoyé",
+      "body": "Merci de nous avoir contactés. Nous avons bien reçu votre demande et reviendrons vers vous dès que possible.",
+      "primaryAction": "Retour à l'accueil",
+      "secondaryAction": "Envoyer un autre message"
+    },
+    "support": {
+      "title": "Votre ticket support a bien été créé",
+      "body": "Votre demande a été transmise au flux support. Vous pouvez revenir sur le site ou soumettre un autre ticket si nécessaire.",
+      "primaryAction": "Retour à l'accueil",
+      "secondaryAction": "Soumettre un autre ticket"
+    },
+    "demo": {
+      "title": "Votre demande de démo est envoyée",
+      "body": "Merci pour le contexte partagé. Nous avons bien enregistré votre demande et reviendrons vers vous avec la prochaine étape du flux démo.",
+      "primaryAction": "Retour à l'accueil",
+      "secondaryAction": "Mettre à jour la demande"
+    }
   },
   "ErrorPage": {
     "notFound": {
