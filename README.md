@@ -80,6 +80,21 @@ ODOO_HELPDESK_SOURCE_PAGE_FIELD=
 
 If they stay blank, support tickets still get created, and those values remain visible in the generated ticket description text.
 
+### FAQ CMS admin
+
+To enable the lightweight FAQ CMS, add these values:
+
+```env
+FAQ_ADMIN_USERNAME=
+FAQ_ADMIN_PASSWORD=
+FAQ_ADMIN_SECRET=
+```
+
+Then visit `/en/admin/login`, `/nl/admin/login`, or `/fr/admin/login`.
+
+The CMS stores FAQ content in `src/data/faq-content.json` and uploads images into `public/uploads/faq/`.
+This is designed as a quick on-disk CMS for a server you control. If you deploy to a fully immutable/serverless platform, those edits will not persist without adding external storage later.
+
 ## Current Blockers
 
 - no SMTP credentials means email forms cannot work in production yet

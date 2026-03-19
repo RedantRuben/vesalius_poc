@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import WhyChooseVesalius from "@/components/WhyChooseVesalius";
 import Modules from "@/components/Modules";
 import Testimonials from "@/components/Testimonials";
+import SecuritySection from "@/components/SecuritySection";
 import Pricing from "@/components/Pricing";
 import TeamPricing from "@/components/TeamPricing";
 import Contact from "@/components/Contact";
@@ -32,6 +33,9 @@ export default function Home() {
       <section className="w-full pt-0 pb-12 md:pb-24 flex items-center justify-center">
         <Testimonials />
       </section>
+
+      {/* Section: Security */}
+      <SecuritySection />
 
       {/* Section 5: Pricing */}
       <section id="pricing" className="w-full pt-0 pb-12 md:pb-16 flex items-center justify-center">

@@ -4,13 +4,14 @@
     "product": "Produit",
     "pricing": "Tarifs",
     "contact": "Contact",
+    "support": "Support",
     "security": "Sécurité",
     "tryForFree": "Essayer gratuitement"
   },
   "Hero": {
     "titlePrefix": "Votre Assistant",
     "titleSuffix": "Médical Numérique",
-    "subtitle": "Propulsé par Votre Expertise, <bold>Amélioré par l'IA</bold>. Découvrez la prochaine génération d'automatisation des flux de travail cliniques.",
+    "subtitle": "Porté par votre expertise, <bold>renforcé par l'IA</bold>. Découvrez la nouvelle génération d'automatisation des workflows cliniques.",
     "ctaPrimary": "Rencontrez votre Assistant Médical Numérique",
     "ctaSecondary": "Voir la démo"
   },
@@ -18,56 +19,78 @@
     "trustedBy": "Reconnu par les plus grandes institutions"
   },
   "WhyChooseVesalius": {
-    "title": "La plateforme d'IA pour les conversations avec les patients, conçue pour les spécialistes, par des spécialistes",
+    "title": "La plateforme d'IA pour les échanges patients, conçue par et pour les spécialistes",
     "features": {
       "language": {
-        "title": "Brisez la barrière de la langue",
+        "title": "Faites tomber la barrière de la langue",
         "description": "Vesalius vous aide à comprendre vos patients, quelle que soit la langue."
       },
       "liability": {
-        "title": "Responsabilité",
-        "description": "Vesalius conserve un enregistrement clair des interactions, réduisant la responsabilité et assurant la conformité."
+        "title": "Traçabilité",
+        "description": "Vesalius conserve un historique clair des échanges afin de réduire le risque et de soutenir votre conformité."
       },
       "care": {
-        "title": "Meilleurs soins",
-        "description": "Automatisez les admissions pour réduire l'administration afin que vous puissiez vous concentrer sur l'essentiel."
+        "title": "Une meilleure qualité de soins",
+        "description": "Automatisez les recueils d'informations pour alléger l'administratif et vous concentrer sur l'essentiel."
       },
       "accuracy": {
-        "title": "Améliorez votre précision",
+        "title": "Gagnez en précision",
         "description": "Éliminez les erreurs manuelles et assurez la cohérence des dossiers patients."
       }
     }
   },
   "Modules": {
-    "title": "Nous avons un module pour chacun",
+    "title": "Une suite complète pour les équipes de soins modernes",
     "preConsultation": {
       "tag1": "Whatsapp",
       "tag2": "50+ Langues",
       "title": "Pré-consultation",
-      "description": "Prise en charge conversationnelle intelligente qui structure l'historique du patient avant qu'il n'entre dans la salle."
+      "description": "Un entretien conversationnel intelligent qui structure l'anamnèse avant même l'arrivée du patient en consultation."
     },
     "scribe": {
-      "tag1": "Bureau",
+      "tag1": "Ordinateur",
       "tag2": "Mobile",
       "title": "Scribe",
-      "description": "Le Scribe Bot écoute en arrière-plan pendant la consultation (via mobile ou bureau) et capture avec précision l'intégralité de la conversation clinique."
+      "description": "Le module Scribe écoute en arrière-plan pendant la consultation, sur mobile ou sur ordinateur, et capture fidèlement l'intégralité de l'échange clinique."
     },
     "documentGeneration": {
       "tag1": "Automatisé",
       "tag2": "Intégré",
       "title": "Génération de documents",
-      "description": "Mettez vos données au travail. Vesalius ne s'arrête pas à la capture d'informations mais l'utilise pour générer votre administration."
+      "description": "Faites travailler vos données. Vesalius ne se contente pas de capter l'information : la plateforme génère aussi votre documentation."
     },
     "smartTriage": {
       "tag1": "Bientôt disponible",
       "title": "Triage intelligent",
-      "description": "Évaluation intelligente de l'urgence et routage pour s'assurer que les patients reçoivent les bons soins au bon moment. Optimisez votre emploi du temps et priorisez efficacement.",
+      "description": "Une évaluation intelligente de l'urgence et une orientation adaptée pour offrir le bon niveau de soins au bon moment. Optimisez votre planning et vos priorités.",
       "routing": "Routage..."
+    },
+    "smartFollowUp": {
+      "tag1": "Automatisé",
+      "tag2": "Alertes",
+      "title": "Suivis intelligents",
+      "description": "Des suivis automatisés qui repèrent les patients à risque. Recevez une alerte dès qu'une réponse s'écarte de la trajectoire attendue."
+    },
+    "medication": {
+      "tag1": "OCR",
+      "tag2": "Instantané",
+      "title": "Gestion des traitements",
+      "description": "Numérisez instantanément les traitements à partir d'une photo de boîte, d'une liste imprimée ou de notes manuscrites. L'IA extrait directement la posologie, la forme et les détails de prescription."
+    }
+  },
+  "SecuritySection": {
+    "title": "Sécurité et confidentialité de confiance",
+    "description": "Vesalius protège les données sensibles des patients grâce au chiffrement, à des contrôles d'accès stricts et à des évaluations de sécurité régulières. Nous respectons les exigences du RGPD, sommes conçus pour répondre aux normes HIPAA et offrons aux utilisateurs une visibilité et un contrôle clairs sur la manière dont leurs données sont traitées.",
+    "cta": "Explorer la sécurité et la confidentialité",
+    "points": {
+      "gdpr": "Chiffrement de bout en bout",
+      "access": "Contrôles d'accès stricts",
+      "audit": "Pratiques de données transparentes"
     }
   },
   "Testimonials": {
-    "title": "Écoutez-le directement de nos utilisateurs",
-    "statsTitle": "Hautement évalué par les patients et les médecins dans toute l'industrie",
+    "title": "Ce que les équipes de soins disent de Vesalius",
+    "statsTitle": "Plébiscité par les patients comme par les médecins dans tout le secteur",
     "adoptionRate": "Taux d'adoption",
     "roi": "Retour sur investissement",
     "completionTime": "Temps moyen de réalisation",
@@ -94,11 +117,11 @@
   },
   "Pricing": {
     "title": "Tarification transparente et équitable",
-    "subtitle": "Choisissez le plan qui convient à votre pratique",
+    "subtitle": "Choisissez l'offre adaptée à votre cabinet",
     "free": {
       "name": "Gratuit",
       "description": "Commencez dès aujourd'hui sans engagement et découvrez ce que notre solution peut faire pour votre cabinet.",
-      "button": "Commencer",
+      "button": "Démarrer",
       "features": [
         "20 crédits gratuits pour commencer",
         "Pas de carte de crédit requise",
@@ -107,9 +130,9 @@
       ]
     },
     "payAsYouUse": {
-      "name": "À l'usage",
-      "description": "La flexibilité de payer uniquement ce que vous utilisez. Parfait pour les besoins variables et les pratiques saisonnières.",
-      "button": "Commencer",
+      "name": "Paiement à l'usage",
+      "description": "Toute la flexibilité d'un paiement basé sur l'usage réel. Idéal pour les besoins variables et les cabinets à activité saisonnière.",
+      "button": "Démarrer",
       "features": [
         "Payez uniquement pour ce que vous utilisez",
         "Paniers prédéfinis",
@@ -121,7 +144,7 @@
     "individual": {
       "name": "Individuel",
       "description": "Utilisation illimitée pour un médecin sans suivi de crédits. Simple et prévisible.",
-      "button": "Commencer",
+      "button": "Démarrer",
       "popularLabel": "Le plus populaire",
       "features": [
         "Utilisation illimitée",
@@ -134,11 +157,11 @@
   },
   "TeamPricing": {
     "title": "Besoin de plus de flexibilité ?",
-    "yearlyPayment": "Paiement annuel (économisez 15%), passez aux <link>paiements mensuels</link>",
+    "yearlyPayment": "Facturation annuelle (économisez 15 %), passez à des <link>paiements mensuels</link>",
     "team": {
       "name": "Équipe",
-      "description": "Idéal pour les cabinets avec plusieurs médecins. Collaboration efficace, un prix abordable.",
-      "button": "Commencer",
+      "description": "Idéal pour les cabinets réunissant plusieurs médecins. Une collaboration fluide, à un tarif accessible.",
+      "button": "Démarrer",
       "features": [
         "Utilisation illimitée",
         "Jusqu'à 5 prestataires de soins",
@@ -152,7 +175,7 @@
       "name": "Organisation",
       "price": "Tarification sur mesure",
       "description": "Vous avez plus de 5 médecins dans votre organisation ? Nous proposons des solutions personnalisées pour les grands cabinets et les hôpitaux.",
-      "button": "Commencer",
+      "button": "Démarrer",
       "features": [
         "Utilisation illimitée, support spécial et intégrations personnalisées à un prix sur mesure."
       ]
@@ -160,20 +183,20 @@
   },
   "Contact": {
     "title": "Nous sommes là <span class=\"text-[#06ACC1]\">pour aider</span>",
-    "subtitle": "D'autres questions ? Contactez-nous",
+    "subtitle": "Une question en plus ? Parlons-en",
     "form": {
       "nameLabel": "Nom",
-      "namePlaceholder": "Votre Nom *",
+      "namePlaceholder": "Votre nom *",
       "emailLabel": "E-mail",
-      "emailPlaceholder": "Votre Email *",
+      "emailPlaceholder": "Votre e-mail *",
       "organisationLabel": "Organisation (optionnel)",
-      "orgPlaceholder": "Votre Organisation",
+      "orgPlaceholder": "Votre organisation",
       "subjectLabel": "Sujet",
       "subjectPlaceholder": "Sujet *",
       "messageLabel": "Comment pouvons-nous aider ?",
-      "questionPlaceholder": "Votre Question *",
+      "questionPlaceholder": "Votre question *",
       "submit": "Envoyer",
-      "pricingIntro": "Vous venez de la section tarifs. Partagez quelques détails et nous reviendrons vers vous avec la bonne orientation.",
+      "pricingIntro": "Vous arrivez depuis la section tarifs. Partagez quelques informations et nous reviendrons vers vous avec la formule la plus adaptée.",
       "pricingSubjectTemplate": "Demande tarifaire : {plan}",
       "pricingMessageTemplate": "Je souhaite en savoir plus sur l'offre {plan} et sur la configuration la plus adaptée à mon équipe."
     },
@@ -201,12 +224,12 @@
   },
   "SharedForm": {
     "submitting": "Envoi...",
-    "submitError": "Nous n'avons pas pu traiter votre demande pour le moment. Veuillez réessayer.",
+    "submitError": "Nous n'avons pas pu finaliser votre demande pour le moment. Veuillez réessayer.",
     "pricingFallbackPlan": "offre sélectionnée"
   },
   "SupportForm": {
     "nameLabel": "Nom",
-    "namePlaceholder": "Votre Nom *",
+    "namePlaceholder": "Votre nom *",
     "emailLabel": "E-mail",
     "emailPlaceholder": "Votre E-mail *",
     "organisationLabel": "Organisation",
@@ -214,7 +237,7 @@
     "subjectLabel": "Sujet",
     "subjectPlaceholder": "De quoi avez-vous besoin ? *",
     "ticketTypeLabel": "Type de ticket",
-    "descriptionLabel": "Description",
+    "descriptionLabel": "Description du problème",
     "descriptionPlaceholder": "Décrivez le problème, le comportement attendu et tout contexte utile.",
     "attachmentLabel": "Pièce jointe",
     "attachmentHint": "Optionnel. PDF, image, fichier texte ou document Word jusqu'à 5 Mo.",
@@ -222,9 +245,9 @@
     "attachmentTooLarge": "La pièce jointe est trop volumineuse.",
     "submit": "Envoyer le ticket",
     "ticketTypes": {
-      "question": "Question",
+    "question": "Question générale",
       "questionDescription": "À utiliser pour les questions générales ou l'aide liée au compte.",
-      "incident": "Incident",
+    "incident": "Problème bloquant",
       "incidentDescription": "À utiliser lorsqu'un problème bloque le travail ou qu'une fonction est cassée.",
       "billing": "Facturation",
       "billingDescription": "À utiliser pour les factures, paiements ou abonnements.",
@@ -234,13 +257,13 @@
   },
   "DemoForm": {
     "nameLabel": "Nom",
-    "namePlaceholder": "Votre Nom *",
+    "namePlaceholder": "Votre nom *",
     "emailLabel": "E-mail",
     "emailPlaceholder": "Votre E-mail *",
     "organisationLabel": "Organisation",
     "organisationPlaceholder": "Clinique, hôpital ou cabinet",
     "roleLabel": "Rôle",
-    "rolePlaceholder": "Spécialiste, responsable de cabinet, operations lead...",
+    "rolePlaceholder": "Spécialiste, responsable de cabinet, responsable des opérations...",
     "messageLabel": "Sur quoi devons-nous nous concentrer ?",
     "messagePlaceholder": "Expliquez ce que vous souhaitez voir dans la démo et pour qui elle est destinée.",
     "submit": "Demander une démo"
@@ -248,9 +271,9 @@
   "SupportPage": {
     "eyebrow": "Support client",
     "title": "Soumettre un ticket support",
-    "subtitle": "Contactez l'équipe support Vesalius via le même flux opérationnel qu'aujourd'hui, désormais dans le site React.",
+    "subtitle": "Contactez l'équipe support Vesalius via le même flux opérationnel qu'aujourd'hui, désormais intégré au site React.",
     "responseTitle": "Ce qui se passe ensuite",
-    "responseBody": "Votre demande est validée, envoyée au flux Helpdesk Vesalius Support, puis confirmée uniquement après acceptation du backend.",
+    "responseBody": "Votre demande est validée, envoyée dans le flux Helpdesk Vesalius Support, puis confirmée uniquement après acceptation par le backend.",
     "attachmentTitle": "Pièces jointes utiles",
     "attachmentBody": "Ajoutez des captures d'écran, des exports ou un court document si cela peut nous aider à reproduire le problème plus vite.",
     "urgentTitle": "Besoin d'un transfert plus rapide ?",

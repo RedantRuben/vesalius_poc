@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 const ArrowUpRight = () => (
   <div className="w-8 h-8 flex items-center justify-center transition-colors duration-300 z-20 text-slate-300 group-hover:text-slate-500">
@@ -83,6 +83,34 @@ const itemVariants = {
 
 export default function Modules() {
   const t = useTranslations('Modules');
+  const locale = useLocale();
+  const copy =
+    locale === 'fr'
+      ? {
+          eyebrow: 'Modules de la plateforme',
+          analyzed: 'Analysé',
+          generated: 'Généré',
+          progress: 'Progression',
+          actionRequired: 'Action requise',
+          deviation: 'Écart détecté dans le suivi',
+        }
+      : locale === 'nl'
+        ? {
+            eyebrow: 'Platformmodules',
+            analyzed: 'Geanalyseerd',
+            generated: 'Gegenereerd',
+            progress: 'Voortgang',
+            actionRequired: 'Actie vereist',
+            deviation: 'Afwijking gedetecteerd in herstel',
+          }
+        : {
+            eyebrow: 'PLATFORM MODULES',
+            analyzed: 'Analyzed',
+            generated: 'Generated',
+            progress: 'Progress',
+            actionRequired: 'Action Required',
+            deviation: 'Deviation detected in recovery',
+          };
 
   return (
     <section className="w-full bg-[#FCFCFD] relative pb-12">
@@ -94,7 +122,7 @@ export default function Modules() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16 md:mb-24 flex flex-col items-center"
         >
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">PLATFORM MODULES</span>
+          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">{copy.eyebrow}</span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0B1B3D] tracking-tight max-w-4xl">
             {t('title')}
           </h2>
@@ -151,7 +179,7 @@ export default function Modules() {
                    >
                       <div className="flex justify-between items-center mb-3">
                         <div className="h-2 bg-cyan-200 rounded-full w-1/2"></div>
-                        <span className="text-[9px] font-bold text-[#06ACC1] tracking-widest uppercase bg-cyan-100/50 px-2 py-0.5 rounded-full">Analyzed</span>
+                        <span className="text-[9px] font-bold text-[#06ACC1] tracking-widest uppercase bg-cyan-100/50 px-2 py-0.5 rounded-full">{copy.analyzed}</span>
                       </div>
                       <div className="h-2 bg-cyan-100 rounded-full w-full mb-2"></div>
                       <div className="h-2 bg-cyan-100 rounded-full w-4/5"></div>
@@ -269,7 +297,7 @@ export default function Modules() {
                          transition={{ delay: 1.2, type: "spring" }}
                          className="absolute -bottom-3 left-4 bg-emerald-50 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest text-emerald-600 uppercase border border-emerald-200"
                      >
-                         Generated
+                         {copy.generated}
                      </motion.div>
                  </motion.div>
               </div>
@@ -361,7 +389,7 @@ export default function Modules() {
                 <div className="absolute bottom-8 left-0 right-0 flex justify-center pointer-events-none group-hover:-translate-y-2 transition-transform duration-700">
                     <div className="w-full max-w-sm bg-white rounded-2xl border border-slate-100 shadow-xl p-5 relative">
                         <div className="flex justify-between items-center mb-3">
-                          <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest">Progress</span>
+                          <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest">{copy.progress}</span>
                           <span className="text-xs font-bold text-[#06ACC1]">75%</span>
                         </div>
                         <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden mb-5">
@@ -387,8 +415,8 @@ export default function Modules() {
                                 </svg>
                             </div>
                             <div>
-                                <h4 className="font-bold text-amber-700 text-xs uppercase tracking-wide">Action Required</h4>
-                                <p className="text-amber-600/80 text-[10px] mt-0.5">Deviation detected in recovery</p>
+                                <h4 className="font-bold text-amber-700 text-xs uppercase tracking-wide">{copy.actionRequired}</h4>
+                                <p className="text-amber-600/80 text-[10px] mt-0.5">{copy.deviation}</p>
                             </div>
                          </motion.div>
                      </div>

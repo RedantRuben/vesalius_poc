@@ -72,6 +72,7 @@ export default function Navbar() {
   const isProductActive = isHomePage && displayedActiveSection === 'product';
   const isPricingActive = isHomePage && displayedActiveSection === 'pricing';
   const isContactActive = isHomePage && displayedActiveSection === 'contact';
+  const isSupportActive = pathname === '/faq' || pathname.startsWith('/faq/');
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 md:pt-6 transition-all duration-300 pointer-events-none">
@@ -102,6 +103,7 @@ export default function Navbar() {
             <NavItem href="/#product" isActive={isProductActive} label={t('product')} />
             <NavItem href="/#pricing" isActive={isPricingActive} label={t('pricing')} />
             <NavItem href="/#contact" isActive={isContactActive} label={t('contact')} />
+            <NavItem href="/faq" isActive={isSupportActive} label={t('support')} />
             <NavItem href="/security" isActive={pathname === '/security'} label={t('security')} />
           </div>
 
@@ -146,6 +148,7 @@ export default function Navbar() {
                 <MobileNavItem href="/#product" isActive={isProductActive} label={t('product')} onClick={() => setIsOpen(false)} />
                 <MobileNavItem href="/#pricing" isActive={isPricingActive} label={t('pricing')} onClick={() => setIsOpen(false)} />
                 <MobileNavItem href="/#contact" isActive={isContactActive} label={t('contact')} onClick={() => setIsOpen(false)} />
+                <MobileNavItem href="/faq" isActive={isSupportActive} label={t('support')} onClick={() => setIsOpen(false)} />
                 <MobileNavItem href="/security" isActive={pathname === '/security'} label={t('security')} onClick={() => setIsOpen(false)} />
                 
                 <div className="pt-4 mt-2 border-t border-slate-200">

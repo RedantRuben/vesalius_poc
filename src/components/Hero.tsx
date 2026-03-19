@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Instrument_Serif } from 'next/font/google';
+import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
 
 const instrumentSerif = Instrument_Serif({
@@ -32,7 +33,15 @@ const VesaliusLogoMark = () => (
 );
 
 // Left Side Floating Card - Chat Intake
-const FloatingChatCard = () => {
+const FloatingChatCard = ({
+  copy,
+}: {
+  copy: {
+    intakeAgent: string;
+    intakeActive: string;
+    intakeMessages: [string, string, string];
+  };
+}) => {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -43,10 +52,10 @@ const FloatingChatCard = () => {
        <div className="flex items-center gap-3 mb-5 border-b border-slate-100 pb-3">
           <VesaliusLogoMark />
           <div className="flex flex-col">
-            <span className="text-sm font-bold text-[#0B1B3D] tracking-tight">Pre-Consultation Agent</span>
+            <span className="text-sm font-bold text-[#0B1B3D] tracking-tight">{copy.intakeAgent}</span>
             <span className="text-[10px] text-[#06ACC1] font-semibold tracking-wide uppercase flex items-center gap-1.5 mt-0.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#06ACC1]"></span>
-              Intake Active
+              {copy.intakeActive}
             </span>
           </div>
        </div>
@@ -54,19 +63,19 @@ const FloatingChatCard = () => {
        <div className="space-y-4">
           <div className="bg-slate-50 border border-slate-100/50 rounded-2xl rounded-tl-sm p-3.5 shadow-sm">
             <p className="text-[13px] text-slate-700 leading-relaxed">
-              Hello David! I&apos;m here to help the doctor prepare for your visit. What is the main reason for your appointment today?
+              {copy.intakeMessages[0]}
             </p>
           </div>
 
           <div className="bg-[#0B1B3D] rounded-2xl rounded-tr-sm p-3.5 ml-8 shadow-md">
             <p className="text-[13px] text-white/95 leading-relaxed">
-              I&apos;ve been having severe headaches for the past two weeks. They seem to be getting worse.
+              {copy.intakeMessages[1]}
             </p>
           </div>
 
           <div className="bg-slate-50 border border-slate-100/50 rounded-2xl rounded-tl-sm p-3.5 shadow-sm">
             <p className="text-[13px] text-slate-700 leading-relaxed">
-              I understand. Can you tell me exactly where the pain is located, and if you have any other symptoms?
+              {copy.intakeMessages[2]}
             </p>
           </div>
        </div>
@@ -75,7 +84,17 @@ const FloatingChatCard = () => {
 };
 
 // Right Side Floating Card - Live Audio Scribe
-const FloatingScribeCard = () => {
+const FloatingScribeCard = ({
+  copy,
+}: {
+  copy: {
+    clinicalNoteGeneration: string;
+    consultationTitle: string;
+    consultationRoom: string;
+    consultationTimer: string;
+    clinicalNoteBody: string;
+  };
+}) => {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -89,14 +108,14 @@ const FloatingScribeCard = () => {
               <UserAvatar />
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-bold text-[#0B1B3D]">Live Consultation</span>
-              <span className="text-[10px] font-medium text-slate-500 uppercase tracking-wider">Room 4</span>
+              <span className="text-sm font-bold text-[#0B1B3D]">{copy.consultationTitle}</span>
+              <span className="text-[10px] font-medium text-slate-500 uppercase tracking-wider">{copy.consultationRoom}</span>
             </div>
           </div>
           
           <div className="flex items-center gap-2 bg-rose-50/80 px-2.5 py-1.5 rounded-lg border border-rose-100">
             <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
-            <span className="text-[10px] font-bold text-rose-600 tracking-widest tabular-nums">04:12</span>
+            <span className="text-[10px] font-bold text-rose-600 tracking-widest tabular-nums">{copy.consultationTimer}</span>
           </div>
        </div>
 
@@ -124,10 +143,10 @@ const FloatingScribeCard = () => {
                <div className="w-5 h-5 rounded-md bg-cyan-50 flex items-center justify-center border border-cyan-100">
                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
                </div>
-               <span className="text-[10px] font-bold text-[#0B1B3D] uppercase tracking-wider">Clinical Note Generation</span>
+               <span className="text-[10px] font-bold text-[#0B1B3D] uppercase tracking-wider">{copy.clinicalNoteGeneration}</span>
              </div>
              <p className="text-[13px] text-slate-600 leading-relaxed">
-               Patient reports severe, worsening headaches over the past two weeks. Pain is localized in the frontal region and is accompanied by mild photophobia...
+               {copy.clinicalNoteBody}
              </p>
              <div className="mt-4 h-1.5 bg-slate-100 rounded-full w-full overflow-hidden relative">
                <motion.div 
@@ -181,6 +200,70 @@ const CleanLines = () => {
 };
 
 export default function Hero() {
+  const locale = useLocale();
+  const copy =
+    locale === 'fr'
+      ? {
+          line1: 'Redevenez',
+          line2: 'Médecin.',
+          subtitle: 'Votre assistant IA personnel s’occupe du reste.',
+          primaryCta: 'Rencontrez votre assistant →',
+          secondaryCta: 'Voir la démo',
+          intakeAgent: 'Agent de pré-consultation',
+          intakeActive: 'Intake en cours',
+          intakeMessages: [
+            'Bonjour David. Je suis là pour aider le médecin à préparer votre visite. Quel est le motif principal de votre rendez-vous aujourd’hui ?',
+            'J’ai de fortes migraines depuis deux semaines. Elles semblent s’aggraver.',
+            'Je comprends. Pouvez-vous me préciser où la douleur se situe exactement et si vous avez d’autres symptômes ?',
+          ] as [string, string, string],
+          consultationTitle: 'Consultation en direct',
+          consultationRoom: 'Salle 4',
+          consultationTimer: '04:12',
+          clinicalNoteGeneration: 'Génération de note clinique',
+          clinicalNoteBody:
+            'Le patient signale des céphalées sévères qui s’intensifient depuis deux semaines. La douleur est localisée au niveau frontal et s’accompagne d’une légère photophobie...',
+        }
+      : locale === 'nl'
+        ? {
+            line1: 'Wees opnieuw',
+            line2: 'arts.',
+            subtitle: 'Uw persoonlijke AI-assistent neemt de rest uit handen.',
+            primaryCta: 'Maak kennis met uw assistent →',
+            secondaryCta: 'Bekijk demo',
+            intakeAgent: 'Pre-consultatie-assistent',
+            intakeActive: 'Intake actief',
+            intakeMessages: [
+              'Hallo David! Ik help de arts om uw bezoek voor te bereiden. Wat is de belangrijkste reden voor uw afspraak vandaag?',
+              'Ik heb al twee weken hevige hoofdpijn. Het lijkt alleen maar erger te worden.',
+              'Ik begrijp het. Kunt u precies aangeven waar de pijn zit en of u nog andere symptomen heeft?',
+            ] as [string, string, string],
+            consultationTitle: 'Live consultatie',
+            consultationRoom: 'Kamer 4',
+            consultationTimer: '04:12',
+            clinicalNoteGeneration: 'Generatie van klinische nota',
+            clinicalNoteBody:
+              'De patiënt meldt hevige, toenemende hoofdpijn sinds twee weken. De pijn is gelokaliseerd in de frontale regio en gaat gepaard met lichte fotofobie...',
+          }
+        : {
+            line1: 'Be A Doctor',
+            line2: 'Again.',
+            subtitle: 'Your Personal AI Assistant handles everything else.',
+            primaryCta: 'Meet your Assistant →',
+            secondaryCta: 'Watch Demo',
+            intakeAgent: 'Pre-Consultation Agent',
+            intakeActive: 'Intake Active',
+            intakeMessages: [
+              "Hello David! I'm here to help the doctor prepare for your visit. What is the main reason for your appointment today?",
+              "I've been having severe headaches for the past two weeks. They seem to be getting worse.",
+              'I understand. Can you tell me exactly where the pain is located, and if you have any other symptoms?',
+            ] as [string, string, string],
+            consultationTitle: 'Live Consultation',
+            consultationRoom: 'Room 4',
+            consultationTimer: '04:12',
+            clinicalNoteGeneration: 'Clinical Note Generation',
+            clinicalNoteBody:
+              'Patient reports severe, worsening headaches over the past two weeks. Pain is localized in the frontal region and is accompanied by mild photophobia...',
+          };
 
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -219,9 +302,9 @@ export default function Hero() {
                           animate="visible"
                           className="block"
                         >
-                          Be A Doctor <br className="hidden lg:block" />
+                          {copy.line1} <br className="hidden lg:block" />
                           <span className={`${instrumentSerif.className} inline-block font-normal italic tracking-normal`}>
-                            Again.
+                            {copy.line2}
                           </span>
                         </motion.span>
                     </h1>
@@ -234,7 +317,7 @@ export default function Hero() {
                       transition={{ delay: 0.1 }}
                       className="text-lg md:text-xl xl:text-2xl text-slate-500 mb-10 leading-relaxed font-light max-w-2xl lg:max-w-md xl:max-w-lg"
                     >
-                        Your Personal AI Assistant handles everything else.
+                        {copy.subtitle}
                     </motion.p>
 
                     {/* CTA Buttons */}
@@ -246,12 +329,12 @@ export default function Hero() {
                       className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
                     >
                         <a href="https://assistant.vesalius.ai/onboarding/credentials" className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#0B1B3D] text-white font-medium hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-[15px] shadow-[0_8px_20px_-6px_rgba(11,27,61,0.5)] hover:-translate-y-0.5">
-                            Meet your Assistant →
+                            {copy.primaryCta}
                         </a>
                         
                         <Link href="/demo" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-slate-700 font-medium hover:bg-slate-50 border border-slate-200 transition-all flex items-center justify-center gap-2 text-[15px] shadow-sm hover:shadow-md hover:-translate-y-0.5">
                             <PlayIcon />
-                            Watch Demo
+                            {copy.secondaryCta}
                         </Link>
                     </motion.div>
                 </div>
@@ -259,11 +342,11 @@ export default function Hero() {
                 {/* Right: Floating Cards Collage (Desktop Only) */}
                 <div className="hidden lg:flex relative w-full lg:w-[55%] xl:w-[50%] h-[500px] xl:h-[600px] items-center justify-end pointer-events-none">
                     <div className="absolute right-[15%] xl:right-[20%] top-0 xl:top-[5%] z-20 pointer-events-auto transition-all duration-300">
-                        <FloatingChatCard />
-                    </div>
+                    <FloatingChatCard copy={copy} />
+                </div>
                     <div className="absolute right-0 top-[30%] xl:top-[35%] z-30 pointer-events-auto transition-all duration-300 shadow-2xl rounded-3xl">
-                        <FloatingScribeCard />
-                    </div>
+                    <FloatingScribeCard copy={copy} />
+                </div>
                 </div>
             </div>
         </div>
@@ -275,21 +358,21 @@ export default function Hero() {
                    <div className="flex items-center gap-3 mb-4">
                       <VesaliusLogoMark />
                       <div className="flex flex-col text-left">
-                        <span className="text-sm font-bold text-[#0B1B3D]">Pre-Consultation Agent</span>
-                        <span className="text-[10px] text-[#06ACC1] font-medium tracking-wide uppercase">Intake Active</span>
+                        <span className="text-sm font-bold text-[#0B1B3D]">{copy.intakeAgent}</span>
+                        <span className="text-[10px] text-[#06ACC1] font-medium tracking-wide uppercase">{copy.intakeActive}</span>
                       </div>
                    </div>
 
                    <div className="space-y-4 text-left">
                     <div className="bg-slate-50 border border-slate-100/50 rounded-2xl rounded-tl-sm p-3.5 shadow-sm">
                         <p className="text-[13px] text-slate-700 leading-relaxed">
-                          Hello David! I&apos;m here to help the doctor prepare for your visit. What is the main reason for your appointment today?
+                          {copy.intakeMessages[0]}
                         </p>
                       </div>
 
                       <div className="bg-gradient-to-br from-[#0B1B3D] to-[#162c5e] rounded-2xl rounded-tr-sm p-3.5 ml-6 shadow-md">
                         <p className="text-[13px] text-white/95 leading-relaxed">
-                          I&apos;ve been having severe headaches for the past two weeks. They seem to be getting worse.
+                          {copy.intakeMessages[1]}
                         </p>
                       </div>
                    </div>
@@ -303,12 +386,12 @@ export default function Hero() {
                         <div className="w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200">
                           <UserAvatar />
                         </div>
-                        <span className="text-sm font-bold text-[#0B1B3D]">Live Consultation</span>
+                        <span className="text-sm font-bold text-[#0B1B3D]">{copy.consultationTitle}</span>
                       </div>
                       
                       <div className="flex items-center gap-2 bg-rose-50 px-2 py-1 rounded-md border border-rose-100">
                         <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
-                        <span className="text-[10px] font-bold text-rose-600 tracking-widest tabular-nums">04:12</span>
+                        <span className="text-[10px] font-bold text-rose-600 tracking-widest tabular-nums">{copy.consultationTimer}</span>
                       </div>
                    </div>
 
@@ -330,10 +413,10 @@ export default function Hero() {
                       <div className="bg-gradient-to-br from-cyan-50/50 to-white border border-cyan-100/50 rounded-xl p-3.5">
                          <div className="flex items-center gap-1.5 mb-2">
                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
-                           <span className="text-[9px] font-bold text-[#06ACC1] uppercase tracking-wider">Clinical Note</span>
+                           <span className="text-[9px] font-bold text-[#06ACC1] uppercase tracking-wider">{copy.clinicalNoteGeneration}</span>
                          </div>
                          <p className="text-[12px] text-slate-600 leading-relaxed">
-                           Patient reports severe, worsening headaches over the past two weeks. Pain is localized in the frontal region and is accompanied by mild photophobia...
+                           {copy.clinicalNoteBody}
                          </p>
                       </div>
                    </div>

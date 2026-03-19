@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
+import { useLocale } from 'next-intl';
 
 const CheckIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#06ACC1]">
@@ -18,54 +19,113 @@ const CheckIconWhite = () => (
   </svg>
 );
 
-const pricingPlans = [
-  {
-    name: "Free",
-    price: "€0",
-    description: "Start today with no obligations and see what our solution can do for your practice.",
-    buttonText: "Get Started",
-    isPopular: false,
-    features: [
-      "20 free credits to start",
-      "No credit card required",
-      "Perfect for trying our service",
-      "Standard support"
-    ]
-  },
-  {
-    name: "Pay-as-you-use",
-    price: "€1.5",
-    period: "/credit",
-    description: "The flexibility to only pay for what you use. Perfect for variable needs and seasonal practices.",
-    buttonText: "Get Started",
-    isPopular: false,
-    features: [
-      "Pay only for what you use",
-      "Predefined buckets",
-      "Volume discounts available",
-      "Flexible for your needs",
-      "Standard support"
-    ]
-  },
-  {
-    name: "Individual",
-    price: "€84",
-    period: "/month",
-    description: "Unlimited usage for one doctor without tracking credits. Simple and predictable.",
-    buttonText: "Get Started",
-    isPopular: true,
-    popularLabel: "Most Popular",
-    features: [
-      "Unlimited usage",
-      "Perfect for 1 doctor",
-      "Predictable monthly cost",
-      "Cancel any time",
-      "Priority support"
-    ]
-  }
-];
-
 export default function Pricing() {
+  const locale = useLocale();
+  const copy =
+    locale === 'fr'
+      ? {
+          eyebrow: 'Tarifs',
+          title: 'Tarification transparente et équitable',
+          subtitle: 'Choisissez l’offre adaptée à votre cabinet',
+          plans: [
+            {
+              name: 'Gratuit',
+              price: '€0',
+              description: 'Commencez dès aujourd’hui, sans engagement, et découvrez ce que notre solution peut apporter à votre pratique.',
+              buttonText: 'Commencer',
+              isPopular: false,
+              features: ['20 crédits gratuits pour démarrer', 'Aucune carte bancaire requise', 'Parfait pour tester notre solution', 'Support standard'],
+            },
+            {
+              name: 'Paiement à l’usage',
+              price: '€1.5',
+              period: '/crédit',
+              description: 'La flexibilité de payer uniquement ce que vous utilisez. Idéal pour les besoins variables et les activités saisonnières.',
+              buttonText: 'Commencer',
+              isPopular: false,
+              features: ['Payez uniquement ce que vous utilisez', 'Paliers prédéfinis', 'Remises sur volume disponibles', 'Flexible selon vos besoins', 'Support standard'],
+            },
+            {
+              name: 'Individuel',
+              price: '€84',
+              period: '/mois',
+              description: 'Utilisation illimitée pour un médecin, sans suivi de crédits. Simple et prévisible.',
+              buttonText: 'Commencer',
+              isPopular: true,
+              popularLabel: 'Le plus populaire',
+              features: ['Utilisation illimitée', 'Parfait pour 1 médecin', 'Coût mensuel prévisible', 'Résiliable à tout moment', 'Support prioritaire'],
+            },
+          ],
+        }
+      : locale === 'nl'
+        ? {
+            eyebrow: 'Prijzen',
+            title: 'Transparante en eerlijke prijzen',
+            subtitle: 'Kies het plan dat bij uw praktijk past',
+            plans: [
+              {
+                name: 'Gratis',
+                price: '€0',
+                description: 'Start vandaag zonder verplichtingen en ontdek wat onze oplossing voor uw praktijk kan betekenen.',
+                buttonText: 'Aan de slag',
+                isPopular: false,
+                features: ['20 gratis credits om te starten', 'Geen kredietkaart nodig', 'Perfect om onze oplossing uit te proberen', 'Standaard ondersteuning'],
+              },
+              {
+                name: 'Betalen per gebruik',
+                price: '€1.5',
+                period: '/credit',
+                description: 'De flexibiliteit om alleen te betalen voor wat u gebruikt. Perfect voor wisselende noden en seizoensgebonden praktijken.',
+                buttonText: 'Aan de slag',
+                isPopular: false,
+                features: ['Betaal alleen voor wat u gebruikt', 'Vooraf gedefinieerde bundels', 'Volumekorting beschikbaar', 'Flexibel volgens uw behoeften', 'Standaard ondersteuning'],
+              },
+              {
+                name: 'Individueel',
+                price: '€84',
+                period: '/maand',
+                description: 'Onbeperkt gebruik voor één arts zonder credits op te volgen. Eenvoudig en voorspelbaar.',
+                buttonText: 'Aan de slag',
+                isPopular: true,
+                popularLabel: 'Meest gekozen',
+                features: ['Onbeperkt gebruik', 'Perfect voor 1 arts', 'Voorspelbare maandelijkse kost', 'Op elk moment opzegbaar', 'Prioritaire ondersteuning'],
+              },
+            ],
+          }
+        : {
+            eyebrow: 'Pricing',
+            title: 'Transparent and fair pricing',
+            subtitle: 'Choose the plan that fits your practice',
+            plans: [
+              {
+                name: 'Free',
+                price: '€0',
+                description: 'Start today with no obligations and see what our solution can do for your practice.',
+                buttonText: 'Get Started',
+                isPopular: false,
+                features: ['20 free credits to start', 'No credit card required', 'Perfect for trying our service', 'Standard support'],
+              },
+              {
+                name: 'Pay-as-you-use',
+                price: '€1.5',
+                period: '/credit',
+                description: 'The flexibility to only pay for what you use. Perfect for variable needs and seasonal practices.',
+                buttonText: 'Get Started',
+                isPopular: false,
+                features: ['Pay only for what you use', 'Predefined buckets', 'Volume discounts available', 'Flexible for your needs', 'Standard support'],
+              },
+              {
+                name: 'Individual',
+                price: '€84',
+                period: '/month',
+                description: 'Unlimited usage for one doctor without tracking credits. Simple and predictable.',
+                buttonText: 'Get Started',
+                isPopular: true,
+                popularLabel: 'Most Popular',
+                features: ['Unlimited usage', 'Perfect for 1 doctor', 'Predictable monthly cost', 'Cancel any time', 'Priority support'],
+              },
+            ],
+          };
   return (
     <section className="w-full bg-[#FCFCFD] relative py-12 md:py-16">
       <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-30 pointer-events-none" />
@@ -79,18 +139,18 @@ export default function Pricing() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16 md:mb-24 flex flex-col items-center"
         >
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">Pricing</span>
+          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">{copy.eyebrow}</span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0B1B3D] tracking-tight mb-4">
-            Transparent and fair pricing
+            {copy.title}
           </h2>
           <p className="text-slate-500 text-lg md:text-xl font-light">
-            Choose the plan that fits your practice
+            {copy.subtitle}
           </p>
         </motion.div>
 
         {/* Pricing Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-6xl mx-auto w-full">
-          {pricingPlans.map((plan, index) => {
+          {copy.plans.map((plan, index) => {
             const isDark = plan.isPopular;
             
             return (

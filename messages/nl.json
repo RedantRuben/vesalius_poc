@@ -4,33 +4,34 @@
     "product": "Product",
     "pricing": "Prijzen",
     "contact": "Contact",
+    "support": "Support",
     "security": "Beveiliging",
     "tryForFree": "Probeer gratis"
   },
   "Hero": {
     "titlePrefix": "Uw Digitale",
     "titleSuffix": "Medische Assistent",
-    "subtitle": "Aangedreven door Uw Expertise, <bold>Verbeterd door AI</bold>. Ervaar de volgende generatie van klinische workflow automatisering.",
+    "subtitle": "Aangedreven door uw expertise, <bold>versterkt met AI</bold>. Ervaar de volgende generatie klinische workflowautomatisering.",
     "ctaPrimary": "Ontmoet uw Digitale Medische Assistent",
-    "ctaSecondary": "Bekijk Demo"
+    "ctaSecondary": "Bekijk de demo"
   },
   "LogoTicker": {
     "trustedBy": "Vertrouwd door toonaangevende instellingen"
   },
   "WhyChooseVesalius": {
-    "title": "Het AI-platform voor patiëntgesprekken gebouwd voor specialisten, door specialisten",
+    "title": "Het AI-platform voor patiëntgesprekken, gebouwd door en voor specialisten",
     "features": {
       "language": {
-        "title": "Doorbeek de taalbarrière",
+        "title": "Doorbreek de taalbarrière",
         "description": "Vesalius helpt u uw patiënten te begrijpen, ongeacht de taal."
       },
       "liability": {
-        "title": "Aansprakelijkheid",
-        "description": "Vesalius houdt een duidelijk overzicht van interacties bij, vermindert aansprakelijkheid en zorgt voor naleving."
+        "title": "Minder risico",
+        "description": "Vesalius houdt een helder overzicht van interacties bij, zodat u risico's beperkt en compliant blijft."
       },
       "care": {
         "title": "Betere zorg",
-        "description": "Automatiseer intakes om administratie te verminderen zodat u zich kunt richten op wat belangrijk is."
+        "description": "Automatiseer intakes om administratie te beperken, zodat u zich kunt richten op wat echt telt."
       },
       "accuracy": {
         "title": "Verbeter uw nauwkeurigheid",
@@ -39,39 +40,61 @@
     }
   },
   "Modules": {
-    "title": "We hebben een module voor iedereen",
+    "title": "Een complete toolkit voor moderne zorgteams",
     "preConsultation": {
       "tag1": "Whatsapp",
       "tag2": "50+ Talen",
       "title": "Pre-consultatie",
-      "description": "Intelligente conversationele intake die de patiëntgeschiedenis structureert voordat ze de kamer binnenkomen."
+      "description": "Intelligente conversationele intake die de anamnese structureert nog voor de patiënt de consultatieruimte binnenstapt."
     },
     "scribe": {
       "tag1": "Desktop",
       "tag2": "Mobiel",
       "title": "Scribe",
-      "description": "De Scribe Bot luistert op de achtergrond mee tijdens het consult (via mobiel of desktop) en legt het volledige klinische gesprek nauwkeurig vast."
+      "description": "De Scribe-module luistert op de achtergrond mee tijdens het consult, via mobiel of desktop, en legt het volledige klinische gesprek nauwkeurig vast."
     },
     "documentGeneration": {
       "tag1": "Geautomatiseerd",
       "tag2": "Geïntegreerd",
       "title": "Documentgeneratie",
-      "description": "Zet uw data aan het werk. Vesalius stopt niet bij het vastleggen van info, maar gebruikt het om uw administratie te genereren."
+      "description": "Laat uw data voor u werken. Vesalius legt niet alleen informatie vast, maar zet die ook om in uw documentatie."
     },
     "smartTriage": {
       "tag1": "Binnenkort beschikbaar",
       "title": "Slimme Triage",
-      "description": "Intelligente urgentiebeoordeling en routing om ervoor te zorgen dat patiënten op het juiste moment de juiste zorg krijgen. Optimaliseer uw planning en prioriteer effectief.",
+      "description": "Intelligente urgentiebeoordeling en routering zodat patiënten op het juiste moment de juiste zorg krijgen. Optimaliseer uw planning en stel slimmer prioriteiten.",
       "routing": "Routering..."
+    },
+    "smartFollowUp": {
+      "tag1": "Geautomatiseerd",
+      "tag2": "Meldingen",
+      "title": "Slimme opvolging",
+      "description": "Geautomatiseerde check-ins die risicopatiënten tijdig signaleren. Ontvang een melding zodra antwoorden afwijken van het verwachte hersteltraject."
+    },
+    "medication": {
+      "tag1": "OCR",
+      "tag2": "Direct",
+      "title": "Medicatiebeheer",
+      "description": "Digitaliseer medicatie meteen via foto's van doosjes, geprinte lijsten of handgeschreven notities. Onze AI haalt dosering, vorm en voorschriftgegevens rechtstreeks uit het beeld."
+    }
+  },
+  "SecuritySection": {
+    "title": "Beveiliging en privacy waarop u kunt vertrouwen",
+    "description": "Vesalius beschermt gevoelige patiëntgegevens met encryptie, strikte toegangscontroles en regelmatige beveiligingsbeoordelingen. We ondersteunen AVG-vereisten, zijn ontworpen om te voldoen aan HIPAA-normen en geven gebruikers duidelijke zichtbaarheid en controle over hoe hun gegevens worden verwerkt.",
+    "cta": "Ontdek beveiliging & privacy",
+    "points": {
+      "gdpr": "End-to-end encryptie",
+      "access": "Strikte toegangscontroles",
+      "audit": "Transparante datapraktijken"
     }
   },
   "Testimonials": {
-    "title": "Hoor het direct van onze gebruikers",
-    "statsTitle": "Hoog gewaardeerd door patiënten en artsen in de hele sector",
+    "title": "Wat zorgteams over Vesalius zeggen",
+    "statsTitle": "Sterk gewaardeerd door patiënten en artsen in de hele sector",
     "adoptionRate": "Adoptiegraad",
-    "roi": "Rendement op Investering",
-    "completionTime": "Gemiddelde Voltooiingstijd",
-    "perceivedQuality": "Waargenomen Kwaliteit",
+    "roi": "Rendement op investering",
+    "completionTime": "Gemiddelde doorlooptijd",
+    "perceivedQuality": "Ervaren kwaliteit",
     "patientRating": "Patiëntbeoordeling",
     "physiciansRating": "Artsenbeoordeling",
     "items": {
@@ -107,8 +130,8 @@
       ]
     },
     "payAsYouUse": {
-      "name": "Pay-as-you-use",
-      "description": "De flexibiliteit om alleen te betalen voor wat u gebruikt. Perfect voor variabele behoeften en seizoensgebonden praktijken.",
+      "name": "Betalen per gebruik",
+      "description": "De flexibiliteit om alleen te betalen voor wat u echt gebruikt. Ideaal voor wisselende noden en seizoensgebonden praktijken.",
       "button": "Aan de slag",
       "features": [
         "Betaal alleen voor wat u gebruikt",
@@ -122,7 +145,7 @@
       "name": "Individueel",
       "description": "Onbeperkt gebruik voor één arts zonder credits bij te houden. Eenvoudig en voorspelbaar.",
       "button": "Aan de slag",
-      "popularLabel": "Meest Populair",
+      "popularLabel": "Meest gekozen",
       "features": [
         "Onbeperkt gebruik",
         "Perfect voor 1 arts",
@@ -134,10 +157,10 @@
   },
   "TeamPricing": {
     "title": "Meer flexibiliteit nodig?",
-    "yearlyPayment": "Jaarlijkse betaling (bespaar 15%), wissel naar <link>maandelijkse betalingen</link>",
+    "yearlyPayment": "Jaarlijkse betaling (bespaar 15%), schakel over naar <link>maandelijkse betalingen</link>",
     "team": {
       "name": "Team",
-      "description": "Ideaal voor praktijken met meerdere artsen. Efficiënte samenwerking, één betaalbare prijs.",
+      "description": "Ideaal voor praktijken met meerdere artsen. Vlotte samenwerking aan één betaalbare prijs.",
       "button": "Aan de slag",
       "features": [
         "Onbeperkt gebruik",
@@ -160,20 +183,20 @@
   },
   "Contact": {
     "title": "We zijn er <span class=\"text-[#06ACC1]\">om te helpen</span>",
-    "subtitle": "Nog andere vragen? Neem contact met ons op",
+    "subtitle": "Nog vragen? We helpen u graag verder",
     "form": {
       "nameLabel": "Naam",
-      "namePlaceholder": "Uw Naam *",
+      "namePlaceholder": "Uw naam *",
       "emailLabel": "E-mail",
-      "emailPlaceholder": "Uw Email *",
+      "emailPlaceholder": "Uw e-mail *",
       "organisationLabel": "Organisatie (optioneel)",
-      "orgPlaceholder": "Uw Organisatie",
+      "orgPlaceholder": "Uw organisatie",
       "subjectLabel": "Onderwerp",
       "subjectPlaceholder": "Onderwerp *",
       "messageLabel": "Waarmee kunnen we helpen?",
-      "questionPlaceholder": "Uw Vraag *",
+      "questionPlaceholder": "Uw vraag *",
       "submit": "Verzenden",
-      "pricingIntro": "U komt uit de prijzensectie. Deel een paar details en we nemen contact op met het juiste voorstel.",
+      "pricingIntro": "U komt uit de prijzensectie. Deel een paar details en we nemen contact op met het voorstel dat het best bij u past.",
       "pricingSubjectTemplate": "Prijsaanvraag: {plan}",
       "pricingMessageTemplate": "Ik wil graag meer weten over het {plan}-plan en welke opzet het best past bij mijn team."
     },
@@ -190,9 +213,9 @@
     "privacyPolicy": "Privacybeleid",
     "cookiePolicy": "Cookiebeleid",
     "security": "Beveiliging",
-    "faq": "FAQ",
+    "faq": "Veelgestelde vragen",
     "contact": "Contact",
-    "support": "Customer care",
+    "support": "Klantenzorg",
     "address": {
         "street": "Ottergemsesteenweg Zuid 808B",
         "city": "9000 Gent, België"
@@ -201,12 +224,12 @@
   },
   "SharedForm": {
     "submitting": "Verzenden...",
-    "submitError": "We konden uw aanvraag nu niet afronden. Probeer het opnieuw.",
+    "submitError": "We konden uw aanvraag momenteel niet afronden. Probeer het opnieuw.",
     "pricingFallbackPlan": "geselecteerd prijsplan"
   },
   "SupportForm": {
     "nameLabel": "Naam",
-    "namePlaceholder": "Uw Naam *",
+    "namePlaceholder": "Uw naam *",
     "emailLabel": "E-mail",
     "emailPlaceholder": "Uw E-mail *",
     "organisationLabel": "Organisatie",
@@ -222,7 +245,7 @@
     "attachmentTooLarge": "De bijlage is te groot.",
     "submit": "Ticket indienen",
     "ticketTypes": {
-      "question": "Vraag",
+      "question": "Algemene vraag",
       "questionDescription": "Gebruik dit voor algemene supportvragen of hulp met uw account.",
       "incident": "Incident",
       "incidentDescription": "Gebruik dit wanneer iets defect is of werk blokkeert.",
@@ -234,19 +257,19 @@
   },
   "DemoForm": {
     "nameLabel": "Naam",
-    "namePlaceholder": "Uw Naam *",
+      "namePlaceholder": "Uw naam *",
     "emailLabel": "E-mail",
     "emailPlaceholder": "Uw E-mail *",
     "organisationLabel": "Organisatie",
     "organisationPlaceholder": "Kliniek, ziekenhuis of praktijk",
     "roleLabel": "Rol",
-    "rolePlaceholder": "Specialist, praktijkmanager, operations lead...",
+    "rolePlaceholder": "Specialist, praktijkmanager, operationeel verantwoordelijke...",
     "messageLabel": "Waar moeten we op focussen?",
     "messagePlaceholder": "Vertel ons wat u in de demo wilt zien en voor wie ze bedoeld is.",
     "submit": "Demo aanvragen"
   },
   "SupportPage": {
-    "eyebrow": "Customer care",
+    "eyebrow": "Klantenzorg",
     "title": "Dien een supportticket in",
     "subtitle": "Bereik het Vesalius-supportteam via dezelfde operationele flow als vandaag, nu binnen de React-site.",
     "responseTitle": "Wat gebeurt er daarna",

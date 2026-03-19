@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import React from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface FeatureItem {
   id: number;
@@ -11,7 +12,13 @@ interface FeatureItem {
   className?: string;
 }
 
-const LanguageVisual = () => (
+const LanguageVisual = ({
+  sourceText,
+  targetText,
+}: {
+  sourceText: string;
+  targetText: string;
+}) => (
   <div className="relative w-full h-full flex items-center justify-center">
     <motion.div 
       initial={{ opacity: 0, x: -20, y: -6 }}
@@ -21,7 +28,7 @@ const LanguageVisual = () => (
     >
       <div className="flex gap-2 items-center">
         <div className="w-2 h-2 rounded-full bg-slate-300" />
-        <span className="text-slate-400 text-xs md:text-sm font-medium tracking-wide">Hola, ¿cómo estás?</span>
+        <span className="text-slate-400 text-xs md:text-sm font-medium tracking-wide">{sourceText}</span>
       </div>
     </motion.div>
     
@@ -32,7 +39,7 @@ const LanguageVisual = () => (
       className="absolute top-1/2 left-1/2 bg-[#06ACC1] rounded-2xl rounded-tl-sm p-3 md:p-4 shadow-xl shadow-[#06ACC1]/20 z-20"
     >
       <div className="flex gap-2 items-center">
-        <span className="text-white text-xs md:text-sm font-medium tracking-wide">Hello, how are you?</span>
+        <span className="text-white text-xs md:text-sm font-medium tracking-wide">{targetText}</span>
         <motion.div 
           animate={{ opacity: [1, 0, 1] }}
           transition={{ duration: 1.5, repeat: Infinity }}
@@ -183,38 +190,59 @@ const ArrowUpRight = () => (
   </div>
 );
 
-const features: FeatureItem[] = [
-  {
-    id: 1,
-    title: "Break the language barrier",
-    description: "Vesalius helps you understand your patients, no matter the language.",
-    icon: <LanguageVisual />,
-    className: "lg:col-span-7",
-  },
-  {
-    id: 3,
-    title: "Liability",
-    description: "Vesalius keeps a clear record of interactions, reducing liability and ensuring compliance.",
-    icon: <LiabilityVisual />,
-    className: "lg:col-span-5",
-  },
-  {
-    id: 4,
-    title: "Better care",
-    description: "Automate intakes to reduce administration so you can focus on what matters.",
-    icon: <CareVisual />,
-    className: "lg:col-span-5",
-  },
-  {
-    id: 5,
-    title: "Improve your accuracy",
-    description: "Eliminate manual errors and ensure consistent patient records.",
-    icon: <AccuracyVisual />,
-    className: "lg:col-span-7",
-  },
-];
-
 export default function WhyChooseVesalius() {
+  const t = useTranslations('WhyChooseVesalius');
+  const locale = useLocale();
+  const copy =
+    locale === 'fr'
+      ? {
+          eyebrow: 'Pourquoi Vesalius',
+          translationSource: 'Hola, ¿cómo estás?',
+          translationTarget: 'Bonjour, comment allez-vous ?',
+        }
+      : locale === 'nl'
+        ? {
+            eyebrow: 'Waarom Vesalius',
+            translationSource: 'Hola, ¿cómo estás?',
+            translationTarget: 'Hallo, hoe gaat het met u?',
+          }
+        : {
+            eyebrow: 'Why Vesalius',
+            translationSource: 'Hola, ¿cómo estás?',
+            translationTarget: 'Hello, how are you?',
+          };
+
+  const features: FeatureItem[] = [
+    {
+      id: 1,
+      title: t('features.language.title'),
+      description: t('features.language.description'),
+      icon: <LanguageVisual sourceText={copy.translationSource} targetText={copy.translationTarget} />,
+      className: 'lg:col-span-7',
+    },
+    {
+      id: 3,
+      title: t('features.liability.title'),
+      description: t('features.liability.description'),
+      icon: <LiabilityVisual />,
+      className: 'lg:col-span-5',
+    },
+    {
+      id: 4,
+      title: t('features.care.title'),
+      description: t('features.care.description'),
+      icon: <CareVisual />,
+      className: 'lg:col-span-5',
+    },
+    {
+      id: 5,
+      title: t('features.accuracy.title'),
+      description: t('features.accuracy.description'),
+      icon: <AccuracyVisual />,
+      className: 'lg:col-span-7',
+    },
+  ];
+
   return (
     <section className="w-full bg-[#FCFCFD] relative overflow-hidden">
       {/* Background Decor */}
@@ -228,10 +256,9 @@ export default function WhyChooseVesalius() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-16 md:mb-24 flex flex-col items-center text-center"
         >
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">Why Vesalius</span>
+          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">{copy.eyebrow}</span>
           <h2 className="text-4xl md:text-5xl lg:text-[4.25rem] font-bold text-[#0B1B3D] tracking-tight max-w-5xl xl:max-w-6xl leading-[1.05] text-balance">
-            The AI platform for patient conversations <br className="hidden md:block" />
-            built for specialists, by specialists
+            {t('title')}
           </h2>
         </motion.div>
 

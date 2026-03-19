@@ -79,3 +79,53 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.faq-editor {
+  color: #334155;
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.faq-editor :is(h1, h2, h3, h4) {
+  color: #0b1b3d;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.faq-editor h1 {
+  font-size: 2.25rem;
+}
+
+.faq-editor h2 {
+  font-size: 1.875rem;
+}
+
+.faq-editor h3 {
+  font-size: 1.5rem;
+}
+
+.faq-editor p,
+.faq-editor ul,
+.faq-editor ol,
+.faq-editor blockquote,
+.faq-editor figure {
+  margin: 1.1rem 0;
+}
+
+.faq-editor ul,
+.faq-editor ol {
+  padding-left: 1.5rem;
+}
+
+.faq-editor blockquote {
+  border-left: 4px solid #06acc1;
+  color: #475569;
+  padding-left: 1rem;
+}
+
+.faq-editor img {
+  border-radius: 1.5rem;
+  display: block;
+  height: auto;
+  max-width: 100%;
+}

@@ -28,7 +28,7 @@ export default function ModuleNavigation() {
   const prevModule = modules[prevIndex];
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-transparent pt-24 md:pt-28 pb-2">
       <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
         <Link href={prevModule.path} className="group flex items-center gap-2 text-left py-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-[#06ACC1] transition-colors">

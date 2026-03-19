@@ -1,45 +1,143 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ModuleNavigation from "@/components/ModuleNavigation";
+import { getLocale } from "next-intl/server";
 
-export default function MedicationPage() {
+const copyByLocale = {
+  en: {
+    badges: ["OCR", "Instant"],
+    title: "Medication Manager",
+    description:
+      "Stop manually typing medication lists. Simply snap a photo of a medication box, printed list, or handwritten notes - our AI extracts all details instantly.",
+    cta: "Try It Now",
+    extracted: "Extracted",
+    labels: ["Name", "Dosage", "Frequency", "Form"],
+    frequency: "1x Daily",
+    form: "Capsule",
+    added: "ADDED TO RECORD",
+    features: [
+      {
+        title: "Photo Recognition",
+        description:
+          "Advanced OCR technology reads medication details from any source - boxes, printed lists, or even handwritten notes.",
+      },
+      {
+        title: "Complete Extraction",
+        description:
+          "Automatically extracts medication name, dosage, form, frequency, and prescription details in one scan.",
+      },
+      {
+        title: "Instant Integration",
+        description:
+          "Extracted data flows directly into the patient record - no manual typing, no transcription errors.",
+      },
+    ],
+  },
+  fr: {
+    badges: ["OCR", "Instantané"],
+    title: "Gestion des traitements",
+    description:
+      "Fini la saisie manuelle des traitements. Prenez simplement en photo une boîte de médicament, une liste imprimée ou des notes manuscrites : notre IA extrait immédiatement toutes les informations utiles.",
+    cta: "Essayer maintenant",
+    extracted: "Extrait",
+    labels: ["Nom", "Dosage", "Fréquence", "Forme"],
+    frequency: "1x / jour",
+    form: "Gélule",
+    added: "AJOUTÉ AU DOSSIER",
+    features: [
+      {
+        title: "Reconnaissance photo",
+        description:
+          "Une technologie OCR avancée lit les détails du traitement à partir de tout support : boîtes, listes imprimées ou même notes manuscrites.",
+      },
+      {
+        title: "Extraction complète",
+        description:
+          "Le nom du médicament, le dosage, la forme, la fréquence et les détails de prescription sont extraits automatiquement en un seul scan.",
+      },
+      {
+        title: "Intégration immédiate",
+        description:
+          "Les données extraites alimentent directement le dossier patient, sans ressaisie ni erreur de transcription.",
+      },
+    ],
+  },
+  nl: {
+    badges: ["OCR", "Direct"],
+    title: "Medicatiebeheer",
+    description:
+      "Stop met het handmatig overtypen van medicatielijsten. Maak gewoon een foto van een medicatiedoosje, geprinte lijst of handgeschreven notities en onze AI haalt meteen alle details eruit.",
+    cta: "Probeer het nu",
+    extracted: "Herkend",
+    labels: ["Naam", "Dosering", "Frequentie", "Vorm"],
+    frequency: "1x per dag",
+    form: "Capsule",
+    added: "TOEGEVOEGD AAN DOSSIER",
+    features: [
+      {
+        title: "Fotodetectie",
+        description:
+          "Geavanceerde OCR-technologie leest medicatiegegevens uit elke bron: doosjes, geprinte lijsten en zelfs handgeschreven notities.",
+      },
+      {
+        title: "Volledige extractie",
+        description:
+          "Naam, dosering, vorm, frequentie en voorschriftgegevens worden in één scan automatisch uitgelezen.",
+      },
+      {
+        title: "Direct geïntegreerd",
+        description:
+          "De uitgelezen gegevens stromen rechtstreeks naar het patiëntendossier, zonder manueel typen of transcriptiefouten.",
+      },
+    ],
+  },
+} as const;
+
+export default async function MedicationPage() {
+  const locale = await getLocale();
+  const copy = locale === "fr" ? copyByLocale.fr : locale === "nl" ? copyByLocale.nl : copyByLocale.en;
   return (
-    <main className="w-full bg-white relative selection:bg-primary/20 font-sans">
+    <main className="w-full bg-[#FCFCFD] relative selection:bg-primary/20 font-sans">
       <Navbar />
       <ModuleNavigation />
       
       {/* Hero Section */}
-      <section className="w-full pt-24 pb-20 md:pt-32 md:pb-24 bg-white relative overflow-hidden border-b border-gray-100">
+      <section className="w-full pt-8 pb-20 md:pt-12 md:pb-24 bg-transparent relative overflow-hidden border-b border-gray-100">
         {/* Background Grid */}
-        <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        <div className="absolute inset-0 -z-10 h-full w-full bg-transparent">
+          <svg className="absolute inset-0 w-full h-full opacity-[0.15] pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1440 800">
+            <path d="M -100,300 C 400,200 800,500 1540,300" fill="none" stroke="#06ACC1" strokeWidth="1.5" />
+            <path d="M -100,400 C 500,500 900,250 1540,350" fill="none" stroke="#FF3366" strokeWidth="1.5" opacity="0.8" />
+            <path d="M -100,200 C 600,350 1000,250 1540,400" fill="none" stroke="#0B1B3D" strokeWidth="1.5" opacity="0.6" />
+          </svg>
+        </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="text-left">
-              <div className="flex gap-2 mb-6">
-                <span className="bg-violet-50 text-violet-700 px-3 py-1 rounded-full text-sm font-medium">OCR</span>
-                <span className="bg-violet-50 text-violet-700 px-3 py-1 rounded-full text-sm font-medium">Instant</span>
+              <div className="flex gap-2.5 mb-6">
+                <span className="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase">{copy.badges[0]}</span>
+                <span className="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase">{copy.badges[1]}</span>
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#2B3B53] mb-6 leading-[1.1]">
-                Medication Manager
+                {copy.title}
               </h1>
               
               <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg">
-                Stop manually typing medication lists. Simply snap a photo of a medication box, 
-                printed list, or handwritten notes - our AI extracts all details instantly.
+                {copy.description}
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <button className="px-8 py-3 rounded-[15px] bg-[#06ACC1] text-white font-bold hover:bg-[#0597a9] transition-all shadow-lg hover:-translate-y-1">
-                  Try It Now
+                <button className="px-8 py-3 rounded-[15px] bg-[#0B1B3D] text-white font-bold hover:bg-slate-800 transition-all shadow-lg hover:-translate-y-1">
+                  {copy.cta}
                 </button>
               </div>
             </div>
 
             {/* Visual */}
             <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
-               <div className="relative z-10 bg-white rounded-[20px] border border-gray-200 shadow-2xl p-8 flex flex-col items-center justify-center min-h-[300px]">
+               <div className="relative z-10 bg-white rounded-2xl border border-slate-200/60 shadow-xl p-8 flex flex-col items-center justify-center min-h-[300px]">
                   
                   <div className="flex items-center gap-8">
                     {/* Phone with scan */}
@@ -76,28 +174,28 @@ export default function MedicationPage() {
                             <path d="m8.5 8.5 7 7"/>
                           </svg>
                         </div>
-                        <span className="text-xs font-bold text-[#2B3B53]">Extracted</span>
+                        <span className="text-xs font-bold text-[#2B3B53]">{copy.extracted}</span>
                       </div>
                       <div className="space-y-2">
                         <div className="flex justify-between items-center">
-                          <span className="text-[10px] text-gray-400">Name</span>
+                          <span className="text-[10px] text-gray-400">{copy.labels[0]}</span>
                           <span className="text-[10px] font-medium text-[#2B3B53]">Omeprazole</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-[10px] text-gray-400">Dosage</span>
+                          <span className="text-[10px] text-gray-400">{copy.labels[1]}</span>
                           <span className="text-[10px] font-medium text-[#2B3B53]">10mg</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-[10px] text-gray-400">Frequency</span>
-                          <span className="text-[10px] font-medium text-[#2B3B53]">1x Daily</span>
+                          <span className="text-[10px] text-gray-400">{copy.labels[2]}</span>
+                          <span className="text-[10px] font-medium text-[#2B3B53]">{copy.frequency}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-[10px] text-gray-400">Form</span>
-                          <span className="text-[10px] font-medium text-[#2B3B53]">Capsule</span>
+                          <span className="text-[10px] text-gray-400">{copy.labels[3]}</span>
+                          <span className="text-[10px] font-medium text-[#2B3B53]">{copy.form}</span>
                         </div>
                       </div>
                       <div className="mt-3 bg-green-50 text-green-700 text-[8px] font-bold py-1 px-2 rounded text-center">
-                        ADDED TO RECORD
+                        {copy.added}
                       </div>
                     </div>
                   </div>
@@ -108,23 +206,23 @@ export default function MedicationPage() {
       </section>
 
       {/* Features Grid */}
-      <section className="w-full py-24 bg-white">
+      <section className="w-full py-24 bg-transparent">
          <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-               <div className="p-8 rounded-[20px] border border-[#F2F2F2] bg-white hover:border-violet-200 transition-colors group">
+               <div className="p-8 md:p-10 rounded-2xl border border-slate-200/60 bg-white hover:shadow-lg transition-all duration-500 group">
                   <div className="w-12 h-12 rounded-xl bg-violet-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
                         <circle cx="12" cy="13" r="3"/>
                      </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-[#2B3B53] mb-3">Photo Recognition</h3>
+                  <h3 className="text-xl font-bold text-[#2B3B53] mb-3">{copy.features[0].title}</h3>
                   <p className="text-gray-500 leading-relaxed">
-                     Advanced OCR technology reads medication details from any source - boxes, printed lists, or even handwritten notes.
+                     {copy.features[0].description}
                   </p>
                </div>
 
-               <div className="p-8 rounded-[20px] border border-[#F2F2F2] bg-white hover:border-violet-200 transition-colors group">
+               <div className="p-8 md:p-10 rounded-2xl border border-slate-200/60 bg-white hover:shadow-lg transition-all duration-500 group">
                   <div className="w-12 h-12 rounded-xl bg-violet-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
@@ -134,21 +232,21 @@ export default function MedicationPage() {
                         <line x1="10" x2="8" y1="9" y2="9"/>
                      </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-[#2B3B53] mb-3">Complete Extraction</h3>
+                  <h3 className="text-xl font-bold text-[#2B3B53] mb-3">{copy.features[1].title}</h3>
                   <p className="text-gray-500 leading-relaxed">
-                     Automatically extracts medication name, dosage, form, frequency, and prescription details in one scan.
+                     {copy.features[1].description}
                   </p>
                </div>
 
-               <div className="p-8 rounded-[20px] border border-[#F2F2F2] bg-white hover:border-violet-200 transition-colors group">
+               <div className="p-8 md:p-10 rounded-2xl border border-slate-200/60 bg-white hover:shadow-lg transition-all duration-500 group">
                   <div className="w-12 h-12 rounded-xl bg-violet-50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
                      </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-[#2B3B53] mb-3">Instant Integration</h3>
+                  <h3 className="text-xl font-bold text-[#2B3B53] mb-3">{copy.features[2].title}</h3>
                   <p className="text-gray-500 leading-relaxed">
-                     Extracted data flows directly into the patient record - no manual typing, no transcription errors.
+                     {copy.features[2].description}
                   </p>
                </div>
             </div>
@@ -156,11 +254,9 @@ export default function MedicationPage() {
       </section>
 
 
-      <section className="w-full flex flex-col bg-white border-t border-gray-100">
+      <section className="w-full flex flex-col bg-transparent border-t border-gray-100">
         <Footer />
       </section>
     </main>
   );
 }
-
-

@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
+import { useLocale } from 'next-intl';
 
 const CheckIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#06ACC1]">
@@ -11,40 +12,83 @@ const CheckIcon = () => (
   </svg>
 );
 
-const teamPlans = [
-  {
-    name: "Team",
-    price: "€254",
-    period: "/month",
-    description: "Ideal for practices with multiple doctors. Efficient collaboration, one affordable price.",
-    buttonText: "Get Started",
-    features: [
-      "Unlimited usage",
-      "Up to 5 healthcare providers",
-      "Predictable monthly cost",
-      "Centralised workspace",
-      "Cancel any time",
-      "Priority support"
-    ]
-  },
-  {
-    name: "Organisation",
-    price: "Custom",
-    period: "Pricing",
-    description: "Do you have more than 5 doctors in your organisation? We offer custom solutions for larger practices and hospitals.",
-    buttonText: "Contact Sales",
-    features: [
-      "Unlimited usage for large teams",
-      "Specialised priority support",
-      "Customised integrations",
-      "Dedicated account manager",
-      "Enterprise SLA",
-      "Tailored price plan"
-    ]
-  }
-];
-
 export default function TeamPricing() {
+  const locale = useLocale();
+  const copy =
+    locale === 'fr'
+      ? {
+          eyebrow: 'Entreprise',
+          title: 'Besoin de plus de flexibilité ?',
+          plans: [
+            {
+              name: 'Équipe',
+              price: '€254',
+              period: '/mois',
+              description: 'Idéal pour les cabinets avec plusieurs médecins. Une collaboration efficace à un tarif accessible.',
+              buttonText: 'Commencer',
+              features: ['Utilisation illimitée', 'Jusqu’à 5 soignants', 'Coût mensuel prévisible', 'Espace de travail centralisé', 'Résiliable à tout moment', 'Support prioritaire'],
+            },
+            {
+              name: 'Organisation',
+              price: 'Tarif',
+              period: 'sur mesure',
+              description: 'Vous avez plus de 5 médecins dans votre organisation ? Nous proposons des solutions personnalisées pour les grands cabinets et les hôpitaux.',
+              buttonText: 'Contacter l’équipe',
+              features: ['Utilisation illimitée pour les grandes équipes', 'Support prioritaire spécialisé', 'Intégrations personnalisées', 'Account manager dédié', 'SLA entreprise', 'Plan tarifaire sur mesure'],
+            },
+          ],
+          yearlyBefore: 'Paiement annuel (économisez 15 %), passez à',
+          yearlyLink: 'des paiements mensuels',
+        }
+      : locale === 'nl'
+        ? {
+            eyebrow: 'Enterprise',
+            title: 'Meer flexibiliteit nodig?',
+            plans: [
+              {
+                name: 'Team',
+                price: '€254',
+                period: '/maand',
+                description: 'Ideaal voor praktijken met meerdere artsen. Efficiënte samenwerking aan één betaalbare prijs.',
+                buttonText: 'Aan de slag',
+                features: ['Onbeperkt gebruik', 'Tot 5 zorgverleners', 'Voorspelbare maandelijkse kost', 'Gecentraliseerde werkruimte', 'Op elk moment opzegbaar', 'Prioritaire ondersteuning'],
+              },
+              {
+                name: 'Organisatie',
+                price: 'Prijs op',
+                period: 'maat',
+                description: 'Heeft u meer dan 5 artsen in uw organisatie? Wij bieden oplossingen op maat voor grotere praktijken en ziekenhuizen.',
+                buttonText: 'Contacteer sales',
+                features: ['Onbeperkt gebruik voor grote teams', 'Gespecialiseerde prioritaire ondersteuning', 'Integraties op maat', 'Toegewijde accountmanager', 'Enterprise SLA', 'Prijsplan op maat'],
+              },
+            ],
+            yearlyBefore: 'Jaarlijkse betaling (bespaar 15%), schakel over naar',
+            yearlyLink: 'maandelijkse betalingen',
+          }
+        : {
+            eyebrow: 'Enterprise',
+            title: 'Need more flexibility?',
+            plans: [
+              {
+                name: 'Team',
+                price: '€254',
+                period: '/month',
+                description: 'Ideal for practices with multiple doctors. Efficient collaboration, one affordable price.',
+                buttonText: 'Get Started',
+                features: ['Unlimited usage', 'Up to 5 healthcare providers', 'Predictable monthly cost', 'Centralised workspace', 'Cancel any time', 'Priority support'],
+              },
+              {
+                name: 'Organisation',
+                price: 'Custom',
+                period: 'Pricing',
+                description: 'Do you have more than 5 doctors in your organisation? We offer custom solutions for larger practices and hospitals.',
+                buttonText: 'Contact Sales',
+                features: ['Unlimited usage for large teams', 'Specialised priority support', 'Customised integrations', 'Dedicated account manager', 'Enterprise SLA', 'Tailored price plan'],
+              },
+            ],
+            yearlyBefore: 'Yearly payment (save 15%), switch to',
+            yearlyLink: 'monthly payments',
+          };
   return (
     <section className="w-full bg-[#FCFCFD] relative pb-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 h-full flex flex-col justify-center">
@@ -56,15 +100,15 @@ export default function TeamPricing() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">Enterprise</span>
+          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">{copy.eyebrow}</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0B1B3D] tracking-tight mb-4">
-            Need more flexibility?
+            {copy.title}
           </h2>
         </motion.div>
 
         {/* Plans Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
-          {teamPlans.map((plan, index) => (
+          {copy.plans.map((plan, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 40 }}
@@ -125,8 +169,8 @@ export default function TeamPricing() {
            className="text-center"
         >
            <div className="inline-flex items-center gap-2 glass-panel px-6 py-3 rounded-full text-sm font-medium text-slate-600 border-white/80 shadow-sm">
-              Yearly payment (save 15%), switch to 
-              <a href="#" className="text-[#06ACC1] underline hover:text-[#0597a9] font-bold">monthly payments</a>
+              {copy.yearlyBefore}
+              <a href="#" className="text-[#06ACC1] underline hover:text-[#0597a9] font-bold">{copy.yearlyLink}</a>
            </div>
         </motion.div>
       </div>

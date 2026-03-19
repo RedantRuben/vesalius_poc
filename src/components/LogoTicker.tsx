@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 type Logo = {
   name: string;
@@ -19,11 +20,12 @@ const logos: Logo[] = [
 ];
 
 export default function LogoTicker() {
+  const t = useTranslations('LogoTicker');
   return (
     <div className="w-full py-12 bg-transparent relative z-10 border-t border-b border-slate-200/50 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 md:px-6 mb-6 text-center">
         <p className="text-xs font-bold tracking-[0.2em] text-slate-400 uppercase">
-          Trusted by leading institutions
+          {t('trustedBy')}
         </p>
       </div>
       

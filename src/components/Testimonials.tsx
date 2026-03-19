@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 const StarIcon = ({ filled }: { filled?: boolean }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={filled ? "text-amber-400" : "text-slate-200"}>
@@ -28,6 +28,9 @@ const QuoteIcon = () => (
 
 export default function Testimonials() {
   const t = useTranslations('Testimonials');
+  const locale = useLocale();
+  const eyebrow =
+    locale === 'fr' ? 'Retours terrain' : locale === 'nl' ? 'Ervaringen van gebruikers' : 'USER FEEDBACK';
   const testimonials = [0, 1, 2].map((index) => ({
     quote: t(`items.${index}.quote`),
     name: t(`items.${index}.name`),
@@ -49,7 +52,7 @@ export default function Testimonials() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16 md:mb-24 flex flex-col items-center"
         >
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">USER FEEDBACK</span>
+          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">{eyebrow}</span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0B1B3D] tracking-tight">
             {t('title')}
           </h2>
@@ -101,7 +104,7 @@ export default function Testimonials() {
            {/* Background Image with Parallax feeling */}
            <div className="absolute inset-0">
              <Image 
-               src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=1600&auto=format&fit=crop&q=80" 
+               src="/doctor.png" 
                alt="Doctor Thumbs Up" 
                fill
                className="object-cover scale-105 transform origin-center"

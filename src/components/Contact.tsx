@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLocale } from 'next-intl';
 import ContactForm from '@/components/forms/ContactForm';
 
 const GENT_HQ_MAP_EMBED_URL =
@@ -15,6 +16,31 @@ const MapPinIcon = () => (
 );
 
 export default function Contact({ sourcePage = '/' }: { sourcePage?: string }) {
+  const locale = useLocale();
+  const copy =
+    locale === 'fr'
+      ? {
+          eyebrow: 'Contact',
+          titleBefore: 'Nous sommes là ',
+          titleAccent: 'pour vous aider',
+          subtitle: 'Vous avez une question ? Notre équipe est là pour vous répondre.',
+          city: '9000 Gand, Belgique',
+        }
+      : locale === 'nl'
+        ? {
+            eyebrow: 'Contact',
+            titleBefore: 'We zijn er om ',
+            titleAccent: 'te helpen',
+            subtitle: 'Heeft u vragen? Ons team staat klaar om u verder te helpen.',
+            city: '9000 Gent, België',
+          }
+        : {
+            eyebrow: 'Contact',
+            titleBefore: 'We are here ',
+            titleAccent: 'to help',
+            subtitle: 'Have any questions? Our team is ready to assist you.',
+            city: '9000 Gent, Belgium',
+          };
   return (
     <section className="w-full bg-[#FCFCFD] relative">
       <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-30 pointer-events-none" />
@@ -28,12 +54,12 @@ export default function Contact({ sourcePage = '/' }: { sourcePage?: string }) {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16 md:mb-24"
         >
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4 block">Contact</span>
+          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4 block">{copy.eyebrow}</span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0B1B3D] tracking-tight mb-4">
-            We are here <span className="text-gradient">to help</span>
+            {copy.titleBefore}<span className="text-gradient">{copy.titleAccent}</span>
           </h2>
           <p className="text-slate-500 text-lg md:text-xl font-light">
-            Have any questions? Our team is ready to assist you.
+            {copy.subtitle}
           </p>
         </motion.div>
 
@@ -67,37 +93,20 @@ export default function Contact({ sourcePage = '/' }: { sourcePage?: string }) {
                   Ottergemsesteenweg Zuid 808B
                 </h3>
                 <p className="text-slate-500 font-medium text-sm uppercase tracking-wider">
-                  9000 Gent, Belgium
+                  {copy.city}
                 </p>
               </div>
             </div>
 
             {/* Map Area */}
-            <div className="relative flex-grow min-h-[300px] w-full rounded-[32px] overflow-hidden glass-panel-dark bg-[#0B1B3D]/95 shadow-[0_24px_60px_-30px_rgba(11,27,61,0.65)]">
+            <div className="relative flex-grow min-h-[300px] w-full overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_24px_60px_-30px_rgba(15,23,42,0.22)]">
               <iframe
                 src={GENT_HQ_MAP_EMBED_URL}
                 loading="lazy"
-                aria-label="Vesalius headquarters map in Gent"
-                className="absolute inset-0 h-full w-full border-0 grayscale-[0.2] contrast-110 saturate-[0.85]"
+                aria-label="Vesalius office map in Gent"
+                className="absolute inset-0 h-full w-full border-0"
                 referrerPolicy="no-referrer-when-downgrade"
               />
-
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(11,27,61,0.12)_0%,rgba(11,27,61,0.02)_45%,rgba(11,27,61,0.55)_100%)]" />
-
-              <div className="pointer-events-none absolute left-6 top-6">
-                <div className="relative flex items-center justify-center">
-                  <motion.div
-                    animate={{ scale: [1, 2.5], opacity: [0.8, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
-                    className="absolute h-10 w-10 rounded-full bg-[#06ACC1]/70"
-                  />
-                  <div className="relative z-10 h-4 w-4 rounded-full border-2 border-[#0B1B3D] bg-[#06ACC1] shadow-[0_0_18px_rgba(6,172,193,0.9)]" />
-                </div>
-              </div>
-
-              <div className="absolute bottom-6 right-6 text-[10px] font-bold tracking-widest text-slate-200 uppercase bg-[#0B1B3D]/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-                HQ Location
-              </div>
             </div>
           </motion.div>
         </div>

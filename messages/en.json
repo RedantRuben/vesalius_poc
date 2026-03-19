@@ -4,6 +4,7 @@
     "product": "Product",
     "pricing": "Pricing",
     "contact": "Contact",
+    "support": "Support",
     "security": "Security",
     "tryForFree": "Try for free"
   },
@@ -75,6 +76,16 @@
       "tag2": "Instant",
       "title": "Medication Manager",
       "description": "Instantly digitize medication from photos of boxes, printed lists, or handwritten notes. Our AI extracts dosage, form, and prescription details directly into the platform."
+    }
+  },
+  "SecuritySection": {
+    "title": "Security and privacy you can trust",
+    "description": "Vesalius protects sensitive patient data with encryption, strict access controls, and regular security assessments. We support GDPR requirements, are designed to meet HIPAA standards, and give users clear visibility and control over how their data is handled.",
+    "cta": "Explore security & privacy",
+    "points": {
+      "gdpr": "End-to-end encryption",
+      "access": "Strict access controls",
+      "audit": "Transparent data practices"
     }
   },
   "Testimonials": {
