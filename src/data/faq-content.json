@@ -13,14 +13,14 @@
     "items": [
       {
         "id": "1",
-        "slug": "how-does-automatic-sending-of-doctor-specific-questionnaires-via-the-calendar-work",
-        "question": "How does automatic sending of doctor-specific questionnaires via the calendar work?",
+        "slug": "how-do-i-customise-my-output-70",
+        "question": "How do I customise my output?",
         "excerpt": "What is an output template...",
         "publishedAt": "March 9, 2026",
         "authorName": "Vesalius Team",
         "heroImage": {
           "src": "/uploads/faq/1773934974154-b5e8c689-cc39-4eba-abd0-6ba581c789fc.webp",
-          "alt": "How does automatic sending of doctor-specific questionnaires via the calendar work?",
+          "alt": "How do I customise my output?",
           "caption": ""
         },
         "tags": [
@@ -31,7 +31,7 @@
       },
       {
         "id": "c0be11ec-6f6c-4e6e-a3b1-b887c29dcb4d",
-        "slug": "how-does-automatic-sending-of-doctor-specific-questionnaires-via-the-calendar-work",
+        "slug": "how-does-automatic-sending-of-doctor-specific-questionnaires-via-the-calendar-work-64",
         "question": "How does automatic sending of doctor-specific questionnaires via the calendar work?",
         "excerpt": "What is automatic questionnaire sending...",
         "publishedAt": "November 26, 2025",
@@ -48,7 +48,7 @@
       },
       {
         "id": "f3334407-cbb1-4f0a-a47d-5ceb78446ff8",
-        "slug": "how-does-smart-scheduling-of-conversations-work",
+        "slug": "how-does-smart-scheduling-of-conversations-work-63",
         "question": "How does Smart Scheduling of Conversations work?",
         "excerpt": "What is Smart Scheduling...",
         "publishedAt": "November 26, 2025",
@@ -65,7 +65,7 @@
       },
       {
         "id": "e2d9eb29-9fcf-4869-a309-d966862704e6",
-        "slug": "how-can-i-group-rooms-in-the-calendar",
+        "slug": "how-can-i-group-rooms-in-the-calendar-62",
         "question": "How can I group rooms in the calendar?",
         "excerpt": "To make your calendar easier to navigate, you can group related rooms together...",
         "publishedAt": "November 26, 2025",
@@ -82,7 +82,7 @@
       },
       {
         "id": "257dc06b-7859-4b38-bb2c-35d4051b5a69",
-        "slug": "using-vesalius-scribe-as-a-stand-alone-module-no-pre-conversation-needed",
+        "slug": "using-vesalius-scribe-as-a-stand-alone-module-no-pre-conversation-needed-59",
         "question": "Using Vesalius Scribe as a stand-alone module (no pre-conversation needed)",
         "excerpt": "This allows you to use the Scribe bot even when you didn’t send a Vesalius conversation before the consultation...",
         "publishedAt": "November 6, 2025",
@@ -99,7 +99,7 @@
       },
       {
         "id": "346646b9-595a-4219-91eb-e06da87abb5b",
-        "slug": "how-can-i-customise-the-format-of-the-scribe-bot-summary",
+        "slug": "how-can-i-customise-the-format-of-the-scribe-bot-summary-27",
         "question": "How can I customise the format of the Scribe bot summary?",
         "excerpt": "You can now fully customise how the Vesalius Scribe bot structures its consultation summaries by using output formats...",
         "publishedAt": "August 1, 2025",
@@ -116,7 +116,7 @@
       },
       {
         "id": "2b54d7c2-df7c-44dc-95c2-9c0d1675ffd9",
-        "slug": "how-can-i-prevent-the-patient-initiated-chatbot-from-asking-for-the-appointment-date",
+        "slug": "how-can-i-prevent-the-patient-initiated-chatbot-from-asking-for-the-appointment-date-26",
         "question": "How can I prevent the patient initiated chatbot from asking for the appointment date?",
         "excerpt": "By default, the chatbot will ask the patient for the appointment date when they open a PICO link...",
         "publishedAt": "August 1, 2025",
@@ -133,7 +133,7 @@
       },
       {
         "id": "b1cfd542-c10e-4cd0-bb28-8c8747d62efc",
-        "slug": "how-can-i-create-a-unique-link-to-send-a-specific-questionnaire",
+        "slug": "how-can-i-create-a-unique-link-to-send-a-specific-questionnaire-25",
         "question": "How can I create a unique link to send a specific questionnaire?",
         "excerpt": "You can create a PICO link that is tied to one or more specific questionnaires...",
         "publishedAt": "August 1, 2025",
@@ -150,7 +150,7 @@
       },
       {
         "id": "86c4292e-7169-41e4-9e03-8b43b50efdbb",
-        "slug": "how-can-i-choose-which-identification-details-the-patient-initiated-chatbot-asks-the-patients",
+        "slug": "how-can-i-choose-which-identification-details-the-patient-initiated-chatbot-asks-the-patients-24",
         "question": "How can I choose which identification details the patient initiated chatbot asks the patients?",
         "excerpt": "When a patient starts a conversation through a patient-initiated link, the chatbot begins by asking for identification details (for example, name or date of birth)...",
         "publishedAt": "August 1, 2025",
@@ -167,7 +167,7 @@
       },
       {
         "id": "4cc056ea-6c74-4dff-93e9-610cf9484031",
-        "slug": "how-can-i-make-a-specific-patient-initiated-conversation-anonymous",
+        "slug": "how-can-i-make-a-specific-patient-initiated-conversation-anonymous-23",
         "question": "How can I make a specific patient-initiated conversation anonymous?",
         "excerpt": "When generating a PICO link for a patient-initiated conversation, you can choose to make this conversation anonymous...",
         "publishedAt": "August 1, 2025",
@@ -184,7 +184,7 @@
       },
       {
         "id": "5947f9a2-e8af-4667-b9f7-f3b0e809b7aa",
-        "slug": "how-can-i-create-or-edit-a-questionnaire",
+        "slug": "how-can-i-create-or-edit-a-questionnaire-22",
         "question": "How can I create or edit a questionnaire?",
         "excerpt": "You can manage all questionnaires via Settings > Types of conversations...",
         "publishedAt": "June 27, 2025",
@@ -201,7 +201,7 @@
       },
       {
         "id": "9abd45bd-fd4e-4b3f-b753-0dba2feb2ef1",
-        "slug": "how-can-i-indicate-that-the-summary-has-been-copied-to-the-ehr",
+        "slug": "how-can-i-indicate-that-the-summary-has-been-copied-to-the-ehr-21",
         "question": "How can I indicate that the summary has been copied to the EHR?",
         "excerpt": "To make this clearer, we’ve added an icon on the dashboard page that shows whether or not the summary has already been copied to the EHR...",
         "publishedAt": "June 27, 2025 by",
@@ -232,7 +232,7 @@
     "items": [
       {
         "id": "1",
-        "slug": "hoe-kan-ik-mijn-output-op-maat-instellen",
+        "slug": "hoe-kan-ik-mijn-output-op-maat-instellen-70",
         "question": "Hoe kan ik mijn output op maat instellen?",
         "excerpt": "Wat is een outputtemplate...",
         "publishedAt": "9 mrt. 2026",
@@ -250,7 +250,7 @@
       },
       {
         "id": "2",
-        "slug": "hoe-werkt-het-automatisch-verzenden-van-arts-specifieke-vragenlijsten-via-de-kalender",
+        "slug": "hoe-werkt-het-automatisch-verzenden-van-arts-specifieke-vragenlijsten-via-de-kalender-64",
         "question": "Hoe werkt het automatisch verzenden van arts-specifieke vragenlijsten via de kalender?",
         "excerpt": "Wat is automatisch vragenlijst verzenden...",
         "publishedAt": "26 nov. 2025",
@@ -268,7 +268,7 @@
       },
       {
         "id": "3",
-        "slug": "hoe-werkt-slimme-planning-van-gesprekken",
+        "slug": "hoe-werkt-slimme-planning-van-gesprekken-63",
         "question": "Hoe werkt Slimme Planning van Gesprekken?",
         "excerpt": "Wat is Slimme Planning...",
         "publishedAt": "26 nov. 2025",
@@ -286,7 +286,7 @@
       },
       {
         "id": "4",
-        "slug": "hoe-kan-ik-kamers-in-de-kalender-groeperen",
+        "slug": "hoe-kan-ik-kamers-in-de-kalender-groeperen-62",
         "question": "Hoe kan ik kamers in de kalender groeperen?",
         "excerpt": "Om uw kalender gemakkelijker te navigeren, kunt u gerelateerde kamers samenvoegen...",
         "publishedAt": "26 nov. 2025",
@@ -304,7 +304,7 @@
       },
       {
         "id": "5",
-        "slug": "vesalius-scribe-gebruiken-als-een-op-zichzelf-staande-module-geen-voorafgaande-conversatie-nodig",
+        "slug": "vesalius-scribe-gebruiken-als-een-op-zichzelf-staande-module-geen-voorafgaande-conversatie-nodig-59",
         "question": "Vesalius Scribe gebruiken als een op zichzelf staande module (geen voorafgaande conversatie nodig)",
         "excerpt": "Dit stelt je in staat om de Scribe-bot te gebruiken, zelfs als je geen Vesaliusgesprek hebt gestuurd voor de consultatie...",
         "publishedAt": "6 nov. 2025",
@@ -321,7 +321,7 @@
       },
       {
         "id": "6",
-        "slug": "hoe-kan-ik-het-formaat-van-de-samenvatting-van-de-scribe-bot-aanpassen",
+        "slug": "hoe-kan-ik-het-formaat-van-de-samenvatting-van-de-scribe-bot-aanpassen-27",
         "question": "Hoe kan ik het formaat van de samenvatting van de Scribe-bot aanpassen?",
         "excerpt": "Je kunt nu volledig aanpassen hoe de Vesalius Scribe-bot zijn consultatiesamenvattingen structureert door gebruik te maken van uitvoerformaten...",
         "publishedAt": "1 aug. 2025",
@@ -339,7 +339,7 @@
       },
       {
         "id": "7",
-        "slug": "hoe-kan-ik-voorkomen-dat-de-door-de-patient-geinitieerde-chatbot-vraagt-naar-de-afspraakdatum",
+        "slug": "hoe-kan-ik-voorkomen-dat-de-door-de-patient-geinitieerde-chatbot-vraagt-naar-de-afspraakdatum-26",
         "question": "Hoe kan ik voorkomen dat de door de patiënt geinitieerde chatbot vraagt naar de afspraakdatum?",
         "excerpt": "Standaard zal de chatbot de patiënt vragen naar de afspraakdatum wanneer ze een PICO-link openen...",
         "publishedAt": "1 aug. 2025",
@@ -357,7 +357,7 @@
       },
       {
         "id": "8",
-        "slug": "hoe-kan-ik-een-unieke-link-maken-om-een-specifieke-vragenlijst-te-verzenden",
+        "slug": "hoe-kan-ik-een-unieke-link-maken-om-een-specifieke-vragenlijst-te-verzenden-25",
         "question": "Hoe kan ik een unieke link maken om een specifieke vragenlijst te verzenden?",
         "excerpt": "Je kunt een PICO-link maken die is gekoppeld aan een of meer specifieke vragenlijsten...",
         "publishedAt": "1 aug. 2025",
@@ -375,7 +375,7 @@
       },
       {
         "id": "9",
-        "slug": "hoe-kan-ik-kiezen-welke-identificatiegegevens-de-door-de-patient-geinitieerde-chatbot-aan-de-patienten-vraagt",
+        "slug": "hoe-kan-ik-kiezen-welke-identificatiegegevens-de-door-de-patient-geinitieerde-chatbot-aan-de-patienten-vraagt-24",
         "question": "Hoe kan ik kiezen welke identificatiegegevens de door de patiënt geinitieerde chatbot aan de patiënten vraagt?",
         "excerpt": "Wanneer een patiënt een gesprek begint via een door de patiënt geinitieerde link, begint de chatbot met het vragen naar identificatiegegevens...",
         "publishedAt": "1 aug. 2025",
@@ -393,7 +393,7 @@
       },
       {
         "id": "10",
-        "slug": "hoe-kan-ik-een-specifiek-door-de-patient-geinitieerd-gesprek-anoniem-maken",
+        "slug": "hoe-kan-ik-een-specifiek-door-de-patient-geinitieerd-gesprek-anoniem-maken-23",
         "question": "Hoe kan ik een specifiek door de patiënt geinitieerd gesprek anoniem maken?",
         "excerpt": "Bij het genereren van een PICO-link voor een door de patiënt geinitieerd gesprek, kun je ervoor kiezen om dit gesprek anoniem te maken...",
         "publishedAt": "1 aug. 2025",
@@ -411,7 +411,7 @@
       },
       {
         "id": "11",
-        "slug": "hoe-kan-ik-een-vragenlijst-aanmaken-of-bewerken",
+        "slug": "hoe-kan-ik-een-vragenlijst-aanmaken-of-bewerken-22",
         "question": "Hoe kan ik een vragenlijst aanmaken of bewerken?",
         "excerpt": "Je kunt alle vragenlijsten beheren via Instellingen > Soorten gesprekken...",
         "publishedAt": "27 jun. 2025",
@@ -429,7 +429,7 @@
       },
       {
         "id": "12",
-        "slug": "hoe-kan-ik-aangeven-dat-de-samenvatting-naar-het-epd-is-gekopieerd",
+        "slug": "hoe-kan-ik-aangeven-dat-de-samenvatting-naar-het-epd-is-gekopieerd-21",
         "question": "Hoe kan ik aangeven dat de samenvatting naar het EPD is gekopieerd?",
         "excerpt": "Om dit duidelijker te maken, hebben we een pictogram op de dashboardpagina toegevoegd dat aangeeft of de samenvatting al dan niet naar het EPD is gekopieerd...",
         "publishedAt": "27 jun. 2025",
@@ -460,7 +460,7 @@
     "items": [
       {
         "id": "1",
-        "slug": "comment-fonctionne-lenvoi-automatique-de-questionnaires-specifiques-au-medecin-via-le-calendrier",
+        "slug": "comment-fonctionne-lenvoi-automatique-de-questionnaires-specifiques-au-medecin-via-le-calendrier-64",
         "question": "Comment fonctionne l'envoi automatique de questionnaires spécifiques au médecin via le calendrier ?",
         "excerpt": "Dans les paramètres du calendrier, vous pouvez associer un questionnaire à un praticien ou à un type de rendez-vous...",
         "publishedAt": "26 nov. 2025",
@@ -478,7 +478,7 @@
       },
       {
         "id": "2",
-        "slug": "comment-fonctionne-la-planification-intelligente-des-conversations",
+        "slug": "comment-fonctionne-la-planification-intelligente-des-conversations-63",
         "question": "Comment fonctionne la planification intelligente des conversations ?",
         "excerpt": "Vesalius combine les règles que vous définissez avec le contexte du patient pour déterminer quand lancer une conversation, quand relancer et quand arrêter automatiquement le scénario.",
         "publishedAt": "26 nov. 2025",
@@ -495,7 +495,7 @@
       },
       {
         "id": "3",
-        "slug": "comment-regrouper-des-salles-dans-le-calendrier",
+        "slug": "comment-regrouper-des-salles-dans-le-calendrier-62",
         "question": "Comment regrouper des salles dans le calendrier ?",
         "excerpt": "Créez un groupe de salles dans les paramètres du planning puis assignez-y les ressources concernées...",
         "publishedAt": "26 nov. 2025",
@@ -513,7 +513,7 @@
       },
       {
         "id": "4",
-        "slug": "peut-on-utiliser-vesalius-scribe-comme-module-autonome-sans-pre-conversation",
+        "slug": "peut-on-utiliser-vesalius-scribe-comme-module-autonome-sans-pre-conversation-59",
         "question": "Peut-on utiliser Vesalius Scribe comme module autonome, sans pre-conversation ?",
         "excerpt": "Il n'est pas nécessaire d'activer la pré-consultation pour utiliser Scribe...",
         "publishedAt": "6 nov. 2025",
@@ -530,7 +530,7 @@
       },
       {
         "id": "5",
-        "slug": "comment-personnaliser-le-format-de-la-synthese-scribe",
+        "slug": "comment-personnaliser-le-format-de-la-synthese-scribe-27",
         "question": "Comment personnaliser le format de la synthèse Scribe ?",
         "excerpt": "Les modèles permettent de définir la structure souhaitée, les rubriques obligatoires et le ton rédactionnel...",
         "publishedAt": "1 août 2025",
@@ -548,7 +548,7 @@
       },
       {
         "id": "6",
-        "slug": "comment-eviter-que-le-chatbot-initie-par-le-patient-demande-la-date-du-rendez-vous",
+        "slug": "comment-eviter-que-le-chatbot-initie-par-le-patient-demande-la-date-du-rendez-vous-26",
         "question": "Comment éviter que le chatbot initié par le patient demande la date du rendez-vous ?",
         "excerpt": "Dans les paramètres du scénario, désactivez la question liée à la date de rendez-vous ou remplacez-la par un autre identifiant...",
         "publishedAt": "1 août 2025",
@@ -566,7 +566,7 @@
       },
       {
         "id": "7",
-        "slug": "comment-creer-un-lien-unique-pour-envoyer-un-questionnaire-precis",
+        "slug": "comment-creer-un-lien-unique-pour-envoyer-un-questionnaire-precis-25",
         "question": "Comment créer un lien unique pour envoyer un questionnaire précis ?",
         "excerpt": "Depuis le questionnaire concerné, générez un lien dédié puis partagez-le par e-mail, SMS ou tout autre canal...",
         "publishedAt": "1 août 2025",
@@ -584,7 +584,7 @@
       },
       {
         "id": "8",
-        "slug": "comment-choisir-quelles-informations-didentification-le-chatbot-initie-par-le-patient-doit-demander",
+        "slug": "comment-choisir-quelles-informations-didentification-le-chatbot-initie-par-le-patient-doit-demander-24",
         "question": "Comment choisir quelles informations d'identification le chatbot initié par le patient doit demander ?",
         "excerpt": "Dans le paramétrage du chatbot, sélectionnez les champs obligatoires comme le nom, la date de naissance ou le numéro de dossier...",
         "publishedAt": "1 août 2025",
@@ -602,7 +602,7 @@
       },
       {
         "id": "9",
-        "slug": "comment-creer-ou-modifier-un-questionnaire",
+        "slug": "comment-creer-ou-modifier-un-questionnaire-22",
         "question": "Comment créer ou modifier un questionnaire ?",
         "excerpt": "Vous pouvez ajouter des questions, choisir les types de réponses, définir des conditions d'affichage et prévisualiser le parcours avant publication...",
         "publishedAt": "27 juin 2025",
@@ -620,7 +620,7 @@
       },
       {
         "id": "10",
-        "slug": "comment-indiquer-que-la-synthese-a-deja-ete-copiee-dans-le-dmi",
+        "slug": "comment-indiquer-que-la-synthese-a-deja-ete-copiee-dans-le-dmi-21",
         "question": "Comment indiquer que la synthèse a déjà été copiée dans le DMI ?",
         "excerpt": "Une fois la synthèse transférée dans le DMI, vous pouvez la marquer comme traitée afin d'éviter les doublons et de garder une vision claire de ce qui reste à faire.",
         "publishedAt": "27 juin 2025",

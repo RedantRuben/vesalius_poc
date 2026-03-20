@@ -5,10 +5,12 @@ import Navbar from '@/components/Navbar';
 import FaqArticleBlocks from '@/components/faq/FaqArticleBlocks';
 import { Link } from '@/i18n/routing';
 import { getArticleHeroImage } from '@/lib/faq/content';
-import type { FaqArticle, FaqLocaleContent } from '@/lib/faq/types';
+import { getFaqArticlePath, getFaqIndexPath } from '@/lib/faq/routes';
+import type { FaqArticle, FaqLocale, FaqLocaleContent } from '@/lib/faq/types';
 
 interface FaqArticlePageProps {
   article: FaqArticle;
+  locale: FaqLocale;
   localeContent: FaqLocaleContent;
   readNext?: FaqArticle;
 }
@@ -51,6 +53,7 @@ const AuthorIcon = () => (
 
 export default function FaqArticlePage({
   article,
+  locale,
   localeContent,
   readNext,
 }: FaqArticlePageProps) {
@@ -65,7 +68,7 @@ export default function FaqArticlePage({
 
         <div className="mx-auto max-w-6xl px-6">
           <Link
-            href="/faq"
+            href={getFaqIndexPath(locale)}
             className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition hover:border-[#06ACC1] hover:text-[#06ACC1]"
           >
             <svg
@@ -162,7 +165,7 @@ export default function FaqArticlePage({
               </h2>
               <p className="mt-3 max-w-2xl text-base leading-8 text-slate-600">{readNext.excerpt}</p>
               <Link
-                href={`/faq/${readNext.slug}`}
+                href={getFaqArticlePath(locale, readNext.slug)}
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0B1B3D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#06ACC1]"
               >
                 {localeContent.readMoreLabel}

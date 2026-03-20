@@ -36,6 +36,7 @@ export interface FaqImageAsset {
 export interface FaqArticle {
   id: string;
   slug: string;
+  legacySlugs?: string[];
   question: string;
   excerpt: string;
   publishedAt: string;
@@ -64,6 +65,7 @@ export type FaqContentStore = Record<FaqLocale, FaqLocaleContent>;
 export interface LegacyFaqArticle {
   id: string;
   slug?: string;
+  legacySlugs?: string[];
   question: string;
   excerpt: string;
   answer?: string;

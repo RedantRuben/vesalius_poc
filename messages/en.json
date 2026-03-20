@@ -18,8 +18,36 @@
   "LogoTicker": {
     "trustedBy": "Trusted by leading institutions"
   },
+  "TheProblem": {
+    "eyebrow": "The Challenge",
+    "title": "Doctors spend more time on paperwork than on patients",
+    "subtitle": "Administrative burden has become the biggest bottleneck in healthcare — with direct consequences for physician well-being and quality of care.",
+    "cards": {
+      "time": {
+        "stat": "±4 hrs",
+        "title": "spent on administration per day",
+        "description": "Time not spent with patients, which most doctors experience as meaningless."
+      },
+      "burnout": {
+        "stat": "49%",
+        "title": "of doctors experience burnout symptoms",
+        "description": "Administration is the leading cause, rising to ±60% among doctors in training."
+      },
+      "stress": {
+        "stat": "77%",
+        "title": "of doctors cite bureaucracy as a major stressor",
+        "description": "Administrative pressure directly contributes to reduced job satisfaction."
+      },
+      "data": {
+        "stat": "80%",
+        "title": "of medical data remains unstructured",
+        "description": "Valuable clinical information is lost due to a lack of integration."
+      }
+    },
+    "bridge": "Vesalius solves this."
+  },
   "WhyChooseVesalius": {
-    "title": "The AI platform for patient conversations built for specialists, by specialists",
+    "title": "Help care teams focus on patients, not paperwork.",
     "features": {
       "language": {
         "title": "Break the language barrier",
@@ -60,7 +88,7 @@
       "description": "Put your data to work. Vesalius stops not at capturing info but uses it to generate your administration."
     },
     "smartTriage": {
-      "tag1": "Coming Soon",
+      "tag1": "Beta",
       "title": "Smart Triage",
       "description": "Intelligent urgency assessment and routing to ensure patients get the right care at the right time. Optimize your schedule and prioritize effectively.",
       "routing": "Routing..."
@@ -234,6 +262,7 @@
     "emailPlaceholder": "Your Email *",
     "organisationLabel": "Organisation",
     "organisationPlaceholder": "Clinic, hospital, or practice",
+    "organisationHint": "If this is an issue, please use the organisation name exactly as it appears in the platform.",
     "subjectLabel": "Subject",
     "subjectPlaceholder": "What do you need help with? *",
     "ticketTypeLabel": "Ticket type",
@@ -271,7 +300,7 @@
   "SupportPage": {
     "eyebrow": "Customer Care",
     "title": "Submit a support ticket",
-    "subtitle": "Reach the Vesalius support team with the same operational flow we use today, now inside the React site.",
+    "subtitle": "Submit your question or issue here and our support team will follow up as quickly as possible.",
     "responseTitle": "What happens next",
     "responseBody": "Your request is validated, sent into the Vesalius Support helpdesk flow, and confirmed only after the backend accepts it.",
     "attachmentTitle": "Helpful attachments",

@@ -65,7 +65,7 @@ export default function SecuritySection() {
   const t = useTranslations('SecuritySection');
 
   return (
-    <section className="w-full bg-[#FCFCFD] relative overflow-hidden py-12 md:py-20 flex items-center justify-center">
+    <section className="w-full bg-[#FCFCFD] relative overflow-hidden pt-4 md:pt-8 pb-12 md:pb-20 flex items-center justify-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

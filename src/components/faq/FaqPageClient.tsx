@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import { Link } from '@/i18n/routing';
 import { getArticleExcerpt, getArticleHeroImage, getArticlePlainText } from '@/lib/faq/content';
+import { getFaqArticlePath } from '@/lib/faq/routes';
 import { FAQ_LOCALES, type FaqContentStore, type FaqLocale } from '@/lib/faq/types';
 
 interface FaqPageClientProps {
@@ -207,7 +208,7 @@ export default function FaqPageClient({ contentByLocale }: FaqPageClientProps) {
               {paginatedItems.map((item) => (
                 <Link
                   key={item.id}
-                  href={`/faq/${item.slug}`}
+                  href={getFaqArticlePath(resolvedLocale, item.slug)}
                   className="group overflow-hidden rounded-[32px] border border-slate-200/70 bg-white shadow-xl shadow-slate-200/40 transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
                 >
                   <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">

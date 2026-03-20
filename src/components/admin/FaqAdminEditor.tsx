@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 
 import FaqRichTextEditor from '@/components/admin/FaqRichTextEditor';
 import FaqArticleBlocks from '@/components/faq/FaqArticleBlocks';
-import { Link } from '@/i18n/routing';
 import { getArticleExcerpt, getArticleHeroImage } from '@/lib/faq/content';
+import { getFaqArticlePath, getLocalizedFaqPath } from '@/lib/faq/routes';
 import { FAQ_LOCALES, type FaqArticle, type FaqContentStore, type FaqLocale } from '@/lib/faq/types';
 
 interface FaqAdminEditorProps {
@@ -646,14 +646,17 @@ export default function FaqAdminEditor({
                           Same renderer as the public article page.
                         </p>
                       </div>
-                      <Link
-                        href={`/${activeLocale}/faq/${selectedArticle.slug}`}
+                      <a
+                        href={getLocalizedFaqPath(
+                          activeLocale,
+                          getFaqArticlePath(activeLocale, selectedArticle.slug),
+                        )}
                         target="_blank"
                         rel="noreferrer"
                         className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-600 transition hover:border-slate-400"
                       >
                         Open page
-                      </Link>
+                      </a>
                     </div>
 
                     <div className="mt-5 overflow-hidden rounded-[28px] border border-slate-200 bg-[#FCFCFD]">

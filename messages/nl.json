@@ -18,8 +18,36 @@
   "LogoTicker": {
     "trustedBy": "Vertrouwd door toonaangevende instellingen"
   },
+  "TheProblem": {
+    "eyebrow": "De uitdaging",
+    "title": "Artsen spenderen meer tijd aan papierwerk dan aan patiënten",
+    "subtitle": "Administratieve last is uitgegroeid tot het grootste knelpunt in de gezondheidszorg — met directe gevolgen voor het welzijn van artsen en de kwaliteit van zorg.",
+    "cards": {
+      "time": {
+        "stat": "±4 uur",
+        "title": "per dag besteed aan administratie",
+        "description": "Tijd die niet aan patiënten wordt besteed, wat de meeste artsen als zinloos ervaren."
+      },
+      "burnout": {
+        "stat": "49%",
+        "title": "van de artsen ervaart burn-out symptomen",
+        "description": "Administratie is de voornaamste oorzaak, oplopend tot ±60% bij artsen in opleiding."
+      },
+      "stress": {
+        "stat": "77%",
+        "title": "van de artsen noemt bureaucratie als een grote stressfactor",
+        "description": "Administratieve druk draagt rechtstreeks bij aan verminderde werktevredenheid."
+      },
+      "data": {
+        "stat": "80%",
+        "title": "van de medische data blijft ongestructureerd",
+        "description": "Waardevolle klinische informatie gaat verloren door gebrek aan integratie."
+      }
+    },
+    "bridge": "Vesalius lost dit op."
+  },
   "WhyChooseVesalius": {
-    "title": "Het AI-platform voor patiëntgesprekken, gebouwd door en voor specialisten",
+    "title": "Help zorgteams focussen op patiënten, niet op papierwerk.",
     "features": {
       "language": {
         "title": "Doorbreek de taalbarrière",
@@ -60,7 +88,7 @@
       "description": "Laat uw data voor u werken. Vesalius legt niet alleen informatie vast, maar zet die ook om in uw documentatie."
     },
     "smartTriage": {
-      "tag1": "Binnenkort beschikbaar",
+      "tag1": "Beta",
       "title": "Slimme Triage",
       "description": "Intelligente urgentiebeoordeling en routering zodat patiënten op het juiste moment de juiste zorg krijgen. Optimaliseer uw planning en stel slimmer prioriteiten.",
       "routing": "Routering..."
@@ -234,6 +262,7 @@
     "emailPlaceholder": "Uw E-mail *",
     "organisationLabel": "Organisatie",
     "organisationPlaceholder": "Kliniek, ziekenhuis of praktijk",
+    "organisationHint": "Gaat het om een issue? Gebruik dan expliciet de organisatienaam zoals die in het platform staat.",
     "subjectLabel": "Onderwerp",
     "subjectPlaceholder": "Waarmee heeft u hulp nodig? *",
     "ticketTypeLabel": "Tickettype",
@@ -271,7 +300,7 @@
   "SupportPage": {
     "eyebrow": "Klantenzorg",
     "title": "Dien een supportticket in",
-    "subtitle": "Bereik het Vesalius-supportteam via dezelfde operationele flow als vandaag, nu binnen de React-site.",
+    "subtitle": "Dien hier uw vraag of probleem in en ons supportteam neemt zo snel mogelijk contact met u op.",
     "responseTitle": "Wat gebeurt er daarna",
     "responseBody": "Uw aanvraag wordt gevalideerd, naar de Vesalius Support-helpdesk gestuurd en pas bevestigd nadat de backend ze heeft aanvaard.",
     "attachmentTitle": "Handige bijlagen",

@@ -18,8 +18,36 @@
   "LogoTicker": {
     "trustedBy": "Reconnu par les plus grandes institutions"
   },
+  "TheProblem": {
+    "eyebrow": "Le défi",
+    "title": "Les médecins passent plus de temps sur la paperasse que sur leurs patients",
+    "subtitle": "La charge administrative est devenue le principal frein dans les soins de santé — avec des conséquences directes sur le bien-être des médecins et la qualité des soins.",
+    "cards": {
+      "time": {
+        "stat": "±4 h",
+        "title": "par jour passées sur l'administration",
+        "description": "Du temps non consacré aux patients, que la plupart des médecins vivent comme inutile."
+      },
+      "burnout": {
+        "stat": "49%",
+        "title": "des médecins présentent des symptômes de burn-out",
+        "description": "L'administration en est la cause principale, atteignant ±60 % chez les médecins en formation."
+      },
+      "stress": {
+        "stat": "77%",
+        "title": "des médecins citent la bureaucratie comme facteur de stress majeur",
+        "description": "La pression administrative contribue directement à la baisse de satisfaction au travail."
+      },
+      "data": {
+        "stat": "80%",
+        "title": "des données médicales restent non structurées",
+        "description": "De précieuses informations cliniques sont perdues par manque d'intégration."
+      }
+    },
+    "bridge": "Vesalius résout ce problème."
+  },
   "WhyChooseVesalius": {
-    "title": "La plateforme d'IA pour les échanges patients, conçue par et pour les spécialistes",
+    "title": "Aidez les équipes de soins à se concentrer sur les patients, pas sur la paperasse.",
     "features": {
       "language": {
         "title": "Faites tomber la barrière de la langue",
@@ -60,7 +88,7 @@
       "description": "Faites travailler vos données. Vesalius ne se contente pas de capter l'information : la plateforme génère aussi votre documentation."
     },
     "smartTriage": {
-      "tag1": "Bientôt disponible",
+      "tag1": "Beta",
       "title": "Triage intelligent",
       "description": "Une évaluation intelligente de l'urgence et une orientation adaptée pour offrir le bon niveau de soins au bon moment. Optimisez votre planning et vos priorités.",
       "routing": "Routage..."
@@ -234,6 +262,7 @@
     "emailPlaceholder": "Votre E-mail *",
     "organisationLabel": "Organisation",
     "organisationPlaceholder": "Clinique, hôpital ou cabinet",
+    "organisationHint": "S'il s'agit d'un incident, utilisez explicitement le nom de l'organisation tel qu'il apparaît dans la plateforme.",
     "subjectLabel": "Sujet",
     "subjectPlaceholder": "De quoi avez-vous besoin ? *",
     "ticketTypeLabel": "Type de ticket",
@@ -271,7 +300,7 @@
   "SupportPage": {
     "eyebrow": "Support client",
     "title": "Soumettre un ticket support",
-    "subtitle": "Contactez l'équipe support Vesalius via le même flux opérationnel qu'aujourd'hui, désormais intégré au site React.",
+    "subtitle": "Soumettez ici votre question ou votre problème et notre équipe support vous recontactera dès que possible.",
     "responseTitle": "Ce qui se passe ensuite",
     "responseBody": "Votre demande est validée, envoyée dans le flux Helpdesk Vesalius Support, puis confirmée uniquement après acceptation par le backend.",
     "attachmentTitle": "Pièces jointes utiles",

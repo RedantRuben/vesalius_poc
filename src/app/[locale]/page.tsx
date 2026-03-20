@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import TheProblem from "@/components/TheProblem";
 import WhyChooseVesalius from "@/components/WhyChooseVesalius";
 import Modules from "@/components/Modules";
 import Testimonials from "@/components/Testimonials";
@@ -19,6 +20,11 @@ export default function Home() {
          <Hero />
       </section>
 
+      {/* Section: The Problem */}
+      <section className="w-full pt-12 md:pt-24 pb-0 flex items-center justify-center">
+        <TheProblem />
+      </section>
+
       {/* Section 2: Why Choose Vesalius */}
       <section className="w-full pt-12 md:pt-24 pb-12 md:pb-24 flex items-center justify-center">
         <WhyChooseVesalius />
@@ -30,7 +36,7 @@ export default function Home() {
       </section>
 
       {/* Section 4: Testimonials */}
-      <section className="w-full pt-0 pb-12 md:pb-24 flex items-center justify-center">
+      <section className="w-full pt-0 pb-4 md:pb-8 flex items-center justify-center">
         <Testimonials />
       </section>
 

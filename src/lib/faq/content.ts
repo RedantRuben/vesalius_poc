@@ -48,6 +48,10 @@ function slugify(value: string) {
     .replace(/^-+|-+$/g, '');
 }
 
+function stripLegacySuffix(value: string) {
+  return value.replace(/-\d+$/, '');
+}
+
 function deriveExcerptFromBody(body: string, fallback = '') {
   const plainText = stripHtml(body);
   if (!plainText) {
@@ -188,6 +192,7 @@ function normalizeArticle(article: LegacyFaqArticle | Record<string, unknown>, i
   return {
     id: asString(rawArticle.id, `article-${index + 1}`),
     slug: asString(rawArticle.slug, slugify(question) || `faq-article-${index + 1}`),
+    legacySlugs: asStringArray(rawArticle.legacySlugs),
     question,
     excerpt: deriveExcerptFromBody(body, asString(rawArticle.excerpt)),
     publishedAt: asString(rawArticle.publishedAt ?? rawArticle.date),
@@ -247,7 +252,52 @@ export function getArticlePlainText(article: FaqArticle) {
 }
 
 export function findFaqArticleBySlug(content: FaqContentStore, locale: FaqLocale, slug: string) {
-  return content[locale].items.find((item) => item.slug === slug);
+  const normalizedSlug = stripLegacySuffix(slug);
+
+  return content[locale].items.find(
+    (item) =>
+      item.slug === slug ||
+      item.legacySlugs?.includes(slug) ||
+      stripLegacySuffix(item.slug) === normalizedSlug ||
+      item.legacySlugs?.some((legacySlug) => stripLegacySuffix(legacySlug) === normalizedSlug),
+  );
+}
+
+export function findFaqArticleRouteMatch(
+  content: FaqContentStore,
+  locale: FaqLocale,
+  slug: string,
+) {
+  const localeMatch = findFaqArticleBySlug(content, locale, slug);
+
+  if (localeMatch) {
+    return localeMatch;
+  }
+
+  const normalizedSlug = stripLegacySuffix(slug);
+  const localizedItems = content[locale].items;
+
+  for (let index = 0; index < localizedItems.length; index += 1) {
+    for (const sourceLocale of FAQ_LOCALES) {
+      const sourceArticle = content[sourceLocale].items[index];
+
+      if (!sourceArticle) {
+        continue;
+      }
+
+      const slugMatches =
+        stripLegacySuffix(sourceArticle.slug) === normalizedSlug ||
+        sourceArticle.legacySlugs?.some(
+          (legacySlug) => stripLegacySuffix(legacySlug) === normalizedSlug,
+        );
+
+      if (slugMatches) {
+        return localizedItems[index];
+      }
+    }
+  }
+
+  return undefined;
 }
 
 export function getArticleExcerpt(article: FaqArticle) {

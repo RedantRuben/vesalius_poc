@@ -185,6 +185,7 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
           type="text"
           value={formState.organisation}
         />
+        <p className="text-sm text-slate-500">{t('organisationHint')}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

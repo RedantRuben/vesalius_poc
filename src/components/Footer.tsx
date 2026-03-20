@@ -66,7 +66,7 @@ export default function Footer() {
                 <span className="text-sm md:text-base font-medium group-hover:text-white transition-colors">09 496 14 78</span>
               </a>
               
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group w-fit">
+              <a href="https://www.linkedin.com/company/vesaliushealth/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group w-fit">
                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#06ACC1]/50 group-hover:bg-[#06ACC1]/10 transition-all">
                   <LinkedinIcon />
                 </div>
@@ -93,9 +93,7 @@ export default function Footer() {
           <div className="md:col-span-3">
             <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('help')}</h3>
             <ul className="space-y-4 mb-10">
-              <li><Link href="/faq" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('faq')}</Link></li>
               <li><Link href="/contactus" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('contact')}</Link></li>
-              <li><Link href="/support" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('support')}</Link></li>
             </ul>
 
             <div className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">

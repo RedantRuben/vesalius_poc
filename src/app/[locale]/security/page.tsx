@@ -72,11 +72,6 @@ const copyByLocale = {
         title: "GDPR Compliant",
         body: "General Data Protection Regulation",
       },
-      {
-        acronym: "ISO",
-        title: "ISO 27001",
-        body: "Information Security Management",
-      },
     ],
   },
   fr: {
@@ -121,11 +116,6 @@ const copyByLocale = {
         title: "Conforme RGPD",
         body: "Règlement général sur la protection des données",
       },
-      {
-        acronym: "ISO",
-        title: "ISO 27001",
-        body: "Management de la sécurité de l'information",
-      },
     ],
   },
   nl: {
@@ -169,11 +159,6 @@ const copyByLocale = {
         acronym: "GDPR",
         title: "GDPR-conform",
         body: "General Data Protection Regulation",
-      },
-      {
-        acronym: "ISO",
-        title: "ISO 27001",
-        body: "Information Security Management",
       },
     ],
   },
@@ -294,7 +279,7 @@ export default async function SecurityPage() {
             {copy.standardsSubtitle}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
             {/* HIPAA */}
             <div className="bg-white p-6 rounded-3xl border border-slate-200/60 shadow-xl shadow-slate-200/30 hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 flex items-center gap-5 text-left group">
                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0B1B3D] to-[#162c5e] flex items-center justify-center flex-shrink-0 text-white font-bold text-sm shadow-lg group-hover:scale-105 transition-transform duration-500">
@@ -314,17 +299,6 @@ export default async function SecurityPage() {
                <div>
                  <h4 className="font-bold text-[#0B1B3D] tracking-tight">{copy.standards[1].title}</h4>
                  <p className="text-xs text-slate-500 font-light mt-1">{copy.standards[1].body}</p>
-               </div>
-            </div>
-
-            {/* ISO */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/60 shadow-xl shadow-slate-200/30 hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 flex items-center gap-5 text-left group">
-               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#FF3366] to-rose-400 flex items-center justify-center flex-shrink-0 text-white font-bold text-sm shadow-lg group-hover:scale-105 transition-transform duration-500">
-                  ISO
-               </div>
-               <div>
-                 <h4 className="font-bold text-[#0B1B3D] tracking-tight">{copy.standards[2].title}</h4>
-                 <p className="text-xs text-slate-500 font-light mt-1">{copy.standards[2].body}</p>
                </div>
             </div>
           </div>

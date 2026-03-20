@@ -208,7 +208,7 @@ export default function Hero() {
           line2: 'Médecin.',
           subtitle: 'Votre assistant IA personnel s’occupe du reste.',
           primaryCta: 'Rencontrez votre assistant →',
-          secondaryCta: 'Voir la démo',
+          secondaryCta: 'Demander une démo',
           intakeAgent: 'Agent de pré-consultation',
           intakeActive: 'Intake en cours',
           intakeMessages: [
@@ -229,7 +229,7 @@ export default function Hero() {
             line2: 'arts.',
             subtitle: 'Uw persoonlijke AI-assistent neemt de rest uit handen.',
             primaryCta: 'Maak kennis met uw assistent →',
-            secondaryCta: 'Bekijk demo',
+            secondaryCta: 'Vraag een demo aan',
             intakeAgent: 'Pre-consultatie-assistent',
             intakeActive: 'Intake actief',
             intakeMessages: [
@@ -249,7 +249,7 @@ export default function Hero() {
             line2: 'Again.',
             subtitle: 'Your Personal AI Assistant handles everything else.',
             primaryCta: 'Meet your Assistant →',
-            secondaryCta: 'Watch Demo',
+            secondaryCta: 'Request a demo',
             intakeAgent: 'Pre-Consultation Agent',
             intakeActive: 'Intake Active',
             intakeMessages: [
@@ -328,7 +328,7 @@ export default function Hero() {
                       transition={{ delay: 0.2 }}
                       className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
                     >
-                        <a href="https://assistant.vesalius.ai/onboarding/credentials" className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#0B1B3D] text-white font-medium hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-[15px] shadow-[0_8px_20px_-6px_rgba(11,27,61,0.5)] hover:-translate-y-0.5">
+                        <a href="https://assistant.vesalius.ai/onboarding/credentials" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#0B1B3D] text-white font-medium hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-[15px] shadow-[0_8px_20px_-6px_rgba(11,27,61,0.5)] hover:-translate-y-0.5">
                             {copy.primaryCta}
                         </a>
                         

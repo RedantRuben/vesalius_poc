@@ -38,7 +38,7 @@ export default function Testimonials() {
   }));
 
   return (
-    <section className="w-full bg-[#FCFCFD] relative overflow-hidden py-16 md:py-24">
+    <section className="w-full bg-[#FCFCFD] relative overflow-hidden pt-16 md:pt-24 pb-4 md:pb-8">
       {/* Background blurs */}
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#06ACC1]/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#0B1B3D]/5 rounded-full blur-[120px] pointer-events-none" />

@@ -1,10 +1,19 @@
-import FaqPageClient from '@/components/faq/FaqPageClient';
-import { readFaqContent } from '@/lib/server/faq-cms';
+import { redirect } from 'next/navigation';
+
+import { getFaqIndexPath, getLocalizedFaqPath } from '@/lib/faq/routes';
+import { FAQ_LOCALES, type FaqLocale } from '@/lib/faq/types';
 
 export const dynamic = 'force-dynamic';
 
-export default async function FAQPage() {
-  const content = await readFaqContent();
+export default async function FAQPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const resolvedLocale: FaqLocale = FAQ_LOCALES.includes(locale as FaqLocale)
+    ? (locale as FaqLocale)
+    : 'en';
 
-  return <FaqPageClient contentByLocale={content} />;
+  redirect(getLocalizedFaqPath(resolvedLocale, getFaqIndexPath(resolvedLocale)));
 }
