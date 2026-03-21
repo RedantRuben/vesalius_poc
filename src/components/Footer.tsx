@@ -37,18 +37,26 @@ export default function Footer() {
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[minmax(0,1.15fr)_minmax(220px,0.72fr)_minmax(280px,0.9fr)] gap-12 lg:gap-20 mb-20 items-start">
           
           {/* Brand & Contact */}
-          <div className="md:col-span-4 flex flex-col space-y-8">
-            <Link href="/">
+          <div className="flex max-w-md flex-col space-y-8">
+            <Link
+              href="/"
+              className="group relative inline-flex w-fit items-center gap-4 rounded-[32px] border border-white/14 bg-white/[0.045] px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_24px_60px_-32px_rgba(2,8,23,0.75)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/22 hover:bg-white/[0.06]"
+            >
+              <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/8 via-transparent to-[#06ACC1]/[0.06] opacity-90" />
               <Image
-                src="/vesalius.svg"
-                alt="Vesalius.ai Logo"
-                width={260}
-                height={45}
-                className="object-contain h-10 w-auto brightness-0 invert opacity-90 hover:opacity-100 transition-opacity"
+                src="/vesaliuslogo.svg"
+                alt="Vesalius.ai icon"
+                width={52}
+                height={60}
+                className="relative h-12 w-auto shrink-0"
               />
+              <div className="relative flex items-end leading-none text-white">
+                <span className="text-[2.65rem] font-semibold tracking-[-0.05em]">Vesalius</span>
+                <span className="pb-1 text-[1.75rem] font-semibold tracking-[-0.04em] text-white/90">.ai</span>
+              </div>
             </Link>
             
             <div className="space-y-5">
@@ -75,14 +83,11 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Spacer */}
-          <div className="hidden md:block md:col-span-2"></div>
-
           {/* Legal Links */}
-          <div className="md:col-span-3">
+          <div className="lg:justify-self-center">
             <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('legal')}</h3>
             <ul className="space-y-4">
-              <li><Link href="/terms-and-conditions" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('termsAndConditions')}</Link></li>
+              <li><Link href="/terms-conditions" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('termsAndConditions')}</Link></li>
               <li><Link href="/privacy-policy" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('privacyPolicy')}</Link></li>
               <li><Link href="/cookie-policy" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('cookiePolicy')}</Link></li>
               <li><Link href="/security" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('security')}</Link></li>
@@ -90,13 +95,13 @@ export default function Footer() {
           </div>
 
           {/* Help Links & Address */}
-          <div className="md:col-span-3">
+          <div className="flex max-w-sm flex-col">
             <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('help')}</h3>
             <ul className="space-y-4 mb-10">
               <li><Link href="/contactus" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('contact')}</Link></li>
             </ul>
 
-            <div className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+            <div className="w-full p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
                <h4 className="text-white font-bold text-sm mb-2">{t('address.street')}</h4>
                <p className="text-sm font-medium text-slate-400">{t('address.city')}</p>
             </div>
