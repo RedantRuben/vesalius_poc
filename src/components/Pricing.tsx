@@ -210,8 +210,12 @@ export default function Pricing({
               })}
             </div>
             <p className="text-sm font-medium text-slate-500">
-              <span className="text-[#06ACC1]">{copy.savingsLabel}</span>
-              {' · '}
+              {billingCycle === 'yearly' ? (
+                <>
+                  <span className="text-[#06ACC1]">{copy.savingsLabel}</span>
+                  {' · '}
+                </>
+              ) : null}
               {copy.staticPlanHint}
             </p>
           </div>

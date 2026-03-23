@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="w-full relative selection:bg-primary/20 bg-[#FCFCFD]">
+    <main className="relative w-full max-w-full overflow-x-clip selection:bg-primary/20 bg-[#FCFCFD]">
       <Navbar />
       
       {/* Section 1: Hero */}

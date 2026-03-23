@@ -13,6 +13,9 @@ import { FAQ_LOCALES, type FaqContentStore, type FaqLocale } from '@/lib/faq/typ
 
 interface FaqPageClientProps {
   contentByLocale: FaqContentStore;
+  heroSubtitle?: string;
+  heroTitle?: string;
+  lockedTag?: string;
 }
 
 const ITEMS_PER_PAGE = 6;
@@ -70,14 +73,19 @@ const AuthorIcon = () => (
   </svg>
 );
 
-export default function FaqPageClient({ contentByLocale }: FaqPageClientProps) {
+export default function FaqPageClient({
+  contentByLocale,
+  heroSubtitle,
+  heroTitle,
+  lockedTag,
+}: FaqPageClientProps) {
   const locale = useLocale();
   const resolvedLocale: FaqLocale = FAQ_LOCALES.includes(locale as FaqLocale)
     ? (locale as FaqLocale)
     : 'en';
   const content = contentByLocale[resolvedLocale];
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [selectedTag, setSelectedTag] = useState<string | null>(lockedTag ?? null);
   const [currentPage, setCurrentPage] = useState(1);
 
   const allTags = useMemo(
@@ -116,6 +124,10 @@ export default function FaqPageClient({ contentByLocale }: FaqPageClientProps) {
   }
 
   function handleTagChange(tag: string | null) {
+    if (lockedTag) {
+      return;
+    }
+
     setSelectedTag(tag);
     setCurrentPage(1);
   }
@@ -157,12 +169,12 @@ export default function FaqPageClient({ contentByLocale }: FaqPageClientProps) {
           </div>
 
           <h1 className="mb-5 text-4xl font-bold tracking-tight text-[#0B1B3D] md:text-5xl lg:text-7xl">
-            {content.title}
+            {heroTitle ?? content.title}
           </h1>
 
           <p className="mx-auto mb-10 max-w-3xl text-lg leading-8 text-slate-600">
-            Browse the latest support articles, setup guides, and product walkthroughs for the
-            Vesalius platform.
+            {heroSubtitle ??
+              'Browse the latest support articles, setup guides, and product walkthroughs for the Vesalius platform.'}
           </p>
 
           <div className="group relative mx-auto max-w-3xl">
@@ -178,22 +190,24 @@ export default function FaqPageClient({ contentByLocale }: FaqPageClientProps) {
             />
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            {allTags.map((tag) => (
-              <button
-                key={tag}
-                type="button"
-                onClick={() => handleTagChange(tag === selectedTag ? null : tag)}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                  tag === selectedTag
-                    ? 'bg-[#0B1B3D] text-white'
-                    : 'border border-slate-200 bg-white text-slate-600 hover:border-[#06ACC1] hover:text-[#06ACC1]'
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
+          {!lockedTag ? (
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+              {allTags.map((tag) => (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() => handleTagChange(tag === selectedTag ? null : tag)}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                    tag === selectedTag
+                      ? 'bg-[#0B1B3D] text-white'
+                      : 'border border-slate-200 bg-white text-slate-600 hover:border-[#06ACC1] hover:text-[#06ACC1]'
+                  }`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -324,26 +338,28 @@ export default function FaqPageClient({ contentByLocale }: FaqPageClientProps) {
                 </Link>
               </div>
 
-              <div>
-                <h2 className="mb-4 text-2xl font-semibold tracking-tight text-[#0B1B3D]">
-                  {content.tagsTitle}
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {allTags.map((tag) => (
-                    <button
-                      key={tag}
-                      onClick={() => handleTagChange(tag === selectedTag ? null : tag)}
-                      className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-                        tag === selectedTag
-                          ? 'bg-[#06ACC1] text-white'
-                          : 'border border-slate-200/60 bg-white text-slate-600 hover:border-[#06ACC1] hover:text-[#06ACC1]'
-                      }`}
-                    >
-                      {tag}
-                    </button>
-                  ))}
+              {!lockedTag ? (
+                <div>
+                  <h2 className="mb-4 text-2xl font-semibold tracking-tight text-[#0B1B3D]">
+                    {content.tagsTitle}
+                  </h2>
+                  <div className="flex flex-wrap gap-2">
+                    {allTags.map((tag) => (
+                      <button
+                        key={tag}
+                        onClick={() => handleTagChange(tag === selectedTag ? null : tag)}
+                        className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+                          tag === selectedTag
+                            ? 'bg-[#06ACC1] text-white'
+                            : 'border border-slate-200/60 bg-white text-slate-600 hover:border-[#06ACC1] hover:text-[#06ACC1]'
+                        }`}
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              ) : null}
             </div>
           </div>
         </div>

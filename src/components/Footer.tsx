@@ -33,7 +33,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#0B1B3D] pt-24 pb-12 relative overflow-hidden text-slate-300 rounded-t-[40px] md:rounded-t-[80px] mt-12 shadow-[0_-20px_40px_rgba(0,0,0,0.05)]">
       {/* Background Ornaments */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[#06ACC1]/10 to-transparent rounded-full blur-3xl pointer-events-none transform translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute top-0 right-0 w-[420px] h-[420px] md:w-[800px] md:h-[800px] bg-gradient-to-bl from-[#06ACC1]/10 to-transparent rounded-full blur-3xl pointer-events-none transform translate-x-1/4 -translate-y-1/4 md:translate-x-1/3 md:-translate-y-1/3" />
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
@@ -43,7 +43,7 @@ export default function Footer() {
           <div className="flex max-w-md flex-col space-y-8">
             <Link
               href="/"
-              className="group relative inline-flex w-fit items-center gap-4 rounded-[32px] border border-white/14 bg-white/[0.045] px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_24px_60px_-32px_rgba(2,8,23,0.75)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/22 hover:bg-white/[0.06]"
+              className="group relative inline-flex max-w-full items-center gap-3 sm:gap-4 rounded-[32px] border border-white/14 bg-white/[0.045] px-4 sm:px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_24px_60px_-32px_rgba(2,8,23,0.75)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/22 hover:bg-white/[0.06]"
             >
               <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/8 via-transparent to-[#06ACC1]/[0.06] opacity-90" />
               <Image
@@ -53,9 +53,9 @@ export default function Footer() {
                 height={60}
                 className="relative h-12 w-auto shrink-0"
               />
-              <div className="relative flex items-end leading-none text-white">
-                <span className="text-[2.65rem] font-semibold tracking-[-0.05em]">Vesalius</span>
-                <span className="pb-1 text-[1.75rem] font-semibold tracking-[-0.04em] text-white/90">.ai</span>
+              <div className="relative min-w-0 flex items-end leading-none text-white">
+                <span className="text-[2.1rem] sm:text-[2.65rem] font-semibold tracking-[-0.05em]">Vesalius</span>
+                <span className="pb-0.5 sm:pb-1 text-[1.35rem] sm:text-[1.75rem] font-semibold tracking-[-0.04em] text-white/90">.ai</span>
               </div>
             </Link>
             
@@ -87,10 +87,10 @@ export default function Footer() {
           <div className="lg:justify-self-center">
             <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('legal')}</h3>
             <ul className="space-y-4">
-              <li><Link href="/terms-conditions" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('termsAndConditions')}</Link></li>
-              <li><Link href="/privacy-policy" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('privacyPolicy')}</Link></li>
-              <li><Link href="/cookie-policy" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('cookiePolicy')}</Link></li>
-              <li><Link href="/security" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('security')}</Link></li>
+              <li><Link href="/terms-conditions" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('termsAndConditions')}</Link></li>
+              <li><Link href="/privacy-policy" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('privacyPolicy')}</Link></li>
+              <li><Link href="/cookie-policy" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('cookiePolicy')}</Link></li>
+              <li><Link href="/security" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('security')}</Link></li>
             </ul>
           </div>
 
@@ -98,7 +98,7 @@ export default function Footer() {
           <div className="flex max-w-sm flex-col">
             <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('help')}</h3>
             <ul className="space-y-4 mb-10">
-              <li><Link href="/contactus" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity -ml-3 hover:ml-0 transition-all">{t('contact')}</Link></li>
+              <li><Link href="/contactus" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('contact')}</Link></li>
             </ul>
 
             <div className="w-full p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
