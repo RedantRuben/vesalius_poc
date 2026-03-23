@@ -7,6 +7,8 @@
   --primary-hover: #0597a9;
   --secondary: #0B1B3D;
   --accent: #FF3366;
+  --font-inter: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
 @theme inline {
@@ -25,6 +27,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display);
 }
 
 .mask-linear-fade {

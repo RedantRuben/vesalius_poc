@@ -331,9 +331,16 @@ function enrichFaqContentWithRichestArticles(content: FaqContentStore) {
       }
 
       if (needsHeroImageFallback(article, richestArticle)) {
+        const sourceHeroImage = richestArticle.heroImage;
+
+        if (!sourceHeroImage?.src) {
+          continue;
+        }
+
         article.heroImage = {
-          ...richestArticle.heroImage,
-          alt: article.heroImage?.alt || article.question || richestArticle.heroImage?.alt || '',
+          src: sourceHeroImage.src,
+          caption: sourceHeroImage.caption,
+          alt: article.heroImage?.alt || article.question || sourceHeroImage.alt || '',
         };
       }
     }

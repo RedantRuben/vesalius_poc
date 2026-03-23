@@ -1,15 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Instrument_Serif } from 'next/font/google';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ['latin'],
-  weight: '400',
-  style: ['italic'],
-});
 
 const PlayIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-0.5">
@@ -303,7 +296,7 @@ export default function Hero() {
                           className="block"
                         >
                           {copy.line1} <br className="hidden lg:block" />
-                          <span className={`${instrumentSerif.className} inline-block font-normal italic tracking-normal`}>
+                          <span className="font-display inline-block font-normal italic tracking-normal">
                             {copy.line2}
                           </span>
                         </motion.span>

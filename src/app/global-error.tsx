@@ -1,12 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Inter } from 'next/font/google';
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 // Animated heartbeat line SVG
 const HeartbeatLine = () => (
@@ -38,7 +32,7 @@ export default function GlobalError({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${inter.className} antialiased`}>
+      <body className="antialiased">
         <div 
           className="min-h-screen flex flex-col items-center justify-center px-4 relative overflow-hidden"
           style={{ backgroundColor: '#ffffff' }}
@@ -160,4 +154,3 @@ export default function GlobalError({
     </html>
   );
 }
-
