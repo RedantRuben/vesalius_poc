@@ -19,7 +19,23 @@ const CheckIconWhite = () => (
   </svg>
 );
 
-export default function Pricing() {
+type BillingCycle = 'monthly' | 'yearly';
+
+interface PlanPrice {
+  price: string;
+  period?: string;
+  note?: string;
+}
+
+interface PricingProps {
+  billingCycle: BillingCycle;
+  onBillingCycleChange: (cycle: BillingCycle) => void;
+}
+
+export default function Pricing({
+  billingCycle,
+  onBillingCycleChange,
+}: PricingProps) {
   const locale = useLocale();
   const copy =
     locale === 'fr'
@@ -27,10 +43,14 @@ export default function Pricing() {
           eyebrow: 'Tarifs',
           title: 'Tarification transparente et équitable',
           subtitle: 'Choisissez l’offre adaptée à votre cabinet',
+          monthlyLabel: 'Mensuel',
+          yearlyLabel: 'Annuel',
+          savingsLabel: 'Économisez 15 %',
+          staticPlanHint: 'Les offres Gratuit et Paiement à l’usage restent identiques.',
           plans: [
             {
               name: 'Gratuit',
-              price: '€0',
+              price: { price: '€0' },
               description: 'Commencez dès aujourd’hui, sans engagement, et découvrez ce que notre solution peut apporter à votre pratique.',
               buttonText: 'Commencer',
               isPopular: false,
@@ -38,8 +58,7 @@ export default function Pricing() {
             },
             {
               name: 'Paiement à l’usage',
-              price: '€1.5',
-              period: '/crédit',
+              price: { price: '€1.50', period: '/crédit' },
               description: 'La flexibilité de payer uniquement ce que vous utilisez. Idéal pour les besoins variables et les activités saisonnières.',
               buttonText: 'Commencer',
               isPopular: false,
@@ -47,8 +66,10 @@ export default function Pricing() {
             },
             {
               name: 'Individuel',
-              price: '€84',
-              period: '/mois',
+              pricing: {
+                monthly: { price: '€99', period: '/mois' },
+                yearly: { price: '€84', period: '/mois', note: 'Facturé annuellement' },
+              },
               description: 'Utilisation illimitée pour un médecin, sans suivi de crédits. Simple et prévisible.',
               buttonText: 'Commencer',
               isPopular: true,
@@ -62,10 +83,14 @@ export default function Pricing() {
             eyebrow: 'Prijzen',
             title: 'Transparante en eerlijke prijzen',
             subtitle: 'Kies het plan dat bij uw praktijk past',
+            monthlyLabel: 'Maandelijks',
+            yearlyLabel: 'Jaarlijks',
+            savingsLabel: 'Bespaar 15%',
+            staticPlanHint: 'Gratis en betalen per gebruik blijven hetzelfde.',
             plans: [
               {
                 name: 'Gratis',
-                price: '€0',
+                price: { price: '€0' },
                 description: 'Start vandaag zonder verplichtingen en ontdek wat onze oplossing voor uw praktijk kan betekenen.',
                 buttonText: 'Aan de slag',
                 isPopular: false,
@@ -73,8 +98,7 @@ export default function Pricing() {
               },
               {
                 name: 'Betalen per gebruik',
-                price: '€1.5',
-                period: '/credit',
+                price: { price: '€1.50', period: '/credit' },
                 description: 'De flexibiliteit om alleen te betalen voor wat u gebruikt. Perfect voor wisselende noden en seizoensgebonden praktijken.',
                 buttonText: 'Aan de slag',
                 isPopular: false,
@@ -82,8 +106,10 @@ export default function Pricing() {
               },
               {
                 name: 'Individueel',
-                price: '€84',
-                period: '/maand',
+                pricing: {
+                  monthly: { price: '€99', period: '/maand' },
+                  yearly: { price: '€84', period: '/maand', note: 'Jaarlijks gefactureerd' },
+                },
                 description: 'Onbeperkt gebruik voor één arts zonder credits op te volgen. Eenvoudig en voorspelbaar.',
                 buttonText: 'Aan de slag',
                 isPopular: true,
@@ -96,10 +122,14 @@ export default function Pricing() {
             eyebrow: 'Pricing',
             title: 'Transparent and fair pricing',
             subtitle: 'Choose the plan that fits your practice',
+            monthlyLabel: 'Monthly',
+            yearlyLabel: 'Yearly',
+            savingsLabel: 'Save 15%',
+            staticPlanHint: 'Free and pay-as-you-use stay the same.',
             plans: [
               {
                 name: 'Free',
-                price: '€0',
+                price: { price: '€0' },
                 description: 'Start today with no obligations and see what our solution can do for your practice.',
                 buttonText: 'Get Started',
                 isPopular: false,
@@ -107,8 +137,7 @@ export default function Pricing() {
               },
               {
                 name: 'Pay-as-you-use',
-                price: '€1.5',
-                period: '/credit',
+                price: { price: '€1.50', period: '/credit' },
                 description: 'The flexibility to only pay for what you use. Perfect for variable needs and seasonal practices.',
                 buttonText: 'Get Started',
                 isPopular: false,
@@ -116,8 +145,10 @@ export default function Pricing() {
               },
               {
                 name: 'Individual',
-                price: '€84',
-                period: '/month',
+                pricing: {
+                  monthly: { price: '€99', period: '/month' },
+                  yearly: { price: '€84', period: '/month', note: 'Billed annually' },
+                },
                 description: 'Unlimited usage for one doctor without tracking credits. Simple and predictable.',
                 buttonText: 'Get Started',
                 isPopular: true,
@@ -143,15 +174,43 @@ export default function Pricing() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0B1B3D] tracking-tight mb-4">
             {copy.title}
           </h2>
-          <p className="text-slate-500 text-lg md:text-xl font-light">
+          <p className="text-slate-500 text-lg md:text-xl font-light mb-8">
             {copy.subtitle}
           </p>
+          <div className="inline-flex flex-col items-center gap-3">
+            <div className="inline-flex rounded-full border border-slate-200 bg-white/90 p-1 shadow-sm backdrop-blur-sm">
+              {(['monthly', 'yearly'] as BillingCycle[]).map((cycle) => {
+                const isActive = billingCycle === cycle;
+                const label = cycle === 'monthly' ? copy.monthlyLabel : copy.yearlyLabel;
+                return (
+                  <button
+                    key={cycle}
+                    type="button"
+                    onClick={() => onBillingCycleChange(cycle)}
+                    className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
+                      isActive
+                        ? 'bg-[#0B1B3D] text-white shadow-[0_8px_18px_-10px_rgba(11,27,61,0.55)]'
+                        : 'text-slate-500 hover:text-[#0B1B3D]'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="text-sm font-medium text-slate-500">
+              <span className="text-[#06ACC1]">{copy.savingsLabel}</span>
+              {' · '}
+              {copy.staticPlanHint}
+            </p>
+          </div>
         </motion.div>
 
         {/* Pricing Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-6xl mx-auto w-full">
           {copy.plans.map((plan, index) => {
             const isDark = plan.isPopular;
+            const activePrice: PlanPrice = 'pricing' in plan ? plan.pricing[billingCycle] : plan.price;
             
             return (
               <motion.div
@@ -185,14 +244,19 @@ export default function Pricing() {
                   </h3>
                   <div className="flex items-baseline mb-6">
                     <span className={`text-5xl font-extrabold tracking-tighter ${isDark ? 'text-white' : 'text-[#0B1B3D]'}`}>
-                      {plan.price}
+                      {activePrice.price}
                     </span>
-                    {plan.period && (
+                    {activePrice.period && (
                       <span className={`ml-2 text-sm font-medium tracking-wide ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                        {plan.period}
+                        {activePrice.period}
                       </span>
                     )}
                   </div>
+                  {activePrice.note ? (
+                    <p className={`mb-4 text-xs font-semibold uppercase tracking-[0.18em] ${isDark ? 'text-cyan-300/80' : 'text-[#06ACC1]'}`}>
+                      {activePrice.note}
+                    </p>
+                  ) : null}
                   <p className={`text-sm leading-relaxed font-light ${isDark ? 'text-slate-300' : 'text-slate-500'}`}>
                      {plan.description}
                   </p>
@@ -214,7 +278,7 @@ export default function Pricing() {
 
                 {/* CTA Button */}
                 <Link
-                  href={`/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}`}
+                  href={`/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}&billing=${billingCycle}`}
                   className={`w-full py-4 rounded-full font-bold tracking-wide transition-all flex items-center justify-center gap-2 group ${
                     isDark
                       ? 'bg-[#06ACC1] text-white hover:bg-white hover:text-[#0B1B3D] shadow-lg shadow-[#06ACC1]/20'

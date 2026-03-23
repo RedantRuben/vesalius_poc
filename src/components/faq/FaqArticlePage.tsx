@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import FaqArticleBlocks from '@/components/faq/FaqArticleBlocks';
 import { Link } from '@/i18n/routing';
-import { getArticleHeroImage } from '@/lib/faq/content';
+import { getArticleExcerpt, getArticleHeroImage } from '@/lib/faq/content';
 import { getFaqArticlePath, getFaqIndexPath } from '@/lib/faq/routes';
 import type { FaqArticle, FaqLocale, FaqLocaleContent } from '@/lib/faq/types';
 
@@ -163,7 +163,7 @@ export default function FaqArticlePage({
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-[#0B1B3D]">
                 {readNext.question}
               </h2>
-              <p className="mt-3 max-w-2xl text-base leading-8 text-slate-600">{readNext.excerpt}</p>
+              <p className="mt-3 max-w-2xl text-base leading-8 text-slate-600">{getArticleExcerpt(readNext)}</p>
               <Link
                 href={getFaqArticlePath(locale, readNext.slug)}
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0B1B3D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#06ACC1]"

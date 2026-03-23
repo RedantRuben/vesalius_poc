@@ -1,4 +1,5 @@
 import { faqSeedContent } from '@/lib/faq/seed';
+import { dutchFaqRichBodies } from '@/lib/faq/dutch-rich-articles';
 import { escapeHtml, sanitizeRichTextHtml, stripHtml } from '@/lib/faq/html';
 import {
   FAQ_LOCALES,
@@ -50,6 +51,11 @@ function slugify(value: string) {
 
 function stripLegacySuffix(value: string) {
   return value.replace(/-\d+$/, '');
+}
+
+function getSlugNumericSuffix(value: string) {
+  const match = value.match(/-(\d+)$/);
+  return match?.[1] ?? '';
 }
 
 function deriveExcerptFromBody(body: string, fallback = '') {
@@ -234,15 +240,121 @@ function normalizeLocaleContent(
   };
 }
 
+function getBodyRichnessScore(article: FaqArticle) {
+  const plainTextLength = stripHtml(article.body).length;
+  const imageCount = (article.body.match(/<img\b/gi) ?? []).length;
+  const hasCustomHeroImage =
+    Boolean(article.heroImage?.src) && article.heroImage?.src !== DEFAULT_FAQ_HERO_IMAGE;
+
+  return plainTextLength + imageCount * 1500 + (hasCustomHeroImage ? 1200 : 0);
+}
+
+function needsArticleBodyFallback(article: FaqArticle, sourceArticle: FaqArticle) {
+  const articlePlainTextLength = stripHtml(article.body).length;
+  const sourcePlainTextLength = stripHtml(sourceArticle.body).length;
+
+  if (sourcePlainTextLength === 0) {
+    return false;
+  }
+
+  const articleImageCount = (article.body.match(/<img\b/gi) ?? []).length;
+  const sourceImageCount = (sourceArticle.body.match(/<img\b/gi) ?? []).length;
+
+  return (
+    articlePlainTextLength < 450 ||
+    articlePlainTextLength < sourcePlainTextLength * 0.45 ||
+    (sourceImageCount > 0 && articleImageCount === 0)
+  );
+}
+
+function needsHeroImageFallback(article: FaqArticle, sourceArticle: FaqArticle) {
+  const currentHeroSrc = article.heroImage?.src ?? '';
+  const sourceHeroSrc = sourceArticle.heroImage?.src ?? '';
+
+  return (
+    Boolean(sourceHeroSrc) &&
+    sourceHeroSrc !== DEFAULT_FAQ_HERO_IMAGE &&
+    (!currentHeroSrc || currentHeroSrc === DEFAULT_FAQ_HERO_IMAGE)
+  );
+}
+
+function applyCuratedDutchFaqBodies(content: FaqContentStore) {
+  for (const article of content.nl.items) {
+    const translationKey = getSlugNumericSuffix(article.slug) || stripLegacySuffix(article.slug);
+    const translatedBody = dutchFaqRichBodies[translationKey];
+
+    if (!translatedBody) {
+      continue;
+    }
+
+    article.body = sanitizeRichTextHtml(translatedBody);
+    article.excerpt = deriveExcerptFromBody(article.body, article.excerpt);
+  }
+
+  return content;
+}
+
+function enrichFaqContentWithRichestArticles(content: FaqContentStore) {
+  const articleGroups = new Map<string, FaqArticle[]>();
+
+  for (const locale of FAQ_LOCALES) {
+    for (const article of content[locale].items) {
+      const groupKey = getSlugNumericSuffix(article.slug) || stripLegacySuffix(article.slug);
+
+      if (!articleGroups.has(groupKey)) {
+        articleGroups.set(groupKey, []);
+      }
+
+      articleGroups.get(groupKey)?.push(article);
+    }
+  }
+
+  for (const group of articleGroups.values()) {
+    if (group.length < 2) {
+      continue;
+    }
+
+    const richestArticle = group.reduce((bestArticle, currentArticle) =>
+      getBodyRichnessScore(currentArticle) > getBodyRichnessScore(bestArticle)
+        ? currentArticle
+        : bestArticle,
+    );
+
+    for (const article of group) {
+      if (article === richestArticle) {
+        continue;
+      }
+
+      if (needsArticleBodyFallback(article, richestArticle)) {
+        article.body = richestArticle.body;
+        article.excerpt = deriveExcerptFromBody(richestArticle.body, richestArticle.excerpt);
+      }
+
+      if (needsHeroImageFallback(article, richestArticle)) {
+        article.heroImage = {
+          ...richestArticle.heroImage,
+          alt: article.heroImage?.alt || article.question || richestArticle.heroImage?.alt || '',
+        };
+      }
+    }
+  }
+
+  return content;
+}
+
 export function normalizeFaqContent(input: LegacyFaqContentStore | Record<string, unknown>) {
   const source = input as Partial<
     Record<FaqLocale, LegacyFaqLocaleContent | Record<string, unknown> | undefined>
   >;
 
-  return FAQ_LOCALES.reduce((accumulator, locale) => {
+  const normalizedContent = FAQ_LOCALES.reduce((accumulator, locale) => {
     accumulator[locale] = normalizeLocaleContent(locale, source[locale]);
     return accumulator;
   }, {} as FaqContentStore);
+
+  applyCuratedDutchFaqBodies(normalizedContent);
+
+  return enrichFaqContentWithRichestArticles(normalizedContent);
 }
 
 export const defaultFaqContent = normalizeFaqContent(faqSeedContent);

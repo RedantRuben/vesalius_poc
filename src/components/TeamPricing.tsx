@@ -12,7 +12,19 @@ const CheckIcon = () => (
   </svg>
 );
 
-export default function TeamPricing() {
+type BillingCycle = 'monthly' | 'yearly';
+
+interface PlanPrice {
+  price: string;
+  period?: string;
+  note?: string;
+}
+
+interface TeamPricingProps {
+  billingCycle: BillingCycle;
+}
+
+export default function TeamPricing({ billingCycle }: TeamPricingProps) {
   const locale = useLocale();
   const copy =
     locale === 'fr'
@@ -22,23 +34,22 @@ export default function TeamPricing() {
           plans: [
             {
               name: 'Équipe',
-              price: '€254',
-              period: '/mois',
+              pricing: {
+                monthly: { price: '€299', period: '/mois' },
+                yearly: { price: '€254', period: '/mois', note: 'Facturé annuellement' },
+              },
               description: 'Idéal pour les cabinets avec plusieurs médecins. Une collaboration efficace à un tarif accessible.',
               buttonText: 'Commencer',
               features: ['Utilisation illimitée', 'Jusqu’à 5 soignants', 'Coût mensuel prévisible', 'Espace de travail centralisé', 'Résiliable à tout moment', 'Support prioritaire'],
             },
             {
               name: 'Organisation',
-              price: 'Tarif',
-              period: 'sur mesure',
+              price: { price: 'Tarif', period: 'sur mesure' },
               description: 'Vous avez plus de 5 médecins dans votre organisation ? Nous proposons des solutions personnalisées pour les grands cabinets et les hôpitaux.',
               buttonText: 'Contacter l’équipe',
               features: ['Utilisation illimitée pour les grandes équipes', 'Support prioritaire spécialisé', 'Intégrations personnalisées', 'Account manager dédié', 'SLA entreprise', 'Plan tarifaire sur mesure'],
             },
           ],
-          yearlyBefore: 'Paiement annuel (économisez 15 %), passez à',
-          yearlyLink: 'des paiements mensuels',
         }
       : locale === 'nl'
         ? {
@@ -47,23 +58,22 @@ export default function TeamPricing() {
             plans: [
               {
                 name: 'Team',
-                price: '€254',
-                period: '/maand',
+                pricing: {
+                  monthly: { price: '€299', period: '/maand' },
+                  yearly: { price: '€254', period: '/maand', note: 'Jaarlijks gefactureerd' },
+                },
                 description: 'Ideaal voor praktijken met meerdere artsen. Efficiënte samenwerking aan één betaalbare prijs.',
                 buttonText: 'Aan de slag',
                 features: ['Onbeperkt gebruik', 'Tot 5 zorgverleners', 'Voorspelbare maandelijkse kost', 'Gecentraliseerde werkruimte', 'Op elk moment opzegbaar', 'Prioritaire ondersteuning'],
               },
               {
                 name: 'Organisatie',
-                price: 'Prijs op',
-                period: 'maat',
+                price: { price: 'Prijs op', period: 'maat' },
                 description: 'Heeft u meer dan 5 artsen in uw organisatie? Wij bieden oplossingen op maat voor grotere praktijken en ziekenhuizen.',
                 buttonText: 'Contacteer sales',
                 features: ['Onbeperkt gebruik voor grote teams', 'Gespecialiseerde prioritaire ondersteuning', 'Integraties op maat', 'Toegewijde accountmanager', 'Enterprise SLA', 'Prijsplan op maat'],
               },
             ],
-            yearlyBefore: 'Jaarlijkse betaling (bespaar 15%), schakel over naar',
-            yearlyLink: 'maandelijkse betalingen',
           }
         : {
             eyebrow: 'Enterprise',
@@ -71,23 +81,22 @@ export default function TeamPricing() {
             plans: [
               {
                 name: 'Team',
-                price: '€254',
-                period: '/month',
+                pricing: {
+                  monthly: { price: '€299', period: '/month' },
+                  yearly: { price: '€254', period: '/month', note: 'Billed annually' },
+                },
                 description: 'Ideal for practices with multiple doctors. Efficient collaboration, one affordable price.',
                 buttonText: 'Get Started',
                 features: ['Unlimited usage', 'Up to 5 healthcare providers', 'Predictable monthly cost', 'Centralised workspace', 'Cancel any time', 'Priority support'],
               },
               {
                 name: 'Organisation',
-                price: 'Custom',
-                period: 'Pricing',
+                price: { price: 'Custom', period: 'pricing' },
                 description: 'Do you have more than 5 doctors in your organisation? We offer custom solutions for larger practices and hospitals.',
                 buttonText: 'Contact Sales',
                 features: ['Unlimited usage for large teams', 'Specialised priority support', 'Customised integrations', 'Dedicated account manager', 'Enterprise SLA', 'Tailored price plan'],
               },
             ],
-            yearlyBefore: 'Yearly payment (save 15%), switch to',
-            yearlyLink: 'monthly payments',
           };
   return (
     <section className="w-full bg-[#FCFCFD] relative pb-24">
@@ -108,71 +117,66 @@ export default function TeamPricing() {
 
         {/* Plans Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
-          {copy.plans.map((plan, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
-              className="glass-panel bg-white/60 border border-white/80 rounded-[32px] p-8 md:p-10 flex flex-col hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 h-full group"
-            >
-              <div className="mb-10 border-b border-slate-100 pb-8">
-                <h3 className="text-xl font-bold tracking-tight mb-6 text-[#0B1B3D]">
-                  {plan.name}
-                </h3>
-                <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 mb-6">
-                  <span className="text-4xl lg:text-5xl font-extrabold tracking-tighter text-[#0B1B3D]">
-                    {plan.price}
-                  </span>
-                  {plan.period && (
-                    <span className="text-lg font-bold tracking-tight text-slate-400">
-                      {plan.period}
-                    </span>
-                  )}
-                </div>
-                <p className="text-sm leading-relaxed font-light text-slate-500">
-                    {plan.description}
-                </p>
-              </div>
+          {copy.plans.map((plan, index) => {
+            const activePrice: PlanPrice = 'pricing' in plan ? plan.pricing[billingCycle] : plan.price;
 
-              <div className="space-y-5 flex-grow mb-10">
-                {plan.features.map((feature, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <CheckIcon />
-                    </div>
-                    <span className="text-sm font-medium text-slate-700">
-                      {feature}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <Link
-                href={`/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}`}
-                className="w-full py-4 rounded-full font-bold tracking-wide transition-all flex items-center justify-center gap-2 group-hover:bg-[#0B1B3D] group-hover:text-white group-hover:border-transparent bg-white text-[#0B1B3D] border border-slate-200 shadow-sm"
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
+                className="glass-panel bg-white/60 border border-white/80 rounded-[32px] p-8 md:p-10 flex flex-col hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 h-full group"
               >
-                {plan.buttonText}
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+                <div className="mb-10 border-b border-slate-100 pb-8">
+                  <h3 className="text-xl font-bold tracking-tight mb-6 text-[#0B1B3D]">
+                    {plan.name}
+                  </h3>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 mb-6">
+                    <span className="text-4xl lg:text-5xl font-extrabold tracking-tighter text-[#0B1B3D]">
+                      {activePrice.price}
+                    </span>
+                    {activePrice.period && (
+                      <span className="text-lg font-bold tracking-tight text-slate-400">
+                        {activePrice.period}
+                      </span>
+                    )}
+                  </div>
+                  {activePrice.note ? (
+                    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#06ACC1]">
+                      {activePrice.note}
+                    </p>
+                  ) : null}
+                  <p className="text-sm leading-relaxed font-light text-slate-500">
+                      {plan.description}
+                  </p>
+                </div>
 
-        {/* Footer Link */}
-        <motion.div 
-           initial={{ opacity: 0 }}
-           whileInView={{ opacity: 1 }}
-           viewport={{ once: true }}
-           transition={{ delay: 0.6 }}
-           className="text-center"
-        >
-           <div className="inline-flex items-center gap-2 glass-panel px-6 py-3 rounded-full text-sm font-medium text-slate-600 border-white/80 shadow-sm">
-              {copy.yearlyBefore}
-              <a href="#" className="text-[#06ACC1] underline hover:text-[#0597a9] font-bold">{copy.yearlyLink}</a>
-           </div>
-        </motion.div>
+                <div className="space-y-5 flex-grow mb-10">
+                  {plan.features.map((feature, i) => (
+                    <div key={i} className="flex items-start gap-4">
+                      <div className="mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        <CheckIcon />
+                      </div>
+                      <span className="text-sm font-medium text-slate-700">
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <Link
+                  href={`/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}&billing=${billingCycle}`}
+                  className="w-full py-4 rounded-full font-bold tracking-wide transition-all flex items-center justify-center gap-2 group-hover:bg-[#0B1B3D] group-hover:text-white group-hover:border-transparent bg-white text-[#0B1B3D] border border-slate-200 shadow-sm"
+                >
+                  {plan.buttonText}
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
