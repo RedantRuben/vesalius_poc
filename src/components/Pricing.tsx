@@ -27,6 +27,17 @@ interface PlanPrice {
   note?: string;
 }
 
+function getActivePrice(
+  plan: { price?: PlanPrice; pricing?: Partial<Record<BillingCycle, PlanPrice>> },
+  billingCycle: BillingCycle,
+) {
+  if (plan.pricing?.[billingCycle]) {
+    return plan.pricing[billingCycle];
+  }
+
+  return plan.price;
+}
+
 interface PricingProps {
   billingCycle: BillingCycle;
   onBillingCycleChange: (cycle: BillingCycle) => void;
@@ -210,7 +221,11 @@ export default function Pricing({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center max-w-6xl mx-auto w-full">
           {copy.plans.map((plan, index) => {
             const isDark = plan.isPopular;
-            const activePrice: PlanPrice = 'pricing' in plan ? plan.pricing[billingCycle] : plan.price;
+            const activePrice = getActivePrice(plan, billingCycle);
+
+            if (!activePrice) {
+              return null;
+            }
             
             return (
               <motion.div

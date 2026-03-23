@@ -20,6 +20,17 @@ interface PlanPrice {
   note?: string;
 }
 
+function getActivePrice(
+  plan: { price?: PlanPrice; pricing?: Partial<Record<BillingCycle, PlanPrice>> },
+  billingCycle: BillingCycle,
+) {
+  if (plan.pricing?.[billingCycle]) {
+    return plan.pricing[billingCycle];
+  }
+
+  return plan.price;
+}
+
 interface TeamPricingProps {
   billingCycle: BillingCycle;
 }
@@ -118,7 +129,11 @@ export default function TeamPricing({ billingCycle }: TeamPricingProps) {
         {/* Plans Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
           {copy.plans.map((plan, index) => {
-            const activePrice: PlanPrice = 'pricing' in plan ? plan.pricing[billingCycle] : plan.price;
+            const activePrice = getActivePrice(plan, billingCycle);
+
+            if (!activePrice) {
+              return null;
+            }
 
             return (
               <motion.div
