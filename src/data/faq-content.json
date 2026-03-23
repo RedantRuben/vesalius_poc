@@ -521,6 +521,228 @@
           "Summary"
         ],
         "body": "<p>Om dit duidelijker te maken, is er op de dashboardpagina een icoon toegevoegd dat aangeeft of de samenvatting al naar het EPD gekopieerd is.</p>\n    <h2>Er zijn twee manieren om de status van dat icoon te wijzigen</h2>\n    <h3>Handmatig via de detailpagina van het gesprek</h3>\n    <p>Je kunt het icoon rechtstreeks aanklikken op de detailpagina van het gesprek. De status verandert dan naar <em>copied to EHR</em>.</p>\n    <figure><img class=\"img-fluid\" data-file-name=\"Screenshot 2025-06-27 at 10.28.41.png\" src=\"/uploads/faq/4519-90340ab9-Screenshot-2025-06-27-at-10.28.41-21558e53.png\" loading=\"lazy\"></figure>\n    <h3>Automatisch via instellingen</h3>\n    <p>Je kunt automatische statusupdates ook inschakelen via <strong>Settings → Interactions → General</strong>.</p>\n    <ol>\n      <li>Zet de toggle <strong>Automatically set status to copied</strong> aan.</li>\n      <li>Klik op <strong>Save</strong>.</li>\n    </ol>\n    <p>Vanaf dan wordt de status automatisch op <em>copied to EHR</em> gezet telkens wanneer je op de kopieerknop klikt.</p>\n    <p>Je kunt de status daarna nog altijd handmatig aanpassen via de eerste methode.</p>"
+      },
+      {
+        "id": "odoo-nl-7",
+        "slug": "als-de-samenvatting-niet-compleet-is-maar-het-gesprek-wel-kan-ik-de-samenvatting-opnieuw-genereren-7",
+        "legacySlugs": [],
+        "question": "Als de samenvatting niet compleet is, maar het gesprek wel, kan ik de samenvatting opnieuw genereren?",
+        "excerpt": "Ja, je kunt een samenvatting opnieuw genereren voor elk gesprek afzonderlijk door de volgende stappen te volgen: Ga naar de detailpagina van het gesprek door op het specifieke g...",
+        "publishedAt": "16 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/als-de-samenvatting-niet-compleet-is-maar-het-gesprek-wel-kan-ik-de-samenvatting-opnieuw-genereren-7-cover.webp",
+          "alt": "Als de samenvatting niet compleet is, maar het gesprek wel, kan ik de samenvatting opnieuw genereren?",
+          "caption": ""
+        },
+        "tags": [
+          "Summary"
+        ],
+        "body": "<p style=\"margin-bottom: 0px;\">Ja, je kunt een samenvatting opnieuw genereren voor elk gesprek afzonderlijk door de volgende stappen te volgen:<br><br></p>\n<ol style=\"margin-bottom: 0px;\"><li>\tGa naar de detailpagina van het gesprek door op het specifieke gesprek te klikken.</li><li>\tZodra je op de detailpagina van het gesprek bent, zie je de samenvatting.</li><li>Klik in het samenvattingsvak op de pijl in de rechterbovenhoek om de samenvatting opnieuw te genereren.</li><li>Klik op 'Samenvatting hergenereren' </li><li>Wacht ongeveer 30 seconden en ververs vervolgens de volledige pagina.</li></ol>\n<p style=\"margin-bottom: 0px;\"><br></p>\n<p>De samenvatting zal nu bijgewerkt zijn</p>"
+      },
+      {
+        "id": "odoo-nl-4",
+        "slug": "hoe-kan-ik-de-communicatie-met-patienten-personaliseren-4",
+        "legacySlugs": [],
+        "question": "Hoe kan ik de communicatie met patiënten personaliseren?",
+        "excerpt": "Aanpassingen voor e-mail: Onderwerpregel : Personaliseer de onderwerpregel om deze duidelijk, specifiek en relevant te maken voor je patiënten. Een goed samengestelde onderwerpr...",
+        "publishedAt": "16 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/hoe-kan-ik-de-communicatie-met-patienten-personaliseren-4-cover.webp",
+          "alt": "Hoe kan ik de communicatie met patiënten personaliseren?",
+          "caption": ""
+        },
+        "tags": [
+          "Conversaties",
+          "Customise"
+        ],
+        "body": "<p>Aanpassingen voor e-mail:</p>\n\n\n\n\n<ul><li><b><u>Onderwerpregel</u></b>: Personaliseer de onderwerpregel om deze duidelijk, specifiek en relevant te maken voor je patiënten. Een goed samengestelde onderwerpregel vergroot de kans dat je e-mail geopend wordt.</li><li class=\"oe-nested\"><ul><li>Voor nu moeten deze wijzigingen via ons worden aangebracht. Neem gerust contact met ons op, we helpen je graag verder.​</li></ul></li><li><strong><u>De inhoud van de tekst:</u></strong> Pas het bericht aan om tegemoet te komen aan de specifieke behoeften van je praktijk of patiëntencommunicatie. </li><li class=\"oe-nested\"><ul><li>Voor nu moeten deze wijzigingen via ons worden aangebracht. Neem gerust contact met ons op, we helpen je graag verder.​</li></ul></li><li><b><u>De branding en de kleuren</u></b>: Pas het ontwerp aan zodat het de branding van je kliniek weerspiegelt, inclusief kleuren en logo, zodat een professionele uitstraling wordt gegarandeerd.</li><li class=\"oe-nested\"><ul><li>Dit kan worden gedaan in de instellingen (<a href=\"https://www.vesalius.ai/blog/faq-s-2/how-do-i-personalise-my-email-send-to-patients-15\">https://www.vesalius.ai/blog/faq-s-2/how-do-i-personalise-my-email-send-to-patients-15</a>)</li></ul></li><li><u><strong>Het reply-to adres:</strong></u><strong> Stel een aangepast antwoordadres in, zodat patiënten direct kunnen reageren naar een relevant contact binnen je praktijk, wat de communicatie vergemakkelijkt.</strong></li><li class=\"oe-nested\"><ul><li>Dit kan worden gedaan in de instellingen (Instellingen &gt; algemeen &gt; communicatie)</li></ul></li></ul>\n\n\n<p><br></p>\n\n\n<div class=\"o_editor_banner o_not_editable lh-1 d-flex align-items-center alert alert-info pb-0 pt-3\" role=\"status\" data-oe-protected=\"true\">\n                        <i class=\"o_editor_banner_icon mb-3 fst-normal\" aria-label=\"Banner Info\">💡</i>\n                        <div class=\"w-100 px-3\" data-oe-protected=\"false\">\n                            <p>Elke e-mail wordt gepersonaliseerd op basis van het type enquête, waardoor relevante en gerichte communicatie voor elke vragenlijst wordt gegarandeerd.\n</p>\n                        </div>\n                    </div>\n\n\n<p><br></p>\n\n\n<p><br></p>\n\n\n\n<p>Aanpassingen voor whatsapp:</p>\n\n\n\n<ul><li>Om aanpassingen voor WhatsApp te gebruiken, moet je een WhatsApp Business-account hebben.\n</li></ul>\n\n\n\n<p><br></p>\n\n\n\n<p>Je kunt de chatbot-interacties voor elke verschillende vragenlijst ook aanpassen om de patiëntbetrokkenheid te verbeteren:\n</p>\n\n\n\n\n<ul><li>\t<b><u>De introductie:</u></b> Personaliseer het openingsbericht van de chatbot voor elke vragenlijst om in lijn te zijn met de toon van je praktijk.</li><li class=\"oe-nested\"><ul><li>Voor nu moeten deze wijzigingen via ons worden aangebracht. Neem gerust contact met ons op, we helpen je graag verder.​</li></ul></li><li><b><u>De vragenlijst zelf</u></b>: Pas de vragenlijst volledig aan om de specifieke medische informatie te verzamelen die je nodig hebt.</li><li class=\"oe-nested\"><ul><li>Voor nu moeten deze wijzigingen via ons worden aangebracht. Neem gerust contact met ons op, we helpen je graag verder.​</li></ul></li><li><b><u>Het aflsuitend bericht</u></b>: Stem het afsluitbericht af om relevante vervolgstappen of instructies voor opvolging te geven.</li><li class=\"oe-nested\"><ul><li>Voor nu moeten deze wijzigingen via ons worden aangebracht. Neem gerust contact met ons op, we helpen je graag verder.​</li></ul></li></ul>\n\n\n<p><br></p>\n\n\n<div class=\"o_editor_banner o_not_editable lh-1 d-flex align-items-center alert alert-info pb-0 pt-3\" role=\"status\" data-oe-protected=\"true\">\n                        <i class=\"o_editor_banner_icon mb-3 fst-normal\" aria-label=\"Banner Info\">💡</i>\n                        <div class=\"w-100 px-3\" data-oe-protected=\"false\">\n                            <p>De chatbot kan gepersonaliseerd worden op basis van het type enquête, waardoor relevante en gerichte communicatie voor elke vragenlijst wordt gegarandeerd.</p>\n                        </div>\n                    </div>\n\n\n<p><br></p>\n\n\n<p><br></p>\n\n\n<p><br></p>\n\n\n\n\n<p>\n\n\n</p>"
+      },
+      {
+        "id": "odoo-nl-8",
+        "slug": "hoe-kan-ik-filteren-op-relevante-conversaties-8",
+        "legacySlugs": [],
+        "question": "Hoe kan ik filteren op relevante conversaties",
+        "excerpt": "Om te filteren in het dashboard kan je deze stappen doorlopen: Klik op de filterknop in de rechterbovenhoek (het lijkt op een trechter). Je kunt filteren op de volgende opties:...",
+        "publishedAt": "16 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/hoe-kan-ik-filteren-op-relevante-conversaties-8-cover.webp",
+          "alt": "Hoe kan ik filteren op relevante conversaties",
+          "caption": ""
+        },
+        "tags": [
+          "Conversaties",
+          "Filter"
+        ],
+        "body": "<p>Om te filteren in het dashboard kan je deze stappen doorlopen:</p>\n\n\n<ol><li>\tKlik op de filterknop in de rechterbovenhoek (het lijkt op een trechter).\n</li><li>Je kunt filteren op de volgende opties:</li><li class=\"oe-nested\"><ol><li><b>Elke actieve arts in de organisatie</b></li><li><b>Verwijderde gesprekken wel of niet laten zien</b></li><li><b>Status van het gesprek</b></li><li><b>Elke actieve vragenlijst in de organisatie</b></li><li><b>Date (deadline)</b>: Use the “Per Day” option (next to the \"as list\" option) to view conversations based on their deadline, organised by consultation time.</li></ol></li></ol>\n<br>\n<p>Zorg ervoor dat je je filters deactiveert wanneer je klaar bent, aangezien ze actief blijven totdat ze handmatig worden uitgeschakeld.</p>\n\n\n<p>\n\n\n</p>"
+      },
+      {
+        "id": "odoo-nl-15",
+        "slug": "hoe-kan-ik-mijn-emails-personaliseren-15",
+        "legacySlugs": [],
+        "question": "Hoe kan ik mijn emails personaliseren?",
+        "excerpt": "In het video hieronder zie je hoe je je eigen logo kan toevoegen aan de mails die uitgestuurd worden naar de patiënten:",
+        "publishedAt": "24 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/hoe-kan-ik-mijn-emails-personaliseren-15-cover.webp",
+          "alt": "Hoe kan ik mijn emails personaliseren?",
+          "caption": ""
+        },
+        "tags": [
+          "Customise"
+        ],
+        "body": "<p>In het video hieronder zie je hoe je je eigen logo kan toevoegen aan de mails die uitgestuurd worden naar de patiënten:</p>\n<div data-oe-expression=\"//www.youtube-nocookie.com/embed/Me0RVPVxDFA?rel=0&amp;autoplay=0\" class=\"media_iframe_video\" data-need-cookies-approval=\"true\">\n                <div class=\"css_editable_mode_display\"></div>\n                <div class=\"media_iframe_video_size\"></div>\n                <iframe loading=\"lazy\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\" src=\"about:blank\" data-need-cookies-approval=\"true\" data-nocookie-src=\"//www.youtube-nocookie.com/embed/Me0RVPVxDFA?rel=0&amp;autoplay=0\"></iframe>\n            </div>\n<p><br></p>"
+      },
+      {
+        "id": "odoo-nl-11",
+        "slug": "hoe-pas-ik-mijn-wachtwoord-aan-11",
+        "legacySlugs": [],
+        "question": "Hoe pas ik mijn wachtwoord aan?",
+        "excerpt": "Moet je je wachtwoord om veiligheidsredenen resetten? Vesalius.ai maakt het eenvoudig om weer toegang te krijgen tot je account. Volg deze stappen om snel weer aan de slag te ga...",
+        "publishedAt": "16 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/hoe-pas-ik-mijn-wachtwoord-aan-11-cover.webp",
+          "alt": "Hoe pas ik mijn wachtwoord aan?",
+          "caption": ""
+        },
+        "tags": [
+          "Acces management",
+          "Password"
+        ],
+        "body": "<p>Moet je je wachtwoord om veiligheidsredenen resetten? Vesalius.ai maakt het eenvoudig om weer toegang te krijgen tot je account.  </p>\n\n<p>Volg deze stappen om snel weer aan de slag te gaan:</p>\n\n<ol><li><strong>Ga naar je profiel</strong></li></ol>\n\n<ul><li>Klik op het persoon-icoon in de linker zijbalk om het profielmenu te openen.\n</li></ul>\n\n<p><strong><img src=\"/uploads/faq/hoe-pas-ik-mijn-wachtwoord-aan-11-1.png\" alt=\"\" class=\"img img-fluid o_we_custom_image mx-auto d-block\" data-mimetype=\"image/webp\" data-original-id=\"2975\" data-original-src=\"/uploads/faq/hoe-pas-ik-mijn-wachtwoord-aan-11-1.png\" data-mimetype-before-conversion=\"image/png\" data-resize-width=\"224\" loading=\"lazy\"></strong><br></p>\n\n<p><strong>2. Navigeer naar 'Go to my profile/Ga naar mijn profiel':</strong></p>\n<p><img src=\"/uploads/faq/hoe-pas-ik-mijn-wachtwoord-aan-11-2.png\" alt=\"\" class=\"img img-fluid o_we_custom_image mx-auto d-block\" style=\"width: 50% !important;\" loading=\"lazy\"><br></p>\n\n<p><strong>3. Klik op de knop 'change/wijzigen'</strong></p>\n\n<ul><li>Zoek het wachtwoordveld en klik op de knop ‘Wijzigen’ aan de rechterkant.\n</li></ul>\n\n<p><img src=\"/uploads/faq/hoe-pas-ik-mijn-wachtwoord-aan-11-3.png\" alt=\"\" class=\"img img-fluid o_we_custom_image mx-auto d-block\" style=\"width: 50% !important;\" data-mimetype=\"image/webp\" data-original-id=\"2977\" data-original-src=\"/uploads/faq/hoe-pas-ik-mijn-wachtwoord-aan-11-3.png\" data-mimetype-before-conversion=\"image/png\" data-resize-width=\"534\" loading=\"lazy\"></p>\n\n<p><strong>4. Voer je nieuwe wachtwoord in:</strong></p>\n\n<ul><li>Vul eerst je huidige wachtwoord in,  voer daarna je nieuwe wachtwoord in en klik op 'Opslaan'. Je nieuwe wachtwoord is nu actief.</li>\n</ul>\n<p><img src=\"/uploads/faq/hoe-pas-ik-mijn-wachtwoord-aan-11-4.png\" alt=\"\" class=\"img img-fluid o_we_custom_image mx-auto d-block\" data-mimetype=\"image/png\" data-original-id=\"2978\" data-original-src=\"/uploads/faq/hoe-pas-ik-mijn-wachtwoord-aan-11-4.png\" data-mimetype-before-conversion=\"image/png\" style=\"width: 50% !important;\" loading=\"lazy\"></p>\n\n<p><strong>5. Log in met je nieuwe wachtwoord:</strong></p>\n\n<ul><li>Na het resetten van je wachtwoord kun je direct inloggen met je nieuwe gegevens via  <a target=\"_new\" href=\"https://platform.vesalius.ai/login\">https://platform.vesalius.ai/login</a>.</li></ul>\n\n<p><strong></strong><br></p>"
+      },
+      {
+        "id": "odoo-nl-9",
+        "slug": "hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9",
+        "legacySlugs": [],
+        "question": "Hoe voeg ik een collega toe aan mijn organisatie?",
+        "excerpt": "Wat is een organisatie in Vesalius? Een organisatie verwijst naar de naam die je hebt ingevoerd bij het aanmaken van je account. Deze wordt onder je naam weergegeven in de linke...",
+        "publishedAt": "16 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-cover.webp",
+          "alt": "Hoe voeg ik een collega toe aan mijn organisatie?",
+          "caption": ""
+        },
+        "tags": [
+          "Acces management",
+          "Accountbeheer"
+        ],
+        "body": "<h4><strong>Wat is een organisatie in Vesalius?</strong></h4>\n<p>Een organisatie verwijst naar de naam die je hebt ingevoerd bij het aanmaken van je account. Deze wordt onder je naam weergegeven in de linkerbenedenhoek van het platform. Het kan alles vertegenwoordigen, van een enkele praktijklocatie tot een volledig ziekenhuis. Gebruikers kunnen tot meerdere organisaties behoren.</p>\n<h4><strong>Wie kan een collega toevoegen?</strong></h4>\n<p>Enkel gebruikers met de rol 'Organisatie Admin' kunnen collega's toevoegen.</p>\n<h4><strong>Hoe voeg ik collega's toe aan mijn organisatie?</strong></h4>\n<p><strong>1. Ga naar de instellingen</strong>.</p>\n<p><img src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-1.png\" alt=\"\" class=\"img img-fluid o_we_custom_image mx-auto d-block\" data-mimetype=\"image/png\" data-original-id=\"2878\" data-original-src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-1.png\" data-mimetype-before-conversion=\"image/png\" loading=\"lazy\" data-attachment-id=\"2878\"></p>\n<p><strong>2. Navigeer naar toegansbeheer:</strong>\nIn het instellingen menu, kies je Toegangsbeheer<strong> &gt; Gebruikers</strong>. Hier zie je een volledige lijst van users die actief zijn in de organisatie.</p>\n<p><img src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-2.png\" alt=\"\" class=\"img img-fluid o_we_custom_image mx-auto d-block\" data-mimetype=\"image/png\" data-original-id=\"2879\" data-original-src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-2.png\" data-mimetype-before-conversion=\"image/png\" style=\"width: 50% !important;\" loading=\"lazy\" data-attachment-id=\"2879\"></p>\n<p><strong>3. Klik op de 'Gebruiker toevoegen' knop rechts boven</strong>.</p>\n<p><img src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-3.png\" alt=\"\" class=\"img img-fluid o_we_custom_image mx-auto d-block\" data-mimetype=\"image/png\" data-original-id=\"2885\" data-original-src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-3.png\" data-mimetype-before-conversion=\"image/png\" loading=\"lazy\" data-attachment-id=\"2885\"></p>\n<p><strong>4. Vul het email adres van de gebruiker in:</strong></p>\n<p><img src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-4.png\" alt=\"\" class=\"img img-fluid o_we_custom_image\" data-mimetype=\"image/png\" data-original-id=\"2886\" data-original-src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-4.png\" data-mimetype-before-conversion=\"image/png\" loading=\"lazy\" data-attachment-id=\"2886\"></p>\n<ul><li><strong>Bestaande gebruiker:</strong> Als de persoon al een Vesalius-account heeft, gebruik dan gewoon hun geregistreerde e-mailadres. Ze krijgen toegang tot je organisatie via hun bestaande account en kunnen tussen organisaties schakelen via het menu in de linkerbenedenhoek. </li><li><p><strong>Nieuwe gebruiker:</strong> Als de persoon geen account heeft, voer dan hun e-mailadres in en klik op gebruiker aanmaken. Je moet vervolgens hun profiel aanvullen met gegevens zoals:</p><ul><li>Aanspreking (None, Dr. , Mevr. or Mr.)</li><li><strong>Voornaam</strong></li><li><strong>Achternaam</strong></li><li><strong>Beschrijving</strong> (dit is enkel zichtbaar in de lijst)</li><li><strong>Gebruikersnaam (deze wordt automatisch gegenereerd door het systeem en wordt gebruikt om in te loggen)</strong></li></ul></li></ul>\n<p><img src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-5.png\" alt=\"\" class=\"img img-fluid o_we_custom_image\" data-mimetype=\"image/png\" data-original-id=\"2887\" data-original-src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-5.png\" data-mimetype-before-conversion=\"image/png\" loading=\"lazy\" data-attachment-id=\"2887\"></p>\n<p><strong>5. Voeg rollen toe:</strong>\nRoles determine what level of access and permissions the user will have. Examples of roles:</p>\n<p></p>\n<ul><li><strong>Facturatie Admin: Beheert de portemonnee.</strong></li><li><strong>Organisatie Admin: Beheert alles in de instellingen, behalve de portemonnee.</strong></li><li><strong>\tOrganisatie Manager: Heeft toegang tot instellingen, behalve Toegangsbeheer en Facturering.\n</strong></li><li><strong>Organisatie bewerkeb: Beheert het afsprakenrooster</strong></li><li><strong>Organisatie bekijken: Kan het afsprakenrooster bekijken (automatisch toegewezen).</strong></li></ul>\n<p><strong>6. Stel de functie van de gebruiker in: De functie bepaalt de rol van de gebruiker binnen de organisatie. Als de functie is ingesteld op zorgverlener, wordt de gebruiker zichtbaar als zorgverlener op het platform.</strong></p>\n<ul><li>Secretariaat</li><li>Zorgverstrekker/dokter (De gebruiker zal worden geïdentificeerd als zorgverlener/arts binnen het platform)</li><li>Verpleegkundige</li><li>Niet gespecifieerd</li></ul>\n<p><strong>7. Sla de gebruiker op: Klik op Opslaan om het proces te voltooien. De nieuwe gebruiker zal nu verschijnen in de sectie Toegangsbeheer &gt; Gebruikers. Ze ontvangen een e-mail met hun inloggegevens en een link om hun wachtwoord in te stellen. (Deze link is maar 48 uur geldig)</strong></p>\n<p><img src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-6.png\" alt=\"\" class=\"img img-fluid o_we_custom_image mx-auto d-block\" data-mimetype=\"image/png\" data-original-id=\"2888\" data-original-src=\"/uploads/faq/hoe-voeg-ik-een-collega-toe-aan-mijn-organisatie-9-6.png\" data-mimetype-before-conversion=\"image/png\" loading=\"lazy\" data-attachment-id=\"2888\"></p>\n<p><strong>8. Gebruiker kan inloggen:</strong> De gebruiker kan inloggen via <a target=\"_new\" href=\"https://assistant.vesalius.ai/login\">https://assistant.vesalius.ai/login</a> ​</p>\n<div class=\"s_alert s_alert_md alert alert-info w-100 clearfix\" role=\"alert\" data-vcss=\"001\" data-snippet=\"s_alert\" data-name=\"Waarschuwing\">\n        <i class=\"fa fa-lg fa-info-circle fa-stack d-flex align-items-center justify-content-center me-3 p-2 rounded-1 s_alert_icon\"></i>\n        <div class=\"s_alert_content\">\n            <p>De ontvangen e-mail is slechts 48 uur geldig. Als deze niet meer geldig is, kunt u de e-mail altijd opnieuw verzenden via Instellingen &gt; Toegangsbeheer &gt; Gebruikers. Zoek in het overzicht de betreffende gebruiker en klik op het e-mailicoon aan de rechterkant om het opnieuw te verzenden.</p>\n        </div>\n    </div>"
+      },
+      {
+        "id": "odoo-nl-10",
+        "slug": "mijn-registratie-link-is-verlopen-wat-moet-ik-doen-10",
+        "legacySlugs": [],
+        "question": "Mijn registratie link is verlopen. Wat moet ik doen",
+        "excerpt": "Als je registratie-link is verlopen, volg dan de onderstaande stappen om deze opnieuw te laten sturen: 1. Registratielinks zijn 48 uur geldig. Na deze tijd werkt de link niet me...",
+        "publishedAt": "16 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/mijn-registratie-link-is-verlopen-wat-moet-ik-doen-10-cover.webp",
+          "alt": "Mijn registratie link is verlopen. Wat moet ik doen",
+          "caption": ""
+        },
+        "tags": [
+          "Acces management"
+        ],
+        "body": "<p>Als je registratie-link is verlopen, volg dan de onderstaande stappen om deze opnieuw te laten sturen:</p>\n<p>\t1.\tRegistratielinks zijn 48 uur geldig. Na deze tijd werkt de link niet meer.</p>\n<p>\t2. Om een nieuwe registratie-link aan te vragen, neem contact op met de beheerder van je organisatie (organisatie admin).</p>\n<p><br></p>\n<p>De Organisatie admin kan de link opnieuw sturen door:</p>\n<p>\t• Navigeer naar Instellingen &gt; Toegangsbeheer &gt; Gebruikers.</p>\n<p><img src=\"/uploads/faq/mijn-registratie-link-is-verlopen-wat-moet-ik-doen-10-1.png\" alt=\"\" class=\"img img-fluid o_we_custom_image mx-auto d-block\" data-mimetype=\"image/png\" data-original-id=\"2890\" data-original-src=\"/uploads/faq/mijn-registratie-link-is-verlopen-wat-moet-ik-doen-10-1.png\" data-mimetype-before-conversion=\"image/png\" style=\"width: 50% !important;\" loading=\"lazy\"></p>\n<p>\t• Zoek het gebruikersprofiel in de lijst.</p>\n<p>\t• Klik op het email icoon aan de rechterkant om de registratie-link opnieuw te genereren en te verzenden.</p>\n<p><img src=\"/uploads/faq/mijn-registratie-link-is-verlopen-wat-moet-ik-doen-10-2.png\" alt=\"\" class=\"img img-fluid o_we_custom_image mx-auto d-block\" data-mimetype=\"image/png\" data-original-id=\"2891\" data-original-src=\"/uploads/faq/mijn-registratie-link-is-verlopen-wat-moet-ik-doen-10-2.png\" data-mimetype-before-conversion=\"image/png\" style=\"width: 25% !important;\" loading=\"lazy\"></p>\n<p>Zodra de nieuwe link is verzonden, zorg er dan voor dat je je registratie binnen 48 uur voltooit om te voorkomen dat de link opnieuw verloopt.</p>\n<p>\n\n\n</p>"
+      },
+      {
+        "id": "odoo-nl-6",
+        "slug": "mijn-samenvattingen-staan-in-de-verkeerde-taal-hoe-kan-ik-dit-wijzigen-6",
+        "legacySlugs": [],
+        "question": "Mijn samenvattingen staan in de verkeerde taal; hoe kan ik dit wijzigen?",
+        "excerpt": "Dit betekent dat de taal van je profiel niet correct is ingesteld. Je kunt dit oplossen door de taal in je profiel bij te werken. Dit werkt alleen voor de taal van de zorgverlen...",
+        "publishedAt": "16 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/mijn-samenvattingen-staan-in-de-verkeerde-taal-hoe-kan-ik-dit-wijzigen-6-cover.webp",
+          "alt": "Mijn samenvattingen staan in de verkeerde taal; hoe kan ik dit wijzigen?",
+          "caption": ""
+        },
+        "tags": [
+          "Languages",
+          "Summary"
+        ],
+        "body": "<p style=\"margin-bottom: 0px;\">Dit betekent dat de taal van je profiel niet correct is ingesteld. Je kunt dit oplossen door de taal in je profiel bij te werken.</p>\n<p style=\"margin-bottom: 0px;\"><br></p>\n<p style=\"margin-bottom: 0px;\">Dit werkt alleen voor de taal van de zorgverlener die gekoppeld is aan de samenvatting.</p>\n\n<p style=\"margin-bottom: 0px;\"><br></p>\n\n<p style=\"margin-bottom: 0px;\">Als de taal van je profiel niet correct is ingesteld, volg dan deze stappen om deze bij te werken:</p>\n\n<ol style=\"margin-bottom: 0px;\"><li>\tKlik op je naam in de linkerbenedenhoek</li><li>\tSelecteer de knop “Ga naar profiel” in het pop-upvenster.</li><li>\tZodra je in je profiel bent, klik je op de knop “Bewerken”.</li><li>Kies je gewenste taal uit de ondersteunde opties.</li></ol>\n\n<p style=\"margin-bottom: 0px;\"><br></p>\n\n<p>Na het aanbrengen van deze wijziging, worden alle samenvattingen gegenereerd in de door jou geselecteerde taal.</p>\n\n<h4><br></h4>"
+      },
+      {
+        "id": "odoo-nl-14",
+        "slug": "moet-ik-telkens-manueel-credits-toevoegen-aan-mijn-platform-14",
+        "legacySlugs": [],
+        "question": "Moet ik telkens manueel credits toevoegen aan mijn platform?",
+        "excerpt": "Nee, je kunt Automatisch Opwaarderen inschakelen om te voorkomen dat je zonder credits komt te zitten. Zo doe je dat: 1. Ga naar instellingen > Betaalinstellingen > Overzicht ....",
+        "publishedAt": "16 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/moet-ik-telkens-manueel-credits-toevoegen-aan-mijn-platform-14-cover.webp",
+          "alt": "Moet ik telkens manueel credits toevoegen aan mijn platform?",
+          "caption": ""
+        },
+        "tags": [
+          "Credits"
+        ],
+        "body": "<p>Nee, je kunt Automatisch Opwaarderen inschakelen om te voorkomen dat je zonder credits komt te zitten. Zo doe je dat: <br><br></p>\n<p>\t1. Ga naar instellingen <b>&gt; Betaalinstellingen &gt; Overzicht</b>.</p>\n<p>\t2. Schakel de schuifregelaar voor Automtische top-up aan.</p>\n<p>\t3. Stel het triggerbedrag in (het resterende aantal credits waarbij het systeem opwaardeert).</p>\n<p>\t4. Geef het aantal credits op dat bij elke opwaardering wordt toegevoegd<br><br>5. Je ontvangt een e-mail melding na elke automatische opwaardering.</p>\n<p>\t​</p>\n<p>\n\n\n</p>"
+      },
+      {
+        "id": "odoo-nl-12",
+        "slug": "wat-is-een-credit-12",
+        "legacySlugs": [],
+        "question": "Wat is een credit?",
+        "excerpt": "Een credit is de eenheid die wordt gebruikt om gesprekken op het platform te versturen. Elke credit komt overeen met één gesprek. Credits moeten vooraf worden gekocht in bundels...",
+        "publishedAt": "16 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/wat-is-een-credit-12-cover.webp",
+          "alt": "Wat is een credit?",
+          "caption": ""
+        },
+        "tags": [
+          "Credits"
+        ],
+        "body": "<p>Een credit is de eenheid die wordt gebruikt om gesprekken op het platform te versturen. Elke credit komt overeen met één gesprek. Credits moeten vooraf worden gekocht in bundels. Dit kan via Instellingen &gt; Betaalinstellingen &gt; Overzicht.</p>\n<p>\n\n\n</p>\n<p>\n\n\n</p>"
+      },
+      {
+        "id": "odoo-nl-13",
+        "slug": "wat-moet-ik-doen-als-ik-geen-credits-meer-heb-13",
+        "legacySlugs": [],
+        "question": "Wat moet ik doen als ik geen credits meer heb?",
+        "excerpt": "​ Als je zonder credits komt te zitten, kun je meer credits kopen door deze stappen te volgen: 1. Ga naar instellingen > betaalinstellingen > Overzicht 2. Kies een credit bundel...",
+        "publishedAt": "16 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/wat-moet-ik-doen-als-ik-geen-credits-meer-heb-13-cover.webp",
+          "alt": "Wat moet ik doen als ik geen credits meer heb?",
+          "caption": ""
+        },
+        "tags": [
+          "Credits"
+        ],
+        "body": "<p>​</p>\n\n<p>\tAls je zonder credits komt te zitten, kun je meer credits kopen door deze stappen te volgen: <br><br>1. Ga naar instellingen &gt; betaalinstellingen &gt; Overzicht</p>\n\n<p>\t2. Kies een credit bundel (beschikbare opties zijn: 50, 110, 225, or 700 credits).</p>\n\n<p>\t3.\tZorg ervoor dat er een creditcard is gekoppeld onder Betaalinstellingen &gt; Betaalmethoden.</p>\n\n<p>\t4.\tVoltooi de aankoop veilig via onze betalingspartner, Mollie.</p>\n<p><br></p>\n<p>Alle betalingen worden veilig verwerkt via onze betalingspartner Mollie. Je moet een geldige creditcard koppelen onder Betaalinstellingen &gt; Betaalmethoden om credits te kopen of automatisch opwaarderen in te schakelen.</p>\n<p><br></p>\n<p>Als je verdere vragen hebt, neem dan gerust contact op met ons supportteam.</p>\n<p>\n\n\n</p>\n\n<p>\n\n\n</p>"
+      },
+      {
+        "id": "odoo-nl-5",
+        "slug": "welke-talen-worden-ondersteund-door-de-chatbot-5",
+        "legacySlugs": [],
+        "question": "Welke talen worden ondersteund door de chatbot?",
+        "excerpt": "De chatbot ondersteunt meer dan 50 talen, zodat patiënten comfortabel kunnen communiceren in hun voorkeurstaal. Dit garandeert duidelijke en nauwkeurige antwoorden, ongeacht wel...",
+        "publishedAt": "16 januari 2025",
+        "authorName": "Quinten van Vesalius",
+        "heroImage": {
+          "src": "/uploads/faq/welke-talen-worden-ondersteund-door-de-chatbot-5-cover.webp",
+          "alt": "Welke talen worden ondersteund door de chatbot?",
+          "caption": ""
+        },
+        "tags": [
+          "Conversaties",
+          "Languages"
+        ],
+        "body": "<p>De chatbot ondersteunt meer dan 50 talen, zodat patiënten comfortabel kunnen communiceren in hun voorkeurstaal. Dit garandeert duidelijke en nauwkeurige antwoorden, ongeacht welke taal wordt gebruikt.</p>\n<p>Als je een ondersteunde taal op het platform merkt die nog niet zichtbaar is, neem dan contact met ons op via  <a href=\"mailto:help@vesalius.health\">help@vesalius.health</a>, en we zullen deze snel toevoegen.</p>\n<p><br></p>\n<p>List of all supported languages:</p>\n<p style=\"margin-bottom: 0px;\">Updated 01/01/2025</p>\n<p style=\"margin-bottom: 0px;\"><br></p>\n<ul style=\"margin-bottom: 0px;\"><li>Albanian, Albania</li><li>Arabic, Arab World</li><li>Armenian, Armenia</li><li>Awadhi, India</li><li>Azerbaijani, Azerbaijan</li><li>Bashkir, Russia</li><li>Basque, Spain</li><li>Belarusian, Belarus</li><li>Bengali, Bangladesh</li><li>Bhojpuri, India</li><li>Bosnian, Bosnia and Herzegovina</li><li>Brazilian Portuguese, Brazil</li><li>Bulgarian, Bulgaria</li><li>Cantonese (Yue), China</li><li>Catalan, Spain</li><li>Chhattisgarhi, India</li><li>Chinese, China</li><li>Croatian, Croatia</li><li>Czech, Czech Republic</li><li>Danish, Denmark</li><li>Dogri, India</li><li>Dutch, Netherlands</li><li>English, United Kingdom</li><li>Estonian, Estonia</li><li>Faroese, Faroe Islands</li><li>Finnish, Finland</li><li>French, France</li><li>Galician, Spain</li><li>Georgian, Georgia</li><li>German, Germany</li><li>Greek, Greece</li><li>Gujarati, India</li><li>Haryanvi, India</li><li>Hindi, India</li><li>Hungarian, Hungary</li><li>Indonesian, Indonesia</li><li>Irish, Ireland</li><li>Italian, Italy</li><li>Japanese, Japan</li><li>Javanese, Indonesia</li><li>Kannada, India</li><li>Kashmiri, India</li><li>Kazakh, Kazakhstan</li><li>Konkani, India</li><li>Korean, South Korea</li><li>Kyrgyz, Kyrgyzstan</li><li>Latvian, Latvia</li><li>Lithuanian, Lithuania</li><li>Macedonian, North Macedonia</li><li>Maithili, India</li><li>Malay, Malaysia</li><li>Maltese, Malta</li><li>Mandarin, China</li><li>Mandarin Chinese, China</li><li>Marathi, India</li><li>Marwari, India</li><li>Min Nan, China</li><li>Moldovan, Moldova</li><li>Mongolian, Mongolia</li><li>Montenegrin, Montenegro</li><li>Nepali, Nepal</li><li>Norwegian, Norway</li><li>Oriya, India</li><li>Pashto, Afghanistan</li><li>Persian (Farsi), Iran</li><li>Polish, Poland</li><li>Portuguese, Portugal</li><li>Punjabi, India</li><li>Rajasthani, India</li><li>Romanian, Romania</li><li>Russian, Russia</li><li>Sanskrit, India</li><li>Santali, India</li><li>Serbian, Serbia</li><li>Sindhi, Pakistan</li><li>Sinhala, Sri Lanka</li><li>Slovak, Slovakia</li><li>Slovene, Slovenia</li><li>Slovenian, Slovenia</li><li>Ukrainian, Ukraine</li><li>Urdu, Pakistan</li><li>Uzbek, Uzbekistan</li><li>Vietnamese, Vietnam</li><li>Welsh, Wales</li><li>Wu, China</li></ul>\n<p><br></p>"
       }
     ]
   },

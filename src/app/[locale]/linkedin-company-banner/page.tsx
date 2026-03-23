@@ -190,11 +190,11 @@ export default function LinkedinCompanyBannerPage() {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-40 w-full h-full flex items-center justify-between px-16">
+        <div className="relative z-40 w-full h-full flex items-center">
           
           {/* Left Text */}
-          <div className="flex flex-col justify-center translate-y-0.5">
-            <h1 className="text-[3.5rem] font-bold tracking-tight text-[#0B1B3D] mb-2 leading-[1.05]">
+          <div className="flex flex-col justify-center pl-[240px] translate-y-0.5">
+            <h1 className="text-[3.5rem] font-bold tracking-tight text-[#0B1B3D] mb-2 leading-[1.05] whitespace-nowrap">
               Be A Doctor <span className="font-display font-normal italic tracking-normal">Again.</span>
             </h1>
             <p className="text-[1.2rem] text-slate-500 leading-relaxed font-light whitespace-nowrap">
@@ -202,13 +202,13 @@ export default function LinkedinCompanyBannerPage() {
             </p>
           </div>
 
-          {/* Right Cards - scaled down version of exactly the same cards from personal banner */}
-          <div className="relative h-full flex items-center justify-center scale-[0.68] origin-right translate-x-8">
+          {/* Right Cards - absolutely positioned so they don't move when text moves */}
+          <div className="absolute right-[60px] h-full flex items-center justify-center scale-[0.60] origin-right">
              <div className="relative w-[500px] h-[300px]">
-               <div className="absolute right-[220px] top-[10px] z-20 transform -rotate-2">
+               <div className="absolute right-[220px] top-[15px] z-20 transform -rotate-2">
                   <FloatingChatCard />
                </div>
-               <div className="absolute right-[0px] top-[80px] z-30 shadow-2xl rounded-2xl transform rotate-1">
+               <div className="absolute right-[0px] top-[75px] z-30 shadow-2xl rounded-2xl transform rotate-1">
                   <FloatingScribeCard />
                </div>
              </div>
