@@ -107,7 +107,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="https://assistant.vesalius.ai/onboarding/credentials" target="_blank" rel="noopener noreferrer" className="rounded-full bg-[#0B1B3D] px-6 py-2.5 text-sm font-medium text-white hover:bg-slate-800 transition-all flex items-center gap-1.5 shadow-[0_4px_14px_-4px_rgba(11,27,61,0.5)] hover:-translate-y-0.5">
+            <a href="https://assistant.vesalius.ai/onboarding/credentials" target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-[#0B1B3D] px-6 py-2.5 text-sm font-medium text-white hover:bg-slate-800 transition-all flex items-center gap-1.5 shadow-[0_4px_14px_-4px_rgba(11,27,61,0.5)] hover:-translate-y-0.5">
               {t('tryForFree')}
               <span className="text-lg leading-none mb-0.5">↗</span>
             </a>

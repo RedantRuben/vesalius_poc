@@ -69,6 +69,15 @@
   },
   "Modules": {
     "title": "Een complete toolkit voor moderne zorgteams",
+    "beforeConsultation": "Voor de consultatie",
+    "duringConsultation": "Tijdens de consultatie",
+    "afterConsultation": "Na de consultatie",
+    "agenda": {
+      "tag1": "Slimme Planning",
+      "tag2": "Naadloos",
+      "title": "Agenda",
+      "description": "Beheer intelligent uw afspraken en optimaliseer uw agenda op basis van individuele patiëntbehoeften."
+    },
     "preConsultation": {
       "tag1": "Whatsapp",
       "tag2": "50+ Talen",

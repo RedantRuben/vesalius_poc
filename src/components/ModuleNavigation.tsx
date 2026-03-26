@@ -5,6 +5,7 @@ import { Link, usePathname } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 
 const modules = [
+  { path: '/product/agenda', key: 'agenda' },
   { path: '/product/pre-consultation', key: 'preConsultation' },
   { path: '/product/scribe', key: 'scribe' },
   { path: '/product/document-generation', key: 'documentGeneration' },

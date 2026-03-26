@@ -69,6 +69,15 @@
   },
   "Modules": {
     "title": "A complete toolkit for modern care teams",
+    "beforeConsultation": "Before consultation",
+    "duringConsultation": "During consultation",
+    "afterConsultation": "After consultation",
+    "agenda": {
+      "tag1": "Smart Scheduling",
+      "tag2": "Seamless",
+      "title": "Agenda",
+      "description": "Intelligently manage appointments and optimize your schedule based on individual patient needs."
+    },
     "preConsultation": {
       "tag1": "Whatsapp",
       "tag2": "50+ Languages",
