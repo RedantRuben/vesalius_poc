@@ -169,7 +169,7 @@ export default function Modules() {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Agenda (New) */}
-              <motion.div variants={itemVariants} className="lg:col-span-4">
+              <motion.div variants={itemVariants} className="lg:col-span-4 lg:order-2">
                 <Link href={`/${locale}/product/agenda`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80 cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   <div className="relative z-10 flex justify-between items-start mb-6">
@@ -239,7 +239,7 @@ export default function Modules() {
               </motion.div>
 
               {/* Pre Consultation */}
-              <motion.div variants={itemVariants} className="lg:col-span-4">
+              <motion.div variants={itemVariants} className="lg:col-span-4 lg:order-3">
                 <Link href={`/${locale}/product/pre-consultation`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   <div className="relative z-10 flex justify-between items-start mb-6">
@@ -293,7 +293,7 @@ export default function Modules() {
               </motion.div>
 
               {/* Smart Triage */}
-              <motion.div variants={itemVariants} className="lg:col-span-4">
+              <motion.div variants={itemVariants} className="lg:col-span-4 lg:order-1">
                 <Link href={`/${locale}/product/smart-triage`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80">
                   <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   <div className="relative z-10 flex justify-between items-start mb-6">
@@ -420,8 +420,148 @@ export default function Modules() {
                 </Link>
               </motion.div>
 
-              {/* Document Generation */}
+              {/* Medication Manager */}
               <motion.div variants={itemVariants} className="lg:col-span-6">
+                <Link href={`/${locale}/product/medication`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80">
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="relative z-10 flex justify-between items-start mb-6">
+                    <div className="flex gap-2.5">
+                      <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('medication.tag1')}</span>
+                      <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('medication.tag2')}</span>
+                    </div>
+                    <ArrowUpRight />
+                  </div>
+                  
+                  <div className="relative z-10 pointer-events-none flex-1">
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#0B1B3D] mb-3 tracking-tight">{t('medication.title')}</h3>
+                    <p className="text-slate-600 max-w-sm text-sm md:text-base leading-relaxed mb-8">
+                      {t('medication.description')}
+                    </p>
+                  </div>
+
+                  <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center gap-6 pointer-events-none group-hover:-translate-y-2 transition-transform duration-700">
+                      <div className="relative w-28 h-36 bg-white rounded-2xl border border-slate-100 flex flex-col items-center pt-4 overflow-hidden shadow-xl">
+                          <div className="w-10 h-1.5 bg-slate-200 rounded-full mb-4"></div>
+                          <div className="w-16 h-16 bg-slate-50 rounded-xl shadow-inner border border-slate-100 flex items-center justify-center relative">
+                              <div className="space-y-1.5 w-10">
+                                  <div className="h-1 bg-slate-200 w-full rounded-full"></div>
+                                  <div className="h-1 bg-slate-200 w-2/3 rounded-full"></div>
+                                  <div className="h-1 bg-slate-200 w-full rounded-full"></div>
+                              </div>
+                          </div>
+                          <motion.div 
+                              animate={{ top: ["20%", "80%", "20%"] }}
+                              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                              className="absolute w-full h-0.5 bg-indigo-400 shadow-[0_0_12px_rgba(99,102,241,0.8)] z-10"
+                          />
+                      </div>
+
+                      <motion.div
+                          animate={{ x: [0, 8, 0], opacity: [0.3, 1, 0.3] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-50">
+                              <path d="M5 12h14"/>
+                              <path d="m12 5 7 7-7 7"/>
+                          </svg>
+                      </motion.div>
+
+                      <motion.div 
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          whileInView={{ scale: 1, opacity: 1 }}
+                          transition={{ delay: 0.5, type: "spring", bounce: 0.4 }}
+                          className="w-24 h-28 bg-white rounded-2xl border border-indigo-100/50 shadow-xl flex flex-col items-center justify-center gap-3 p-3 relative"
+                      >
+                          <div className="absolute -top-3 -right-3 bg-gradient-to-tr from-indigo-500 to-indigo-400 rounded-full p-1.5 shadow-lg shadow-indigo-500/30 border border-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                          </div>
+                          <div className="w-12 h-12 bg-indigo-50 rounded-full flex items-center justify-center border border-indigo-100">
+                              <PillIcon />
+                          </div>
+                          <div className="w-14 h-1.5 bg-slate-200 rounded-full"></div>
+                      </motion.div>
+                  </div>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* SECTION 3: AFTER CONSULTATION */}
+          <div className="flex flex-col gap-10 md:gap-14">
+            <div className="flex items-center gap-4 md:gap-6 relative z-20">
+               <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-slate-200 flex-1"></div>
+               <div className="bg-white/80 backdrop-blur-md border border-slate-200/80 px-6 py-2.5 rounded-full flex items-center gap-3 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.08)]">
+                 <span className="relative flex h-2.5 w-2.5">
+                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#06ACC1] opacity-40"></span>
+                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#06ACC1]"></span>
+                 </span>
+                 <h3 className="text-xs md:text-sm font-bold text-slate-800 uppercase tracking-[0.15em]">{t('afterConsultation')}</h3>
+               </div>
+               <div className="h-px bg-gradient-to-l from-transparent via-slate-200 to-slate-200 flex-1"></div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+              {/* Smart Follow-ups */}
+              <motion.div variants={itemVariants} className="lg:col-span-7 lg:order-2">
+                <Link href={`/${locale}/product/smart-follow-up`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80">
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <div className="relative z-10 flex justify-between items-start mb-6">
+                        <div className="flex gap-2.5">
+                            <span className="bg-cyan-50 text-cyan-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('smartFollowUp.tag1')}</span>
+                            <span className="bg-cyan-50 text-cyan-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('smartFollowUp.tag2')}</span>
+                        </div>
+                        <ArrowUpRight />
+                    </div>
+                    
+                    <div className="relative z-10 pointer-events-none flex-1">
+                      <h3 className="text-2xl md:text-3xl font-bold text-[#0B1B3D] mb-3 tracking-tight">{t('smartFollowUp.title')}</h3>
+                      <p className="text-slate-600 max-w-sm text-sm md:text-base leading-relaxed mb-8">
+                          {t('smartFollowUp.description')}
+                      </p>
+                    </div>
+
+                    <div className="absolute bottom-8 left-0 right-0 flex justify-center pointer-events-none group-hover:-translate-y-2 transition-transform duration-700">
+                        <div className="w-full max-w-sm mx-4 bg-white rounded-2xl border border-slate-100 shadow-xl p-5 relative">
+                            <div className="flex justify-between items-center mb-3">
+                              <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest">{copy.progress}</span>
+                              <span className="text-xs font-bold text-[#06ACC1]">75%</span>
+                            </div>
+                            <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden mb-5">
+                                <motion.div 
+                                  initial={{ width: 0 }}
+                                  whileInView={{ width: "75%" }}
+                                  transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+                                  className="h-full bg-gradient-to-r from-[#0B1B3D] to-[#06ACC1] rounded-full" 
+                                />
+                            </div>
+
+                            <motion.div 
+                                initial={{ y: 20, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.8, type: "spring" }}
+                                className="flex items-center gap-3 p-3 bg-amber-50/80 border border-amber-200/50 rounded-xl"
+                            >
+                                <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-500 shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <line x1="12" y1="8" x2="12" y2="12"/>
+                                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-amber-700 text-xs uppercase tracking-wide">{copy.actionRequired}</h4>
+                                    <p className="text-amber-600/80 text-[10px] mt-0.5">{copy.deviation}</p>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </Link>
+              </motion.div>
+
+              {/* Document Generation */}
+              <motion.div variants={itemVariants} className="lg:col-span-5 lg:order-1">
                 <Link href={`/${locale}/product/document-generation`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80">
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   <div className="relative z-10 flex justify-between items-start mb-6">
@@ -481,146 +621,6 @@ export default function Modules() {
                             {copy.generated}
                         </motion.div>
                     </motion.div>
-                  </div>
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* SECTION 3: AFTER CONSULTATION */}
-          <div className="flex flex-col gap-10 md:gap-14">
-            <div className="flex items-center gap-4 md:gap-6 relative z-20">
-               <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-slate-200 flex-1"></div>
-               <div className="bg-white/80 backdrop-blur-md border border-slate-200/80 px-6 py-2.5 rounded-full flex items-center gap-3 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.08)]">
-                 <span className="relative flex h-2.5 w-2.5">
-                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#06ACC1] opacity-40"></span>
-                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#06ACC1]"></span>
-                 </span>
-                 <h3 className="text-xs md:text-sm font-bold text-slate-800 uppercase tracking-[0.15em]">{t('afterConsultation')}</h3>
-               </div>
-               <div className="h-px bg-gradient-to-l from-transparent via-slate-200 to-slate-200 flex-1"></div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              {/* Smart Follow-ups */}
-              <motion.div variants={itemVariants} className="lg:col-span-7">
-                <Link href={`/${locale}/product/smart-follow-up`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80">
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    <div className="relative z-10 flex justify-between items-start mb-6">
-                        <div className="flex gap-2.5">
-                            <span className="bg-cyan-50 text-cyan-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('smartFollowUp.tag1')}</span>
-                            <span className="bg-cyan-50 text-cyan-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('smartFollowUp.tag2')}</span>
-                        </div>
-                        <ArrowUpRight />
-                    </div>
-                    
-                    <div className="relative z-10 pointer-events-none flex-1">
-                      <h3 className="text-2xl md:text-3xl font-bold text-[#0B1B3D] mb-3 tracking-tight">{t('smartFollowUp.title')}</h3>
-                      <p className="text-slate-600 max-w-sm text-sm md:text-base leading-relaxed mb-8">
-                          {t('smartFollowUp.description')}
-                      </p>
-                    </div>
-
-                    <div className="absolute bottom-8 left-0 right-0 flex justify-center pointer-events-none group-hover:-translate-y-2 transition-transform duration-700">
-                        <div className="w-full max-w-sm mx-4 bg-white rounded-2xl border border-slate-100 shadow-xl p-5 relative">
-                            <div className="flex justify-between items-center mb-3">
-                              <span className="text-xs font-semibold text-slate-500 uppercase tracking-widest">{copy.progress}</span>
-                              <span className="text-xs font-bold text-[#06ACC1]">75%</span>
-                            </div>
-                            <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden mb-5">
-                                <motion.div 
-                                  initial={{ width: 0 }}
-                                  whileInView={{ width: "75%" }}
-                                  transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-                                  className="h-full bg-gradient-to-r from-[#0B1B3D] to-[#06ACC1] rounded-full" 
-                                />
-                            </div>
-
-                            <motion.div 
-                                initial={{ y: 20, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.8, type: "spring" }}
-                                className="flex items-center gap-3 p-3 bg-amber-50/80 border border-amber-200/50 rounded-xl"
-                            >
-                                <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-500 shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                        <circle cx="12" cy="12" r="10"/>
-                                        <line x1="12" y1="8" x2="12" y2="12"/>
-                                        <line x1="12" y1="16" x2="12.01" y2="16"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-amber-700 text-xs uppercase tracking-wide">{copy.actionRequired}</h4>
-                                    <p className="text-amber-600/80 text-[10px] mt-0.5">{copy.deviation}</p>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </Link>
-              </motion.div>
-
-              {/* Medication Manager */}
-              <motion.div variants={itemVariants} className="lg:col-span-5">
-                <Link href={`/${locale}/product/medication`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80">
-                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                  <div className="relative z-10 flex justify-between items-start mb-6">
-                    <div className="flex gap-2.5">
-                      <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('medication.tag1')}</span>
-                      <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('medication.tag2')}</span>
-                    </div>
-                    <ArrowUpRight />
-                  </div>
-                  
-                  <div className="relative z-10 pointer-events-none flex-1">
-                    <h3 className="text-2xl md:text-3xl font-bold text-[#0B1B3D] mb-3 tracking-tight">{t('medication.title')}</h3>
-                    <p className="text-slate-600 max-w-sm text-sm md:text-base leading-relaxed mb-8">
-                      {t('medication.description')}
-                    </p>
-                  </div>
-                  
-                  <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center gap-6 pointer-events-none group-hover:-translate-y-2 transition-transform duration-700">
-                      <div className="relative w-28 h-36 bg-white rounded-2xl border border-slate-100 flex flex-col items-center pt-4 overflow-hidden shadow-xl">
-                          <div className="w-10 h-1.5 bg-slate-200 rounded-full mb-4"></div>
-                          <div className="w-16 h-16 bg-slate-50 rounded-xl shadow-inner border border-slate-100 flex items-center justify-center relative">
-                              <div className="space-y-1.5 w-10">
-                                  <div className="h-1 bg-slate-200 w-full rounded-full"></div>
-                                  <div className="h-1 bg-slate-200 w-2/3 rounded-full"></div>
-                                  <div className="h-1 bg-slate-200 w-full rounded-full"></div>
-                              </div>
-                          </div>
-                          <motion.div 
-                              animate={{ top: ["20%", "80%", "20%"] }}
-                              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                              className="absolute w-full h-0.5 bg-indigo-400 shadow-[0_0_12px_rgba(99,102,241,0.8)] z-10"
-                          />
-                      </div>
-
-                      <motion.div
-                          animate={{ x: [0, 8, 0], opacity: [0.3, 1, 0.3] }}
-                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      >
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B1B3D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-50">
-                              <path d="M5 12h14"/>
-                              <path d="m12 5 7 7-7 7"/>
-                          </svg>
-                      </motion.div>
-
-                      <motion.div 
-                          initial={{ scale: 0.8, opacity: 0 }}
-                          whileInView={{ scale: 1, opacity: 1 }}
-                          transition={{ delay: 0.5, type: "spring", bounce: 0.4 }}
-                          className="w-24 h-28 bg-white rounded-2xl border border-indigo-100/50 shadow-xl flex flex-col items-center justify-center gap-3 p-3 relative"
-                      >
-                          <div className="absolute -top-3 -right-3 bg-gradient-to-tr from-indigo-500 to-indigo-400 rounded-full p-1.5 shadow-lg shadow-indigo-500/30 border border-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                <polyline points="20 6 9 17 4 12" />
-                              </svg>
-                          </div>
-                          <div className="w-12 h-12 bg-indigo-50 rounded-full flex items-center justify-center border border-indigo-100">
-                              <PillIcon />
-                          </div>
-                          <div className="w-14 h-1.5 bg-slate-200 rounded-full"></div>
-                      </motion.div>
                   </div>
                 </Link>
               </motion.div>

@@ -5,13 +5,13 @@ import { Link, usePathname } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 
 const modules = [
+  { path: '/product/smart-triage', key: 'smartTriage' },
   { path: '/product/agenda', key: 'agenda' },
   { path: '/product/pre-consultation', key: 'preConsultation' },
   { path: '/product/scribe', key: 'scribe' },
+  { path: '/product/medication', key: 'medication' },
   { path: '/product/document-generation', key: 'documentGeneration' },
-  { path: '/product/smart-triage', key: 'smartTriage' },
   { path: '/product/smart-follow-up', key: 'smartFollowUp' },
-  { path: '/product/medication', key: 'medication' }
 ];
 
 export default function ModuleNavigation() {

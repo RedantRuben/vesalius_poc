@@ -47,7 +47,7 @@ export default function Footer() {
             >
               <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/8 via-transparent to-[#06ACC1]/[0.06] opacity-90" />
               <Image
-                src="/vesalius-logo-with-text.svg"
+                src="/vesalius-logo-with-text-footer.svg"
                 alt="Vesalius.ai logo"
                 width={237}
                 height={41}
