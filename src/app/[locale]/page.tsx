@@ -52,7 +52,7 @@ export default async function Home({
         '@type': 'Organization',
         name: 'Vesalius',
         url: homepageUrl,
-        logo: getAbsoluteUrl(resolvedLocale, '/logo.webp'),
+        logo: getAbsoluteUrl(resolvedLocale, '/vesalius-logo-with-text.svg'),
         email: 'help@vesalius.health',
         sameAs: ['https://www.linkedin.com/company/vesaliushealth/posts/?feedView=all'],
         address: {

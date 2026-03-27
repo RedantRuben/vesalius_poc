@@ -43,20 +43,16 @@ export default function Footer() {
           <div className="flex max-w-md flex-col space-y-8">
             <Link
               href="/"
-              className="group relative inline-flex max-w-full items-center gap-3 sm:gap-4 rounded-[32px] border border-white/14 bg-white/[0.045] px-4 sm:px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_24px_60px_-32px_rgba(2,8,23,0.75)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/22 hover:bg-white/[0.06]"
+              className="group relative inline-flex max-w-full items-center rounded-[32px] border border-white/14 bg-white/[0.045] px-4 sm:px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_24px_60px_-32px_rgba(2,8,23,0.75)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/22 hover:bg-white/[0.06]"
             >
               <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/8 via-transparent to-[#06ACC1]/[0.06] opacity-90" />
               <Image
-                src="/vesaliuslogo.svg"
-                alt="Vesalius.ai icon"
-                width={52}
-                height={60}
-                className="relative h-12 w-auto shrink-0"
+                src="/vesalius-logo-with-text.svg"
+                alt="Vesalius.ai logo"
+                width={237}
+                height={41}
+                className="relative h-9 sm:h-10 w-auto shrink-0"
               />
-              <div className="relative min-w-0 flex items-end leading-none text-white">
-                <span className="text-[2.1rem] sm:text-[2.65rem] font-semibold tracking-[-0.05em]">Vesalius</span>
-                <span className="pb-0.5 sm:pb-1 text-[1.35rem] sm:text-[1.75rem] font-semibold tracking-[-0.04em] text-white/90">.ai</span>
-              </div>
             </Link>
             
             <div className="space-y-5">

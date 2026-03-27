@@ -86,10 +86,10 @@ export default function Navbar() {
           <div className="flex items-center z-50">
             <Link href="/">
               <Image
-                src="/vesalius.svg"
+                src="/vesalius-logo-with-text.svg"
                 alt="Vesalius.ai Logo"
-                width={196}
-                height={34}
+                width={237}
+                height={41}
                 className="object-contain h-7 md:h-8 w-auto hover:opacity-80 transition-opacity"
                 priority
               />

@@ -77,7 +77,7 @@ const copyByLocale = {
     badge: "Pre-consultatie",
     title: "Geautomatiseerde patiëntintake",
     description:
-      "Verzamel een volledige anamnese nog voor de afspraak start. Onze intelligente chatbot bevraagt de patiënt, begrijpt de symptomen en structureert alles voor uw review.",
+      "Breng de belangrijkste patiëntcontext al in kaart voor de afspraak start, zodat de consultatie meteen over de essentie kan gaan.",
     cta: "Ontdek meer",
     windowTitle: "Vesalius Intake",
     chat: [
@@ -88,21 +88,21 @@ const copyByLocale = {
     story: {
       problem: {
         eyebrow: "De uitdaging",
-        title: "Onvolledige context voor de consultatie",
+        title: "Te weinig tijd voor te veel verhaal",
         description:
-          "Artsen stappen vaak blind een consultatieruimte binnen. Kostbare tijd gaat verloren aan het stellen van basisvragen, het in kaart brengen van symptomen of het overwinnen van taalbarrières.",
+          "Een consultatie duurt gemiddeld 15 minuten. Het verhaal van de patiënt vaak veel langer. Vesalius brengt de belangrijkste context al in kaart voor de arts de kamer binnenstapt, zodat elk gesprek begint waar het echt toe doet.",
       },
       solution: {
         eyebrow: "De Vesalius oplossing",
-        title: "Intelligente AI-triage en intake",
+        title: "De essentie staat klaar nog voor het gesprek begint",
         description:
-          "Vesalius neemt proactief contact op met de patiënt via WhatsApp voor hun bezoek. Onze meertalige AI voert een conversatie om symptomen en medische geschiedenis te verzamelen, zonder dat de patiënt een app hoeft te downloaden.",
+          "Voor de afspraak voert Vesalius via WhatsApp een gestructureerd gesprek met de patiënt. Klachten, tijdslijn en relevante voorgeschiedenis worden vooraf samengevat in een helder overzicht voor de arts, zonder extra app of extra administratie.",
       },
       result: {
         eyebrow: "Het resultaat",
-        title: "Klaar voor betekenisvolle zorg",
+        title: "Meer consulttijd voor wat er echt toe doet",
         description:
-          "U start het consult met een gestructureerde samenvatting van de klachten, al geïntegreerd in uw EPD. Taalbarrières verdwijnen en u kunt zich direct richten op de diagnose en behandeling.",
+          "U start het consult met de kern al scherp in beeld. Minder tijd gaat naar herhalen, ordenen en reconstrueren, en meer tijd naar klinisch redeneren, uitleg en echte aandacht voor de patiënt.",
       }
     }
   },

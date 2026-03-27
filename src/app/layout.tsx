@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
   },
   icons: {
-    icon: "/vesaliuslogo.svg",
+    icon: "/vesalius-logo.svg",
   },
 };
 
