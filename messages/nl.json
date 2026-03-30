@@ -264,7 +264,7 @@
     "submitError": "We konden uw aanvraag momenteel niet afronden. Probeer het opnieuw.",
     "pricingFallbackPlan": "geselecteerd prijsplan",
     "honeypotLabel": "Laat dit veld leeg",
-    "turnstileLabel": "Anti-spamcontrole",
+    "turnstileLabel": "Beveiligingscontrole",
     "turnstileRequired": "Rond eerst de anti-spamcontrole af voor u verzendt."
   },
   "SupportForm": {

@@ -94,6 +94,7 @@ export default function Footer() {
           <div className="flex max-w-sm flex-col">
             <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('help')}</h3>
             <ul className="space-y-4 mb-10">
+              <li><Link href="/support" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('support')}</Link></li>
               <li><Link href="/contactus" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('contact')}</Link></li>
             </ul>
 
