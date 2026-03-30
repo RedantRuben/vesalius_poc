@@ -262,7 +262,10 @@
   "SharedForm": {
     "submitting": "Sending...",
     "submitError": "We could not complete your request right now. Please try again.",
-    "pricingFallbackPlan": "selected pricing plan"
+    "pricingFallbackPlan": "selected pricing plan",
+    "honeypotLabel": "Leave this field empty",
+    "turnstileLabel": "Anti-spam check",
+    "turnstileRequired": "Please complete the anti-spam check before submitting."
   },
   "SupportForm": {
     "nameLabel": "Name",

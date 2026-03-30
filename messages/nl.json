@@ -262,7 +262,10 @@
   "SharedForm": {
     "submitting": "Verzenden...",
     "submitError": "We konden uw aanvraag momenteel niet afronden. Probeer het opnieuw.",
-    "pricingFallbackPlan": "geselecteerd prijsplan"
+    "pricingFallbackPlan": "geselecteerd prijsplan",
+    "honeypotLabel": "Laat dit veld leeg",
+    "turnstileLabel": "Anti-spamcontrole",
+    "turnstileRequired": "Rond eerst de anti-spamcontrole af voor u verzendt."
   },
   "SupportForm": {
     "nameLabel": "Naam",

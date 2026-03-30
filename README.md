@@ -48,9 +48,13 @@ SMTP_PORT=
 SMTP_USER=
 SMTP_PASS=
 SMTP_FROM=
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET_KEY=
 ```
 
 Without these, the contact and demo forms cannot send mail from the React app.
+
+Set the Turnstile keys to enable Cloudflare's anti-spam challenge on the public contact, demo, and support forms. If the keys are left blank, the forms still keep the honeypot, submit-timing check, and in-memory rate limiting, but Turnstile verification stays disabled.
 
 This may be free if Vesalius already pays for domain email that includes SMTP. If not, a transactional mail provider may be needed.
 
@@ -99,6 +103,7 @@ This is designed as a quick on-disk CMS for a server you control. If you deploy 
 
 - no SMTP credentials means email forms cannot work in production yet
 - no Odoo API credentials means the support form cannot create Helpdesk tickets yet
+- no Turnstile keys means public forms rely on the fallback anti-spam checks only
 
 ## Verification
 

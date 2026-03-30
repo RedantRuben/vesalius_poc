@@ -1,10 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
+import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import { useRouter } from '@/i18n/routing';
 import { FieldError, FormAlert } from '@/components/forms/FormFeedback';
+import {
+  FORM_HONEYPOT_FIELD,
+  FORM_SUBMITTED_AT_FIELD,
+  FORM_TURNSTILE_TOKEN_FIELD,
+  getTurnstileSiteKey,
+} from '@/lib/forms/antispam';
 import type { FieldErrors, FormErrorResponse, FormSuccessResponse } from '@/lib/forms/types';
 
 const inputClassName =
@@ -23,9 +30,13 @@ export default function DemoRequestForm({ sourcePage }: { sourcePage: string }) 
   const shared = useTranslations('SharedForm');
   const locale = useLocale();
   const router = useRouter();
+  const submittedAtRef = useRef(Date.now());
+  const honeypotId = useId();
+  const turnstileEnabled = Boolean(getTurnstileSiteKey());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<string>();
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [honeypot, setHoneypot] = useState('');
   const [formState, setFormState] = useState<DemoFormState>({
     email: '',
     message: '',
@@ -33,6 +44,8 @@ export default function DemoRequestForm({ sourcePage }: { sourcePage: string }) 
     organisation: '',
     role: '',
   });
+  const [turnstileResetSignal, setTurnstileResetSignal] = useState(0);
+  const [turnstileToken, setTurnstileToken] = useState('');
 
   function updateField<K extends keyof DemoFormState>(key: K, value: DemoFormState[K]) {
     setFormState((current) => ({
@@ -57,9 +70,18 @@ export default function DemoRequestForm({ sourcePage }: { sourcePage: string }) 
     setFormError(undefined);
     setFieldErrors({});
 
+    if (turnstileEnabled && !turnstileToken) {
+      setFormError(shared('turnstileRequired'));
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const response = await fetch('/api/forms/demo', {
         body: JSON.stringify({
+          [FORM_HONEYPOT_FIELD]: honeypot,
+          [FORM_SUBMITTED_AT_FIELD]: submittedAtRef.current,
+          [FORM_TURNSTILE_TOKEN_FIELD]: turnstileToken,
           ...formState,
           locale,
           sourcePage,
@@ -76,12 +98,23 @@ export default function DemoRequestForm({ sourcePage }: { sourcePage: string }) 
         const error = data as FormErrorResponse;
         setFieldErrors(error.fieldErrors ?? {});
         setFormError(error.message || shared('submitError'));
+
+        if (turnstileEnabled && !error.fieldErrors) {
+          setTurnstileToken('');
+          setTurnstileResetSignal((current) => current + 1);
+        }
+
         return;
       }
 
       router.push(data.redirectTo);
     } catch {
       setFormError(shared('submitError'));
+
+      if (turnstileEnabled) {
+        setTurnstileToken('');
+        setTurnstileResetSignal((current) => current + 1);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -90,6 +123,22 @@ export default function DemoRequestForm({ sourcePage }: { sourcePage: string }) 
   return (
     <form className="space-y-6" onSubmit={handleSubmit} noValidate>
       <FormAlert message={formError} />
+
+      <div
+        aria-hidden="true"
+        className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+      >
+        <label htmlFor={honeypotId}>{shared('honeypotLabel')}</label>
+        <input
+          autoComplete="off"
+          id={honeypotId}
+          name={FORM_HONEYPOT_FIELD}
+          onChange={(event) => setHoneypot(event.target.value)}
+          tabIndex={-1}
+          type="text"
+          value={honeypot}
+        />
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
@@ -165,6 +214,19 @@ export default function DemoRequestForm({ sourcePage }: { sourcePage: string }) 
         />
         <FieldError message={fieldErrors.message} />
       </div>
+
+      {turnstileEnabled ? (
+        <div className="space-y-3">
+          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">
+            {shared('turnstileLabel')}
+          </p>
+          <TurnstileWidget
+            action="demo_form"
+            onTokenChange={setTurnstileToken}
+            resetSignal={turnstileResetSignal}
+          />
+        </div>
+      ) : null}
 
       <button
         className="w-full md:w-auto bg-[#0B1B3D] text-white px-10 py-4 rounded-full font-bold tracking-wide hover:bg-slate-800 transition-all flex items-center justify-center gap-3 shadow-[0_8px_20px_-6px_rgba(11,27,61,0.5)] hover:-translate-y-1 group mt-4 disabled:cursor-not-allowed disabled:opacity-70"

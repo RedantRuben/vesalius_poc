@@ -262,7 +262,10 @@
   "SharedForm": {
     "submitting": "Envoi...",
     "submitError": "Nous n'avons pas pu finaliser votre demande pour le moment. Veuillez réessayer.",
-    "pricingFallbackPlan": "offre sélectionnée"
+    "pricingFallbackPlan": "offre sélectionnée",
+    "honeypotLabel": "Laissez ce champ vide",
+    "turnstileLabel": "Vérification anti-spam",
+    "turnstileRequired": "Veuillez d'abord compléter la vérification anti-spam avant l'envoi."
   },
   "SupportForm": {
     "nameLabel": "Nom",

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+import { extractAntiSpamPayload } from '@/lib/forms/antispam';
 import { FORM_SUCCESS_PATHS, localizePath } from '@/lib/forms/paths';
 import {
   DEFAULT_CONTACT_PAGE_RECIPIENT_EMAIL,
@@ -7,6 +8,7 @@ import {
   DEFAULT_PRICING_RECIPIENT_EMAIL,
 } from '@/lib/forms/constants';
 import { validateContactPayload } from '@/lib/forms/validation';
+import { protectFormSubmission } from '@/lib/server/formProtection';
 import { sendContactEmail } from '@/lib/server/mailer';
 import { submissionLogger } from '@/lib/server/submissionLogger';
 
@@ -51,12 +53,35 @@ export async function POST(request: Request) {
     return NextResponse.json(result, { status: 400 });
   }
 
+  const protectionResult = await protectFormSubmission({
+    antiSpam: extractAntiSpamPayload(payload),
+    formName: 'contact',
+    request,
+  });
+
+  if (!protectionResult.ok) {
+    submissionLogger.info('form.contact.blocked', {
+      ipAddress: protectionResult.ipAddress,
+      locale: result.data.locale,
+      reason: protectionResult.reason,
+      sourcePage: result.data.sourcePage,
+      userAgent: protectionResult.userAgent,
+    });
+
+    return NextResponse.json(
+      { message: protectionResult.message, ok: false },
+      { status: protectionResult.status },
+    );
+  }
+
   const recipient = resolveContactRecipient(result.data.sourcePage);
 
   submissionLogger.info('form.contact.received', {
     email: result.data.email,
+    ipAddress: protectionResult.ipAddress,
     locale: result.data.locale,
     sourcePage: result.data.sourcePage,
+    userAgent: protectionResult.userAgent,
   });
 
   try {
