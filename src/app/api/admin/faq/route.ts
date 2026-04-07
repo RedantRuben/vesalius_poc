@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     console.error('Failed to write FAQ CMS content:', error);
     return NextResponse.json(
       {
-        message: 'Could not save FAQ content.',
+        message: error instanceof Error ? error.message : 'Could not save FAQ content.',
         ok: false,
       },
       { status: 500 },

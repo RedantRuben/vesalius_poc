@@ -1,10 +1,7 @@
-import crypto from 'node:crypto';
-import { mkdir, writeFile } from 'node:fs/promises';
-import path from 'node:path';
-
 import { NextResponse } from 'next/server';
 
 import { getFaqAdminSessionToken, verifyFaqAdminSession } from '@/lib/server/faq-admin-auth';
+import { uploadFaqImage } from '@/lib/server/faq-cms';
 
 export const runtime = 'nodejs';
 
@@ -41,17 +38,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: 'File is too large.', ok: false }, { status: 400 });
   }
 
-  const extension = allowedTypes.get(file.type) || '.png';
-  const fileName = `${Date.now()}-${crypto.randomUUID()}${extension}`;
-  const relativePath = path.join('uploads', 'faq', fileName);
-  const uploadDirectory = path.join(process.cwd(), 'public', 'uploads', 'faq');
-  const absolutePath = path.join(process.cwd(), 'public', relativePath);
+  try {
+    const url = await uploadFaqImage(file);
 
-  await mkdir(uploadDirectory, { recursive: true });
-  await writeFile(absolutePath, Buffer.from(await file.arrayBuffer()));
-
-  return NextResponse.json({
-    ok: true,
-    url: `/${relativePath.replaceAll(path.sep, '/')}`,
-  });
+    return NextResponse.json({
+      ok: true,
+      url,
+    });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: error instanceof Error ? error.message : 'Upload failed.',
+        ok: false,
+      },
+      { status: 500 },
+    );
+  }
 }

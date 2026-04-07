@@ -86,18 +86,20 @@ If they stay blank, support tickets still get created, and those values remain v
 
 ### FAQ CMS admin
 
-To enable the lightweight FAQ CMS, add these values:
+To enable the FAQ admin, add these values:
 
 ```env
 FAQ_ADMIN_USERNAME=
 FAQ_ADMIN_PASSWORD=
 FAQ_ADMIN_SECRET=
+NEXT_PUBLIC_CONVEX_URL=
+CONVEX_DEPLOY_KEY=
 ```
 
 Then visit `/en/admin/login`, `/nl/admin/login`, or `/fr/admin/login`.
 
-The CMS stores FAQ content in `src/data/faq-content.json` and uploads images into `public/uploads/faq/`.
-This is designed as a quick on-disk CMS for a server you control. If you deploy to a fully immutable/serverless platform, those edits will not persist without adding external storage later.
+The CMS now persists FAQ content and uploads through Convex.
+The existing `src/data/faq-content.json` file remains as a local fallback and migration seed until Convex contains FAQ content.
 
 ## Current Blockers
 
