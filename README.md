@@ -48,9 +48,13 @@ SMTP_PORT=
 SMTP_USER=
 SMTP_PASS=
 SMTP_FROM=
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET_KEY=
 ```
 
 Without these, the contact and demo forms cannot send mail from the React app.
+
+Set the Turnstile keys to enable Cloudflare's anti-spam challenge on the public contact, demo, and support forms. If the keys are left blank, the forms still keep the honeypot, submit-timing check, and in-memory rate limiting, but Turnstile verification stays disabled.
 
 This may be free if Vesalius already pays for domain email that includes SMTP. If not, a transactional mail provider may be needed.
 
@@ -82,23 +86,26 @@ If they stay blank, support tickets still get created, and those values remain v
 
 ### FAQ CMS admin
 
-To enable the lightweight FAQ CMS, add these values:
+To enable the FAQ admin, add these values:
 
 ```env
 FAQ_ADMIN_USERNAME=
 FAQ_ADMIN_PASSWORD=
 FAQ_ADMIN_SECRET=
+NEXT_PUBLIC_CONVEX_URL=
+CONVEX_DEPLOY_KEY=
 ```
 
 Then visit `/en/admin/login`, `/nl/admin/login`, or `/fr/admin/login`.
 
-The CMS stores FAQ content in `src/data/faq-content.json` and uploads images into `public/uploads/faq/`.
-This is designed as a quick on-disk CMS for a server you control. If you deploy to a fully immutable/serverless platform, those edits will not persist without adding external storage later.
+The CMS now persists FAQ content and uploads through Convex.
+The existing `src/data/faq-content.json` file remains as a local fallback and migration seed until Convex contains FAQ content.
 
 ## Current Blockers
 
 - no SMTP credentials means email forms cannot work in production yet
 - no Odoo API credentials means the support form cannot create Helpdesk tickets yet
+- no Turnstile keys means public forms rely on the fallback anti-spam checks only
 
 ## Verification
 

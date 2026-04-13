@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 
+const CONSENT_EVENT = 'cookie-consent-updated';
+
 type CookiePreferences = {
   necessary: boolean;
   functionality: boolean;
@@ -38,6 +40,7 @@ export default function CookieConsent() {
   const saveConsent = (prefs: CookiePreferences) => {
     localStorage.setItem('cookie-consent', JSON.stringify(prefs));
     localStorage.setItem('cookie-consent-date', new Date().toISOString());
+    window.dispatchEvent(new Event(CONSENT_EVENT));
     setIsVisible(false);
   };
 
@@ -227,4 +230,3 @@ export default function CookieConsent() {
     </AnimatePresence>
   );
 }
-

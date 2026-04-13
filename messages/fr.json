@@ -69,6 +69,15 @@
   },
   "Modules": {
     "title": "Une suite complète pour les équipes de soins modernes",
+    "beforeConsultation": "Avant la consultation",
+    "duringConsultation": "Pendant la consultation",
+    "afterConsultation": "Après la consultation",
+    "agenda": {
+      "tag1": "Planification intelligente",
+      "tag2": "Fluide",
+      "title": "Agenda",
+      "description": "Gérez intelligemment les rendez-vous et optimisez votre emploi du temps en fonction des besoins individuels des patients."
+    },
     "preConsultation": {
       "tag1": "Whatsapp",
       "tag2": "50+ Langues",
@@ -253,7 +262,10 @@
   "SharedForm": {
     "submitting": "Envoi...",
     "submitError": "Nous n'avons pas pu finaliser votre demande pour le moment. Veuillez réessayer.",
-    "pricingFallbackPlan": "offre sélectionnée"
+    "pricingFallbackPlan": "offre sélectionnée",
+    "honeypotLabel": "Laissez ce champ vide",
+    "turnstileLabel": "Vérification de sécurité",
+    "turnstileRequired": "Veuillez d'abord compléter la vérification anti-spam avant l'envoi."
   },
   "SupportForm": {
     "nameLabel": "Nom",

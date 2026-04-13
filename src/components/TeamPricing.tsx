@@ -183,7 +183,7 @@ export default function TeamPricing({ billingCycle }: TeamPricingProps) {
 
                 <Link
                   href={`/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}&billing=${billingCycle}`}
-                  className="w-full py-4 rounded-full font-bold tracking-wide transition-all flex items-center justify-center gap-2 group-hover:bg-[#0B1B3D] group-hover:text-white group-hover:border-transparent bg-white text-[#0B1B3D] border border-slate-200 shadow-sm"
+                  className="w-full py-4 rounded-2xl font-bold tracking-wide transition-all flex items-center justify-center gap-2 group-hover:bg-[#0B1B3D] group-hover:text-white group-hover:border-transparent bg-white text-[#0B1B3D] border border-slate-200 shadow-sm"
                 >
                   {plan.buttonText}
                   <span className="transition-transform group-hover:translate-x-1">→</span>

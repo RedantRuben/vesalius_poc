@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 
+import { extractAntiSpamPayload } from '@/lib/forms/antispam';
 import { FORM_SUCCESS_PATHS, localizePath } from '@/lib/forms/paths';
 import { validateDemoPayload } from '@/lib/forms/validation';
 import { submitDemoRequest } from '@/lib/server/demo';
+import { protectFormSubmission } from '@/lib/server/formProtection';
 import { submissionLogger } from '@/lib/server/submissionLogger';
 
 export const runtime = 'nodejs';
@@ -25,10 +27,33 @@ export async function POST(request: Request) {
     return NextResponse.json(result, { status: 400 });
   }
 
+  const protectionResult = await protectFormSubmission({
+    antiSpam: extractAntiSpamPayload(payload),
+    formName: 'demo',
+    request,
+  });
+
+  if (!protectionResult.ok) {
+    submissionLogger.info('form.demo.blocked', {
+      ipAddress: protectionResult.ipAddress,
+      locale: result.data.locale,
+      reason: protectionResult.reason,
+      sourcePage: result.data.sourcePage,
+      userAgent: protectionResult.userAgent,
+    });
+
+    return NextResponse.json(
+      { message: protectionResult.message, ok: false },
+      { status: protectionResult.status },
+    );
+  }
+
   submissionLogger.info('form.demo.received', {
     email: result.data.email,
+    ipAddress: protectionResult.ipAddress,
     locale: result.data.locale,
     sourcePage: result.data.sourcePage,
+    userAgent: protectionResult.userAgent,
   });
 
   try {

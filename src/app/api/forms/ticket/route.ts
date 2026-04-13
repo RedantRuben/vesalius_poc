@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 
+import { extractAntiSpamFormData } from '@/lib/forms/antispam';
 import { FORM_SUCCESS_PATHS, localizePath } from '@/lib/forms/paths';
 import { validateTicketFormData } from '@/lib/forms/validation';
+import { protectFormSubmission } from '@/lib/server/formProtection';
 import { createHelpdeskTicket } from '@/lib/server/odoo';
 import { submissionLogger } from '@/lib/server/submissionLogger';
 
@@ -25,11 +27,35 @@ export async function POST(request: Request) {
     return NextResponse.json(result, { status: 400 });
   }
 
+  const protectionResult = await protectFormSubmission({
+    antiSpam: extractAntiSpamFormData(formData),
+    formName: 'ticket',
+    request,
+  });
+
+  if (!protectionResult.ok) {
+    submissionLogger.info('form.ticket.blocked', {
+      ipAddress: protectionResult.ipAddress,
+      locale: result.data.locale,
+      reason: protectionResult.reason,
+      sourcePage: result.data.sourcePage,
+      ticketType: result.data.ticketType,
+      userAgent: protectionResult.userAgent,
+    });
+
+    return NextResponse.json(
+      { message: protectionResult.message, ok: false },
+      { status: protectionResult.status },
+    );
+  }
+
   submissionLogger.info('form.ticket.received', {
     email: result.data.email,
+    ipAddress: protectionResult.ipAddress,
     locale: result.data.locale,
     sourcePage: result.data.sourcePage,
     ticketType: result.data.ticketType,
+    userAgent: protectionResult.userAgent,
   });
 
   try {

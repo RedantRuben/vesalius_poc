@@ -58,6 +58,10 @@ function getSlugNumericSuffix(value: string) {
   return match?.[1] ?? '';
 }
 
+function getArticleGroupKey(article: Pick<FaqArticle, 'id' | 'slug'>) {
+  return getSlugNumericSuffix(article.slug) || stripLegacySuffix(article.slug) || article.id;
+}
+
 function deriveExcerptFromBody(body: string, fallback = '') {
   const plainText = stripHtml(body);
   if (!plainText) {
@@ -394,29 +398,41 @@ export function findFaqArticleRouteMatch(
   }
 
   const normalizedSlug = stripLegacySuffix(slug);
-  const localizedItems = content[locale].items;
+  let matchedSourceArticle: FaqArticle | undefined;
 
-  for (let index = 0; index < localizedItems.length; index += 1) {
+  for (const sourceLocale of FAQ_LOCALES) {
+    const sourceMatch = findFaqArticleBySlug(content, sourceLocale, slug);
+
+    if (sourceMatch) {
+      matchedSourceArticle = sourceMatch;
+      break;
+    }
+  }
+
+  if (!matchedSourceArticle) {
     for (const sourceLocale of FAQ_LOCALES) {
-      const sourceArticle = content[sourceLocale].items[index];
+      matchedSourceArticle = content[sourceLocale].items.find(
+        (item) =>
+          stripLegacySuffix(item.slug) === normalizedSlug ||
+          item.legacySlugs?.some((legacySlug) => stripLegacySuffix(legacySlug) === normalizedSlug),
+      );
 
-      if (!sourceArticle) {
-        continue;
-      }
-
-      const slugMatches =
-        stripLegacySuffix(sourceArticle.slug) === normalizedSlug ||
-        sourceArticle.legacySlugs?.some(
-          (legacySlug) => stripLegacySuffix(legacySlug) === normalizedSlug,
-        );
-
-      if (slugMatches) {
-        return localizedItems[index];
+      if (matchedSourceArticle) {
+        break;
       }
     }
   }
 
-  return undefined;
+  if (!matchedSourceArticle) {
+    return undefined;
+  }
+
+  const localizedItems = content[locale].items;
+  const sourceGroupKey = getArticleGroupKey(matchedSourceArticle);
+
+  return localizedItems.find(
+    (item) => item.id === matchedSourceArticle.id || getArticleGroupKey(item) === sourceGroupKey,
+  );
 }
 
 export function getArticleExcerpt(article: FaqArticle) {

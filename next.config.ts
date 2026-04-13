@@ -10,6 +10,18 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**.convex.cloud',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.convex.site',
+      },
+      {
+        protocol: 'https',
+        hostname: 'vesalius.odoo.com',
+      },
     ],
   },
   async redirects() {

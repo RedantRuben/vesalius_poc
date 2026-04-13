@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { notFound, redirect } from 'next/navigation';
 
 import FaqArticlePage from '@/components/faq/FaqArticlePage';
@@ -10,8 +12,26 @@ import {
 } from '@/lib/faq/routes';
 import { readFaqContent } from '@/lib/server/faq-cms';
 import { FAQ_LOCALES, type FaqLocale } from '@/lib/faq/types';
+import { buildPageMetadata, resolveSiteLocale } from '@/lib/seo';
 
 export const dynamic = 'force-dynamic';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; collection: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, collection, slug } = await params;
+
+  return buildPageMetadata({
+    locale: resolveSiteLocale(locale),
+    pathname: `/blog/${collection}/${slug}`,
+    title: 'Support Article',
+    description: 'Support and configuration article for the Vesalius platform.',
+    noindex: true,
+    includeLanguageAlternates: false,
+  });
+}
 
 export default async function FaqBlogArticlePage({
   params,

@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
 import { FieldError, FormAlert } from '@/components/forms/FormFeedback';
+import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import {
   ALLOWED_ATTACHMENT_EXTENSIONS,
   ALLOWED_ATTACHMENT_MIME_TYPES,
@@ -11,6 +12,12 @@ import {
   TICKET_TYPE_CONFIG,
 } from '@/lib/forms/constants';
 import { useRouter } from '@/i18n/routing';
+import {
+  FORM_HONEYPOT_FIELD,
+  FORM_SUBMITTED_AT_FIELD,
+  FORM_TURNSTILE_TOKEN_FIELD,
+  getTurnstileSiteKey,
+} from '@/lib/forms/antispam';
 import type { FieldErrors, FormErrorResponse, FormSuccessResponse, PublicTicketType } from '@/lib/forms/types';
 
 const inputClassName =
@@ -31,9 +38,13 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
   const shared = useTranslations('SharedForm');
   const locale = useLocale();
   const router = useRouter();
+  const submittedAtRef = useRef(Date.now());
+  const honeypotId = useId();
+  const turnstileEnabled = Boolean(getTurnstileSiteKey());
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<string>();
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [honeypot, setHoneypot] = useState('');
   const [formState, setFormState] = useState<SupportFormState>({
     description: '',
     email: '',
@@ -42,6 +53,8 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
     subject: '',
     ticketType: 'question',
   });
+  const [turnstileResetSignal, setTurnstileResetSignal] = useState(0);
+  const [turnstileToken, setTurnstileToken] = useState('');
   const selectedTicketType =
     TICKET_TYPE_CONFIG.find((item) => item.value === formState.ticketType) ?? TICKET_TYPE_CONFIG[0];
 
@@ -100,7 +113,16 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
       return;
     }
 
+    if (turnstileEnabled && !turnstileToken) {
+      setFormError(shared('turnstileRequired'));
+      setIsSubmitting(false);
+      return;
+    }
+
     const payload = new FormData();
+    payload.set(FORM_HONEYPOT_FIELD, honeypot);
+    payload.set(FORM_SUBMITTED_AT_FIELD, String(submittedAtRef.current));
+    payload.set(FORM_TURNSTILE_TOKEN_FIELD, turnstileToken);
     payload.set('name', formState.name);
     payload.set('email', formState.email);
     payload.set('organisation', formState.organisation);
@@ -126,12 +148,23 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
         const error = data as FormErrorResponse;
         setFieldErrors(error.fieldErrors ?? {});
         setFormError(error.message || shared('submitError'));
+
+        if (turnstileEnabled && !error.fieldErrors) {
+          setTurnstileToken('');
+          setTurnstileResetSignal((current) => current + 1);
+        }
+
         return;
       }
 
       router.push(data.redirectTo);
     } catch {
       setFormError(shared('submitError'));
+
+      if (turnstileEnabled) {
+        setTurnstileToken('');
+        setTurnstileResetSignal((current) => current + 1);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -140,6 +173,22 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
   return (
     <form className="space-y-6" onSubmit={handleSubmit} noValidate>
       <FormAlert message={formError} />
+
+      <div
+        aria-hidden="true"
+        className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+      >
+        <label htmlFor={honeypotId}>{shared('honeypotLabel')}</label>
+        <input
+          autoComplete="off"
+          id={honeypotId}
+          name={FORM_HONEYPOT_FIELD}
+          onChange={(event) => setHoneypot(event.target.value)}
+          tabIndex={-1}
+          type="text"
+          value={honeypot}
+        />
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
@@ -251,6 +300,19 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
         <p className="text-sm text-slate-500">{t('attachmentHint')}</p>
         <FieldError message={fieldErrors.attachment} />
       </div>
+
+      {turnstileEnabled ? (
+        <div className="space-y-3">
+          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">
+            {shared('turnstileLabel')}
+          </p>
+          <TurnstileWidget
+            action="support_form"
+            onTokenChange={setTurnstileToken}
+            resetSignal={turnstileResetSignal}
+          />
+        </div>
+      ) : null}
 
       <button
         className="w-full md:w-auto bg-[#0B1B3D] text-white px-10 py-4 rounded-full font-bold tracking-wide hover:bg-slate-800 transition-all flex items-center justify-center gap-3 shadow-[0_8px_20px_-6px_rgba(11,27,61,0.5)] hover:-translate-y-1 group mt-4 disabled:cursor-not-allowed disabled:opacity-70"

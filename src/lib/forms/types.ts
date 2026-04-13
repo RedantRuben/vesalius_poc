@@ -13,6 +13,12 @@ export type PublicTicketType = (typeof PUBLIC_TICKET_TYPES)[number];
 
 export type FieldErrors = Record<string, string>;
 
+export interface AntiSpamPayload {
+  honeypot: string;
+  submittedAt: number | null;
+  turnstileToken?: string;
+}
+
 export interface ContactSubmission {
   name: string;
   email: string;

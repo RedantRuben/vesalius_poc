@@ -321,11 +321,11 @@ export default function Hero() {
                       transition={{ delay: 0.2 }}
                       className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
                     >
-                        <a href="https://assistant.vesalius.ai/onboarding/credentials" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#0B1B3D] text-white font-medium hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-[15px] shadow-[0_8px_20px_-6px_rgba(11,27,61,0.5)] hover:-translate-y-0.5">
+                        <a href="https://assistant.vesalius.ai/onboarding/credentials" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-[#0B1B3D] text-white font-medium hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-[15px] shadow-[0_8px_20px_-6px_rgba(11,27,61,0.5)] hover:-translate-y-0.5">
                             {copy.primaryCta}
                         </a>
                         
-                        <Link href="/demo" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-slate-700 font-medium hover:bg-slate-50 border border-slate-200 transition-all flex items-center justify-center gap-2 text-[15px] shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                        <Link href="/demo" className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-slate-700 font-medium hover:bg-slate-50 border border-slate-200 transition-all flex items-center justify-center gap-2 text-[15px] shadow-sm hover:shadow-md hover:-translate-y-0.5">
                             <PlayIcon />
                             {copy.secondaryCta}
                         </Link>

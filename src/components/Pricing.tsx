@@ -298,7 +298,7 @@ export default function Pricing({
                 {/* CTA Button */}
                 <Link
                   href={`/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}&billing=${billingCycle}`}
-                  className={`w-full py-4 rounded-full font-bold tracking-wide transition-all flex items-center justify-center gap-2 group ${
+                  className={`w-full py-4 rounded-2xl font-bold tracking-wide transition-all flex items-center justify-center gap-2 group ${
                     isDark
                       ? 'bg-[#06ACC1] text-white hover:bg-white hover:text-[#0B1B3D] shadow-lg shadow-[#06ACC1]/20'
                       : 'bg-white text-[#0B1B3D] border border-slate-200 hover:border-[#0B1B3D] hover:bg-[#0B1B3D] hover:text-white shadow-sm'

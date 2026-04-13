@@ -6,6 +6,11 @@ import { useRouter } from 'next/navigation';
 
 import FaqRichTextEditor from '@/components/admin/FaqRichTextEditor';
 import FaqArticleBlocks from '@/components/faq/FaqArticleBlocks';
+import {
+  prepareFaqContentForSave,
+  slugifyFaqValue,
+  validateFaqContentForSave,
+} from '@/lib/faq/cms-validation';
 import { getArticleExcerpt, getArticleHeroImage } from '@/lib/faq/content';
 import { getFaqArticlePath, getLocalizedFaqPath } from '@/lib/faq/routes';
 import { FAQ_LOCALES, type FaqArticle, type FaqContentStore, type FaqLocale } from '@/lib/faq/types';
@@ -13,16 +18,6 @@ import { FAQ_LOCALES, type FaqArticle, type FaqContentStore, type FaqLocale } fr
 interface FaqAdminEditorProps {
   initialContent: FaqContentStore;
   initialLocale: string;
-}
-
-function slugify(value: string) {
-  return value
-    .toLowerCase()
-    .normalize('NFKD')
-    .replace(/[^\w\s-]/g, '')
-    .trim()
-    .replace(/[-\s]+/g, '-')
-    .replace(/^-+|-+$/g, '');
 }
 
 function createArticle() {
@@ -230,20 +225,9 @@ export default function FaqAdminEditor({
     }
   }
 
-  function validateForSave() {
-    if (!selectedArticle) {
-      return 'No article selected.';
-    }
-
-    if (!selectedArticle.question.trim()) {
-      return 'Article title is required.';
-    }
-
-    return null;
-  }
-
   async function handleSave() {
-    const validationError = validateForSave();
+    const preparedContent = prepareFaqContentForSave(content);
+    const validationError = validateFaqContentForSave(preparedContent);
     if (validationError) {
       setSaveState('error');
       setError(validationError);
@@ -260,7 +244,7 @@ export default function FaqAdminEditor({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(content),
+        body: JSON.stringify(preparedContent),
       });
 
       const payload = (await response.json()) as {
@@ -521,7 +505,7 @@ export default function FaqAdminEditor({
                           onClick={() =>
                             updateArticle((article) => ({
                               ...article,
-                              slug: slugify(article.question) || article.slug,
+                              slug: slugifyFaqValue(article.question) || article.slug,
                             }))
                           }
                           className="shrink-0 rounded-2xl border border-slate-300 px-4 py-3 text-sm font-medium text-slate-600 transition hover:border-slate-400"

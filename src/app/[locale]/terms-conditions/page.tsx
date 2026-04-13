@@ -1,5 +1,21 @@
+import type { Metadata } from 'next';
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { getLocale } from 'next-intl/server';
+import { buildPageMetadata, resolveSiteLocale } from '@/lib/seo';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = resolveSiteLocale(await getLocale());
+
+  return buildPageMetadata({
+    locale,
+    pathname: '/terms-conditions',
+    title: 'Terms & Conditions',
+    description:
+      'Review the Vesalius terms and conditions covering platform access, responsibilities, data handling, intellectual property, and service usage.',
+  });
+}
 
 export default function TermsAndConditionsPage() {
   return (
@@ -425,4 +441,3 @@ export default function TermsAndConditionsPage() {
     </main>
   );
 }
-

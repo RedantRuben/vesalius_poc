@@ -16,6 +16,7 @@ interface FaqPageClientProps {
   heroSubtitle?: string;
   heroTitle?: string;
   lockedTag?: string;
+  embedded?: boolean;
 }
 
 const ITEMS_PER_PAGE = 6;
@@ -78,6 +79,7 @@ export default function FaqPageClient({
   heroSubtitle,
   heroTitle,
   lockedTag,
+  embedded = false,
 }: FaqPageClientProps) {
   const locale = useLocale();
   const resolvedLocale: FaqLocale = FAQ_LOCALES.includes(locale as FaqLocale)
@@ -132,11 +134,11 @@ export default function FaqPageClient({
     setCurrentPage(1);
   }
 
-  return (
-    <main className="relative flex min-h-screen w-full flex-col bg-[#FCFCFD] selection:bg-primary/20">
-      <Navbar />
+  const faqBody = (
+    <>
+      {!embedded ? <Navbar /> : null}
 
-      <section className="relative w-full overflow-hidden bg-transparent pb-14 pt-32">
+      <section className={`relative w-full overflow-hidden bg-transparent pb-14 ${embedded ? 'pt-6 md:pt-8' : 'pt-32'}`}>
         <div className="absolute inset-0 -z-10 h-full w-full bg-transparent">
           <svg
             className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.15]"
@@ -307,65 +309,77 @@ export default function FaqPageClient({
         </div>
       </section>
 
-      <section className="w-full bg-transparent pb-16 pt-4">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="rounded-[32px] border border-slate-200 bg-white px-8 py-10 shadow-xl shadow-slate-200/40">
-            <div className="grid gap-10 md:grid-cols-[1.3fr_1fr]">
-              <div>
-                <h2 className="mb-4 text-2xl font-semibold tracking-tight text-[#0B1B3D]">
-                  {content.aboutTitle}
-                </h2>
-                <p className="mb-6 text-base leading-8 text-slate-600">{content.aboutBody}</p>
-                <Link
-                  href="/support"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#0B1B3D] px-6 py-3 font-medium text-white shadow-md shadow-[#0B1B3D]/20 transition-all hover:-translate-y-0.5 hover:bg-slate-800"
-                >
-                  {content.supportButtonLabel}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-
-              {!lockedTag ? (
+      {!embedded ? (
+        <section className="w-full bg-transparent pb-16 pt-4">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="rounded-[32px] border border-slate-200 bg-white px-8 py-10 shadow-xl shadow-slate-200/40">
+              <div className="grid gap-10 md:grid-cols-[1.3fr_1fr]">
                 <div>
                   <h2 className="mb-4 text-2xl font-semibold tracking-tight text-[#0B1B3D]">
-                    {content.tagsTitle}
+                    {content.aboutTitle}
                   </h2>
-                  <div className="flex flex-wrap gap-2">
-                    {allTags.map((tag) => (
-                      <button
-                        key={tag}
-                        onClick={() => handleTagChange(tag === selectedTag ? null : tag)}
-                        className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-                          tag === selectedTag
-                            ? 'bg-[#06ACC1] text-white'
-                            : 'border border-slate-200/60 bg-white text-slate-600 hover:border-[#06ACC1] hover:text-[#06ACC1]'
-                        }`}
-                      >
-                        {tag}
-                      </button>
-                    ))}
-                  </div>
+                  <p className="mb-6 text-base leading-8 text-slate-600">{content.aboutBody}</p>
+                  <Link
+                    href="/support"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#0B1B3D] px-6 py-3 font-medium text-white shadow-md shadow-[#0B1B3D]/20 transition-all hover:-translate-y-0.5 hover:bg-slate-800"
+                  >
+                    {content.supportButtonLabel}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </Link>
                 </div>
-              ) : null}
+
+                {!lockedTag ? (
+                  <div>
+                    <h2 className="mb-4 text-2xl font-semibold tracking-tight text-[#0B1B3D]">
+                      {content.tagsTitle}
+                    </h2>
+                    <div className="flex flex-wrap gap-2">
+                      {allTags.map((tag) => (
+                        <button
+                          key={tag}
+                          onClick={() => handleTagChange(tag === selectedTag ? null : tag)}
+                          className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+                            tag === selectedTag
+                              ? 'bg-[#06ACC1] text-white'
+                              : 'border border-slate-200/60 bg-white text-slate-600 hover:border-[#06ACC1] hover:text-[#06ACC1]'
+                          }`}
+                        >
+                          {tag}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
-      <Footer />
+      {!embedded ? <Footer /> : null}
+    </>
+  );
+
+  if (embedded) {
+    return <div className="relative w-full bg-[#FCFCFD] selection:bg-primary/20">{faqBody}</div>;
+  }
+
+  return (
+    <main className="relative flex min-h-screen w-full flex-col bg-[#FCFCFD] selection:bg-primary/20">
+      {faqBody}
     </main>
   );
 }

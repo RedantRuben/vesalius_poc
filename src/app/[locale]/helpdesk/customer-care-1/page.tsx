@@ -1,10 +1,12 @@
-import MarketingPageShell from '@/components/MarketingPageShell';
-import SupportPageContent from '@/components/SupportPageContent';
+import { redirect } from 'next/navigation';
 
-export default function CustomerCarePage() {
-  return (
-    <MarketingPageShell>
-      <SupportPageContent sourcePage="/helpdesk/customer-care-1" />
-    </MarketingPageShell>
-  );
+export default async function CustomerCarePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const supportPath = locale === 'en' ? '/support' : `/${locale}/support`;
+
+  redirect(supportPath);
 }
