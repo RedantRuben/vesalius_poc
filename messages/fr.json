@@ -97,10 +97,17 @@
       "description": "Faites travailler vos données. Vesalius ne se contente pas de capter l'information : la plateforme génère aussi votre documentation."
     },
     "smartTriage": {
-      "tag1": "Beta",
+      "tag1": "Priorisation",
+      "tag2": "Routage Automatisé",
       "title": "Triage intelligent",
       "description": "Une évaluation intelligente de l'urgence et une orientation adaptée pour offrir le bon niveau de soins au bon moment. Optimisez votre planning et vos priorités.",
       "routing": "Routage..."
+    },
+    "voiceReception": {
+      "tag1": "Beta",
+      "tag2": "Triage Téléphonique",
+      "title": "Voice Reception",
+      "description": "Un assistant téléphonique IA qui répond aux appels, pose les bonnes questions pour évaluer l'urgence et oriente les patients vers les soins adaptés ou réserve directement un rendez-vous."
     },
     "smartFollowUp": {
       "tag1": "Automatisé",

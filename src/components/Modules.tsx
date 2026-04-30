@@ -78,6 +78,12 @@ const CalendarIcon = () => (
   </svg>
 );
 
+const PhoneIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
+);
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -169,7 +175,7 @@ export default function Modules() {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Agenda (New) */}
-              <motion.div variants={itemVariants} className="lg:col-span-4 lg:order-2">
+              <motion.div variants={itemVariants} className="lg:col-span-6 lg:order-2">
                 <Link href={`/${locale}/product/agenda`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80 cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   <div className="relative z-10 flex justify-between items-start mb-6">
@@ -239,7 +245,7 @@ export default function Modules() {
               </motion.div>
 
               {/* Pre Consultation */}
-              <motion.div variants={itemVariants} className="lg:col-span-4 lg:order-3">
+              <motion.div variants={itemVariants} className="lg:col-span-6 lg:order-3">
                 <Link href={`/${locale}/product/pre-consultation`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   <div className="relative z-10 flex justify-between items-start mb-6">
@@ -293,12 +299,13 @@ export default function Modules() {
               </motion.div>
 
               {/* Smart Triage */}
-              <motion.div variants={itemVariants} className="lg:col-span-4 lg:order-1">
+              <motion.div variants={itemVariants} className="lg:col-span-6 lg:order-1">
                 <Link href={`/${locale}/product/smart-triage`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80">
                   <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   <div className="relative z-10 flex justify-between items-start mb-6">
                     <div className="flex gap-2.5">
-                      <span className="bg-slate-50 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('smartTriage.tag1')}</span>
+                      <span className="bg-amber-50 text-amber-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('smartTriage.tag1')}</span>
+                      <span className="bg-amber-50 text-amber-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('smartTriage.tag2')}</span>
                     </div>
                     <ArrowUpRight />
                   </div>
@@ -351,6 +358,97 @@ export default function Modules() {
                       >
                           <CheckCircleIcon />
                       </motion.div>
+                  </div>
+                </Link>
+              </motion.div>
+              {/* Voice Reception */}
+              <motion.div variants={itemVariants} className="lg:col-span-6 lg:order-4">
+                <Link href={`/${locale}/product/voice-reception`} scroll={true} className="flex flex-col h-full min-h-[420px] bg-white rounded-[2rem] p-8 md:p-12 pb-40 md:pb-48 relative overflow-hidden group hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 border border-slate-200/60 hover:border-slate-300/80">
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="relative z-10 flex justify-between items-start mb-6">
+                    <div className="flex gap-2.5">
+                      <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('voiceReception.tag1')}</span>
+                      <span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full text-xs font-semibold tracking-wide">{t('voiceReception.tag2')}</span>
+                    </div>
+                    <ArrowUpRight />
+                  </div>
+                  
+                  <div className="relative z-10 pointer-events-none flex-1">
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#0B1B3D] mb-3 tracking-tight">{t('voiceReception.title')}</h3>
+                    <p className="text-slate-600 max-w-xl text-sm md:text-base leading-relaxed mb-8">
+                      {t('voiceReception.description')}
+                    </p>
+                  </div>
+                  
+                  <div className="absolute bottom-12 left-0 right-0 flex justify-center items-center gap-2 md:gap-4 pointer-events-none group-hover:-translate-y-2 transition-transform duration-700">
+                      {/* Left: Phone */}
+                      <motion.div 
+                          className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white border border-slate-100 shadow-md flex items-center justify-center text-[#0B1B3D] relative z-10 shrink-0"
+                          whileInView={{ scale: [1, 1.05, 1] }}
+                          transition={{ duration: 4, repeat: Infinity, times: [0, 0.1, 0.2] }}
+                      >
+                          <PhoneIcon />
+                      </motion.div>
+                      
+                      <div className="relative h-px w-6 md:w-8 bg-slate-200">
+                          <motion.div 
+                              className="absolute left-0 top-0 h-full bg-[#06ACC1]"
+                              whileInView={{ width: ["0%", "100%", "100%"], opacity: [1, 1, 0] }}
+                              transition={{ duration: 4, repeat: Infinity, times: [0.1, 0.3, 0.4] }}
+                          />
+                      </div>
+                      
+                      {/* Center: AI Voice Panel */}
+                      <div className="flex flex-col items-center justify-center gap-3 w-28 md:w-32 bg-white border border-slate-100 rounded-2xl shadow-xl p-3 md:p-4 z-10">
+                          <div className="flex items-center gap-1.5 md:gap-2 h-6">
+                              {[12, 24, 16].map((height, i) => (
+                                  <motion.div
+                                      key={i}
+                                      animate={{ height: [height * 0.4, height, height * 0.4] }}
+                                      transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
+                                      style={{ height }}
+                                      className="w-1 md:w-1.5 rounded-full bg-[#06ACC1]"
+                                  />
+                              ))}
+                          </div>
+                          <div className="space-y-1.5 w-full">
+                              <div className="h-1 bg-slate-200 w-full rounded-full"></div>
+                              <div className="h-1 bg-slate-200 w-2/3 mx-auto rounded-full"></div>
+                          </div>
+                      </div>
+                      
+                      <div className="relative h-px w-6 md:w-8 bg-slate-200">
+                          <motion.div 
+                              className="absolute left-0 top-0 h-full bg-[#06ACC1]"
+                              whileInView={{ width: ["0%", "100%", "100%"], opacity: [1, 1, 0] }}
+                              transition={{ duration: 4, repeat: Infinity, times: [0.5, 0.7, 0.8] }}
+                          />
+                      </div>
+                      
+                      {/* Right: Calendar */}
+                      <div className="w-24 md:w-28 bg-white border border-slate-100 rounded-xl shadow-md p-2 z-10 relative">
+                          <div className="flex items-center justify-between border-b border-slate-50 pb-1.5 mb-2">
+                              <span className="text-[8px] font-bold text-slate-700 uppercase tracking-wider">Today</span>
+                              <div className="text-slate-400 w-3 h-3"><CalendarIcon /></div>
+                          </div>
+                          <div className="space-y-1.5">
+                              <div className="h-4 bg-slate-50 rounded-sm w-full border border-slate-100"></div>
+                              <motion.div 
+                                  className="h-4 rounded-sm w-full relative flex items-center justify-center"
+                                  whileInView={{ backgroundColor: ["#f8fafc", "#e0f2fe", "#e0f2fe"], borderColor: ["#f1f5f9", "#bae6fd", "#bae6fd"], borderWidth: 1 }}
+                                  transition={{ duration: 4, repeat: Infinity, times: [0.6, 0.8, 1] }}
+                              >
+                                  <motion.div 
+                                      className="absolute right-1 text-[#06ACC1]"
+                                      whileInView={{ opacity: [0, 0, 1] }}
+                                      transition={{ duration: 4, repeat: Infinity, times: [0.8, 0.85, 1] }}
+                                  >
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                                  </motion.div>
+                              </motion.div>
+                              <div className="h-4 bg-slate-50 rounded-sm w-full border border-slate-100"></div>
+                          </div>
+                      </div>
                   </div>
                 </Link>
               </motion.div>

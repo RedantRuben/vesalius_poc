@@ -97,10 +97,17 @@
       "description": "Laat uw data voor u werken. Vesalius legt niet alleen informatie vast, maar zet die ook om in uw documentatie."
     },
     "smartTriage": {
-      "tag1": "Beta",
+      "tag1": "Prioritering",
+      "tag2": "Automatische Routering",
       "title": "Slimme Triage",
       "description": "Intelligente urgentiebeoordeling en routering zodat patiënten op het juiste moment de juiste zorg krijgen. Optimaliseer uw planning en stel slimmer prioriteiten.",
       "routing": "Routering..."
+    },
+    "voiceReception": {
+      "tag1": "Beta",
+      "tag2": "Telefonische Triage",
+      "title": "Voice Reception",
+      "description": "Een AI-telefoonassistent die patiëntoproepen beantwoordt, de juiste vragen stelt om de urgentie in te schatten en patiënten naar de juiste zorg leidt of direct een afspraak inboekt."
     },
     "smartFollowUp": {
       "tag1": "Geautomatiseerd",

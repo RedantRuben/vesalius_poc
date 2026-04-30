@@ -8,6 +8,7 @@ const modules = [
   { path: '/product/smart-triage', key: 'smartTriage' },
   { path: '/product/agenda', key: 'agenda' },
   { path: '/product/pre-consultation', key: 'preConsultation' },
+  { path: '/product/voice-reception', key: 'voiceReception' },
   { path: '/product/scribe', key: 'scribe' },
   { path: '/product/medication', key: 'medication' },
   { path: '/product/document-generation', key: 'documentGeneration' },

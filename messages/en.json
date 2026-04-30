@@ -97,10 +97,17 @@
       "description": "Put your data to work. Vesalius stops not at capturing info but uses it to generate your administration."
     },
     "smartTriage": {
-      "tag1": "Beta",
+      "tag1": "Prioritization",
+      "tag2": "Automated Routing",
       "title": "Smart Triage",
       "description": "Intelligent urgency assessment and routing to ensure patients get the right care at the right time. Optimize your schedule and prioritize effectively.",
       "routing": "Routing..."
+    },
+    "voiceReception": {
+      "tag1": "Beta",
+      "tag2": "Phone Triage",
+      "title": "Voice Reception",
+      "description": "An AI phone assistant that answers patient calls, asks the right questions to assess urgency, and guides them to the correct care or books an appointment directly in your agenda."
     },
     "smartFollowUp": {
       "tag1": "Automated",
