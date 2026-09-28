@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
 
@@ -51,7 +51,6 @@ export default function Pricing({
   const copy =
     locale === 'fr'
       ? {
-          eyebrow: 'Tarifs',
           title: 'Tarification transparente et équitable',
           subtitle: 'Choisissez l’offre adaptée à votre cabinet',
           monthlyLabel: 'Mensuel',
@@ -91,7 +90,6 @@ export default function Pricing({
         }
       : locale === 'nl'
         ? {
-            eyebrow: 'Prijzen',
             title: 'Transparante en eerlijke prijzen',
             subtitle: 'Kies het plan dat bij uw praktijk past',
             monthlyLabel: 'Maandelijks',
@@ -130,7 +128,6 @@ export default function Pricing({
             ],
           }
         : {
-            eyebrow: 'Pricing',
             title: 'Transparent and fair pricing',
             subtitle: 'Choose the plan that fits your practice',
             monthlyLabel: 'Monthly',
@@ -169,27 +166,25 @@ export default function Pricing({
             ],
           };
   return (
-    <section className="w-full bg-[#FCFCFD] relative py-12 md:py-16">
-      <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-30 pointer-events-none" />
-      
+    <section className="w-full relative py-12 md:py-16">
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 h-full flex flex-col justify-center">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16 md:mb-24 flex flex-col items-center"
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-16 md:mb-20 flex flex-col items-center"
         >
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">{copy.eyebrow}</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0B1B3D] tracking-tight mb-4">
+          <h2 className="text-[2.5rem] md:text-6xl font-semibold text-[#0B1B3D] tracking-[-0.045em] leading-[1.02] mb-4 text-balance">
             {copy.title}
           </h2>
-          <p className="text-slate-500 text-lg md:text-xl font-light mb-8">
+          <p className="text-slate-500 text-lg md:text-xl tracking-tight mb-8">
             {copy.subtitle}
           </p>
           <div className="inline-flex flex-col items-center gap-3">
-            <div className="inline-flex rounded-full border border-slate-200 bg-white/90 p-1 shadow-sm backdrop-blur-sm">
+            <div className="inline-flex rounded-full bg-slate-100 p-1">
               {(['monthly', 'yearly'] as BillingCycle[]).map((cycle) => {
                 const isActive = billingCycle === cycle;
                 const label = cycle === 'monthly' ? copy.monthlyLabel : copy.yearlyLabel;
@@ -197,14 +192,20 @@ export default function Pricing({
                   <button
                     key={cycle}
                     type="button"
+                    aria-pressed={isActive}
                     onClick={() => onBillingCycleChange(cycle)}
-                    className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
-                      isActive
-                        ? 'bg-[#0B1B3D] text-white shadow-[0_8px_18px_-10px_rgba(11,27,61,0.55)]'
-                        : 'text-slate-500 hover:text-[#0B1B3D]'
+                    className={`relative rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${
+                      isActive ? 'text-[#0B1B3D]' : 'text-slate-500 hover:text-[#0B1B3D]'
                     }`}
                   >
-                    {label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="billing-cycle-pill"
+                        className="absolute inset-0 rounded-full bg-white shadow-[0_2px_8px_-2px_rgba(11,27,61,0.2)]"
+                        transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+                      />
+                    )}
+                    <span className="relative">{label}</span>
                   </button>
                 );
               })}
@@ -238,33 +239,37 @@ export default function Pricing({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
-                className={`relative rounded-[32px] p-8 md:p-10 flex flex-col h-full transition-transform duration-500 hover:-translate-y-2 ${
-                  isDark 
-                    ? 'bg-[#0B1B3D] shadow-2xl shadow-[#0B1B3D]/30 border border-white/10 lg:scale-105 z-20 glow-effect' 
-                    : 'glass-panel bg-white/60 border border-white/80 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] z-10'
+                className={`relative rounded-[28px] p-8 md:p-10 flex flex-col h-full ${
+                  isDark
+                    ? 'bg-[#0B1B3D] shadow-[0_40px_80px_-30px_rgba(11,27,61,0.6)] lg:scale-[1.04] z-20'
+                    : 'bg-white ring-1 ring-slate-200/70 z-10'
                 }`}
               >
                 {/* Popular Badge */}
                 {isDark && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <div className="relative">
-                      <div className="absolute inset-0 bg-[#06ACC1] blur-md opacity-50 rounded-full"></div>
-                      <div className="relative bg-gradient-to-r from-[#06ACC1] to-[#0597a9] text-white px-6 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg border border-white/20">
-                        {plan.popularLabel}
-                      </div>
-                    </div>
+                  <div className="absolute top-8 right-8 md:top-10 md:right-10 bg-[#06ACC1] text-white px-3 py-1 rounded-full text-xs font-semibold">
+                    {plan.popularLabel}
                   </div>
                 )}
 
                 {/* Plan Header */}
-                <div className="mb-10 border-b border-white/10 pb-8">
-                  <h3 className={`text-xl font-bold tracking-tight mb-6 ${isDark ? 'text-white' : 'text-[#0B1B3D]'}`}>
+                <div className={`mb-10 border-b pb-8 ${isDark ? 'border-white/10' : 'border-slate-100'}`}>
+                  <h3 className={`text-xl font-semibold tracking-tight mb-6 ${isDark ? 'text-white' : 'text-[#0B1B3D]'}`}>
                     {plan.name}
                   </h3>
                   <div className="flex items-baseline mb-6">
-                    <span className={`text-5xl font-extrabold tracking-tighter ${isDark ? 'text-white' : 'text-[#0B1B3D]'}`}>
-                      {activePrice.price}
-                    </span>
+                    <AnimatePresence mode="popLayout" initial={false}>
+                      <motion.span
+                        key={activePrice.price}
+                        initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
+                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                        exit={{ opacity: 0, y: -16, filter: 'blur(6px)' }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className={`text-5xl font-semibold tracking-[-0.04em] tabular-nums ${isDark ? 'text-white' : 'text-[#0B1B3D]'}`}
+                      >
+                        {activePrice.price}
+                      </motion.span>
+                    </AnimatePresence>
                     {activePrice.period && (
                       <span className={`ml-2 text-sm font-medium tracking-wide ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                         {activePrice.period}
@@ -272,11 +277,11 @@ export default function Pricing({
                     )}
                   </div>
                   {activePrice.note ? (
-                    <p className={`mb-4 text-xs font-semibold uppercase tracking-[0.18em] ${isDark ? 'text-cyan-300/80' : 'text-[#06ACC1]'}`}>
+                    <p className={`mb-4 text-sm font-medium ${isDark ? 'text-[#5FD4E2]' : 'text-[#0597a9]'}`}>
                       {activePrice.note}
                     </p>
                   ) : null}
-                  <p className={`text-sm leading-relaxed font-light ${isDark ? 'text-slate-300' : 'text-slate-500'}`}>
+                  <p className={`text-[15px] leading-relaxed ${isDark ? 'text-white/65' : 'text-slate-500'}`}>
                      {plan.description}
                   </p>
                 </div>
@@ -298,10 +303,10 @@ export default function Pricing({
                 {/* CTA Button */}
                 <Link
                   href={`/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}&billing=${billingCycle}`}
-                  className={`w-full py-4 rounded-2xl font-bold tracking-wide transition-all flex items-center justify-center gap-2 group ${
+                  className={`w-full py-4 rounded-full font-semibold transition-colors flex items-center justify-center gap-2 group ${
                     isDark
-                      ? 'bg-[#06ACC1] text-white hover:bg-white hover:text-[#0B1B3D] shadow-lg shadow-[#06ACC1]/20'
-                      : 'bg-white text-[#0B1B3D] border border-slate-200 hover:border-[#0B1B3D] hover:bg-[#0B1B3D] hover:text-white shadow-sm'
+                      ? 'bg-white text-[#0B1B3D] hover:bg-slate-100'
+                      : 'bg-slate-100 text-[#0B1B3D] hover:bg-[#0B1B3D] hover:text-white'
                   }`}
                 >
                   {plan.buttonText}

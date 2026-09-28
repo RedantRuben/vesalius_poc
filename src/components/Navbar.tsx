@@ -78,7 +78,7 @@ export default function Navbar() {
       <header
         className={`w-full max-w-7xl rounded-full border border-transparent pointer-events-auto transition-[background-color,box-shadow,border-color,padding] duration-500 ${
           scrolled
-            ? 'bg-white/95 shadow-[0_12px_36px_-16px_rgba(15,23,42,0.18)] border-slate-200/70 py-2 md:py-3 backdrop-blur-sm'
+            ? 'bg-white/70 shadow-[0_12px_36px_-16px_rgba(15,23,42,0.18)] border-slate-200/60 py-2 md:py-3 backdrop-blur-xl backdrop-saturate-150'
             : 'bg-transparent shadow-none py-4'
         }`}
       >
@@ -107,15 +107,18 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="https://assistant.vesalius.ai/onboarding/credentials" target="_blank" rel="noopener noreferrer" className="rounded-2xl bg-[#0B1B3D] px-6 py-2.5 text-sm font-medium text-white hover:bg-slate-800 transition-all flex items-center gap-1.5 shadow-[0_4px_14px_-4px_rgba(11,27,61,0.5)] hover:-translate-y-0.5">
+            <a href="https://assistant.vesalius.ai/onboarding/credentials" target="_blank" rel="noopener noreferrer" className="rounded-full bg-[#0B1B3D] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#13285a] transition-colors flex items-center gap-1.5">
               {t('tryForFree')}
               <span className="text-lg leading-none mb-0.5">↗</span>
             </a>
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
+            type="button"
             className="md:hidden z-50 p-2 -mr-2 text-[#0B1B3D]"
+            aria-expanded={isOpen}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? (

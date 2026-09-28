@@ -21,7 +21,7 @@
   "TheProblem": {
     "eyebrow": "The Challenge",
     "title": "Doctors spend more time on paperwork than on patients",
-    "subtitle": "Administrative burden has become the biggest bottleneck in healthcare — with direct consequences for physician well-being and quality of care.",
+    "subtitle": "Administrative burden has become the biggest bottleneck in healthcare. It weighs directly on physician well-being and on the quality of care.",
     "cards": {
       "time": {
         "stat": "±4 hrs",
@@ -68,7 +68,7 @@
     }
   },
   "Modules": {
-    "title": "A complete toolkit for modern care teams",
+    "title": "Eight modules. One assistant.",
     "beforeConsultation": "Before consultation",
     "duringConsultation": "During consultation",
     "afterConsultation": "After consultation",
@@ -261,8 +261,8 @@
     "contact": "Contact",
     "support": "Customer Care",
     "address": {
-        "street": "Ottergemsesteenweg Zuid 808B",
-        "city": "9000 Gent, Belgium"
+      "street": "Ottergemsesteenweg Zuid 808B",
+      "city": "9000 Gent, Belgium"
     },
     "copyright": "Copyright © Vesalius health"
   },
@@ -405,6 +405,60 @@
         "title": "Advertisement Cookies",
         "description": "Used to show relevant ads based on your interests."
       }
+    }
+  },
+  "Journey": {
+    "title": "One patient, start to finish.",
+    "subtitle": "You only step in where your judgment matters.",
+    "yourPart": "Your part",
+    "steps": {
+      "0": {
+        "day": "Sunday",
+        "title": "Intake at home, in his own language.",
+        "part": "Nothing."
+      },
+      "1": {
+        "day": "Monday",
+        "title": "Urgency assessed, slot booked.",
+        "part": "A glance."
+      },
+      "2": {
+        "day": "Monday",
+        "title": "You talk. Vesalius listens.",
+        "part": "Be the doctor."
+      },
+      "3": {
+        "day": "Monday",
+        "title": "The paperwork writes itself.",
+        "part": "Review and sign."
+      },
+      "4": {
+        "day": "Thursday",
+        "title": "Recovery followed at home.",
+        "part": "Act when flagged."
+      }
+    }
+  },
+  "FinalCta": {
+    "title": "Spend tomorrow with your patients.",
+    "subtitle": "Start free with 20 credits. No credit card required.",
+    "primary": "Create your assistant",
+    "secondary": "Request a demo"
+  },
+  "MobileApp": {
+    "title": "Your scribe, in your pocket.",
+    "subtitle": "The Vesalius app turns your phone into a scribe. Tap record, put it down and give your patient your full attention.",
+    "appStore": "Download on the",
+    "playStore": "Get it on",
+    "screenTitle": "Recording",
+    "patient": "Patient 23114",
+    "streaming": "Streaming to Vesalius.ai...",
+    "hint": "Recording continues if you switch apps or lock your screen.",
+    "stop": "Stop recording",
+    "points": {
+      "0": "Keeps recording when you lock your screen or switch apps",
+      "1": "Pick the consultation language, or let it auto-detect",
+      "2": "Streams straight to Vesalius, no files to move"
     }
   }
 }

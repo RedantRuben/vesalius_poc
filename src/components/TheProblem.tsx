@@ -1,144 +1,182 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef } from 'react';
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+// Trig results can differ in the last digit between server and browser; round to avoid hydration mismatches.
+const round = (n: number) => Math.round(n * 100) / 100;
+
 function AnimatedCounter({ value, inView }: { value: string; inView: boolean }) {
   const nodeRef = useRef<HTMLSpanElement>(null);
-  const match = value.match(/^([±+\-]?\s*)(\d+)(.*)$/);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (!inView || !nodeRef.current) return;
+    const match = value.match(/^([±+\-]?\s*)(\d+)(.*)$/);
+    if (!inView || !nodeRef.current || !match || reduceMotion) return;
 
-    if (!match) {
-      nodeRef.current.textContent = value;
-      return;
-    }
-
-    const prefix = match[1];
-    const target = parseInt(match[2], 10);
-    const suffix = match[3];
+    const [, prefix, digits, suffix] = match;
+    const target = parseInt(digits, 10);
     const startTime = performance.now();
-    const duration = 1200;
+    const duration = 1400;
+    let frame = 0;
 
     function tick(now: number) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
+      const progress = Math.min((now - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       if (nodeRef.current) {
         nodeRef.current.textContent = `${prefix}${Math.round(eased * target)}${suffix}`;
       }
-      if (progress < 1) requestAnimationFrame(tick);
+      if (progress < 1) frame = requestAnimationFrame(tick);
     }
 
-    requestAnimationFrame(tick);
-  }, [inView, value]);
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [inView, value, reduceMotion]);
 
   return <span ref={nodeRef}>{value}</span>;
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
-};
+/** Clock face: the cyan arc sweeps the hours lost to administration each day. */
+function ClockDial({ hours, inView }: { hours: number; inView: boolean }) {
+  const radius = 84;
+  const circumference = 2 * Math.PI * radius;
+  const fraction = hours / 12;
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as const } },
-};
+  return (
+    <svg viewBox="0 0 200 200" className="w-44 h-44 md:w-52 md:h-52 shrink-0" aria-hidden="true">
+      <circle cx="100" cy="100" r="96" fill="#fff" />
+      {Array.from({ length: 12 }, (_, i) => {
+        const angle = (i / 12) * Math.PI * 2;
+        const inner = i % 3 === 0 ? 62 : 66;
+        return (
+          <line
+            key={i}
+            x1={round(100 + Math.sin(angle) * inner)}
+            y1={round(100 - Math.cos(angle) * inner)}
+            x2={round(100 + Math.sin(angle) * 71)}
+            y2={round(100 - Math.cos(angle) * 71)}
+            stroke="#0B1B3D"
+            strokeOpacity={i % 3 === 0 ? 0.4 : 0.15}
+            strokeWidth={i % 3 === 0 ? 2.5 : 1.5}
+            strokeLinecap="round"
+          />
+        );
+      })}
+      <circle cx="100" cy="100" r={radius} fill="none" stroke="#EEF2F6" strokeWidth="10" />
+      <motion.circle
+        cx="100"
+        cy="100"
+        r={radius}
+        fill="none"
+        stroke="#06ACC1"
+        strokeWidth="10"
+        strokeLinecap="round"
+        transform="rotate(-90 100 100)"
+        strokeDasharray={circumference}
+        initial={{ strokeDashoffset: circumference }}
+        animate={inView ? { strokeDashoffset: circumference * (1 - fraction) } : undefined}
+        transition={{ duration: 1.6, ease: EASE, delay: 0.2 }}
+      />
+      <motion.g
+        initial={{ rotate: 0 }}
+        animate={inView ? { rotate: fraction * 360 } : undefined}
+        transition={{ duration: 1.6, ease: EASE, delay: 0.2 }}
+      >
+        {/* Invisible disc keeps the group's box centred on the dial so it rotates around the hub */}
+        <circle cx="100" cy="100" r="96" fill="none" />
+        <line x1="100" y1="100" x2="100" y2="46" stroke="#0B1B3D" strokeWidth="4" strokeLinecap="round" />
+      </motion.g>
+      <circle cx="100" cy="100" r="6" fill="#0B1B3D" />
+      <circle cx="100" cy="100" r="2" fill="#fff" />
+    </svg>
+  );
+}
+
+/** 100 dots, `percent` of them filled: a percentage you can see at a glance. */
+function DotGrid({ percent, inView }: { percent: number; inView: boolean }) {
+  return (
+    <div className="grid grid-cols-10 gap-[5px] w-fit shrink-0" aria-hidden="true">
+      {Array.from({ length: 100 }, (_, i) => (
+        <motion.span
+          key={i}
+          className="w-[9px] h-[9px] rounded-full"
+          initial={{ backgroundColor: '#E2E8F0' }}
+          animate={inView && i < percent ? { backgroundColor: '#0B1B3D' } : undefined}
+          transition={{ duration: 0.25, delay: 0.3 + i * 0.012 }}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function TheProblem() {
   const t = useTranslations('TheProblem');
-  const sectionRef = useRef(null);
-  const inView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-120px' });
+  const statsRef = useRef(null);
+  const statsInView = useInView(statsRef, { once: true, margin: '-80px' });
 
   const cards = ['burnout', 'stress', 'data'];
+  const hours = parseInt(t('cards.time.stat').replace(/[^\d]/g, ''), 10) || 4;
 
   return (
-    <section
-      ref={sectionRef}
-      className="w-full bg-[#FCFCFD] relative overflow-hidden flex flex-col items-center py-16 md:py-24"
-    >
-      <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-30 pointer-events-none" />
-
-      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row-reverse gap-16 lg:gap-24">
-          
-          {/* Right Side: Text Content & Hero Stat */}
+    <section ref={ref} className="w-full py-20 md:py-28">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20 items-center">
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="lg:w-[45%] flex flex-col items-start text-left lg:sticky lg:top-32 self-start"
+            transition={{ duration: 0.9, ease: EASE }}
           >
-            <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-[11px] md:text-xs mb-4">
-              {t('eyebrow')}
-            </span>
-            <h2 className="text-[2rem] md:text-4xl lg:text-[2.75rem] font-bold text-[#0B1B3D] tracking-tight max-w-xl text-balance leading-[1.1] mb-5">
+            <h2 className="text-[2.25rem] md:text-5xl lg:text-[3.5rem] font-semibold text-[#0B1B3D] tracking-[-0.04em] leading-[1.05] text-balance">
               {t('title')}
             </h2>
-            <p className="text-slate-700 text-[15px] md:text-lg leading-relaxed max-w-lg mb-6 md:mb-8">
-              {t('subtitle')}
-            </p>
+            <p className="mt-6 text-slate-500 text-lg md:text-xl leading-snug tracking-tight max-w-xl">{t('subtitle')}</p>
+          </motion.div>
 
-            {/* Hero Stat - Highlighted Evidence */}
-            <div className="relative p-8 md:p-10 w-full bg-white rounded-2xl border border-slate-200/60 shadow-lg shadow-[#0B1B3D]/5 overflow-hidden group">
-               {/* Faint technical background & glow */}
-               <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, black, transparent)' }} />
-               <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#06ACC1]/10 rounded-full blur-3xl group-hover:bg-[#06ACC1]/20 transition-colors duration-700" />
-               
-               <div className="relative z-10">
-                 <span className="text-[4rem] md:text-[5.5rem] font-bold text-[#06ACC1] leading-none tracking-tight tabular-nums block mb-4">
-                   <AnimatedCounter value={t('cards.time.stat')} inView={inView} />
-                 </span>
-                 <h3 className="text-xl md:text-2xl font-bold text-[#0B1B3D] leading-snug mb-3 tracking-tight">
-                   {t('cards.time.title')}
-                 </h3>
-                 <p className="text-slate-600 text-[15px] md:text-base leading-relaxed">
-                   {t('cards.time.description')}
-                 </p>
-               </div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
+            className="flex items-center gap-6 md:gap-8"
+          >
+            <ClockDial hours={hours} inView={inView} />
+            <div>
+              <p className="text-5xl md:text-6xl font-semibold text-[#06ACC1] tracking-[-0.05em] tabular-nums whitespace-nowrap">
+                <AnimatedCounter value={t('cards.time.stat')} inView={inView} />
+              </p>
+              <p className="mt-2 text-base md:text-lg font-semibold text-[#0B1B3D] tracking-tight max-w-[12rem] leading-snug">{t('cards.time.title')}</p>
             </div>
           </motion.div>
+        </div>
 
-          {/* Left Side: Supporting Stats List */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            className="lg:w-[55%] flex flex-col justify-center w-full lg:pr-8"
-          >
-            {cards.map((id, index) => (
+        <div ref={statsRef} className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 border-t border-slate-200">
+          {cards.map((id, index) => {
+            const stat = t(`cards.${id}.stat`);
+            return (
               <motion.div
                 key={id}
-                variants={itemVariants}
-                className={`py-8 md:py-10 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 group ${
-                  index !== 0 ? 'border-t border-slate-200/80' : ''
-                }`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: EASE, delay: index * 0.1 }}
+                className={`flex items-center gap-6 py-10 md:py-12 ${index > 0 ? 'border-t md:border-t-0 md:border-l border-slate-200 md:pl-10' : ''} ${index < 2 ? 'md:pr-10' : ''}`}
               >
-                {/* Stat Number */}
-                <div className="flex-shrink-0 w-full md:w-40 lg:w-44 relative">
-                  <span className="text-[3rem] md:text-[4rem] font-bold text-[#0B1B3D] leading-none tracking-tight tabular-nums block">
-                    <AnimatedCounter value={t(`cards.${id}.stat`)} inView={inView} />
-                  </span>
-                </div>
-
-                {/* Text Content */}
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-lg md:text-xl font-bold text-[#0B1B3D] leading-snug mb-2 tracking-tight">
-                    {t(`cards.${id}.title`)}
-                  </h3>
-                  <p className="text-slate-600 text-[15px] leading-relaxed max-w-md">
-                    {t(`cards.${id}.description`)}
+                <DotGrid percent={parseInt(stat.replace(/[^\d]/g, ''), 10) || 0} inView={statsInView} />
+                <div>
+                  <p className="text-4xl md:text-5xl font-semibold text-[#0B1B3D] tracking-[-0.05em] tabular-nums">
+                    <AnimatedCounter value={stat} inView={statsInView} />
                   </p>
+                  <p className="mt-1.5 text-[15px] text-slate-500 leading-snug">{t(`cards.${id}.title`)}</p>
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
-
+            );
+          })}
         </div>
       </div>
     </section>

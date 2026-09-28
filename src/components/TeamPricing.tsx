@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
 
@@ -110,7 +110,7 @@ export default function TeamPricing({ billingCycle }: TeamPricingProps) {
             ],
           };
   return (
-    <section className="w-full bg-[#FCFCFD] relative pb-24">
+    <section className="w-full relative pb-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 h-full flex flex-col justify-center">
         {/* Header */}
         <motion.div 
@@ -120,8 +120,8 @@ export default function TeamPricing({ billingCycle }: TeamPricingProps) {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">{copy.eyebrow}</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0B1B3D] tracking-tight mb-4">
+          <span className="block text-[#0597a9] font-semibold text-sm md:text-base mb-3 tracking-tight">{copy.eyebrow}</span>
+          <h2 className="text-3xl md:text-[2.75rem] font-semibold text-[#0B1B3D] tracking-[-0.035em] mb-4">
             {copy.title}
           </h2>
         </motion.div>
@@ -142,28 +142,37 @@ export default function TeamPricing({ billingCycle }: TeamPricingProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
-                className="glass-panel bg-white/60 border border-white/80 rounded-[32px] p-8 md:p-10 flex flex-col hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 h-full group"
+                className="bg-white ring-1 ring-slate-200/70 rounded-[28px] p-8 md:p-10 flex flex-col h-full group"
               >
                 <div className="mb-10 border-b border-slate-100 pb-8">
-                  <h3 className="text-xl font-bold tracking-tight mb-6 text-[#0B1B3D]">
+                  <h3 className="text-xl font-semibold tracking-tight mb-6 text-[#0B1B3D]">
                     {plan.name}
                   </h3>
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 mb-6">
-                    <span className="text-4xl lg:text-5xl font-extrabold tracking-tighter text-[#0B1B3D]">
-                      {activePrice.price}
-                    </span>
+                    <AnimatePresence mode="popLayout" initial={false}>
+                      <motion.span
+                        key={activePrice.price}
+                        initial={{ opacity: 0, y: 16, filter: 'blur(6px)' }}
+                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                        exit={{ opacity: 0, y: -16, filter: 'blur(6px)' }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="text-4xl lg:text-5xl font-semibold tracking-[-0.04em] tabular-nums text-[#0B1B3D]"
+                      >
+                        {activePrice.price}
+                      </motion.span>
+                    </AnimatePresence>
                     {activePrice.period && (
-                      <span className="text-lg font-bold tracking-tight text-slate-400">
+                      <span className="text-lg font-medium tracking-tight text-slate-400">
                         {activePrice.period}
                       </span>
                     )}
                   </div>
                   {activePrice.note ? (
-                    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#06ACC1]">
+                    <p className="mb-4 text-sm font-medium text-[#0597a9]">
                       {activePrice.note}
                     </p>
                   ) : null}
-                  <p className="text-sm leading-relaxed font-light text-slate-500">
+                  <p className="text-[15px] leading-relaxed text-slate-500">
                       {plan.description}
                   </p>
                 </div>
@@ -171,7 +180,7 @@ export default function TeamPricing({ billingCycle }: TeamPricingProps) {
                 <div className="space-y-5 flex-grow mb-10">
                   {plan.features.map((feature, i) => (
                     <div key={i} className="flex items-start gap-4">
-                      <div className="mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <div className="mt-0.5 flex-shrink-0">
                         <CheckIcon />
                       </div>
                       <span className="text-sm font-medium text-slate-700">
@@ -183,10 +192,10 @@ export default function TeamPricing({ billingCycle }: TeamPricingProps) {
 
                 <Link
                   href={`/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}&billing=${billingCycle}`}
-                  className="w-full py-4 rounded-2xl font-bold tracking-wide transition-all flex items-center justify-center gap-2 group-hover:bg-[#0B1B3D] group-hover:text-white group-hover:border-transparent bg-white text-[#0B1B3D] border border-slate-200 shadow-sm"
+                  className="group/cta w-full py-4 rounded-full font-semibold transition-colors flex items-center justify-center gap-2 bg-slate-100 text-[#0B1B3D] hover:bg-[#0B1B3D] hover:text-white"
                 >
                   {plan.buttonText}
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                  <span className="transition-transform group-hover/cta:translate-x-1">→</span>
                 </Link>
               </motion.div>
             );

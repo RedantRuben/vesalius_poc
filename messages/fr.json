@@ -21,7 +21,7 @@
   "TheProblem": {
     "eyebrow": "Le défi",
     "title": "Les médecins passent plus de temps sur la paperasse que sur leurs patients",
-    "subtitle": "La charge administrative est devenue le principal frein dans les soins de santé — avec des conséquences directes sur le bien-être des médecins et la qualité des soins.",
+    "subtitle": "La charge administrative est devenue le principal frein dans les soins de santé. Elle pèse directement sur le bien-être des médecins et sur la qualité des soins.",
     "cards": {
       "time": {
         "stat": "±4 h",
@@ -68,7 +68,7 @@
     }
   },
   "Modules": {
-    "title": "Une suite complète pour les équipes de soins modernes",
+    "title": "Huit modules. Un seul assistant.",
     "beforeConsultation": "Avant la consultation",
     "duringConsultation": "Pendant la consultation",
     "afterConsultation": "Après la consultation",
@@ -261,8 +261,8 @@
     "contact": "Contact",
     "support": "Support client",
     "address": {
-        "street": "Ottergemsesteenweg Zuid 808B",
-        "city": "9000 Gent, Belgique"
+      "street": "Ottergemsesteenweg Zuid 808B",
+      "city": "9000 Gent, Belgique"
     },
     "copyright": "Copyright © Vesalius health"
   },
@@ -293,9 +293,9 @@
     "attachmentTooLarge": "La pièce jointe est trop volumineuse.",
     "submit": "Envoyer le ticket",
     "ticketTypes": {
-    "question": "Question générale",
+      "question": "Question générale",
       "questionDescription": "À utiliser pour les questions générales ou l'aide liée au compte.",
-    "incident": "Problème bloquant",
+      "incident": "Problème bloquant",
       "incidentDescription": "À utiliser lorsqu'un problème bloque le travail ou qu'une fonction est cassée.",
       "billing": "Facturation",
       "billingDescription": "À utiliser pour les factures, paiements ou abonnements.",
@@ -405,6 +405,60 @@
         "title": "Cookies publicitaires",
         "description": "Utilisés pour afficher des publicités pertinentes selon vos intérêts."
       }
+    }
+  },
+  "Journey": {
+    "title": "Un patient, du début à la fin.",
+    "subtitle": "Vous n’intervenez que là où votre jugement compte.",
+    "yourPart": "Votre rôle",
+    "steps": {
+      "0": {
+        "day": "Dimanche",
+        "title": "L’anamnèse à domicile, dans sa langue.",
+        "part": "Rien."
+      },
+      "1": {
+        "day": "Lundi",
+        "title": "Urgence évaluée, rendez-vous fixé.",
+        "part": "Un coup d’œil."
+      },
+      "2": {
+        "day": "Lundi",
+        "title": "Vous parlez. Vesalius écoute.",
+        "part": "Être médecin."
+      },
+      "3": {
+        "day": "Lundi",
+        "title": "L’administratif se rédige tout seul.",
+        "part": "Relire et signer."
+      },
+      "4": {
+        "day": "Jeudi",
+        "title": "Convalescence suivie à domicile.",
+        "part": "Agir en cas d’alerte."
+      }
+    }
+  },
+  "FinalCta": {
+    "title": "Consacrez demain à vos patients.",
+    "subtitle": "Commencez gratuitement avec 20 crédits. Aucune carte bancaire requise.",
+    "primary": "Créez votre assistant",
+    "secondary": "Demander une démo"
+  },
+  "MobileApp": {
+    "title": "Votre scribe, dans votre poche.",
+    "subtitle": "L’application Vesalius transforme votre smartphone en scribe. Lancez l’enregistrement, posez-le et accordez toute votre attention à votre patient.",
+    "appStore": "Télécharger dans l’",
+    "playStore": "Disponible sur",
+    "screenTitle": "Enregistrement",
+    "patient": "Patient 23114",
+    "streaming": "Streaming vers Vesalius.ai...",
+    "hint": "L’enregistrement continue si vous changez d’application ou verrouillez votre écran.",
+    "stop": "Arrêter l’enregistrement",
+    "points": {
+      "0": "Continue d’enregistrer si vous verrouillez l’écran ou changez d’application",
+      "1": "Choisissez la langue de la consultation, ou laissez-la détecter",
+      "2": "Envoie directement vers Vesalius, aucun fichier à déplacer"
     }
   }
 }

@@ -21,7 +21,7 @@
   "TheProblem": {
     "eyebrow": "De uitdaging",
     "title": "Artsen spenderen meer tijd aan papierwerk dan aan patiënten",
-    "subtitle": "Administratieve last is uitgegroeid tot het grootste knelpunt in de gezondheidszorg — met directe gevolgen voor het welzijn van artsen en de kwaliteit van zorg.",
+    "subtitle": "Administratieve last is uitgegroeid tot het grootste knelpunt in de gezondheidszorg. Dat weegt rechtstreeks op het welzijn van artsen en op de kwaliteit van zorg.",
     "cards": {
       "time": {
         "stat": "±4 uur",
@@ -68,7 +68,7 @@
     }
   },
   "Modules": {
-    "title": "Een complete toolkit voor moderne zorgteams",
+    "title": "Acht modules. Eén assistent.",
     "beforeConsultation": "Voor de consultatie",
     "duringConsultation": "Tijdens de consultatie",
     "afterConsultation": "Na de consultatie",
@@ -261,8 +261,8 @@
     "contact": "Contact",
     "support": "Klantenzorg",
     "address": {
-        "street": "Ottergemsesteenweg Zuid 808B",
-        "city": "9000 Gent, België"
+      "street": "Ottergemsesteenweg Zuid 808B",
+      "city": "9000 Gent, België"
     },
     "copyright": "Copyright © Vesalius health"
   },
@@ -305,7 +305,7 @@
   },
   "DemoForm": {
     "nameLabel": "Naam",
-      "namePlaceholder": "Uw naam *",
+    "namePlaceholder": "Uw naam *",
     "emailLabel": "E-mail",
     "emailPlaceholder": "Uw E-mail *",
     "organisationLabel": "Organisatie",
@@ -405,6 +405,60 @@
         "title": "Advertentiecookies",
         "description": "Worden gebruikt om relevante advertenties te tonen op basis van uw interesses."
       }
+    }
+  },
+  "Journey": {
+    "title": "Eén patiënt, van begin tot einde.",
+    "subtitle": "U komt enkel tussen waar uw oordeel telt.",
+    "yourPart": "Uw rol",
+    "steps": {
+      "0": {
+        "day": "Zondag",
+        "title": "Intake thuis, in zijn eigen taal.",
+        "part": "Niets."
+      },
+      "1": {
+        "day": "Maandag",
+        "title": "Urgentie ingeschat, afspraak ingepland.",
+        "part": "Een blik."
+      },
+      "2": {
+        "day": "Maandag",
+        "title": "U praat. Vesalius luistert mee.",
+        "part": "Gewoon arts zijn."
+      },
+      "3": {
+        "day": "Maandag",
+        "title": "De administratie schrijft zichzelf.",
+        "part": "Nalezen en ondertekenen."
+      },
+      "4": {
+        "day": "Donderdag",
+        "title": "Herstel thuis opgevolgd.",
+        "part": "Handelen bij een signaal."
+      }
+    }
+  },
+  "FinalCta": {
+    "title": "Besteed morgen aan uw patiënten.",
+    "subtitle": "Start gratis met 20 credits. Geen kredietkaart nodig.",
+    "primary": "Maak uw assistent aan",
+    "secondary": "Vraag een demo aan"
+  },
+  "MobileApp": {
+    "title": "Uw scribe, in uw broekzak.",
+    "subtitle": "De Vesalius-app maakt van uw smartphone een scribe. Tik op opnemen, leg hem neer en geef uw patiënt uw volle aandacht.",
+    "appStore": "Download in de",
+    "playStore": "Ontdek het op",
+    "screenTitle": "Opname",
+    "patient": "Patiënt 23114",
+    "streaming": "Streaming naar Vesalius.ai...",
+    "hint": "De opname gaat door als je van app wisselt of je scherm vergrendelt.",
+    "stop": "Stop opname",
+    "points": {
+      "0": "Neemt verder op als u uw scherm vergrendelt of van app wisselt",
+      "1": "Kies de taal van het gesprek, of laat die automatisch detecteren",
+      "2": "Streamt rechtstreeks naar Vesalius, geen bestanden te verplaatsen"
     }
   }
 }

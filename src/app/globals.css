@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FCFCFD;
+  --background: #FAFAFB;
   --foreground: #0F172A;
   --primary: #06ACC1;
   --primary-hover: #0597a9;
   --secondary: #0B1B3D;
   --accent: #FF3366;
-  --font-inter: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-inter: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", system-ui, sans-serif;
   --font-display: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
@@ -38,6 +38,51 @@ body {
 
 .font-display {
   font-family: var(--font-display);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* framer-motion's useScroll measures targets relative to the root scroll container */
+  position: relative;
+}
+
+/* Traveling pulse along an SVG path normalised with pathLength="1000" */
+@keyframes vh-pulse-travel {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+.vh-pulse-travel {
+  stroke-dasharray: 90 910;
+  animation: vh-pulse-travel 6s linear infinite;
+}
+
+@keyframes vh-spin {
+  to { transform: rotate(360deg); }
+}
+
+.vh-spin-slow {
+  animation: vh-spin 40s linear infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.vh-spin-reverse {
+  animation: vh-spin 60s linear infinite reverse;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .vh-pulse-travel,
+  .vh-spin-slow,
+  .vh-spin-reverse {
+    animation: none;
+  }
 }
 
 .mask-linear-fade {

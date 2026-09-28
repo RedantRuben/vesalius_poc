@@ -9,8 +9,12 @@ import Testimonials from "@/components/Testimonials";
 import SecuritySection from "@/components/SecuritySection";
 import PricingSection from "@/components/PricingSection";
 import Contact from "@/components/Contact";
+import Journey from "@/components/Journey";
+import FinalCta from "@/components/FinalCta";
+import MobileApp from "@/components/MobileApp";
 import Footer from "@/components/Footer";
 import SeoJsonLd from '@/components/SeoJsonLd';
+import MotionProvider from '@/components/MotionProvider';
 import { buildPageMetadata, getAbsoluteUrl, resolveSiteLocale, SITE_DESCRIPTION } from '@/lib/seo';
 
 export async function generateMetadata({
@@ -81,39 +85,40 @@ export default async function Home({
   };
 
   return (
-    <main className="relative w-full max-w-full overflow-x-clip selection:bg-primary/20 bg-[#FCFCFD]">
+    <MotionProvider>
+    <main className="relative w-full max-w-full overflow-x-clip selection:bg-primary/20 bg-[#FAFAFB]">
       <SeoJsonLd data={organizationSchema} />
       <Navbar />
       
-      {/* Section 1: Hero */}
       <section className="w-full relative z-0">
-         <Hero />
+        <Hero />
       </section>
 
-      {/* Section: The Problem */}
-      <section className="w-full pt-12 md:pt-24 pb-0 flex items-center justify-center">
-        <TheProblem />
-      </section>
+      <TheProblem />
 
-      {/* Section 2: Why Choose Vesalius */}
-      <section className="w-full pt-12 md:pt-24 pb-12 md:pb-24 flex items-center justify-center">
+      <div id="product">
+        <Journey />
+      </div>
+
+      <section className="w-full py-12 md:py-24">
         <WhyChooseVesalius />
       </section>
 
-      {/* Section 3: Modules */}
-      <section id="product" className="w-full pt-0 pb-12 md:pb-24 flex items-center justify-center">
+      <section id="modules" className="w-full py-20 md:py-28">
         <Modules />
       </section>
 
-      {/* Section 4: Testimonials */}
-      <section className="w-full pt-0 pb-4 md:pb-8 flex items-center justify-center">
+      <MobileApp />
+
+      <section className="w-full pt-12 md:pt-20">
         <Testimonials />
       </section>
 
-      {/* Section: Security */}
       <SecuritySection />
 
       <PricingSection />
+
+      <FinalCta />
 
       {/* Section 7: Contact & Footer */}
       <section id="contact" className="w-full flex flex-col">
@@ -123,5 +128,6 @@ export default async function Home({
         <Footer />
       </section>
     </main>
+    </MotionProvider>
   );
 }

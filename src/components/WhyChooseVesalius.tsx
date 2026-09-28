@@ -1,301 +1,301 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import React from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 interface FeatureItem {
-  id: number;
+  id: string;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  visual: React.ReactNode;
   className?: string;
 }
 
-const LanguageVisual = ({
-  sourceText,
-  targetText,
-}: {
-  sourceText: string;
-  targetText: string;
-}) => (
-  <div className="relative w-full h-full flex items-center justify-center">
-    <motion.div 
-      initial={{ opacity: 0, x: -20, y: -6 }}
-      whileInView={{ opacity: 1, x: '-82%', y: -14 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="absolute top-1/2 left-1/2 bg-white border border-slate-100 rounded-2xl p-3 md:p-4 shadow-lg shadow-black/5 z-10"
-    >
-      <div className="flex gap-2 items-center">
-        <div className="w-2 h-2 rounded-full bg-slate-300" />
-        <span className="text-slate-400 text-xs md:text-sm font-medium tracking-wide">{sourceText}</span>
-      </div>
-    </motion.div>
-    
-    <motion.div 
-      initial={{ opacity: 0, x: 20, y: 6 }}
-      whileInView={{ opacity: 1, x: '38%', y: 8 }}
-      transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-      className="absolute top-1/2 left-1/2 bg-[#06ACC1] rounded-2xl rounded-tl-sm p-3 md:p-4 shadow-xl shadow-[#06ACC1]/20 z-20"
-    >
-      <div className="flex gap-2 items-center">
-        <span className="text-white text-xs md:text-sm font-medium tracking-wide">{targetText}</span>
-        <motion.div 
-          animate={{ opacity: [1, 0, 1] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-1.5 h-4 bg-white/70 rounded-full"
-        />
-      </div>
-    </motion.div>
-  </div>
-);
+/** Cycles through indices while respecting reduced motion. */
+function useCycle(length: number, intervalMs: number) {
+  const reduceMotion = useReducedMotion();
+  const [index, setIndex] = useState(0);
 
-const LiabilityVisual = () => (
-  <div className="relative w-full h-full flex items-center justify-center">
-    <div className="relative w-24 h-32 md:w-32 md:h-40 bg-white border border-slate-100 shadow-sm rounded-2xl flex flex-col items-center pt-6 overflow-hidden">
-      <motion.div 
-        initial={{ width: 0 }}
-        whileInView={{ width: 48 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="h-2 bg-slate-200 rounded-full mb-3" 
-      />
-      <motion.div 
-        initial={{ width: 0 }}
-        whileInView={{ width: 64 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="h-2 bg-slate-200 rounded-full mb-3" 
-      />
-      <motion.div 
-        initial={{ width: 0 }}
-        whileInView={{ width: 40 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="h-2 bg-slate-200 rounded-full" 
-      />
-      
-      <div className="absolute bottom-0 w-full h-20 bg-gradient-to-t from-rose-50/80 to-transparent flex items-end justify-center pb-4 backdrop-blur-[2px]">
-        <motion.div 
-          initial={{ scale: 0, y: 20 }}
-          whileInView={{ scale: 1, y: 0 }}
-          transition={{ type: "spring", bounce: 0.5, delay: 0.8 }}
-          className="w-10 h-10 rounded-full bg-white shadow-xl shadow-rose-500/20 flex items-center justify-center border border-rose-100 z-10"
-        >
-           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF3366" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-             <motion.path 
-               initial={{ pathLength: 0 }}
-               whileInView={{ pathLength: 1 }}
-               transition={{ duration: 1, delay: 1.2 }}
-               d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" 
-             />
-           </svg>
-        </motion.div>
-      </div>
-    </div>
-  </div>
-);
+  useEffect(() => {
+    if (reduceMotion) return;
+    const id = setInterval(() => setIndex((i) => (i + 1) % length), intervalMs);
+    return () => clearInterval(id);
+  }, [length, intervalMs, reduceMotion]);
 
-const CareVisual = () => (
-  <div className="relative w-full h-full flex items-center justify-center">
-    <div className="relative z-10 w-20 h-20 md:w-24 md:h-24 rounded-full bg-white border border-slate-100 flex items-center justify-center shadow-xl shadow-[#06ACC1]/10">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#care-gradient)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <defs>
-          <linearGradient id="care-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop stopColor="#06ACC1" />
-            <stop stopColor="#0B1B3D" />
-          </linearGradient>
-        </defs>
-        <motion.path 
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-          d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" 
-        />
+  return index;
+}
+
+const SOURCE_PHRASES = [
+  { lang: 'ES', text: 'Hola, ¿cómo estás?' },
+  { lang: 'TR', text: 'Merhaba, nasılsın?' },
+  { lang: 'AR', text: 'مرحبا، كيف حالك؟' },
+  { lang: 'UK', text: 'Привіт, як справи?' },
+  { lang: 'PL', text: 'Cześć, jak się masz?' },
+];
+
+const LanguageVisual = ({ targetText, targetLang }: { targetText: string; targetLang: string }) => {
+  const index = useCycle(SOURCE_PHRASES.length, 2600);
+  const phrase = SOURCE_PHRASES[index];
+
+  return (
+    <div className="relative w-full h-full flex flex-col items-center justify-end gap-3 pb-2">
+      <div className="relative h-12 w-full flex justify-center">
+        <AnimatePresence mode="popLayout">
+          <motion.div
+            key={phrase.lang}
+            initial={{ opacity: 0, y: 14, filter: 'blur(6px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -14, filter: 'blur(6px)' }}
+            transition={{ duration: 0.6, ease: EASE }}
+            className="absolute -translate-x-10 md:-translate-x-16 bg-white ring-1 ring-slate-200 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm flex items-center gap-2.5"
+          >
+            <span className="text-[10px] font-semibold text-slate-400 tabular-nums">{phrase.lang}</span>
+            <span className="text-slate-600 text-sm" dir="auto">{phrase.text}</span>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <svg width="40" height="22" viewBox="0 0 40 22" aria-hidden="true" className="translate-x-2">
+        <path d="M 4 2 C 4 14, 20 18, 34 18" fill="none" stroke="#CBD5E1" strokeWidth="1.5" strokeDasharray="3 4" />
+        <path d="M 30 14 L 35 18 L 30 22" fill="none" stroke="#CBD5E1" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
-    </div>
-    
-    <motion.div 
-      animate={{ scale: [1, 1.5, 2], opacity: [0.5, 0.2, 0] }}
-      transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
-      className="absolute z-0 w-20 h-20 md:w-24 md:h-24 rounded-full border border-[#06ACC1]/30" 
-    />
-    <motion.div 
-      animate={{ scale: [1, 1.5, 2], opacity: [0.5, 0.2, 0] }}
-      transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut", delay: 1.25 }}
-      className="absolute z-0 w-20 h-20 md:w-24 md:h-24 rounded-full border border-[#06ACC1]/30" 
-    />
-  </div>
-);
 
-const AccuracyVisual = () => (
-  <div className="relative w-full h-full flex items-center justify-center">
-    <div className="relative w-24 h-24 md:w-32 md:h-32">
-      {/* Outer Ring */}
-      <motion.svg 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 w-full h-full" 
-        viewBox="0 0 100 100"
-      >
-        <circle cx="50" cy="50" r="48" fill="none" stroke="#0B1B3D" strokeWidth="1" strokeDasharray="4 6" strokeOpacity="0.2" />
-      </motion.svg>
-      
-      {/* Scanning Radar */}
-      <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 w-full h-full rounded-full"
-        style={{ background: 'conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(6,172,193,0.1) 360deg)' }}
-      />
-      
-      {/* Center Target */}
-      <div className="absolute inset-0 m-auto w-16 h-16 rounded-full bg-white border border-slate-100 flex items-center justify-center shadow-lg shadow-[#0B1B3D]/10">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#0B1B3D] to-slate-700 flex items-center justify-center">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <motion.polyline 
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              points="20 6 9 17 4 12" 
-            />
-          </svg>
-        </div>
+      <div className="translate-x-10 md:translate-x-16 bg-[#06ACC1] rounded-2xl rounded-br-sm px-4 py-3 shadow-[0_16px_30px_-12px_rgba(6,172,193,0.6)] flex items-center gap-2.5">
+        <span className="text-[10px] font-semibold text-white/70">{targetLang}</span>
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={phrase.lang}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, delay: 0.25 }}
+            className="text-white text-sm font-medium"
+          >
+            {targetText}
+          </motion.span>
+        </AnimatePresence>
       </div>
     </div>
-  </div>
-);
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 }
-  }
+  );
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }
-  }
-};
-
-const ArrowUpRight = () => (
-  <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 text-slate-300 transition-colors duration-300 group-hover:text-slate-500">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M7 7h10v10" />
-      <path d="M7 17 17 7" />
+/** A record that writes itself, gets timestamped and sealed. */
+const LiabilityVisual = () => (
+  <div className="relative w-full h-full flex items-end justify-center">
+    <svg viewBox="0 0 220 150" className="w-[220px] h-[150px]" aria-hidden="true">
+      <rect x="40" y="6" width="140" height="150" rx="14" fill="#fff" stroke="#E2E8F0" />
+      {[0, 1, 2, 3].map((i) => (
+        <g key={i}>
+          <motion.circle
+            cx="58"
+            cy={34 + i * 26}
+            r="4"
+            fill={i === 3 ? '#06ACC1' : '#CBD5E1'}
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 + i * 0.25, type: 'spring', bounce: 0.5 }}
+          />
+          {i < 3 && <line x1="58" y1={40 + i * 26} x2="58" y2={54 + i * 26} stroke="#E2E8F0" strokeWidth="1.5" />}
+          <motion.line
+            x1="72"
+            y1={34 + i * 26}
+            x2={[150, 132, 160, 120][i]}
+            y2={34 + i * 26}
+            stroke={i === 3 ? '#0B1B3D' : '#CBD5E1'}
+            strokeWidth="5"
+            strokeLinecap="round"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 + i * 0.25, duration: 0.6, ease: 'easeOut' }}
+          />
+        </g>
+      ))}
+      <motion.g
+        initial={{ opacity: 0, scale: 1.6, rotate: -18 }}
+        whileInView={{ opacity: 1, scale: 1, rotate: -8 }}
+        viewport={{ once: true }}
+        transition={{ delay: 1.6, type: 'spring', bounce: 0.35 }}
+      >
+        <circle cx="170" cy="120" r="24" fill="#fff" stroke="#06ACC1" strokeWidth="2" />
+        <circle cx="170" cy="120" r="18" fill="none" stroke="#06ACC1" strokeWidth="1" strokeDasharray="2 3" />
+        <path d="M 170 108 L 180 112 L 180 120 C 180 126 175 130 170 132 C 165 130 160 126 160 120 L 160 112 Z" fill="#06ACC1" fillOpacity="0.15" stroke="#06ACC1" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M 165.5 120 L 169 123.5 L 175 117" fill="none" stroke="#0597a9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </motion.g>
     </svg>
   </div>
 );
+
+/** A heart with a live ECG trace running through it. */
+const CareVisual = () => (
+  <div className="relative w-full h-full flex items-end justify-center">
+    <svg viewBox="0 0 260 140" className="w-[260px] h-[140px] overflow-visible" aria-hidden="true">
+      <defs>
+        <clipPath id="care-heart-clip">
+          <path d="M130 128 L 76 76 C 58 58 62 28 88 22 C 106 18 120 28 130 42 C 140 28 154 18 172 22 C 198 28 202 58 184 76 Z" />
+        </clipPath>
+      </defs>
+      <motion.path
+        d="M130 128 L 76 76 C 58 58 62 28 88 22 C 106 18 120 28 130 42 C 140 28 154 18 172 22 C 198 28 202 58 184 76 Z"
+        fill="#06ACC1"
+        fillOpacity="0.08"
+        stroke="#06ACC1"
+        strokeOpacity="0.35"
+        strokeWidth="1.5"
+        animate={{ scale: [1, 1.04, 1, 1.03, 1] }}
+        transition={{ duration: 1.6, repeat: Infinity, times: [0, 0.1, 0.25, 0.35, 1] }}
+      />
+      <path d="M 0 80 L 96 80 L 106 64 L 116 96 L 126 40 L 138 112 L 148 72 L 156 80 L 260 80" fill="none" stroke="#E2E8F0" strokeWidth="2" strokeLinejoin="round" />
+      <path
+        d="M 0 80 L 96 80 L 106 64 L 116 96 L 126 40 L 138 112 L 148 72 L 156 80 L 260 80"
+        pathLength={1000}
+        fill="none"
+        stroke="#0B1B3D"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="vh-pulse-travel"
+        style={{ animationDuration: '2.4s', strokeDasharray: '220 780' }}
+      />
+      <g clipPath="url(#care-heart-clip)">
+        <path
+          d="M 0 80 L 96 80 L 106 64 L 116 96 L 126 40 L 138 112 L 148 72 L 156 80 L 260 80"
+          pathLength={1000}
+          fill="none"
+          stroke="#06ACC1"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="vh-pulse-travel"
+          style={{ animationDuration: '2.4s', strokeDasharray: '220 780' }}
+        />
+      </g>
+    </svg>
+  </div>
+);
+
+/** Inconsistent fields snap into a clean, verified record. */
+const AccuracyVisual = () => {
+  const rows = [
+    { w: 110, offset: 18, delay: 0.2 },
+    { w: 150, offset: -14, delay: 0.35 },
+    { w: 90, offset: 24, delay: 0.5 },
+    { w: 130, offset: -10, delay: 0.65 },
+  ];
+
+  return (
+    <div className="relative w-full h-full flex items-end justify-center">
+      <div className="w-full max-w-[300px] bg-white rounded-2xl ring-1 ring-slate-200 p-4 flex flex-col gap-2.5">
+        {rows.map((row, i) => (
+          <div key={i} className="flex items-center gap-3">
+            <div className="h-2 w-11 rounded-full bg-slate-200" />
+            <motion.div
+              className="h-2 rounded-full"
+              style={{ width: row.w }}
+              initial={{ x: row.offset, rotate: row.offset > 0 ? 3 : -3, backgroundColor: '#FECDD3' }}
+              whileInView={{ x: 0, rotate: 0, backgroundColor: '#0B1B3D' }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 + row.delay, type: 'spring', bounce: 0.3 }}
+            />
+            <motion.svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              className="ml-auto shrink-0"
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1 + row.delay, type: 'spring' }}
+              aria-hidden="true"
+            >
+              <circle cx="8" cy="8" r="8" fill="#10B981" fillOpacity="0.15" />
+              <path d="M 4.5 8.2 L 7 10.5 L 11.5 5.8" fill="none" stroke="#059669" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </motion.svg>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default function WhyChooseVesalius() {
   const t = useTranslations('WhyChooseVesalius');
   const locale = useLocale();
   const copy =
     locale === 'fr'
-      ? {
-          eyebrow: 'Pourquoi Vesalius',
-          translationSource: 'Hola, ¿cómo estás?',
-          translationTarget: 'Bonjour, comment allez-vous ?',
-        }
+      ? { translationTarget: 'Bonjour, comment allez-vous ?', targetLang: 'FR' }
       : locale === 'nl'
-        ? {
-            eyebrow: 'Waarom Vesalius',
-            translationSource: 'Hola, ¿cómo estás?',
-            translationTarget: 'Hallo, hoe gaat het met u?',
-          }
-        : {
-            eyebrow: 'Why Vesalius',
-            translationSource: 'Hola, ¿cómo estás?',
-            translationTarget: 'Hello, how are you?',
-          };
+        ? { translationTarget: 'Hallo, hoe gaat het met u?', targetLang: 'NL' }
+        : { translationTarget: 'Hello, how are you?', targetLang: 'EN' };
 
   const features: FeatureItem[] = [
     {
-      id: 1,
+      id: 'language',
       title: t('features.language.title'),
       description: t('features.language.description'),
-      icon: <LanguageVisual sourceText={copy.translationSource} targetText={copy.translationTarget} />,
+      visual: <LanguageVisual targetText={copy.translationTarget} targetLang={copy.targetLang} />,
       className: 'lg:col-span-7',
     },
     {
-      id: 3,
+      id: 'liability',
       title: t('features.liability.title'),
       description: t('features.liability.description'),
-      icon: <LiabilityVisual />,
+      visual: <LiabilityVisual />,
       className: 'lg:col-span-5',
     },
     {
-      id: 4,
+      id: 'care',
       title: t('features.care.title'),
       description: t('features.care.description'),
-      icon: <CareVisual />,
+      visual: <CareVisual />,
       className: 'lg:col-span-5',
     },
     {
-      id: 5,
+      id: 'accuracy',
       title: t('features.accuracy.title'),
       description: t('features.accuracy.description'),
-      icon: <AccuracyVisual />,
+      visual: <AccuracyVisual />,
       className: 'lg:col-span-7',
     },
   ];
 
   return (
-    <section className="w-full bg-[#FCFCFD] relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-30 pointer-events-none" />
-      
+    <section className="w-full relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-16 md:mb-24 flex flex-col items-center text-center"
+          transition={{ duration: 0.9, ease: EASE }}
+          className="mb-14 md:mb-20 flex flex-col items-center text-center"
         >
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">{copy.eyebrow}</span>
-          <h2 className="text-4xl md:text-5xl lg:text-[4.25rem] font-bold text-[#0B1B3D] tracking-tight max-w-5xl xl:max-w-6xl leading-[1.05] text-balance">
+          <h2 className="text-[2.5rem] md:text-6xl lg:text-[4.5rem] font-semibold text-[#0B1B3D] tracking-[-0.045em] max-w-5xl leading-[1.02] text-balance">
             {t('title')}
           </h2>
         </motion.div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-6"
-        >
-          {features.map((feature) => (
-            <motion.div
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          {features.map((feature, index) => (
+            <motion.article
               key={feature.id}
-              variants={itemVariants}
-              className={`bg-white rounded-2xl p-8 md:p-10 relative overflow-hidden group hover:shadow-lg transition-all duration-500 h-[340px] md:h-[360px] border border-slate-200/60 ${feature.className}`}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.8, ease: EASE, delay: (index % 2) * 0.1 }}
+              className={`bg-white rounded-[28px] p-8 md:p-10 relative overflow-hidden h-[380px] md:h-[400px] ring-1 ring-slate-200/70 flex flex-col ${feature.className}`}
             >
-              <ArrowUpRight />
-              
-              <div className="relative z-10 flex flex-col h-full pointer-events-none">
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#0B1B3D] mb-3 pr-12 tracking-tight">{feature.title}</h3>
-                  <p className="text-slate-500 max-w-md text-sm md:text-base leading-relaxed font-light">
-                    {feature.description}
-                  </p>
+              <div className="relative z-10">
+                <h3 className="text-2xl md:text-[1.75rem] font-semibold text-[#0B1B3D] mb-2 tracking-[-0.025em]">{feature.title}</h3>
+                <p className="text-slate-500 max-w-md text-[15px] md:text-base leading-relaxed">{feature.description}</p>
               </div>
-              
-              {/* Visual Area - Pushed to background bottom */}
-              <div className="absolute inset-x-6 bottom-6 h-[46%] overflow-visible pointer-events-none">
-                <div className="h-full flex items-end justify-center pb-2 group-hover:-translate-y-1 transition-transform duration-700 ease-out">
-                  {feature.icon}
-                </div>
-              </div>
-              
-              {/* Hover gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/0 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-            </motion.div>
+              <div className="relative flex-1 mt-6">{feature.visual}</div>
+            </motion.article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

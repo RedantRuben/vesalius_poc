@@ -41,3 +41,5 @@ coverage/
 
 # npm cache directory
 .npm-cache/
+# local QA artifacts (product screenshots, Playwright output)
+/output/

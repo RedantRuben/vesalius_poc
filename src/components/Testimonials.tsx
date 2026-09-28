@@ -1,189 +1,174 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
-const StarIcon = ({ filled }: { filled?: boolean }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={filled ? "text-amber-400" : "text-slate-200"}>
-    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-  </svg>
-);
+const EASE = [0.16, 1, 0.3, 1] as const;
 
-const UserGroupIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#06ACC1]">
-    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-    <circle cx="9" cy="7" r="4"/>
-    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-  </svg>
-);
+const STAR_PATH = 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z';
 
-const QuoteIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" className="text-[#06ACC1]/10 absolute -top-2 -left-2 rotate-180">
-    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-  </svg>
-);
+/** Five stars filled proportionally to the score, so 4.1 reads as 4.1, not 4. */
+const StarRating = ({ score, label }: { score: number; label: string }) => {
+  const id = `stars-${String(score).replace('.', '-')}`;
+  const stars = [0, 1, 2, 3, 4].map((i) => <path key={i} d={STAR_PATH} transform={`translate(${i * 24} 0)`} />);
+
+  return (
+    <svg width="112" height="20" viewBox="0 0 120 22" role="img" aria-label={label}>
+      <defs>
+        <clipPath id={id}>
+          <rect x="0" y="0" width={(score / 5) * 118} height="22" />
+        </clipPath>
+      </defs>
+      <g fill="rgba(255,255,255,0.2)">{stars}</g>
+      <g fill="#FBBF24" clipPath={`url(#${id})`}>{stars}</g>
+    </svg>
+  );
+};
+
+/** Counts up to a numeric value once visible; leaves the final text untouched. */
+function CountUp({ to, decimals = 0, prefix = '', suffix = '' }: { to: number; decimals?: number; prefix?: string; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+  const reduceMotion = useReducedMotion();
+  const final = `${prefix}${to.toFixed(decimals)}${suffix}`;
+
+  useEffect(() => {
+    if (!inView || reduceMotion || !ref.current) return;
+    const start = performance.now();
+    let frame = 0;
+    const tick = (now: number) => {
+      const p = Math.min((now - start) / 1400, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      if (ref.current) ref.current.textContent = `${prefix}${(to * eased).toFixed(decimals)}${suffix}`;
+      if (p < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [inView, reduceMotion, to, decimals, prefix, suffix]);
+
+  return <span ref={ref}>{final}</span>;
+}
+
+type Quote = { quote: string; name: string; role: string };
+
+function QuoteCards({ items }: { items: Quote[] }) {
+  const t = useTranslations('Testimonials');
+
+  return (
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.9, ease: EASE }}
+        className="text-center mb-14 md:mb-20 flex flex-col items-center"
+      >
+        <h2 className="text-[2.5rem] md:text-6xl font-semibold text-[#0B1B3D] tracking-[-0.045em] max-w-3xl leading-[1.02] text-balance">
+          {t('title')}
+        </h2>
+      </motion.div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-20 md:mb-24">
+        {items.map((item, index) => (
+          <motion.figure
+            key={item.name}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.12, duration: 0.8, ease: EASE }}
+            className="bg-white rounded-[28px] ring-1 ring-slate-200/70 p-8 md:p-10 flex flex-col justify-between h-full transition-shadow duration-500 hover:shadow-[0_30px_60px_-30px_rgba(11,27,61,0.3)]"
+          >
+            <blockquote className="text-[#0B1B3D] text-lg md:text-xl leading-snug tracking-tight mb-10">
+              <span className="block font-display italic text-6xl text-[#06ACC1] leading-none h-8 mb-2" aria-hidden="true">&ldquo;</span>
+              {item.quote}
+            </blockquote>
+            <figcaption className="flex items-center gap-3.5 pt-6 border-t border-slate-100">
+              <span className="w-11 h-11 rounded-full bg-[#0B1B3D] text-white flex items-center justify-center font-semibold" aria-hidden="true">
+                {item.name.charAt(0)}
+              </span>
+              <span>
+                <span className="block font-semibold text-[#0B1B3D] tracking-tight">{item.name}</span>
+                <span className="block text-sm text-slate-500">{item.role}</span>
+              </span>
+            </figcaption>
+          </motion.figure>
+        ))}
+      </div>
+    </>
+  );
+}
 
 export default function Testimonials() {
   const t = useTranslations('Testimonials');
-  const locale = useLocale();
-  const eyebrow =
-    locale === 'fr' ? 'Retours terrain' : locale === 'nl' ? 'Ervaringen van gebruikers' : 'USER FEEDBACK';
   const testimonials = [0, 1, 2].map((index) => ({
     quote: t(`items.${index}.quote`),
     name: t(`items.${index}.name`),
-    role: t(`items.${index}.role`)
+    role: t(`items.${index}.role`),
   }));
 
-  return (
-    <section className="w-full bg-[#FCFCFD] relative overflow-hidden pt-16 md:pt-24 pb-4 md:pb-8">
-      {/* Background blurs */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#06ACC1]/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#0B1B3D]/5 rounded-full blur-[120px] pointer-events-none" />
+  const stats = [
+    { value: <CountUp to={83} suffix="%" />, label: t('adoptionRate') },
+    { value: <CountUp to={8} suffix="x" />, label: t('roi') },
+    {
+      value: (
+        <>
+          19<span className="text-2xl md:text-3xl text-white/60">m</span> 56<span className="text-2xl md:text-3xl text-white/60">s</span>
+        </>
+      ),
+      label: t('completionTime'),
+    },
+    { value: <CountUp to={13} prefix="+" suffix="%" />, label: t('perceivedQuality') },
+  ];
 
+  return (
+    <section className="w-full relative pt-16 md:pt-24 pb-4 md:pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+        <QuoteCards items={testimonials} />
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16 md:mb-24 flex flex-col items-center"
+          transition={{ duration: 1, ease: EASE }}
+          className="relative rounded-[36px] overflow-hidden min-h-[520px] flex items-center bg-[#0B1B3D]"
         >
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4">{eyebrow}</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0B1B3D] tracking-tight">
-            {t('title')}
-          </h2>
-        </motion.div>
+          <div className="absolute inset-0">
+            <Image src="/doctor.png" alt="" fill sizes="(min-width: 1280px) 1280px, 100vw" className="object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B3D] via-[#0B1B3D]/85 to-[#0B1B3D]/10" />
+          </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-24">
-          {testimonials.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
-              className="glass-panel rounded-[24px] p-8 md:p-10 hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-500 relative bg-gradient-to-br from-white/90 to-white/50 border border-white/60 flex flex-col justify-between h-full group"
-            >
-              <QuoteIcon />
-              <p className="text-slate-600 text-lg leading-relaxed mb-10 relative z-10 font-light mt-4">
-                <span aria-hidden="true">&ldquo;</span>
-                {item.quote}
-                <span aria-hidden="true">&rdquo;</span>
-              </p>
-              
-              <div className="flex items-center gap-4 border-t border-slate-100 pt-6">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-50 to-white shadow-inner flex items-center justify-center border border-cyan-100/50 group-hover:scale-110 transition-transform duration-500">
-                  <UserGroupIcon />
+          <div className="relative z-10 w-full md:w-2/3 p-8 sm:p-10 md:p-16">
+            <h3 className="text-2xl md:text-[2rem] text-white font-semibold mb-12 tracking-[-0.025em] max-w-xl leading-tight text-balance">
+              {t('statsTitle')}.
+            </h3>
+
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-10">
+              {stats.map((stat) => (
+                <div key={stat.label} className="flex flex-col-reverse">
+                  <dt className="text-sm text-white/60">{stat.label}</dt>
+                  <dd className="text-4xl md:text-6xl font-semibold text-white tracking-[-0.04em] tabular-nums mb-1.5">{stat.value}</dd>
                 </div>
-                <div>
-                  <div className="font-bold text-[#0B1B3D] tracking-tight text-lg">
-                    {item.name}
+              ))}
+            </dl>
+
+            <div className="flex flex-col sm:flex-row gap-8 sm:gap-14 mt-12 pt-8 border-t border-white/15">
+              {[
+                { score: 4.1, label: t('patientRating') },
+                { score: 4.7, label: t('physiciansRating') },
+              ].map((rating) => (
+                <div key={rating.label}>
+                  <div className="flex items-baseline gap-1.5 mb-2">
+                    <span className="text-3xl font-semibold text-white tabular-nums">{rating.score.toFixed(1)}</span>
+                    <span className="text-white/50 text-sm">/5</span>
                   </div>
-                  <div className="text-sm font-medium text-[#06ACC1] tracking-wide">
-                    {item.role}
-                  </div>
+                  <StarRating score={rating.score} label={`${rating.score} / 5`} />
+                  <p className="text-sm text-white/60 mt-2">{rating.label}</p>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Cinematic Stats Banner */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative rounded-[32px] overflow-hidden shadow-2xl shadow-slate-900/10 min-h-[500px] flex items-center"
-        >
-           {/* Background Image with Parallax feeling */}
-           <div className="absolute inset-0">
-             <Image 
-               src="/doctor.png" 
-               alt="Doctor Thumbs Up" 
-               fill
-               className="object-cover scale-105 transform origin-center"
-             />
-             <div className="absolute inset-0 bg-gradient-to-r from-[#0B1B3D]/95 via-[#0B1B3D]/80 to-transparent" />
-           </div>
-
-           {/* Stats Content Overlay */}
-           <div className="relative z-10 w-full md:w-2/3 p-10 md:p-16 flex flex-col justify-center">
-              <h3 className="text-2xl md:text-3xl text-white font-medium mb-12 tracking-tight max-w-xl leading-snug">
-                {t('statsTitle')}.
-              </h3>
-              
-              <div className="grid grid-cols-2 gap-x-8 gap-y-10">
-                 {/* Left Column Stats */}
-                 <div className="space-y-8">
-                    <div>
-                       <div className="flex items-baseline gap-2 mb-1">
-                          <span className="text-4xl md:text-5xl font-bold text-white tracking-tighter">83%</span>
-                       </div>
-                       <span className="text-sm font-semibold text-cyan-400 uppercase tracking-widest">{t('adoptionRate')}</span>
-                    </div>
-                    <div>
-                       <div className="flex items-baseline gap-2 mb-1">
-                          <span className="text-4xl md:text-5xl font-bold text-white tracking-tighter">8x</span>
-                       </div>
-                       <span className="text-sm font-semibold text-cyan-400 uppercase tracking-widest">{t('roi')}</span>
-                    </div>
-                 </div>
-
-                 {/* Right Column Ratings */}
-                 <div className="space-y-8">
-                    <div>
-                       <div className="flex items-baseline gap-2 mb-1">
-                          <span className="text-4xl md:text-5xl font-bold text-white tracking-tighter">19<span className="text-2xl">m</span>56<span className="text-2xl">s</span></span>
-                       </div>
-                       <span className="text-sm font-semibold text-cyan-400 uppercase tracking-widest">{t('completionTime')}</span>
-                    </div>
-                    <div>
-                       <div className="flex items-baseline gap-2 mb-1">
-                          <span className="text-4xl md:text-5xl font-bold text-white tracking-tighter">+13%</span>
-                       </div>
-                       <span className="text-sm font-semibold text-cyan-400 uppercase tracking-widest">{t('perceivedQuality')}</span>
-                    </div>
-                 </div>
-              </div>
-
-              {/* Star Ratings Row */}
-              <div className="flex flex-col sm:flex-row gap-8 mt-12 pt-8 border-t border-white/20">
-                <div>
-                   <div className="flex items-center gap-3 mb-2">
-                      <span className="text-2xl font-bold text-white">4.1</span>
-                      <span className="text-white/60 text-sm">/5</span>
-                   </div>
-                   <div className="flex gap-1 mb-2">
-                      <StarIcon filled />
-                      <StarIcon filled />
-                      <StarIcon filled />
-                      <StarIcon filled />
-                      <StarIcon />
-                   </div>
-                   <span className="text-xs font-semibold text-white/60 uppercase tracking-widest">{t('patientRating')}</span>
-                </div>
-                <div>
-                   <div className="flex items-center gap-3 mb-2">
-                      <span className="text-2xl font-bold text-white">4.7</span>
-                      <span className="text-white/60 text-sm">/5</span>
-                   </div>
-                   <div className="flex gap-1 mb-2">
-                      <StarIcon filled />
-                      <StarIcon filled />
-                      <StarIcon filled />
-                      <StarIcon filled />
-                      <StarIcon filled />
-                   </div>
-                   <span className="text-xs font-semibold text-white/60 uppercase tracking-widest">{t('physiciansRating')}</span>
-                </div>
-              </div>
-           </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -20,7 +20,6 @@ export default function Contact({ sourcePage = '/' }: { sourcePage?: string }) {
   const copy =
     locale === 'fr'
       ? {
-          eyebrow: 'Contact',
           titleBefore: 'Nous sommes là ',
           titleAccent: 'pour vous aider',
           subtitle: 'Vous avez une question ? Notre équipe est là pour vous répondre.',
@@ -28,37 +27,33 @@ export default function Contact({ sourcePage = '/' }: { sourcePage?: string }) {
         }
       : locale === 'nl'
         ? {
-            eyebrow: 'Contact',
             titleBefore: 'We zijn er om ',
             titleAccent: 'te helpen',
             subtitle: 'Heeft u vragen? Ons team staat klaar om u verder te helpen.',
             city: '9000 Gent, België',
           }
         : {
-            eyebrow: 'Contact',
             titleBefore: 'We are here ',
             titleAccent: 'to help',
             subtitle: 'Have any questions? Our team is ready to assist you.',
             city: '9000 Gent, Belgium',
           };
   return (
-    <section className="w-full bg-[#FCFCFD] relative">
-      <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-30 pointer-events-none" />
-      
+    <section className="w-full relative">
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 h-full flex flex-col justify-center">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16 md:mb-24"
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-14 md:mb-20"
         >
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4 block">{copy.eyebrow}</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0B1B3D] tracking-tight mb-4">
-            {copy.titleBefore}<span className="text-gradient">{copy.titleAccent}</span>
+          <h2 className="text-[2.5rem] md:text-6xl font-semibold text-[#0B1B3D] tracking-[-0.045em] leading-[1.02] mb-4">
+            {copy.titleBefore}<span className="font-display italic font-normal tracking-[-0.01em] text-[#06ACC1]">{copy.titleAccent}</span>
           </h2>
-          <p className="text-slate-500 text-lg md:text-xl font-light">
+          <p className="text-slate-500 text-lg md:text-xl tracking-tight">
             {copy.subtitle}
           </p>
         </motion.div>
@@ -70,7 +65,7 @@ export default function Contact({ sourcePage = '/' }: { sourcePage?: string }) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-7 glass-panel bg-white/70 p-8 md:p-12 rounded-[32px]"
+            className="lg:col-span-7 bg-white ring-1 ring-slate-200/70 p-8 md:p-12 rounded-[28px]"
           >
             <ContactForm sourcePage={sourcePage} />
           </motion.div>
@@ -84,22 +79,22 @@ export default function Contact({ sourcePage = '/' }: { sourcePage?: string }) {
             className="lg:col-span-5 flex flex-col gap-6"
           >
             {/* Address Card */}
-            <div className="glass-panel bg-white/70 p-8 rounded-[32px] flex items-center gap-6 group hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] transition-all duration-500">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-50 to-white flex items-center justify-center flex-shrink-0 shadow-inner border border-cyan-100 group-hover:scale-110 transition-transform duration-500">
+            <div className="bg-white ring-1 ring-slate-200/70 p-8 rounded-[28px] flex items-center gap-6">
+              <div className="w-14 h-14 rounded-full bg-[#06ACC1]/10 flex items-center justify-center flex-shrink-0">
                 <MapPinIcon />
               </div>
               <div>
-                <h3 className="text-[#0B1B3D] font-bold text-lg mb-1 tracking-tight">
+                <h3 className="text-[#0B1B3D] font-semibold text-lg mb-0.5 tracking-tight">
                   Ottergemsesteenweg Zuid 808B
                 </h3>
-                <p className="text-slate-500 font-medium text-sm uppercase tracking-wider">
+                <p className="text-slate-500 text-[15px]">
                   {copy.city}
                 </p>
               </div>
             </div>
 
             {/* Map Area */}
-            <div className="relative flex-grow min-h-[300px] w-full overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_24px_60px_-30px_rgba(15,23,42,0.22)]">
+            <div className="relative flex-grow min-h-[300px] w-full overflow-hidden rounded-[28px] ring-1 ring-slate-200/70 bg-white">
               <iframe
                 src={GENT_HQ_MAP_EMBED_URL}
                 loading="lazy"
