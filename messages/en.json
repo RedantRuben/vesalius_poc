@@ -141,22 +141,31 @@
     "perceivedQuality": "Perceived Quality",
     "patientRating": "Patient Rating",
     "physiciansRating": "Physicians Rating",
-    "items": {
-      "0": {
-        "quote": "Patients who use the chatbot feel better prepared for their consultation, leading to a more efficient and focused conversation with the doctor.",
-        "name": "Farah",
-        "role": "Clinical Researcher"
+    "doctors": {
+      "boedts": {
+        "quote": "The quality of my consultations has improved spectacularly. If a patient happens not to have filled in Vesalius, I notice that my consultation is significantly less good.",
+        "role": "ENT specialist, specialised in otology"
       },
-      "1": {
-        "quote": "Research has shown that patients who have used Vesalius feel better understood by their doctor compared to those who haven't used Vesalius.",
-        "name": "Philippe",
-        "role": "Medisch Centrum Aalst"
+      "ortho": {
+        "quote": "Just do it.",
+        "name": "Orthopaedic surgeon",
+        "role": "Specialised in knee and hip"
       },
-      "2": {
-        "quote": "The general feedback from the nurses is positive; they find the platform easy to use, which results in time savings and increased efficiency in their work.",
-        "name": "Cynthia",
-        "role": "Clinical Researcher"
+      "byn": {
+        "quote": "Must have.",
+        "role": "Orthopaedic surgeon, specialised in knee and hip"
+      },
+      "rasschaert": {
+        "quote": "I use Vesalius often and I am satisfied overall. I would certainly recommend it to a colleague.",
+        "role": "Neurosurgeon"
       }
+    },
+    "metrics": {
+      "moreThan5": "More than 5 min",
+      "twoToFive": "2 to 5 min",
+      "timeSaved": "saved per consultation",
+      "recommends": "Recommends",
+      "barelyEdits": "Barely edits the report"
     }
   },
   "Pricing": {

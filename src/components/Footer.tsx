@@ -83,10 +83,10 @@ export default function Footer() {
           <div className="lg:justify-self-center">
             <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('legal')}</h3>
             <ul className="space-y-4">
-              <li><Link href="/terms-conditions" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('termsAndConditions')}</Link></li>
-              <li><Link href="/privacy-policy" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('privacyPolicy')}</Link></li>
-              <li><Link href="/cookie-policy" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('cookiePolicy')}</Link></li>
-              <li><Link href="/security" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('security')}</Link></li>
+              <li><Link href="/terms-conditions" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('termsAndConditions')}</Link></li>
+              <li><Link href="/privacy-policy" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('privacyPolicy')}</Link></li>
+              <li><Link href="/cookie-policy" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('cookiePolicy')}</Link></li>
+              <li><Link href="/security" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('security')}</Link></li>
             </ul>
           </div>
 
@@ -94,8 +94,8 @@ export default function Footer() {
           <div className="flex max-w-sm flex-col">
             <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('help')}</h3>
             <ul className="space-y-4 mb-10">
-              <li><Link href="/support" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('support')}</Link></li>
-              <li><Link href="/contactus" className="text-sm font-medium hover:text-[#06ACC1] transition-colors flex items-center gap-2 before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity md:-ml-3 md:hover:ml-0 transition-all">{t('contact')}</Link></li>
+              <li><Link href="/support" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('support')}</Link></li>
+              <li><Link href="/contactus" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('contact')}</Link></li>
             </ul>
 
             <div className="w-full p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">

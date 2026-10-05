@@ -141,22 +141,31 @@
     "perceivedQuality": "Qualité perçue",
     "patientRating": "Évaluation des patients",
     "physiciansRating": "Évaluation des médecins",
-    "items": {
-      "0": {
-        "quote": "Les patients qui utilisent le chatbot se sentent mieux préparés pour leur consultation, ce qui conduit à une conversation plus efficace et ciblée avec le médecin.",
-        "name": "Farah",
-        "role": "Chercheuse clinique"
+    "doctors": {
+      "boedts": {
+        "quote": "La qualité de mes consultations s’est améliorée de façon spectaculaire. Lorsqu’un patient n’a pas rempli Vesalius, je remarque que ma consultation est nettement moins bonne.",
+        "role": "ORL, spécialisé en otologie"
       },
-      "1": {
-        "quote": "La recherche a montré que les patients ayant utilisé Vesalius se sentent mieux compris par leur médecin par rapport à ceux qui n'ont pas utilisé Vesalius.",
-        "name": "Philippe",
-        "role": "Centre médical Alost"
+      "ortho": {
+        "quote": "Just do it.",
+        "name": "Chirurgien orthopédiste",
+        "role": "Spécialisé genou et hanche"
       },
-      "2": {
-        "quote": "Les commentaires généraux des infirmières sont positifs ; elles trouvent la plateforme facile à utiliser, ce qui entraîne un gain de temps et une efficacité accrue dans leur travail.",
-        "name": "Cynthia",
-        "role": "Chercheuse clinique"
+      "byn": {
+        "quote": "Must have.",
+        "role": "Chirurgien orthopédiste, spécialisé genou et hanche"
+      },
+      "rasschaert": {
+        "quote": "J’utilise souvent Vesalius et j’en suis globalement satisfait. Je le recommanderais certainement à un collègue.",
+        "role": "Neurochirurgien"
       }
+    },
+    "metrics": {
+      "moreThan5": "Plus de 5 min",
+      "twoToFive": "2 à 5 min",
+      "timeSaved": "gagnées par consultation",
+      "recommends": "Recommande",
+      "barelyEdits": "Ne modifie presque rien au rapport"
     }
   },
   "Pricing": {

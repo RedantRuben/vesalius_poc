@@ -85,7 +85,7 @@ export function AppFrame({
       <div className="flex">
         <nav className="hidden sm:flex flex-col items-center gap-1.5 w-14 shrink-0 border-r border-[#E8EAEC] py-3" aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/vesaliuslogo.svg" alt="" className="w-6 h-6 mb-3" />
+          <img src="/vesalius-logo.svg" alt="" className="w-6 h-6 mb-3" />
           {NAV.map((item) => (
             <span key={item.key} className={`w-9 h-9 rounded-xl flex items-center justify-center ${item.key === active ? 'bg-[#EBF6F8]' : ''}`}>
               <AppIcon name={item.icon} size={17} color={item.key === active ? APP.primary : APP.darkGrey} />

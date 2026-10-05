@@ -141,22 +141,31 @@
     "perceivedQuality": "Ervaren kwaliteit",
     "patientRating": "Patiëntbeoordeling",
     "physiciansRating": "Artsenbeoordeling",
-    "items": {
-      "0": {
-        "quote": "Patiënten die de chatbot gebruiken voelen zich beter voorbereid op hun consult, wat leidt tot een efficiënter en gerichter gesprek met de arts.",
-        "name": "Farah",
-        "role": "Klinisch Onderzoeker"
+    "doctors": {
+      "boedts": {
+        "quote": "De kwaliteit van mijn consultatie is spectaculair verbeterd. Als een patiënt Vesalius toevallig niet heeft ingevuld, merk ik dat mijn consultatie beduidend minder goed is.",
+        "role": "NKO-arts, gespecialiseerd in otologie"
       },
-      "1": {
-        "quote": "Onderzoek heeft aangetoond dat patiënten die Vesalius hebben gebruikt zich beter begrepen voelen door hun arts in vergelijking met degenen die Vesalius niet hebben gebruikt.",
-        "name": "Philippe",
-        "role": "Medisch Centrum Aalst"
+      "ortho": {
+        "quote": "Just do it.",
+        "name": "Orthopedisch chirurg",
+        "role": "Gespecialiseerd in knie en heup"
       },
-      "2": {
-        "quote": "De algemene feedback van de verpleegkundigen is positief; ze vinden het platform eenvoudig te gebruiken, wat resulteert in tijdsbesparing en verhoogde efficiëntie in hun werk.",
-        "name": "Cynthia",
-        "role": "Klinisch Onderzoeker"
+      "byn": {
+        "quote": "Must have.",
+        "role": "Orthopedisch chirurg, gespecialiseerd in knie en heup"
+      },
+      "rasschaert": {
+        "quote": "Ik gebruik Vesalius vaak en ben globaal tevreden. Ik zou het zeker aanraden aan een collega.",
+        "role": "Neurochirurg"
       }
+    },
+    "metrics": {
+      "moreThan5": "Meer dan 5 min",
+      "twoToFive": "2 tot 5 min",
+      "timeSaved": "tijdswinst per consultatie",
+      "recommends": "Beveelt aan",
+      "barelyEdits": "Past bijna niets aan in het verslag"
     }
   },
   "Pricing": {

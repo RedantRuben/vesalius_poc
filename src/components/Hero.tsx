@@ -15,7 +15,7 @@ const PlayIcon = () => (
 
 const VesaliusMark = ({ className = '' }: { className?: string }) => (
   // eslint-disable-next-line @next/next/no-img-element
-  <img src="/vesaliuslogo.svg" alt="" aria-hidden="true" className={className} />
+  <img src="/vesalius-logo.svg" alt="" aria-hidden="true" className={className} />
 );
 
 /** The three sweeping brand lines from the original hero. */

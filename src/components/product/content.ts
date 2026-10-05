@@ -10,9 +10,6 @@ export interface ModuleCopy {
   without: string;
   with: string;
   steps: [Item, Item, Item];
-  features: [Item, Item, Item];
-  yourPart: string;
-  related: [ModuleKey, ModuleKey, ModuleKey];
 }
 
 export const UI = {
@@ -20,9 +17,6 @@ export const UI = {
     without: 'Without Vesalius',
     with: 'With Vesalius',
     howItWorks: 'How it works',
-    included: 'What you get',
-    yourPart: 'Your part',
-    worksWith: 'Works well with',
     next: 'Next in the journey',
     previous: 'Previous',
     exampleData: 'Example data',
@@ -37,9 +31,6 @@ export const UI = {
     without: 'Zonder Vesalius',
     with: 'Met Vesalius',
     howItWorks: 'Zo werkt het',
-    included: 'Wat u krijgt',
-    yourPart: 'Uw rol',
-    worksWith: 'Werkt goed samen met',
     next: 'Volgende in het traject',
     previous: 'Vorige',
     exampleData: 'Voorbeelddata',
@@ -54,9 +45,6 @@ export const UI = {
     without: 'Sans Vesalius',
     with: 'Avec Vesalius',
     howItWorks: 'Comment ça marche',
-    included: 'Ce que vous obtenez',
-    yourPart: 'Votre rôle',
-    worksWith: 'Fonctionne avec',
     next: 'Suite du parcours',
     previous: 'Précédent',
     exampleData: 'Données d’exemple',
@@ -77,19 +65,12 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
       headline: 'The right patient, first.',
       description: 'Intelligent urgency assessment that prioritizes patients based on clinical need, so the right patient sees the right doctor at the right time.',
       without: 'Everyone waits in the same queue. Critical cases can be delayed while routine questions take up the slots.',
-      with: 'Critical patients are seen first, routine questions go where they belong and waiting times drop.',
+      with: 'Urgent cases are planned first, routine questions go where they belong and waiting times drop.',
       steps: [
         { title: 'Symptoms come in', body: 'Through intake, chat or phone, Vesalius collects the complaint and the relevant history.' },
         { title: 'Urgency is assessed', body: 'Symptoms, history and risk factors are weighed into a clinical urgency level.' },
         { title: 'Routed to the right care', body: 'Emergency, specialist, GP or self-care advice, and your team can see why.' },
       ],
-      features: [
-        { title: 'AI assessment', body: 'Symptoms and history are analysed to assign a clinical urgency score automatically.' },
-        { title: 'Intelligent routing', body: 'Patients are directed to the right resource: ER, specialist, GP or self-care advice.' },
-        { title: 'Workload balancing', body: 'Patient load is spread across your team to reduce waiting times and pressure.' },
-      ],
-      yourPart: 'Confirm the flagged cases.',
-      related: ['preConsultation', 'agenda', 'voiceReception'],
     },
     agenda: {
       headline: 'A calm day, planned for you.',
@@ -101,13 +82,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Priorities are respected', body: 'Cases flagged as urgent by Smart Triage get the earliest suitable slot.' },
         { title: 'Every visit is prepared', body: 'Appointments link to the pre-consultation, so you see who is ready.' },
       ],
-      features: [
-        { title: 'Smart scheduling', body: 'Appointments matched to each patient’s needs and urgency.' },
-        { title: 'Linked to intake', body: 'Bookings sync with the pre-consultation flow automatically.' },
-        { title: 'One overview', body: 'Your whole day, gaps and overlaps included, at a glance.' },
-      ],
-      yourPart: 'Walk in to a prepared day.',
-      related: ['smartTriage', 'preConsultation', 'voiceReception'],
     },
     preConsultation: {
       headline: 'Meet your patient before they walk in.',
@@ -119,13 +93,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'A real conversation', body: 'Vesalius asks follow-up questions based on each answer, like a good intake would.' },
         { title: 'A summary in the record', body: 'You open the consultation with a clear overview of complaints and history.' },
       ],
-      features: [
-        { title: '50+ languages', body: 'Patients answer in their language. You read it in yours.' },
-        { title: 'Questionnaires per specialty', body: 'From knee and hip anamnesis to pre-op screening, ready to use.' },
-        { title: 'Structured output', body: 'Answers become a clear summary, not a transcript.' },
-      ],
-      yourPart: 'Read the summary.',
-      related: ['smartTriage', 'scribe', 'agenda'],
     },
     voiceReception: {
       headline: 'Every call answered. None put on hold.',
@@ -137,13 +104,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'The right questions', body: 'It asks what matters to assess urgency, following clinical protocols.' },
         { title: 'Booked or routed', body: 'Routine requests go straight into your agenda. Urgent or complex calls go to your team.' },
       ],
-      features: [
-        { title: 'Instant answer', body: 'Patients no longer wait on hold for routine questions.' },
-        { title: 'Phone triage', body: 'Urgency is assessed during the call, before anyone is booked.' },
-        { title: 'Direct booking', body: 'Appointments land in your Vesalius agenda without retyping.' },
-      ],
-      yourPart: 'Take the calls that need you.',
-      related: ['agenda', 'smartTriage', 'preConsultation'],
     },
     scribe: {
       headline: 'Look at your patient. Not at your screen.',
@@ -155,13 +115,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Vesalius listens', body: 'It follows the conversation, tells doctor and patient apart and knows medical terms.' },
         { title: 'A note to review', body: 'At the end, a structured clinical note is waiting for you.' },
       ],
-      features: [
-        { title: 'Phone or desktop', body: 'Record with the Vesalius app or right in your browser.' },
-        { title: 'Speaker recognition', body: 'Doctor and patient are recognised in the transcript.' },
-        { title: 'Structured notes', body: 'Output in the format you prefer, such as SOAP.' },
-      ],
-      yourPart: 'Review and sign.',
-      related: ['documentGeneration', 'medication', 'preConsultation'],
     },
     medication: {
       headline: 'One photo. The whole medication list.',
@@ -173,13 +126,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Details extracted', body: 'Name, dosage, form and frequency are read and structured.' },
         { title: 'Into the record', body: 'The list goes straight into the patient record.' },
       ],
-      features: [
-        { title: 'Photo recognition', body: 'Reads boxes, printed lists and even handwriting.' },
-        { title: 'Complete extraction', body: 'Name, dosage, form, frequency and prescription details in one scan.' },
-        { title: 'No retyping', body: 'Extracted data flows into the patient record, so no transcription errors.' },
-      ],
-      yourPart: 'Check the list.',
-      related: ['scribe', 'documentGeneration', 'preConsultation'],
     },
     documentGeneration: {
       headline: 'The paperwork writes itself.',
@@ -191,13 +137,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Drafted in your format', body: 'SOAP note, referral letter or summary, following your templates.' },
         { title: 'Review and export', body: 'Adjust what you want, then send it to the patient record.' },
       ],
-      features: [
-        { title: 'Automated structure', body: 'Transcripts become SOAP notes, referral letters and other formats.' },
-        { title: 'Straight to the record', body: 'Push documents to the patient record without copy-pasting.' },
-        { title: 'Your templates', body: 'Output follows your hospital’s documentation guidelines.' },
-      ],
-      yourPart: 'Review and sign.',
-      related: ['scribe', 'smartFollowUp', 'medication'],
     },
     smartFollowUp: {
       headline: 'Recovery, followed quietly.',
@@ -209,13 +148,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Answers compared', body: 'Each response is compared with the expected recovery path.' },
         { title: 'Alerts when it matters', body: 'Your team is alerted only when something deviates.' },
       ],
-      features: [
-        { title: 'Automated monitoring', body: 'Follow-ups sent by procedure type and recovery timeline.' },
-        { title: 'Risk detection', body: 'Alerts as soon as reported outcomes deviate from the expected path.' },
-        { title: 'Better outcomes', body: 'Catch complications early and keep patients on track.' },
-      ],
-      yourPart: 'Act when flagged.',
-      related: ['documentGeneration', 'scribe', 'preConsultation'],
     },
   },
   nl: {
@@ -223,19 +155,12 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
       headline: 'De juiste patiënt eerst.',
       description: 'Intelligente urgentie-inschatting die patiënten prioriteert op basis van klinische nood, zodat de juiste patiënt op het juiste moment bij de juiste arts komt.',
       without: 'Iedereen wacht in dezelfde rij. Kritieke gevallen lopen vertraging op terwijl routinevragen de plaatsen innemen.',
-      with: 'Kritieke patiënten worden eerst gezien, routinevragen komen op de juiste plek terecht en wachttijden dalen.',
+      with: 'Dringende gevallen worden eerst ingepland, routinevragen komen op de juiste plek terecht en wachttijden dalen.',
       steps: [
         { title: 'Klachten komen binnen', body: 'Via intake, chat of telefoon verzamelt Vesalius de klacht en de relevante voorgeschiedenis.' },
         { title: 'Urgentie wordt ingeschat', body: 'Symptomen, voorgeschiedenis en risicofactoren leiden tot een klinisch urgentieniveau.' },
         { title: 'Doorverwezen naar de juiste zorg', body: 'Spoed, specialist, huisarts of zelfzorgadvies, en uw team ziet waarom.' },
       ],
-      features: [
-        { title: 'AI-inschatting', body: 'Symptomen en voorgeschiedenis worden geanalyseerd voor een automatische urgentiescore.' },
-        { title: 'Slimme doorverwijzing', body: 'Patiënten gaan naar de juiste plek: spoed, specialist, huisarts of zelfzorg.' },
-        { title: 'Werklast in balans', body: 'De patiëntenstroom wordt verdeeld over uw team, met kortere wachttijden.' },
-      ],
-      yourPart: 'De gemarkeerde gevallen bevestigen.',
-      related: ['preConsultation', 'agenda', 'voiceReception'],
     },
     agenda: {
       headline: 'Een rustige dag, voor u gepland.',
@@ -247,13 +172,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Prioriteiten gerespecteerd', body: 'Wat Smart Triage als dringend markeert, krijgt het vroegste geschikte moment.' },
         { title: 'Elk bezoek voorbereid', body: 'Afspraken zijn gekoppeld aan de pre-consultatie, dus u ziet wie klaar is.' },
       ],
-      features: [
-        { title: 'Slim plannen', body: 'Afspraken afgestemd op de noden en urgentie van elke patiënt.' },
-        { title: 'Gekoppeld aan de intake', body: 'Afspraken synchroniseren automatisch met de pre-consultatie.' },
-        { title: 'Eén overzicht', body: 'Uw hele dag, inclusief gaten en overlappingen, in één oogopslag.' },
-      ],
-      yourPart: 'Binnenstappen in een voorbereide dag.',
-      related: ['smartTriage', 'preConsultation', 'voiceReception'],
     },
     preConsultation: {
       headline: 'Leer uw patiënt kennen voor hij binnenstapt.',
@@ -265,13 +183,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Een echt gesprek', body: 'Vesalius stelt vervolgvragen op basis van elk antwoord, zoals een goede intake.' },
         { title: 'Een samenvatting in het dossier', body: 'U opent de consultatie met een helder overzicht van klachten en voorgeschiedenis.' },
       ],
-      features: [
-        { title: '50+ talen', body: 'Patiënten antwoorden in hun taal. U leest het in de uwe.' },
-        { title: 'Vragenlijsten per specialisme', body: 'Van knie- en heupanamnese tot pre-operatieve screening, klaar voor gebruik.' },
-        { title: 'Gestructureerde output', body: 'Antwoorden worden een heldere samenvatting, geen transcript.' },
-      ],
-      yourPart: 'De samenvatting lezen.',
-      related: ['smartTriage', 'scribe', 'agenda'],
     },
     voiceReception: {
       headline: 'Elke oproep beantwoord. Niemand in de wacht.',
@@ -283,13 +194,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'De juiste vragen', body: 'Hij vraagt wat nodig is om urgentie in te schatten, volgens klinische protocollen.' },
         { title: 'Ingepland of doorgeschakeld', body: 'Routinevragen gaan meteen in uw agenda. Dringende of complexe oproepen gaan naar uw team.' },
       ],
-      features: [
-        { title: 'Meteen antwoord', body: 'Patiënten wachten niet langer in de wacht voor routinevragen.' },
-        { title: 'Telefonische triage', body: 'Urgentie wordt tijdens het gesprek ingeschat, nog voor er iets wordt gepland.' },
-        { title: 'Rechtstreeks gepland', body: 'Afspraken komen in uw Vesalius-agenda zonder overtypen.' },
-      ],
-      yourPart: 'De oproepen nemen die u nodig hebben.',
-      related: ['agenda', 'smartTriage', 'preConsultation'],
     },
     scribe: {
       headline: 'Kijk naar uw patiënt. Niet naar uw scherm.',
@@ -301,13 +205,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Vesalius luistert mee', body: 'Het volgt het gesprek, onderscheidt arts en patiënt en kent medische termen.' },
         { title: 'Een nota om na te lezen', body: 'Aan het einde wacht een gestructureerde klinische nota op u.' },
       ],
-      features: [
-        { title: 'Smartphone of desktop', body: 'Neem op met de Vesalius-app of gewoon in uw browser.' },
-        { title: 'Sprekerherkenning', body: 'Arts en patiënt worden herkend in het transcript.' },
-        { title: 'Gestructureerde nota’s', body: 'Output in het formaat dat u verkiest, zoals SOAP.' },
-      ],
-      yourPart: 'Nalezen en ondertekenen.',
-      related: ['documentGeneration', 'medication', 'preConsultation'],
     },
     medication: {
       headline: 'Eén foto. De volledige medicatielijst.',
@@ -319,13 +216,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Gegevens herkend', body: 'Naam, dosis, vorm en frequentie worden gelezen en gestructureerd.' },
         { title: 'In het dossier', body: 'De lijst gaat rechtstreeks naar het patiëntendossier.' },
       ],
-      features: [
-        { title: 'Fotoherkenning', body: 'Leest doosjes, geprinte lijsten en zelfs handschrift.' },
-        { title: 'Volledige extractie', body: 'Naam, dosis, vorm, frequentie en voorschriftgegevens in één scan.' },
-        { title: 'Niets overtypen', body: 'De gegevens gaan naar het dossier, dus geen overschrijffouten.' },
-      ],
-      yourPart: 'De lijst controleren.',
-      related: ['scribe', 'documentGeneration', 'preConsultation'],
     },
     documentGeneration: {
       headline: 'De administratie schrijft zichzelf.',
@@ -337,13 +227,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'In uw formaat', body: 'SOAP-nota, verwijsbrief of samenvatting, volgens uw sjablonen.' },
         { title: 'Nalezen en exporteren', body: 'Pas aan wat u wilt en stuur het naar het patiëntendossier.' },
       ],
-      features: [
-        { title: 'Automatische structuur', body: 'Transcripten worden SOAP-nota’s, verwijsbrieven en andere formaten.' },
-        { title: 'Rechtstreeks naar het dossier', body: 'Documenten naar het patiëntendossier zonder kopiëren en plakken.' },
-        { title: 'Uw sjablonen', body: 'De output volgt de documentatierichtlijnen van uw ziekenhuis.' },
-      ],
-      yourPart: 'Nalezen en ondertekenen.',
-      related: ['scribe', 'smartFollowUp', 'medication'],
     },
     smartFollowUp: {
       headline: 'Herstel, rustig opgevolgd.',
@@ -355,13 +238,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Antwoorden vergeleken', body: 'Elk antwoord wordt vergeleken met het verwachte herstelverloop.' },
         { title: 'Een signaal wanneer het telt', body: 'Uw team krijgt enkel een signaal als er iets afwijkt.' },
       ],
-      features: [
-        { title: 'Automatische opvolging', body: 'Check-ins volgens type ingreep en hersteltijdlijn.' },
-        { title: 'Risicodetectie', body: 'Een signaal zodra gerapporteerde resultaten afwijken van het verwachte verloop.' },
-        { title: 'Betere resultaten', body: 'Complicaties vroeg opmerken en patiënten op koers houden.' },
-      ],
-      yourPart: 'Handelen bij een signaal.',
-      related: ['documentGeneration', 'scribe', 'preConsultation'],
     },
   },
   fr: {
@@ -369,19 +245,12 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
       headline: 'Le bon patient, en premier.',
       description: 'Une évaluation intelligente de l’urgence qui priorise les patients selon leur besoin clinique, pour que chacun voie le bon médecin au bon moment.',
       without: 'Tout le monde attend dans la même file. Les cas critiques prennent du retard pendant que les questions de routine occupent les créneaux.',
-      with: 'Les patients critiques passent en premier, les questions de routine vont au bon endroit et l’attente diminue.',
+      with: 'Les cas urgents sont planifiés en premier, les questions de routine vont au bon endroit et l’attente diminue.',
       steps: [
         { title: 'Les symptômes arrivent', body: 'Via l’anamnèse, le chat ou le téléphone, Vesalius recueille la plainte et les antécédents utiles.' },
         { title: 'L’urgence est évaluée', body: 'Symptômes, antécédents et facteurs de risque donnent un niveau d’urgence clinique.' },
         { title: 'Orienté vers les bons soins', body: 'Urgences, spécialiste, généraliste ou conseils d’autosoins, et votre équipe voit pourquoi.' },
       ],
-      features: [
-        { title: 'Évaluation par IA', body: 'Symptômes et antécédents sont analysés pour attribuer automatiquement un score d’urgence.' },
-        { title: 'Orientation intelligente', body: 'Les patients vont au bon endroit : urgences, spécialiste, généraliste ou autosoins.' },
-        { title: 'Charge équilibrée', body: 'Le flux de patients est réparti dans l’équipe pour réduire l’attente.' },
-      ],
-      yourPart: 'Confirmer les cas signalés.',
-      related: ['preConsultation', 'agenda', 'voiceReception'],
     },
     agenda: {
       headline: 'Une journée sereine, planifiée pour vous.',
@@ -393,13 +262,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Les priorités respectées', body: 'Les cas urgents signalés par le triage obtiennent le premier créneau adapté.' },
         { title: 'Chaque visite préparée', body: 'Les rendez-vous sont liés à la pré-consultation : vous voyez qui est prêt.' },
       ],
-      features: [
-        { title: 'Planification intelligente', body: 'Des rendez-vous adaptés aux besoins et à l’urgence de chaque patient.' },
-        { title: 'Lié à l’anamnèse', body: 'Les rendez-vous se synchronisent automatiquement avec la pré-consultation.' },
-        { title: 'Une seule vue', body: 'Toute votre journée, trous et chevauchements compris, en un coup d’œil.' },
-      ],
-      yourPart: 'Arriver dans une journée préparée.',
-      related: ['smartTriage', 'preConsultation', 'voiceReception'],
     },
     preConsultation: {
       headline: 'Rencontrez votre patient avant qu’il n’entre.',
@@ -411,13 +273,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Une vraie conversation', body: 'Vesalius pose des questions de suivi selon chaque réponse, comme une bonne anamnèse.' },
         { title: 'Un résumé dans le dossier', body: 'Vous ouvrez la consultation avec une vue claire des plaintes et des antécédents.' },
       ],
-      features: [
-        { title: '50+ langues', body: 'Le patient répond dans sa langue. Vous lisez dans la vôtre.' },
-        { title: 'Questionnaires par spécialité', body: 'De l’anamnèse du genou ou de la hanche au bilan préopératoire, prêts à l’emploi.' },
-        { title: 'Résultat structuré', body: 'Les réponses deviennent un résumé clair, pas une transcription.' },
-      ],
-      yourPart: 'Lire le résumé.',
-      related: ['smartTriage', 'scribe', 'agenda'],
     },
     voiceReception: {
       headline: 'Chaque appel répondu. Personne en attente.',
@@ -429,13 +284,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Les bonnes questions', body: 'Il demande l’essentiel pour évaluer l’urgence, selon des protocoles cliniques.' },
         { title: 'Planifié ou transféré', body: 'Les demandes de routine vont dans votre agenda. Les appels urgents ou complexes vont à votre équipe.' },
       ],
-      features: [
-        { title: 'Réponse immédiate', body: 'Plus d’attente au téléphone pour les questions de routine.' },
-        { title: 'Triage téléphonique', body: 'L’urgence est évaluée pendant l’appel, avant toute planification.' },
-        { title: 'Planification directe', body: 'Les rendez-vous arrivent dans votre agenda Vesalius sans ressaisie.' },
-      ],
-      yourPart: 'Prendre les appels qui ont besoin de vous.',
-      related: ['agenda', 'smartTriage', 'preConsultation'],
     },
     scribe: {
       headline: 'Regardez votre patient. Pas votre écran.',
@@ -447,13 +295,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Vesalius écoute', body: 'Il suit la conversation, distingue médecin et patient et connaît le vocabulaire médical.' },
         { title: 'Une note à relire', body: 'À la fin, une note clinique structurée vous attend.' },
       ],
-      features: [
-        { title: 'Smartphone ou ordinateur', body: 'Enregistrez avec l’application Vesalius ou dans votre navigateur.' },
-        { title: 'Reconnaissance des voix', body: 'Médecin et patient sont reconnus dans la transcription.' },
-        { title: 'Notes structurées', body: 'Dans le format de votre choix, comme SOAP.' },
-      ],
-      yourPart: 'Relire et signer.',
-      related: ['documentGeneration', 'medication', 'preConsultation'],
     },
     medication: {
       headline: 'Une photo. Toute la liste de médicaments.',
@@ -465,13 +306,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Détails extraits', body: 'Nom, dosage, forme et fréquence sont lus et structurés.' },
         { title: 'Dans le dossier', body: 'La liste va directement dans le dossier du patient.' },
       ],
-      features: [
-        { title: 'Reconnaissance photo', body: 'Lit les boîtes, les listes imprimées et même l’écriture manuscrite.' },
-        { title: 'Extraction complète', body: 'Nom, dosage, forme, fréquence et prescription en un seul scan.' },
-        { title: 'Aucune ressaisie', body: 'Les données vont dans le dossier : pas d’erreur de transcription.' },
-      ],
-      yourPart: 'Vérifier la liste.',
-      related: ['scribe', 'documentGeneration', 'preConsultation'],
     },
     documentGeneration: {
       headline: 'L’administratif se rédige tout seul.',
@@ -483,13 +317,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Dans votre format', body: 'Note SOAP, lettre de référence ou résumé, selon vos modèles.' },
         { title: 'Relire et exporter', body: 'Ajustez ce que vous voulez, puis envoyez-le au dossier patient.' },
       ],
-      features: [
-        { title: 'Structure automatique', body: 'Les transcriptions deviennent notes SOAP, lettres et autres formats.' },
-        { title: 'Directement au dossier', body: 'Envoyez les documents au dossier patient sans copier-coller.' },
-        { title: 'Vos modèles', body: 'Le résultat suit les directives de documentation de votre hôpital.' },
-      ],
-      yourPart: 'Relire et signer.',
-      related: ['scribe', 'smartFollowUp', 'medication'],
     },
     smartFollowUp: {
       headline: 'Une convalescence suivie en toute discrétion.',
@@ -501,13 +328,6 @@ export const MODULE_COPY: Record<SiteLocale, Record<ModuleKey, ModuleCopy>> = {
         { title: 'Réponses comparées', body: 'Chaque réponse est comparée au parcours de rétablissement attendu.' },
         { title: 'Une alerte quand ça compte', body: 'Votre équipe n’est alertée qu’en cas d’écart.' },
       ],
-      features: [
-        { title: 'Suivi automatisé', body: 'Des questionnaires selon le type d’intervention et le calendrier de rétablissement.' },
-        { title: 'Détection des risques', body: 'Une alerte dès que les résultats rapportés s’écartent du parcours attendu.' },
-        { title: 'Meilleurs résultats', body: 'Détecter tôt les complications et garder les patients sur la bonne voie.' },
-      ],
-      yourPart: 'Agir en cas d’alerte.',
-      related: ['documentGeneration', 'scribe', 'preConsultation'],
     },
   },
 };

@@ -16,7 +16,7 @@ export default function PricingSection() {
         <Pricing billingCycle={billingCycle} onBillingCycleChange={setBillingCycle} />
       </section>
 
-      <section className="w-full pt-0 pb-12 md:pb-24 flex items-center justify-center">
+      <section className="w-full pt-0 pb-4 md:pb-8 flex items-center justify-center">
         <TeamPricing billingCycle={billingCycle} />
       </section>
     </>

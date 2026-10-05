@@ -6,61 +6,12 @@ import { Link } from '@/i18n/routing';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const SHIELD = 'M 150 78 L 190 94 L 190 136 C 190 164 172 184 150 194 C 128 184 110 164 110 136 L 110 94 Z';
-
-/** Shield that draws itself and locks, with encrypted data orbiting around it. */
-const ShieldVisual = () => (
-  <svg viewBox="0 0 300 280" className="w-full max-w-[360px] h-auto" aria-hidden="true">
-    <defs>
-      <radialGradient id="sec-glow" cx="50%" cy="50%" r="50%">
-        <stop offset="0" stopColor="#06ACC1" stopOpacity="0.35" />
-        <stop offset="1" stopColor="#06ACC1" stopOpacity="0" />
-      </radialGradient>
-    </defs>
-    <circle cx="150" cy="138" r="130" fill="url(#sec-glow)" />
-
-    <g className="vh-spin-slow">
-      <circle cx="150" cy="138" r="118" fill="none" stroke="#fff" strokeOpacity="0.12" strokeDasharray="2 8" />
-      <circle cx="150" cy="20" r="4" fill="#06ACC1" />
-      <circle cx="268" cy="138" r="3" fill="#fff" fillOpacity="0.6" />
-    </g>
-    <g className="vh-spin-reverse">
-      <circle cx="150" cy="138" r="88" fill="none" stroke="#fff" strokeOpacity="0.18" />
-      <rect x="57" y="133" width="10" height="10" rx="3" fill="#06ACC1" fillOpacity="0.8" />
-      <rect x="228" y="100" width="8" height="8" rx="2.5" fill="#fff" fillOpacity="0.5" />
-      <rect x="170" y="220" width="8" height="8" rx="2.5" fill="#fff" fillOpacity="0.35" />
-    </g>
-
-    <motion.path
-      d={SHIELD}
-      fill="#06ACC1"
-      fillOpacity="0.12"
-      stroke="#06ACC1"
-      strokeWidth="2.5"
-      strokeLinejoin="round"
-      initial={{ pathLength: 0, fillOpacity: 0 }}
-      whileInView={{ pathLength: 1, fillOpacity: 0.12 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.4, ease: 'easeInOut' }}
-    />
-
-    {/* Padlock: shackle drops closed once the shield is drawn */}
-    <motion.path
-      d="M 140 132 L 140 122 C 140 110 160 110 160 122 L 160 132"
-      fill="none"
-      stroke="#fff"
-      strokeWidth="3"
-      strokeLinecap="round"
-      initial={{ y: -8 }}
-      whileInView={{ y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: 1.4, type: 'spring', stiffness: 400, damping: 14 }}
-    />
-    <rect x="133" y="130" width="34" height="28" rx="6" fill="#fff" />
-    <circle cx="150" cy="142" r="3.5" fill="#0B1B3D" />
-    <rect x="148.5" y="143" width="3" height="7" rx="1.5" fill="#0B1B3D" />
-  </svg>
-);
+// One icon per existing point: encryption, access control, transparent data handling.
+const POINT_ICONS: Record<string, string> = {
+  gdpr: 'M7 11V7a5 5 0 0 1 10 0v4M5 11h14v10H5z',
+  access: 'M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3ZM9.5 12l2 2 3.5-4',
+  audit: 'M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z',
+};
 
 export default function SecuritySection() {
   const t = useTranslations('SecuritySection');
@@ -73,9 +24,9 @@ export default function SecuritySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: EASE }}
-          className="relative overflow-hidden flex flex-col md:flex-row items-center gap-10 lg:gap-16 bg-[#0B1B3D] rounded-[36px] p-8 md:p-12 lg:p-16"
+          className="relative overflow-hidden flex flex-col md:flex-row md:items-center gap-10 lg:gap-20 bg-[#0B1B3D] rounded-[36px] p-8 md:p-12 lg:p-16"
         >
-          <div className="w-full md:w-3/5 flex flex-col items-start text-left order-2 md:order-1">
+          <div className="w-full md:w-3/5 flex flex-col items-start text-left order-1">
             <h2 className="text-[2.25rem] md:text-5xl font-semibold text-white mb-6 tracking-[-0.035em] leading-[1.05] text-balance">
               {t('title')}
             </h2>
@@ -83,26 +34,6 @@ export default function SecuritySection() {
             <p className="text-white/65 text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
               {t('description')}
             </p>
-
-            <ul className="flex flex-col gap-3.5 mb-10">
-              {['gdpr', 'access', 'audit'].map((key, i) => (
-                <motion.li
-                  key={key}
-                  initial={{ opacity: 0, x: -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + i * 0.12, duration: 0.6, ease: EASE }}
-                  className="flex items-center gap-3 text-white font-medium"
-                >
-                  <span className="w-6 h-6 rounded-full bg-[#06ACC1]/20 flex items-center justify-center shrink-0">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5FD4E2" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </span>
-                  {t(`points.${key}`)}
-                </motion.li>
-              ))}
-            </ul>
 
             <Link
               href="/security"
@@ -113,9 +44,25 @@ export default function SecuritySection() {
             </Link>
           </div>
 
-          <div className="w-full md:w-2/5 flex items-center justify-center order-1 md:order-2">
-            <ShieldVisual />
-          </div>
+          <ul className="w-full md:w-2/5 flex flex-col order-2 divide-y divide-white/10 border-y border-white/10">
+            {['gdpr', 'access', 'audit'].map((key, i) => (
+              <motion.li
+                key={key}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + i * 0.12, duration: 0.6, ease: EASE }}
+                className="flex items-center gap-4 py-6 text-white text-lg font-medium"
+              >
+                <span className="w-11 h-11 rounded-full bg-white/[0.08] flex items-center justify-center shrink-0 text-[#5FD4E2]">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d={POINT_ICONS[key]} />
+                  </svg>
+                </span>
+                {t(`points.${key}`)}
+              </motion.li>
+            ))}
+          </ul>
         </motion.div>
       </div>
     </section>

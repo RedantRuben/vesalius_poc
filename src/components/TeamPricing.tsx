@@ -110,7 +110,7 @@ export default function TeamPricing({ billingCycle }: TeamPricingProps) {
             ],
           };
   return (
-    <section className="w-full relative pb-24">
+    <section className="w-full relative">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 h-full flex flex-col justify-center">
         {/* Header */}
         <motion.div 
@@ -127,7 +127,7 @@ export default function TeamPricing({ billingCycle }: TeamPricingProps) {
         </motion.div>
 
         {/* Plans Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {copy.plans.map((plan, index) => {
             const activePrice = getActivePrice(plan, billingCycle);
 

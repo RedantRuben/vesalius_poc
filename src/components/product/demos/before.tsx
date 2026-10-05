@@ -15,8 +15,13 @@ const TRIAGE = {
     asList: 'As list',
     head: ['Channel', 'Name', 'Summary', 'Open tasks', 'Status'],
     attention: 'Attention',
-    attentionBody: 'Chest pain radiating to the left arm. Seen first.',
-    rows: ['Chest pain since 1 hour, radiating to left arm', 'Migraine, worse this week', 'Repeat prescription', 'Question about appointment'],
+    urgent: 'Today',
+    trail: [
+      ['09:01', 'Knee swollen after a fall yesterday, cannot bear weight'],
+      ['09:01', 'Flagged for a same-day appointment'],
+      ['09:02', 'Secretariat notified to plan today'],
+    ],
+    rows: ['Swollen knee after a fall, cannot bear weight', 'Migraine, worse this week', 'Repeat prescription', 'Question about appointment'],
   },
   nl: {
     title: 'Screenings',
@@ -24,8 +29,13 @@ const TRIAGE = {
     asList: 'Als Lijst',
     head: ['Kanaal', 'Naam', 'Samenvatting', 'Openstaande taken', 'Status'],
     attention: 'Aandacht',
-    attentionBody: 'Pijn op de borst, uitstralend naar de linkerarm. Wordt eerst gezien.',
-    rows: ['Pijn op de borst sinds 1 uur, straalt uit naar linkerarm', 'Migraine, erger deze week', 'Herhaalvoorschrift', 'Vraag over afspraak'],
+    urgent: 'Vandaag',
+    trail: [
+      ['09:01', 'Knie gezwollen na een val gisteren, kan er niet op steunen'],
+      ['09:01', 'Gemarkeerd voor een afspraak vandaag'],
+      ['09:02', 'Secretariaat verwittigd om vandaag in te plannen'],
+    ],
+    rows: ['Gezwollen knie na een val, kan er niet op steunen', 'Migraine, erger deze week', 'Herhaalvoorschrift', 'Vraag over afspraak'],
   },
   fr: {
     title: 'Dépistages',
@@ -33,8 +43,13 @@ const TRIAGE = {
     asList: 'En liste',
     head: ['Canal', 'Nom', 'Résumé', 'Tâches ouvertes', 'Statut'],
     attention: 'Attention',
-    attentionBody: 'Douleur thoracique irradiant vers le bras gauche. Vu en premier.',
-    rows: ['Douleur thoracique depuis 1 h, irradie vers le bras gauche', 'Migraine, pire cette semaine', 'Renouvellement d’ordonnance', 'Question sur un rendez-vous'],
+    urgent: 'Aujourd’hui',
+    trail: [
+      ['09:01', 'Genou gonflé après une chute hier, ne peut pas s’appuyer dessus'],
+      ['09:01', 'Signalé pour un rendez-vous aujourd’hui'],
+      ['09:02', 'Secrétariat prévenu pour planifier aujourd’hui'],
+    ],
+    rows: ['Genou gonflé après une chute, ne peut pas s’appuyer dessus', 'Migraine, pire cette semaine', 'Renouvellement d’ordonnance', 'Question sur un rendez-vous'],
   },
 };
 
@@ -51,7 +66,7 @@ export function TriageDemo() {
   const c = useLocalized(TRIAGE);
   const step = useSteps(5, 380, 150);
   const statusOf = (i: number): ScreeningStatus => {
-    if (i === 0) return step >= 4 ? 'COMPLETED' : step >= 3 ? 'IN_PROGRESS' : 'STARTED';
+    if (i === 0) return step >= 3 ? 'IN_PROGRESS' : 'STARTED';
     if (i === 3) return 'IN_PROGRESS';
     return 'COMPLETED';
   };
@@ -94,7 +109,17 @@ export function TriageDemo() {
                     <span className="text-[#4E5670] truncate">{c.rows[i]}</span>
                     <span className="hidden md:block tabular-nums">{row.tasks}</span>
                     <span className="hidden md:block">
-                      <StatusChip status={statusOf(i)} />
+                      {row.urgent && step >= 4 ? (
+                        <motion.span
+                          initial={{ scale: 0.85, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold whitespace-nowrap bg-[#FFF6E8] text-[#C2410C] ring-1 ring-[#F59E0C]/40"
+                        >
+                          {c.urgent}
+                        </motion.span>
+                      ) : (
+                        <StatusChip status={statusOf(i)} />
+                      )}
                     </span>
                   </motion.div>
                 ),
@@ -108,14 +133,27 @@ export function TriageDemo() {
               initial={{ opacity: 0, y: 16, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.3, ease: EASE }}
-              className="mt-3 md:ml-auto md:w-[340px] shadow-[0_24px_40px_-20px_rgba(42,58,81,0.5)] rounded-xl"
+              className="mt-3 md:ml-auto md:w-[400px] shadow-[0_24px_40px_-20px_rgba(42,58,81,0.5)] rounded-xl"
             >
               <AppCard tone="widget" icon="exclamation-triangle" title={c.attention}>
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-3">
                   <Initials text="MP" />
-                  <span className="min-w-0">
-                    <span className="block text-[12px] font-semibold">M. Peeters</span>
-                    <span className="block text-[11px] text-[#4E5670] leading-snug">{c.attentionBody}</span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[12px] font-semibold mb-1.5">M. Peeters</span>
+                    <ol className="flex flex-col gap-1">
+                      {c.trail.map(([time, what], k) => (
+                        <motion.li
+                          key={what}
+                          initial={{ opacity: 0, x: -6 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.15 + k * 0.25, duration: 0.3 }}
+                          className="flex gap-2.5 text-[11px] leading-snug"
+                        >
+                          <span className="tabular-nums text-[#949CB1] shrink-0">{time}</span>
+                          <span className={k === 1 ? 'font-semibold text-[#0B1B3D]' : 'text-[#4E5670]'}>{what}</span>
+                        </motion.li>
+                      ))}
+                    </ol>
                   </span>
                 </div>
               </AppCard>
@@ -132,9 +170,9 @@ export function TriageDemo() {
 /* ------------------------------------------------------------------ */
 
 const AGENDA = {
-  en: { date: 'Friday 25 September 2026', appointments: 'appointments', views: ['Day', 'Week', 'Month'], perRoom: 'Per room', rooms: ['Room 1', 'Room 2', 'Room 3'], urgent: 'Urgent', types: ['Follow-up', 'Chest pain', 'New patient', 'Knee pain', 'Check-up', 'Wound care'] },
-  nl: { date: 'vrijdag 25 september 2026', appointments: 'afspraken', views: ['Dag', 'Week', 'Maand'], perRoom: 'Per ruimte', rooms: ['Room 1', 'Room 2', 'Room 3'], urgent: 'Dringend', types: ['Opvolging', 'Pijn op de borst', 'Nieuwe patiënt', 'Kniepijn', 'Controle', 'Wondzorg'] },
-  fr: { date: 'vendredi 25 septembre 2026', appointments: 'réservations', views: ['Jour', 'Semaine', 'Mois'], perRoom: 'Par espace', rooms: ['Room 1', 'Room 2', 'Room 3'], urgent: 'Urgent', types: ['Suivi', 'Douleur thoracique', 'Nouveau patient', 'Douleur au genou', 'Contrôle', 'Soins de plaie'] },
+  en: { date: 'Friday 25 September 2026', appointments: 'appointments', views: ['Day', 'Week', 'Month'], perRoom: 'Per room', rooms: ['Room 1', 'Room 2', 'Room 3'], urgent: 'Urgent', types: ['Follow-up', 'Swollen knee after a fall', 'New patient', 'Knee pain', 'Check-up', 'Wound care'] },
+  nl: { date: 'vrijdag 25 september 2026', appointments: 'afspraken', views: ['Dag', 'Week', 'Maand'], perRoom: 'Per ruimte', rooms: ['Room 1', 'Room 2', 'Room 3'], urgent: 'Dringend', types: ['Opvolging', 'Gezwollen knie na val', 'Nieuwe patiënt', 'Kniepijn', 'Controle', 'Wondzorg'] },
+  fr: { date: 'vendredi 25 septembre 2026', appointments: 'réservations', views: ['Jour', 'Semaine', 'Mois'], perRoom: 'Par espace', rooms: ['Room 1', 'Room 2', 'Room 3'], urgent: 'Urgent', types: ['Suivi', 'Genou gonflé après une chute', 'Nouveau patient', 'Douleur au genou', 'Contrôle', 'Soins de plaie'] },
 };
 
 type AgendaCopy = (typeof AGENDA)['en'];
@@ -248,16 +286,33 @@ const INTAKE = {
       { from: 'patient', text: 'My knee has hurt for about a week, after walking.' },
       { from: 'bot', text: 'Which knee hurts?' },
       { from: 'patient', text: 'Both' },
+      { from: 'bot', text: 'Does the pain come and go, or is it always there?' },
+      { from: 'patient', text: 'It comes and goes.' },
+      { from: 'bot', text: 'What kind of pain is it? For example stabbing, burning or aching?' },
+      { from: 'patient', text: 'Mostly aching, sometimes stabbing.' },
       { from: 'bot', text: 'Can you rate the pain from 1 to 10?' },
       { from: 'patient', text: '7' },
       { from: 'bot', text: 'Does your knee feel warm?' },
+      { from: 'patient', text: 'No' },
+      { from: 'bot', text: 'Is your knee swollen?' },
+      { from: 'patient', text: 'A little, mostly in the evening.' },
+      { from: 'bot', text: 'Is there anything you can no longer do because of it?' },
+      { from: 'patient', text: 'Walking more than a kilometre, and taking the stairs.' },
+      { from: 'bot', text: 'Are you taking anything for the pain?' },
+      { from: 'patient', text: 'Paracetamol when needed.' },
+      { from: 'bot', text: 'Thank you. Your answers have been passed on to the doctor for your appointment.' },
     ],
     suggestions: ['Yes', 'No'],
     summary: 'Summary',
     copy: 'Copy the summary',
+    ready: 'Ready for the doctor',
     sections: [
       { title: 'Reason for consultation', rows: [['Cause', 'The knee complaints started after walking.'], ['Duration', 'About a week']] },
-      { title: 'Nature of the pain', rows: [['Knee', 'Both'], ['Pain score', '7'], ['Warmth', 'Not answered yet']] },
+      {
+        title: 'Nature of the pain',
+        rows: [['Knee', 'Both'], ['Pattern', 'Comes and goes'], ['Type of pain', 'Aching, sometimes stabbing'], ['Pain score', '7'], ['Warmth', 'No'], ['Swollen', 'Slightly, in the evening']],
+      },
+      { title: 'General', rows: [['Limited activities', 'Walking more than 1 km, stairs'], ['Medication', 'Paracetamol when needed']] },
     ],
   },
   nl: {
@@ -269,16 +324,33 @@ const INTAKE = {
       { from: 'patient', text: 'Mijn knie doet pijn sinds ongeveer een week, na het wandelen.' },
       { from: 'bot', text: 'Welke knie doet pijn?' },
       { from: 'patient', text: 'Beide' },
+      { from: 'bot', text: 'Komt de pijn en gaat die weer weg, of is die constant aanwezig?' },
+      { from: 'patient', text: 'De pijn komt en gaat.' },
+      { from: 'bot', text: 'Wat voor soort pijn ervaart u? Bijvoorbeeld stekend, brandend of zeurend?' },
+      { from: 'patient', text: 'Vooral zeurend en soms stekend.' },
       { from: 'bot', text: 'Kunt u de pijn een cijfer geven tussen 1 en 10?' },
       { from: 'patient', text: '7' },
       { from: 'bot', text: 'Voelt uw knie warm aan?' },
+      { from: 'patient', text: 'Nee' },
+      { from: 'bot', text: 'Is uw knie gezwollen?' },
+      { from: 'patient', text: 'Een beetje, vooral ’s avonds.' },
+      { from: 'bot', text: 'Is er iets dat u hierdoor niet meer kunt?' },
+      { from: 'patient', text: 'Meer dan een kilometer wandelen, en trappen lopen.' },
+      { from: 'bot', text: 'Neemt u iets tegen de pijn?' },
+      { from: 'patient', text: 'Paracetamol als het nodig is.' },
+      { from: 'bot', text: 'Dank u. Uw antwoorden zijn doorgegeven aan de arts voor uw afspraak.' },
     ],
     suggestions: ['Ja', 'Nee'],
     summary: 'Samenvatting',
     copy: 'Samenvatting kopiëren',
+    ready: 'Klaar voor de arts',
     sections: [
       { title: 'Reden van consultatie', rows: [['Aanleiding', 'De knieklachten begonnen na het wandelen.'], ['Duur', 'Ongeveer een week']] },
-      { title: 'Aard van de pijn', rows: [['Knie', 'Beide'], ['Pijnscore', '7'], ['Warmte', 'Nog niet beantwoord']] },
+      {
+        title: 'Aard van de pijn',
+        rows: [['Knie', 'Beide'], ['Pijn', 'De pijn komt en gaat.'], ['Soort pijn', 'Zeurend en soms stekend'], ['Pijnscore', '7'], ['Warmte', 'Nee'], ['Gezwollen', 'Licht, vooral ’s avonds']],
+      },
+      { title: 'Algemeen', rows: [['Activiteit niet kunnen', 'Meer dan 1 km wandelen, trappen'], ['Medicatie', 'Paracetamol indien nodig']] },
     ],
   },
   fr: {
@@ -290,28 +362,50 @@ const INTAKE = {
       { from: 'patient', text: 'Mon genou me fait mal depuis environ une semaine, après la marche.' },
       { from: 'bot', text: 'Quel genou vous fait mal ?' },
       { from: 'patient', text: 'Les deux' },
+      { from: 'bot', text: 'La douleur va-t-elle et vient-elle, ou est-elle constante ?' },
+      { from: 'patient', text: 'Elle va et vient.' },
+      { from: 'bot', text: 'Quel type de douleur ressentez-vous ? Par exemple lancinante, brûlante ou sourde ?' },
+      { from: 'patient', text: 'Surtout sourde, parfois lancinante.' },
       { from: 'bot', text: 'Pouvez-vous noter la douleur de 1 à 10 ?' },
       { from: 'patient', text: '7' },
       { from: 'bot', text: 'Votre genou est-il chaud au toucher ?' },
+      { from: 'patient', text: 'Non' },
+      { from: 'bot', text: 'Votre genou est-il gonflé ?' },
+      { from: 'patient', text: 'Un peu, surtout le soir.' },
+      { from: 'bot', text: 'Y a-t-il quelque chose que vous ne pouvez plus faire à cause de cela ?' },
+      { from: 'patient', text: 'Marcher plus d’un kilomètre, et monter les escaliers.' },
+      { from: 'bot', text: 'Prenez-vous quelque chose contre la douleur ?' },
+      { from: 'patient', text: 'Du paracétamol si nécessaire.' },
+      { from: 'bot', text: 'Merci. Vos réponses ont été transmises au médecin pour votre rendez-vous.' },
     ],
     suggestions: ['Oui', 'Non'],
     summary: 'Résumé',
     copy: 'Copier le résumé',
+    ready: 'Prêt pour le médecin',
     sections: [
       { title: 'Motif de consultation', rows: [['Déclencheur', 'Les douleurs au genou ont commencé après la marche.'], ['Durée', 'Environ une semaine']] },
-      { title: 'Nature de la douleur', rows: [['Genou', 'Les deux'], ['Score de douleur', '7'], ['Chaleur', 'Pas encore répondu']] },
+      {
+        title: 'Nature de la douleur',
+        rows: [['Genou', 'Les deux'], ['Évolution', 'Va et vient'], ['Type de douleur', 'Sourde, parfois lancinante'], ['Score de douleur', '7'], ['Chaleur', 'Non'], ['Gonflement', 'Léger, surtout le soir']],
+      },
+      { title: 'Général', rows: [['Activités limitées', 'Marcher plus d’1 km, escaliers'], ['Médicaments', 'Paracétamol si nécessaire']] },
     ],
   },
 };
 
-// How many summary rows are known after each chat step (each patient answer fills the record).
-const INTAKE_FILLS = [0, 0, 2, 2, 3, 3, 4, 4];
+const INTAKE_STEPS = INTAKE.en.chat.length;
+// Index of the bot question answered with a Yes/No suggestion ("Does your knee feel warm?").
+const SUGGESTION_AT = 10;
+
+/** Rows known after `step` messages: the first answer fills two rows, every later answer one more. */
+const filledRows = (step: number, total: number) => (step < 2 ? 0 : Math.min(total, Math.floor(step / 2) + 1));
 
 export function PreConsultationDemo() {
   const c = useLocalized(INTAKE);
-  const step = useSteps(7, 900, 400);
-  const filled = INTAKE_FILLS[step];
+  const step = useSteps(INTAKE_STEPS, 750, 400);
   const rows = c.sections.flatMap((section) => section.rows.map(([label]) => `${section.title}-${label}`));
+  const filled = filledRows(step, rows.length);
+  const done = step >= INTAKE_STEPS;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-5 items-start">
@@ -326,10 +420,13 @@ export function PreConsultationDemo() {
           <div className="px-4 mt-3 flex items-center gap-2">
             <span className="text-[10px] text-[#4E5670]">{c.progress}</span>
             <span className="flex-1 h-1 rounded-full bg-[#E8EAEC] overflow-hidden">
-              <motion.span className="block h-full bg-[#06ACC1]" animate={{ width: `${20 + step * 8}%` }} transition={{ duration: 0.6 }} />
+              <motion.span className="block h-full bg-[#06ACC1]" animate={{ width: `${8 + (step / INTAKE_STEPS) * 92}%` }} transition={{ duration: 0.6 }} />
             </span>
           </div>
-          <div className="flex-1 overflow-hidden px-3 py-3 flex flex-col justify-end gap-2.5">
+          <div
+            className="flex-1 overflow-hidden px-3 py-3 flex flex-col justify-end gap-2.5"
+            style={{ maskImage: 'linear-gradient(to bottom, transparent 0, black 48px)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0, black 48px)' }}
+          >
             {c.chat.slice(0, step).map((msg, i) =>
               msg.from === 'bot' ? (
                 <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="flex items-end gap-2">
@@ -342,7 +439,7 @@ export function PreConsultationDemo() {
                 </motion.p>
               ),
             )}
-            {step >= 7 && (
+            {step === SUGGESTION_AT + 1 && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-center gap-2 pt-1">
                 {c.suggestions.map((s) => (
                   <span key={s} className="px-5 py-1.5 rounded-lg ring-1 ring-[#06ACC1] text-[#06ACC1] text-[11px] font-medium">{s}</span>
@@ -361,7 +458,21 @@ export function PreConsultationDemo() {
       </div>
 
       {/* Clinician side: the Samenvatting card on the interaction */}
-      <AppCard icon="chat" title={c.summary} action={<AppButton variant="subtle" icon="copy">{c.copy}</AppButton>} bodyClassName="px-4 py-2">
+      <AppCard
+        icon="chat"
+        title={c.summary}
+        action={
+          done ? (
+            <motion.span initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="inline-flex items-center gap-1.5 rounded-full bg-[#E9FFF7] px-2.5 py-1 text-[11px] font-semibold text-[#1F9E6E]">
+              <AppIcon name="circle-check" size={12} color="#1F9E6E" />
+              {c.ready}
+            </motion.span>
+          ) : (
+            <AppButton variant="subtle" icon="copy">{c.copy}</AppButton>
+          )
+        }
+        bodyClassName="px-4 py-2"
+      >
         {c.sections.map((section) => (
           <div key={section.title} className="py-3 border-b border-[#E8EAEC] last:border-0">
             <p className="flex items-center gap-1.5 text-[13px] text-[#06ACC1] mb-1.5">

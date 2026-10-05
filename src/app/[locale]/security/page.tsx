@@ -1,58 +1,14 @@
 import type { Metadata } from 'next';
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import SecurityContent from "@/components/SecurityContent";
 import { getLocale } from "next-intl/server";
 import { buildPageMetadata, resolveSiteLocale } from '@/lib/seo';
-
-const LockIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-  </svg>
-);
-
-const EyeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-);
-
-const ShieldCheckIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-    <path d="m9 12 2 2 4-4" />
-  </svg>
-);
-
-const CheckIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="20 6 9 17 4 12" />
-  </svg>
-);
-
-const securityCardMeta = [
-  {
-    icon: LockIcon,
-    iconClass: "bg-[#0B1B3D] text-white shadow-lg shadow-[#0B1B3D]/20",
-  },
-  {
-    icon: ShieldCheckIcon,
-    iconClass: "bg-[#06ACC1] text-white shadow-lg shadow-[#06ACC1]/20",
-  },
-  {
-    icon: EyeIcon,
-    iconClass: "bg-gradient-to-br from-[#FF3366] to-rose-500 text-white shadow-lg shadow-rose-500/20",
-  },
-] as const;
 
 const copyByLocale = {
   en: {
     eyebrow: "Security & Privacy",
     title: "Your data, ",
     accent: "our priority",
-    accentClass: "text-transparent bg-clip-text bg-gradient-to-r from-[#06ACC1] to-cyan-400",
     intro:
       "At Vesalius.ai, we are deeply committed to your privacy, a dedication reflected in our three key values that ensure the protection and responsible handling of patient data. To build trust with our users, we continuously improve our security and privacy measures, adapting to evolving threats and regulatory landscapes while prioritizing data security and privacy.",
     cards: [
@@ -106,7 +62,6 @@ const copyByLocale = {
     eyebrow: "Sécurité & confidentialité",
     title: "Vos données, ",
     accent: "notre priorité",
-    accentClass: "text-transparent bg-clip-text bg-gradient-to-r from-[#06ACC1] to-cyan-400",
     intro:
       "Chez Vesalius.ai, la protection de votre vie privée est une exigence de fond. Elle se traduit par trois engagements clés qui garantissent une gestion responsable et sécurisée des données patients. Pour renforcer la confiance de nos utilisateurs, nous faisons évoluer en continu nos mesures de sécurité et de confidentialité afin de nous adapter aux menaces et aux exigences réglementaires.",
     cards: [
@@ -160,7 +115,6 @@ const copyByLocale = {
     eyebrow: "Beveiliging & privacy",
     title: "Uw data, ",
     accent: "onze prioriteit",
-    accentClass: "text-[#0B1B3D]",
     intro:
       "Bij Vesalius.ai nemen we privacy fundamenteel ernstig. Die overtuiging vertaalt zich in drie kernwaarden die zorgen voor een veilige en verantwoorde omgang met patiëntgegevens. Om het vertrouwen van onze gebruikers te verdienen en te behouden, scherpen we onze beveiligings- en privacymaatregelen voortdurend aan naarmate dreigingen en regelgeving evolueren.",
     cards: [
@@ -227,111 +181,5 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function SecurityPage() {
   const locale = await getLocale();
   const copy = locale === "fr" ? copyByLocale.fr : locale === "nl" ? copyByLocale.nl : copyByLocale.en;
-  return (
-    <main className="w-full bg-[#FCFCFD] relative selection:bg-primary/20">
-      <Navbar />
-      
-      {/* Hero Section */}
-      <section className="w-full pt-32 pb-10 bg-transparent relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 h-full w-full bg-transparent">
-          <svg className="absolute inset-0 w-full h-full opacity-[0.15] pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1440 800">
-            <path d="M -100,300 C 400,200 800,500 1540,300" fill="none" stroke="#06ACC1" strokeWidth="1.5" />
-            <path d="M -100,400 C 500,500 900,250 1540,350" fill="none" stroke="#FF3366" strokeWidth="1.5" opacity="0.8" />
-            <path d="M -100,200 C 600,350 1000,250 1540,400" fill="none" stroke="#0B1B3D" strokeWidth="1.5" opacity="0.6" />
-          </svg>
-        </div>
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-[#0B1B3D] shadow-lg shadow-[#0B1B3D]/20 text-white font-bold text-sm mb-8 tracking-wide">
-            <ShieldCheckIcon />
-            <span>{copy.eyebrow}</span>
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-[#0B1B3D] mb-8 tracking-tight">
-            {copy.title}<span className={copy.accentClass}>{copy.accent}</span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-slate-500 leading-relaxed font-light max-w-3xl mx-auto">
-            {copy.intro}
-          </p>
-        </div>
-      </section>
-
-      {/* Three Core Values */}
-      <section className="w-full pt-8 pb-20 bg-transparent">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {copy.cards.map((card, index) => {
-              const meta = securityCardMeta[index];
-              const Icon = meta.icon;
-
-              return (
-                <div
-                  key={card.title}
-                  className="p-8 md:p-10 rounded-2xl border border-slate-200/60 bg-white hover:shadow-lg transition-all duration-500 group relative overflow-hidden h-full"
-                >
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300 ${meta.iconClass}`}>
-                    <Icon />
-                  </div>
-                  <h3 className="text-2xl font-bold text-[#0B1B3D] mb-4 tracking-tight">{card.title}</h3>
-                  <p className="text-base text-slate-500 font-light mb-8 leading-relaxed">
-                    {card.body}
-                  </p>
-                  <ul className="space-y-3">
-                    {card.items.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-sm font-medium text-slate-700">
-                        <div className="mt-0.5 text-[#06ACC1] shrink-0">
-                          <CheckIcon />
-                        </div>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Compliance Standards */}
-      <section className="w-full py-24 bg-transparent border-t border-slate-200/60">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0B1B3D] mb-4 tracking-tight">
-            {copy.standardsTitle}
-          </h2>
-          <p className="text-slate-500 font-light text-lg mb-16 max-w-2xl mx-auto">
-            {copy.standardsSubtitle}
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            {/* HIPAA */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/60 shadow-xl shadow-slate-200/30 hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 flex items-center gap-5 text-left group">
-               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0B1B3D] to-[#162c5e] flex items-center justify-center flex-shrink-0 text-white font-bold text-sm shadow-lg group-hover:scale-105 transition-transform duration-500">
-                  HIPAA
-               </div>
-               <div>
-                 <h4 className="font-bold text-[#0B1B3D] tracking-tight">{copy.standards[0].title}</h4>
-                 <p className="text-xs text-slate-500 font-light mt-1">{copy.standards[0].body}</p>
-               </div>
-            </div>
-
-            {/* GDPR */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-200/60 shadow-xl shadow-slate-200/30 hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500 flex items-center gap-5 text-left group">
-               <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#06ACC1] to-cyan-500 flex items-center justify-center flex-shrink-0 text-white font-bold text-sm shadow-lg group-hover:scale-105 transition-transform duration-500">
-                  GDPR
-               </div>
-               <div>
-                 <h4 className="font-bold text-[#0B1B3D] tracking-tight">{copy.standards[1].title}</h4>
-                 <p className="text-xs text-slate-500 font-light mt-1">{copy.standards[1].body}</p>
-               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full flex flex-col bg-transparent">
-        <Footer />
-      </section>
-    </main>
-  );
+  return <SecurityContent copy={copy} />;
 }

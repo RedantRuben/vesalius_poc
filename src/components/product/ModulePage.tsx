@@ -3,13 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
-import { Link } from '@/i18n/routing';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FinalCta from '@/components/FinalCta';
 import MobileApp from '@/components/MobileApp';
 import MotionProvider from '@/components/MotionProvider';
-import { MODULES, PHASE_MESSAGE_KEY, moduleBySlug, type ModuleEntry, type ModuleKey } from '@/lib/modules';
+import { MODULES, moduleBySlug, type ModuleEntry, type ModuleKey } from '@/lib/modules';
 import { MODULE_COPY, UI, type SiteLocale, type UiCopy } from './content';
 import ModuleDock, { ModuleIcon } from './ModuleDock';
 import { AgendaDemo, PreConsultationDemo, TriageDemo, VoiceDemo } from './demos/before';
@@ -158,69 +157,33 @@ function BeforeAfter({ copy, ui }: { copy: { without: string; with: string }; ui
 export default function ModulePage({ slug }: { slug: string }) {
   const locale = useLocale();
   const siteLocale: SiteLocale = locale === 'nl' || locale === 'fr' ? locale : 'en';
-  const t = useTranslations('Modules');
   const entry = moduleBySlug(slug) ?? MODULES[0];
   const copy = MODULE_COPY[siteLocale][entry.key];
   const ui = UI[siteLocale];
-  const index = MODULES.findIndex((m) => m.slug === entry.slug);
-  const next = MODULES[(index + 1) % MODULES.length];
-  const nextCopy = MODULE_COPY[siteLocale][next.key];
-  const related = copy.related.map((key) => MODULES.find((m) => m.key === key)!);
 
   return (
     <MotionProvider>
       <main className="w-full relative bg-[#FAFAFB] overflow-x-clip selection:bg-primary/20">
         <Navbar />
 
-        {/* Hero */}
-        <section className="relative pt-32 md:pt-40 pb-16 md:pb-24">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(50% 45% at 50% 0%, rgba(6,172,193,0.12), transparent 70%)',
-            }}
-          />
+        {/* Compact intro, then straight into the product; the actions follow once people have seen it */}
+        <section className="relative pt-32 md:pt-36 pb-12 md:pb-16">
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div
               key={entry.slug}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: EASE }}
-              className="text-center flex flex-col items-center mb-12 md:mb-16"
+              transition={{ duration: 0.7, ease: EASE }}
+              className="text-center mb-10 md:mb-12"
             >
-              <p className="inline-flex items-center gap-2.5 text-sm text-slate-500 mb-6">
-                <span className="font-semibold text-[#0597a9]">{t(PHASE_MESSAGE_KEY[entry.phase])}</span>
-                <span className="w-1 h-1 rounded-full bg-slate-300" aria-hidden="true" />
-                <span>{t(`${entry.key}.title`)}</span>
-                <span className="w-1 h-1 rounded-full bg-slate-300" aria-hidden="true" />
-                <span className="tabular-nums">
-                  {index + 1} {ui.ofTotal} {MODULES.length}
-                </span>
-              </p>
-              <h1 className="text-[2.75rem] md:text-7xl font-semibold text-[#0B1B3D] tracking-[-0.05em] leading-[1] max-w-4xl text-balance">
-                {copy.headline}
-              </h1>
-              <p className="mt-6 md:mt-8 text-lg md:text-xl text-slate-500 leading-snug tracking-tight max-w-2xl text-balance">{copy.description}</p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <a
-                  href="https://assistant.vesalius.ai/onboarding/credentials"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group px-7 py-4 rounded-full bg-[#0B1B3D] text-white font-medium hover:bg-[#13285a] transition-colors flex items-center justify-center gap-2"
-                >
-                  {ui.primaryCta}
-                  <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </a>
-                <Link href="/demo" className="px-7 py-4 rounded-full bg-white ring-1 ring-slate-200 hover:ring-slate-300 text-[#0B1B3D] font-medium transition-all flex items-center justify-center">
-                  {ui.secondaryCta}
-                </Link>
-              </div>
+              <h1 className="text-[2.25rem] md:text-[3.25rem] font-semibold text-[#0B1B3D] tracking-[-0.035em] leading-[1.05] text-balance">{copy.headline}</h1>
+              <p className="mt-4 text-[17px] md:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto text-balance">{copy.description}</p>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.2, ease: EASE }}>
+            <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.1, ease: EASE }}>
               <DemoStage key={entry.slug} entry={entry} ui={ui} />
             </motion.div>
+
           </div>
         </section>
 
@@ -252,100 +215,7 @@ export default function ModulePage({ slug }: { slug: string }) {
           </div>
         </section>
 
-        {/* What you get + your part */}
-        <section className="py-16 md:py-24">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-6">
-            <motion.div {...reveal} className="rounded-[32px] bg-white ring-1 ring-slate-200/70 p-8 md:p-12">
-              <h2 className="text-2xl md:text-3xl font-semibold text-[#0B1B3D] tracking-[-0.03em] mb-8">{ui.included}</h2>
-              <ul className="flex flex-col divide-y divide-slate-100">
-                {copy.features.map((feature) => (
-                  <li key={feature.title} className="flex gap-4 py-5 first:pt-0 last:pb-0">
-                    <span className="w-7 h-7 shrink-0 rounded-full bg-[#06ACC1]/10 text-[#0597a9] flex items-center justify-center mt-0.5">
-                      <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
-                        <path d="M 3.5 8.5 L 6.5 11.5 L 12.5 4.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </span>
-                    <span>
-                      <span className="block font-semibold text-[#0B1B3D]">{feature.title}</span>
-                      <span className="block text-slate-500 mt-0.5 leading-relaxed">{feature.body}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div
-              {...reveal}
-              transition={{ ...reveal.transition, delay: 0.1 }}
-              className="relative overflow-hidden rounded-[32px] bg-[#0B1B3D] text-white p-8 md:p-12 flex flex-col justify-end min-h-[280px]"
-            >
-              <div aria-hidden="true" className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-[radial-gradient(circle,rgba(6,172,193,0.45),transparent_65%)]" />
-              <span className="relative w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-auto">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <circle cx="12" cy="8" r="4" />
-                  <path d="M4 21c0-4 4-6 8-6s8 2 8 6" />
-                </svg>
-              </span>
-              <p className="relative text-sm text-white/60 mt-10 mb-2">{ui.yourPart}</p>
-              <p className="relative text-3xl md:text-[2.5rem] font-semibold tracking-[-0.035em] leading-[1.1]">{copy.yourPart}</p>
-            </motion.div>
-          </div>
-        </section>
-
         {entry.key === 'scribe' && <MobileApp />}
-
-        {/* Works well with */}
-        <section className="py-16 md:py-24">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <motion.h2 {...reveal} className="text-2xl md:text-3xl font-semibold text-[#0B1B3D] tracking-[-0.03em] mb-8">
-              {ui.worksWith}
-            </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {related.map((mod, i) => (
-                <motion.div key={mod.slug} {...reveal} transition={{ ...reveal.transition, delay: i * 0.08 }}>
-                  <Link
-                    href={`/product/${mod.slug}`}
-                    className="group flex flex-col h-full rounded-[28px] bg-white ring-1 ring-slate-200/70 p-6 hover:ring-slate-300 hover:shadow-[0_30px_60px_-30px_rgba(11,27,61,0.35)] transition-all duration-500"
-                  >
-                    <span className="flex items-center justify-between mb-8">
-                      <span className="w-11 h-11 rounded-full bg-slate-100 text-[#0B1B3D] flex items-center justify-center transition-colors group-hover:bg-[#0B1B3D] group-hover:text-white">
-                        <ModuleIcon entry={mod} />
-                      </span>
-                      <span className="text-xs text-slate-400">{t(PHASE_MESSAGE_KEY[mod.phase])}</span>
-                    </span>
-                    <span className="text-lg font-semibold text-[#0B1B3D] tracking-tight">{t(`${mod.key}.title`)}</span>
-                    <span className="text-sm text-slate-500 mt-1 leading-relaxed line-clamp-2">{MODULE_COPY[siteLocale][mod.key].headline}</span>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Next in the journey */}
-        <section className="py-8 md:py-12">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <motion.div {...reveal}>
-              <Link
-                href={`/product/${next.slug}`}
-                className="group relative flex flex-col md:flex-row md:items-center justify-between gap-8 overflow-hidden rounded-[36px] bg-white ring-1 ring-slate-200/70 p-8 md:p-12 hover:shadow-[0_40px_80px_-40px_rgba(11,27,61,0.4)] transition-shadow duration-500"
-              >
-                <span>
-                  <span className="block text-sm font-semibold text-[#0597a9] mb-3">
-                    {ui.next} · {t(PHASE_MESSAGE_KEY[next.phase])}
-                  </span>
-                  <span className="block text-3xl md:text-5xl font-semibold text-[#0B1B3D] tracking-[-0.04em] leading-[1.05]">{t(`${next.key}.title`)}</span>
-                  <span className="block mt-3 text-lg text-slate-500">{nextCopy.headline}</span>
-                </span>
-                <span className="shrink-0 w-16 h-16 rounded-full bg-[#0B1B3D] text-white flex items-center justify-center transition-transform duration-500 group-hover:translate-x-2">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </span>
-              </Link>
-            </motion.div>
-          </div>
-        </section>
 
         <FinalCta />
         <Footer />

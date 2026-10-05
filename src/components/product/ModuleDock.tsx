@@ -32,6 +32,7 @@ export default function ModuleDock({ current, ui }: { current: ModuleEntry; ui: 
 
   // Step out of the way while the footer is on screen, so it never covers links or the language switch.
   const [footerVisible, setFooterVisible] = useState(false);
+  const hidden = footerVisible;
   useEffect(() => {
     const footer = document.querySelector('footer');
     if (!footer) return;
@@ -61,9 +62,9 @@ export default function ModuleDock({ current, ui }: { current: ModuleEntry; ui: 
     <motion.nav
       aria-label={ui.modulesNav}
       initial={{ y: 80, opacity: 0 }}
-      animate={footerVisible ? { y: 120, opacity: 0 } : { y: 0, opacity: 1 }}
+      animate={hidden ? { y: 120, opacity: 0 } : { y: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 200, damping: 24 }}
-      style={{ pointerEvents: footerVisible ? 'none' : undefined }}
+      style={{ pointerEvents: hidden ? 'none' : undefined }}
       className="fixed bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-40 max-w-[calc(100vw-1rem)]"
     >
       <div className="flex items-center gap-1 p-1.5 rounded-full bg-white/80 backdrop-blur-xl backdrop-saturate-150 ring-1 ring-slate-200/80 shadow-[0_20px_50px_-20px_rgba(11,27,61,0.45)]">
