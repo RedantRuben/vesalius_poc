@@ -243,7 +243,7 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="w-full relative pt-16 md:pt-24 pb-4 md:pb-8">
+    <section className="w-full relative pt-6 md:pt-10 pb-4 md:pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <DoctorWall />
 

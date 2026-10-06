@@ -110,7 +110,7 @@ export default async function Home({
 
       <MobileApp />
 
-      <section className="w-full pt-12 md:pt-20">
+      <section className="w-full">
         <Testimonials />
       </section>
 
