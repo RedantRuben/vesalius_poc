@@ -64,6 +64,10 @@
       "accuracy": {
         "title": "Verbeter uw nauwkeurigheid",
         "description": "Elimineer handmatige fouten en zorg voor consistente patiëntendossiers."
+      },
+      "caregiver": {
+        "title": "Wees opnieuw zorgverlener.",
+        "description": "Minder tijd achter het scherm, meer tijd bij de patiënt. Daarvoor koos u dit vak."
       }
     }
   },
@@ -176,7 +180,7 @@
       "description": "Begin vandaag vrijblijvend en zie wat onze oplossing voor uw praktijk kan betekenen.",
       "button": "Aan de slag",
       "features": [
-        "20 gratis credits om te starten",
+        "1 maand gratis om te starten",
         "Geen creditcard vereist",
         "Perfect om onze service te proberen",
         "Standaard ondersteuning"
@@ -450,7 +454,7 @@
   },
   "FinalCta": {
     "title": "Besteed morgen aan uw patiënten.",
-    "subtitle": "Start gratis met 20 credits. Geen kredietkaart nodig.",
+    "subtitle": "Test Vesalius een maand gratis. Geen kredietkaart nodig.",
     "primary": "Maak uw assistent aan",
     "secondary": "Vraag een demo aan"
   },

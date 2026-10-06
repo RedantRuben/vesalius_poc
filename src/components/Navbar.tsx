@@ -5,9 +5,12 @@ import Image from 'next/image';
 import { Link, usePathname } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { QuestionDot, SpecialtyPanel, SpecialtyPill } from '@/components/SpecialtyPrompt';
+import { useSpecialty } from '@/lib/specialty';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { specialty, openMenu } = useSpecialty();
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations('Navbar');
@@ -76,7 +79,7 @@ export default function Navbar() {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 md:pt-6 transition-all duration-300 pointer-events-none">
       <header
-        className={`w-full max-w-7xl rounded-full border border-transparent pointer-events-auto transition-[background-color,box-shadow,border-color,padding] duration-500 ${
+        className={`relative w-full max-w-7xl rounded-full border border-transparent pointer-events-auto transition-[background-color,box-shadow,border-color,padding] duration-500 ${
           scrolled
             ? 'bg-white/70 shadow-[0_12px_36px_-16px_rgba(15,23,42,0.18)] border-slate-200/60 py-2 md:py-3 backdrop-blur-xl backdrop-saturate-150'
             : 'bg-transparent shadow-none py-4'
@@ -106,7 +109,11 @@ export default function Navbar() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
+            <div className="relative hidden lg:block">
+              <SpecialtyPill />
+              <SpecialtyPanel anchor="pill" />
+            </div>
             <a href="https://assistant.vesalius.ai/onboarding/credentials" target="_blank" rel="noopener noreferrer" className="rounded-full bg-[#0B1B3D] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#13285a] transition-colors flex items-center gap-1.5">
               {t('tryForFree')}
               <span className="text-lg leading-none mb-0.5">↗</span>
@@ -116,11 +123,12 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             type="button"
-            className="md:hidden z-50 p-2 -mr-2 text-[#0B1B3D]"
+            className="relative md:hidden z-50 p-2 -mr-2 text-[#0B1B3D]"
             aria-expanded={isOpen}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setIsOpen(!isOpen)}
           >
+            {specialty === null && !isOpen && <QuestionDot className="top-0 right-0" />}
             {isOpen ? (
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -134,6 +142,8 @@ export default function Navbar() {
               </svg>
             )}
           </button>
+
+          <SpecialtyPanel anchor="bar" className="lg:hidden" />
 
           {/* Mobile Navigation Overlay */}
           <AnimatePresence>
@@ -151,6 +161,13 @@ export default function Navbar() {
                 <MobileNavItem href="/#contact" isActive={isContactActive} label={t('contact')} onClick={() => setIsOpen(false)} />
                 <MobileNavItem href="/security" isActive={pathname === '/security'} label={t('security')} onClick={() => setIsOpen(false)} />
                 
+                <SpecialtyPill
+                  className="mt-2 self-start"
+                  onClick={() => {
+                    setIsOpen(false);
+                    openMenu();
+                  }}
+                />
                 <div className="pt-4 mt-2 border-t border-slate-200">
                    <a href="https://assistant.vesalius.ai/onboarding/credentials" target="_blank" rel="noopener noreferrer" className="w-full rounded-xl bg-[#0B1B3D] px-5 py-3.5 text-sm font-medium text-white hover:bg-slate-800 transition-colors flex items-center justify-center gap-1 shadow-md">
                     {t('tryForFree')}

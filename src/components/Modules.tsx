@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { ORTHO_HOME, type SiteLocale } from '@/content/orthopedics';
+import { useSpecialty } from '@/lib/specialty';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -422,6 +424,9 @@ interface ModuleConfig {
 function ModuleCard({ module, index }: { module: ModuleConfig; index: number }) {
   const t = useTranslations('Modules');
   const locale = useLocale();
+  const { isOrthopedics } = useSpecialty();
+  // Orthopaedics: each card follows the same patient with hip complaints.
+  const orthoCard = isOrthopedics ? (ORTHO_HOME[locale as SiteLocale] ?? ORTHO_HOME.en).modules.cards[module.key] : null;
 
   return (
     <motion.div
@@ -452,7 +457,7 @@ function ModuleCard({ module, index }: { module: ModuleConfig; index: number }) 
         </div>
 
         <h3 className="text-2xl md:text-[1.75rem] font-semibold text-[#0B1B3D] mb-2 tracking-[-0.025em]">{t(`${module.key}.title`)}</h3>
-        <p className="text-slate-500 max-w-md text-[15px] md:text-base leading-relaxed">{t(`${module.key}.description`)}</p>
+        <p className="text-slate-500 max-w-md text-[15px] md:text-base leading-relaxed">{orthoCard ?? t(`${module.key}.description`)}</p>
 
         <div className="flex-1 min-h-[190px] mt-8 flex items-end justify-center transition-transform duration-700 ease-out group-hover:-translate-y-1">
           {module.visual}
@@ -488,6 +493,8 @@ function Chapter({ number, label, modules }: { number: string; label: string; mo
 export default function Modules() {
   const t = useTranslations('Modules');
   const locale = useLocale();
+  const { isOrthopedics } = useSpecialty();
+  const orthoSubtitle = isOrthopedics ? (ORTHO_HOME[locale as SiteLocale] ?? ORTHO_HOME.en).modules.subtitle : null;
   const copy =
     locale === 'fr'
       ? {
@@ -543,6 +550,7 @@ export default function Modules() {
           <h2 className="text-[2.5rem] md:text-6xl lg:text-[4.5rem] font-semibold text-[#0B1B3D] tracking-[-0.045em] max-w-4xl leading-[1.02] text-balance">
             {t('title')}
           </h2>
+          {orthoSubtitle && <p className="mt-6 text-lg md:text-xl text-slate-500 tracking-tight max-w-2xl text-balance">{orthoSubtitle}</p>}
         </motion.div>
 
         <div className="flex flex-col gap-20 md:gap-28">

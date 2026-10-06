@@ -64,6 +64,10 @@
       "accuracy": {
         "title": "Improve your accuracy",
         "description": "Eliminate manual errors and ensure consistent patient records."
+      },
+      "caregiver": {
+        "title": "Be a caregiver again.",
+        "description": "Less time behind the screen, more time with your patients. That is why you chose this profession."
       }
     }
   },
@@ -176,7 +180,7 @@
       "description": "Start today with no obligations and see what our solution can do for your practice.",
       "button": "Get Started",
       "features": [
-        "20 free credits to start",
+        "1 month free to start",
         "No credit card required",
         "Perfect for trying our service",
         "Standard support"
@@ -450,7 +454,7 @@
   },
   "FinalCta": {
     "title": "Spend tomorrow with your patients.",
-    "subtitle": "Start free with 20 credits. No credit card required.",
+    "subtitle": "Try Vesalius free for a month. No credit card needed.",
     "primary": "Create your assistant",
     "secondary": "Request a demo"
   },

@@ -181,11 +181,11 @@ export function StatusChip({ status }: { status: ScreeningStatus }) {
 }
 
 /** Initials avatar as used across the app (patients in secondary blue, lists in primary). */
-export function Initials({ text, tone = 'secondary', size = 32 }: { text: string; tone?: 'primary' | 'secondary'; size?: number }) {
+export function Initials({ text, tone = 'secondary', size = 32, color }: { text: string; tone?: 'primary' | 'secondary'; size?: number; color?: string }) {
   return (
     <span
       className="rounded-full text-white font-semibold flex items-center justify-center shrink-0"
-      style={{ width: size, height: size, fontSize: size * 0.36, backgroundColor: tone === 'primary' ? APP.primary : APP.secondary }}
+      style={{ width: size, height: size, fontSize: size * 0.36, backgroundColor: color ?? (tone === 'primary' ? APP.primary : APP.secondary) }}
     >
       {text}
     </span>

@@ -4,6 +4,7 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
+import { FREE_MONTH_ANCHOR } from '@/components/FinalCta';
 
 const CheckIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#06ACC1]">
@@ -64,7 +65,7 @@ export default function Pricing({
               description: 'Commencez dès aujourd’hui, sans engagement, et découvrez ce que notre solution peut apporter à votre pratique.',
               buttonText: 'Commencer',
               isPopular: false,
-              features: ['20 crédits gratuits pour démarrer', 'Aucune carte bancaire requise', 'Parfait pour tester notre solution', 'Support standard'],
+              features: ['1 mois gratuit pour démarrer', 'Aucune carte bancaire requise', 'Parfait pour tester notre solution', 'Support standard'],
             },
             {
               name: 'Paiement à l’usage',
@@ -103,7 +104,7 @@ export default function Pricing({
                 description: 'Start vandaag zonder verplichtingen en ontdek wat onze oplossing voor uw praktijk kan betekenen.',
                 buttonText: 'Aan de slag',
                 isPopular: false,
-                features: ['20 gratis credits om te starten', 'Geen kredietkaart nodig', 'Perfect om onze oplossing uit te proberen', 'Standaard ondersteuning'],
+                features: ['1 maand gratis om te starten', 'Geen kredietkaart nodig', 'Perfect om onze oplossing uit te proberen', 'Standaard ondersteuning'],
               },
               {
                 name: 'Betalen per gebruik',
@@ -141,7 +142,7 @@ export default function Pricing({
                 description: 'Start today with no obligations and see what our solution can do for your practice.',
                 buttonText: 'Get Started',
                 isPopular: false,
-                features: ['20 free credits to start', 'No credit card required', 'Perfect for trying our service', 'Standard support'],
+                features: ['1 month free to start', 'No credit card required', 'Perfect for trying our service', 'Standard support'],
               },
               {
                 name: 'Pay-as-you-use',
@@ -302,7 +303,13 @@ export default function Pricing({
 
                 {/* CTA Button */}
                 <Link
-                  href={`/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}&billing=${billingCycle}`}
+                  href={index === 0 ? `/#${FREE_MONTH_ANCHOR}` : `/contactus?intent=pricing&plan=${encodeURIComponent(plan.name)}&billing=${billingCycle}`}
+                  onClick={(event) => {
+                    // Free plan: open the free-month form at the bottom of the homepage instead of the contact page.
+                    if (index !== 0 || window.location.pathname.replace(/^\/(en|nl|fr)/, '') !== '') return;
+                    event.preventDefault();
+                    window.location.hash = FREE_MONTH_ANCHOR;
+                  }}
                   className={`w-full py-4 rounded-full font-semibold transition-colors flex items-center justify-center gap-2 group ${
                     isDark
                       ? 'bg-white text-[#0B1B3D] hover:bg-slate-100'

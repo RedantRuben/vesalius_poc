@@ -171,8 +171,23 @@ function DoctorWall() {
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5">
-        {/* Featured: the strongest, most specific quote */}
-        <motion.figure {...reveal()} className="lg:col-span-7 lg:row-span-2 bg-white rounded-[28px] ring-1 ring-slate-200/70 p-8 md:p-12 flex flex-col gap-10">
+        {/* 1 · one-liner, top left */}
+        <motion.figure {...reveal()} className="lg:col-span-5 bg-white rounded-[28px] ring-1 ring-slate-200/70 p-8 md:p-10 flex flex-col gap-8">
+          <blockquote className="font-display italic text-6xl md:text-7xl text-[#06ACC1] leading-none tracking-[-0.01em]">{t('doctors.byn.quote')}</blockquote>
+          <Attribution doctor={byn} name={name(byn)} role={t('doctors.byn.role')} />
+          <CardFooter>
+            <Facts
+              items={[
+                { strong: t(`metrics.${byn.timeSaved}`), rest: t('metrics.timeSaved') },
+                ...(byn.barelyEdits ? [{ strong: '', rest: t('metrics.barelyEdits') }] : []),
+              ]}
+            />
+            <RecommendMeter score={byn.recommends} label={t('metrics.recommends')} />
+          </CardFooter>
+        </motion.figure>
+
+        {/* 2 · the longest, most specific quote, in the large card on the right */}
+        <motion.figure {...reveal(0.1)} className="lg:col-span-7 lg:row-span-2 bg-white rounded-[28px] ring-1 ring-slate-200/70 p-8 md:p-12 flex flex-col gap-10">
           <blockquote className="text-[1.6rem] md:text-[2.15rem] xl:text-[2.5rem] font-semibold text-[#0B1B3D] tracking-[-0.03em] leading-[1.16] text-balance">
             {t('doctors.boedts.quote')}
           </blockquote>
@@ -188,27 +203,13 @@ function DoctorWall() {
           </CardFooter>
         </motion.figure>
 
-        {/* Two one-liners, set large in the serif */}
-        <motion.figure {...reveal(0.1)} className="lg:col-span-5 bg-[#0B1B3D] rounded-[28px] p-8 md:p-10 flex flex-col gap-8">
+        {/* 3 · one-liner under card 1 */}
+        <motion.figure {...reveal(0.2)} className="lg:col-span-5 bg-[#0B1B3D] rounded-[28px] p-8 md:p-10 flex flex-col gap-8">
           <blockquote className="font-display italic text-6xl md:text-7xl text-white leading-none tracking-[-0.01em]">{t('doctors.ortho.quote')}</blockquote>
           <Attribution doctor={ortho} name={name(ortho)} role={t('doctors.ortho.role')} dark />
           <CardFooter dark>
             <Facts dark items={[{ strong: t(`metrics.${ortho.timeSaved}`), rest: t('metrics.timeSaved') }]} />
             <RecommendMeter score={ortho.recommends} label={t('metrics.recommends')} dark />
-          </CardFooter>
-        </motion.figure>
-
-        <motion.figure {...reveal(0.2)} className="lg:col-span-5 bg-white rounded-[28px] ring-1 ring-slate-200/70 p-8 md:p-10 flex flex-col gap-8">
-          <blockquote className="font-display italic text-6xl md:text-7xl text-[#06ACC1] leading-none tracking-[-0.01em]">{t('doctors.byn.quote')}</blockquote>
-          <Attribution doctor={byn} name={name(byn)} role={t('doctors.byn.role')} />
-          <CardFooter>
-            <Facts
-              items={[
-                { strong: t(`metrics.${byn.timeSaved}`), rest: t('metrics.timeSaved') },
-                ...(byn.barelyEdits ? [{ strong: '', rest: t('metrics.barelyEdits') }] : []),
-              ]}
-            />
-            <RecommendMeter score={byn.recommends} label={t('metrics.recommends')} />
           </CardFooter>
         </motion.figure>
 

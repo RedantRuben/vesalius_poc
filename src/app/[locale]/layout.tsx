@@ -5,6 +5,8 @@ import { routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import CookieConsent from '@/components/CookieConsent';
 import MatomoAnalytics from '@/components/MatomoAnalytics';
+import SpecialtyPrompt from '@/components/SpecialtyPrompt';
+import { SpecialtyProvider } from '@/lib/specialty';
 
 export default async function LocaleLayout({
   children,
@@ -29,7 +31,10 @@ export default async function LocaleLayout({
  
   return (
     <NextIntlClientProvider messages={messages}>
-      {children}
+      <SpecialtyProvider>
+        {children}
+        <SpecialtyPrompt />
+      </SpecialtyProvider>
       <MatomoAnalytics />
       <CookieConsent />
     </NextIntlClientProvider>

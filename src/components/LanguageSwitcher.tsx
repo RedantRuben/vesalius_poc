@@ -4,6 +4,13 @@ import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
 import { useTransition } from 'react';
 
+const LANGUAGES = [
+  { code: 'nl', label: 'Nederlands' },
+  { code: 'en', label: 'English' },
+  { code: 'fr', label: 'Français' },
+] as const;
+
+/** Segmented language control for the dark footer. */
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
@@ -17,33 +24,24 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 text-sm">
-      <button 
-        onClick={() => onSelectChange('nl')}
-        disabled={isPending}
-        className={`${locale === 'nl' ? 'text-[#06ACC1] font-medium' : 'text-gray-600 hover:text-[#06ACC1]'}`}
-      >
-        <span className="hidden md:inline">Nederlands (BE)</span>
-        <span className="md:hidden">NL</span>
-      </button>
-      <div className="h-4 w-px bg-gray-300"></div>
-      <button 
-        onClick={() => onSelectChange('en')}
-        disabled={isPending}
-        className={`${locale === 'en' ? 'text-[#06ACC1] font-medium' : 'text-gray-600 hover:text-[#06ACC1]'}`}
-      >
-        <span className="hidden md:inline">English (US)</span>
-        <span className="md:hidden">EN</span>
-      </button>
-      <div className="h-4 w-px bg-gray-300"></div>
-      <button 
-        onClick={() => onSelectChange('fr')}
-        disabled={isPending}
-        className={`${locale === 'fr' ? 'text-[#06ACC1] font-medium' : 'text-gray-600 hover:text-[#06ACC1]'}`}
-      >
-        <span className="hidden md:inline">Français (BE)</span>
-        <span className="md:hidden">FR</span>
-      </button>
+    <div className="inline-flex items-center gap-1 rounded-full bg-white/[0.06] ring-1 ring-white/10 p-1 text-[13px]" role="group" aria-label="Language">
+      {LANGUAGES.map(({ code, label }) => {
+        const active = locale === code;
+        return (
+          <button
+            key={code}
+            type="button"
+            lang={code}
+            aria-pressed={active}
+            onClick={() => onSelectChange(code)}
+            disabled={isPending || active}
+            className={`rounded-full px-3 py-1.5 font-medium transition-colors ${active ? 'bg-white/[0.12] text-white' : 'text-white/55 hover:text-white'}`}
+          >
+            <span className="hidden sm:inline">{label}</span>
+            <span className="sm:hidden uppercase">{code}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }

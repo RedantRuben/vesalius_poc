@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { ORTHO_HOME, type SiteLocale } from '@/content/orthopedics';
+import { useSpecialty } from '@/lib/specialty';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -20,12 +22,18 @@ const ICONS = [
 
 export default function Journey() {
   const t = useTranslations('Journey');
+  const locale = useLocale() as SiteLocale;
+  const { isOrthopedics } = useSpecialty();
+  const ortho = (ORTHO_HOME[locale] ?? ORTHO_HOME.en).journey;
+  // Orthopaedics: moments in the care path instead of weekdays, plus a concrete detail per step.
   const steps = ICONS.map((icon, i) => ({
     icon,
-    day: t(`steps.${i}.day`),
-    title: t(`steps.${i}.title`),
-    part: t(`steps.${i}.part`),
+    day: isOrthopedics ? ortho.steps[i].moment : t(`steps.${i}.day`),
+    title: isOrthopedics ? ortho.steps[i].title : t(`steps.${i}.title`),
+    detail: isOrthopedics ? ortho.steps[i].detail : null,
+    part: isOrthopedics ? ortho.steps[i].part : t(`steps.${i}.part`),
   }));
+  const subtitle = isOrthopedics ? ortho.subtitle : t('subtitle');
 
   return (
     <section className="w-full py-24 md:py-32">
@@ -38,7 +46,7 @@ export default function Journey() {
           className="text-center mb-16 md:mb-20"
         >
           <h2 className="text-[2.5rem] md:text-6xl font-semibold text-[#0B1B3D] tracking-[-0.045em] leading-[1.02]">{t('title')}</h2>
-          <p className="mt-5 text-lg md:text-xl text-slate-500 tracking-tight">{t('subtitle')}</p>
+          <p className="mt-5 text-lg md:text-xl text-slate-500 tracking-tight max-w-2xl mx-auto text-balance">{subtitle}</p>
         </motion.div>
 
         <div className="relative">
@@ -56,7 +64,7 @@ export default function Journey() {
           <ol className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-6">
             {steps.map((step, i) => (
               <motion.li
-                key={i}
+                key={`${isOrthopedics ? 'o' : 'g'}-${i}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
@@ -71,6 +79,7 @@ export default function Journey() {
                 <div>
                   <p className="text-sm font-medium text-[#0597a9] mb-1.5">{step.day}</p>
                   <h3 className="text-lg font-semibold text-[#0B1B3D] tracking-tight leading-snug md:max-w-[14rem] md:mx-auto text-balance">{step.title}</h3>
+                  {step.detail && <p className="mt-2 text-sm text-slate-600 leading-relaxed md:max-w-[15rem] md:mx-auto">{step.detail}</p>}
                   <p className="mt-3 text-sm text-slate-500">
                     {t('yourPart')}: <span className="font-semibold text-[#0B1B3D]">{step.part}</span>
                   </p>

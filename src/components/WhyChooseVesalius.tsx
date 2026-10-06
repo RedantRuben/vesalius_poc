@@ -295,6 +295,18 @@ export default function WhyChooseVesalius() {
               <div className="relative flex-1 mt-6">{feature.visual}</div>
             </motion.article>
           ))}
+
+          {/* Fifth card, full width: the reason behind all of the above */}
+          <motion.article
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.8, ease: EASE }}
+            className="lg:col-span-12 bg-white rounded-[28px] p-8 md:p-12 ring-1 ring-slate-200/70 grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-4 md:gap-12 md:items-center"
+          >
+            <h3 className="text-3xl md:text-[2.75rem] font-semibold text-[#0B1B3D] tracking-[-0.035em] leading-[1.05]">{t('features.caregiver.title')}</h3>
+            <p className="text-slate-500 text-lg md:text-xl leading-relaxed tracking-tight">{t('features.caregiver.description')}</p>
+          </motion.article>
         </div>
       </div>
     </section>

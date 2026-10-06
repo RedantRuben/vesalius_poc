@@ -64,6 +64,10 @@
       "accuracy": {
         "title": "Gagnez en précision",
         "description": "Éliminez les erreurs manuelles et assurez la cohérence des dossiers patients."
+      },
+      "caregiver": {
+        "title": "Redevenez soignant.",
+        "description": "Moins de temps derrière l’écran, plus de temps auprès du patient. C’est pour cela que vous avez choisi ce métier."
       }
     }
   },
@@ -176,7 +180,7 @@
       "description": "Commencez dès aujourd'hui sans engagement et découvrez ce que notre solution peut faire pour votre cabinet.",
       "button": "Démarrer",
       "features": [
-        "20 crédits gratuits pour commencer",
+        "1 mois gratuit pour commencer",
         "Pas de carte de crédit requise",
         "Parfait pour essayer notre service",
         "Support standard"
@@ -450,7 +454,7 @@
   },
   "FinalCta": {
     "title": "Consacrez demain à vos patients.",
-    "subtitle": "Commencez gratuitement avec 20 crédits. Aucune carte bancaire requise.",
+    "subtitle": "Testez Vesalius gratuitement pendant un mois. Sans carte de crédit.",
     "primary": "Créez votre assistant",
     "secondary": "Demander une démo"
   },

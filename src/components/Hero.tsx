@@ -4,6 +4,8 @@ import { useEffect, useId, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
+import { ORTHO_HOME, type SiteLocale } from '@/content/orthopedics';
+import { useSpecialty } from '@/lib/specialty';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -323,7 +325,8 @@ function HeroStage({ copy }: { copy: HeroCopy }) {
 
 export default function Hero() {
   const locale = useLocale();
-  const copy =
+  const { isOrthopedics } = useSpecialty();
+  const baseCopy =
     locale === 'fr'
       ? {
           line1: 'Redevenez',
@@ -389,6 +392,19 @@ export default function Hero() {
             clinicalNoteBody:
               'Patient reports severe, worsening headaches over the past two weeks. Pain is localized in the frontal region and is accompanied by mild photophobia...',
           };
+
+  // Orthopaedics variant: sales' title, a knee-pain-from-the-hip intake and the matching note.
+  const ortho = (ORTHO_HOME[locale as SiteLocale] ?? ORTHO_HOME.en).hero;
+  const copy = isOrthopedics
+    ? {
+        ...baseCopy,
+        line1: ortho.line1,
+        line2: ortho.line2,
+        intakeMessages: [baseCopy.intakeMessages[0], ortho.patientMessage, ortho.assistantMessage] as [string, string, string],
+        clinicalNoteBody: ortho.noteBody,
+      }
+    : baseCopy;
+  const variant = isOrthopedics ? 'orthopedics' : 'general';
 
   const words = copy.line1.split(' ');
 
@@ -477,7 +493,7 @@ export default function Hero() {
 
           {/* Product story: intake → consultation (desktop stage) */}
           <div className="hidden lg:flex relative w-[54%] xl:w-[50%] justify-end">
-            <HeroStage copy={copy} />
+            <HeroStage key={variant} copy={copy} />
           </div>
         </div>
       </div>
@@ -489,8 +505,8 @@ export default function Hero() {
         transition={{ duration: 0.9, delay: 0.6, ease: EASE }}
         className="lg:hidden relative z-10 w-full px-4 mt-14 flex flex-col items-center gap-5"
       >
-        <ChatCard copy={copy} className="w-full max-w-[380px]" />
-        <ScribeCard copy={copy} className="w-full max-w-[380px]" />
+        <ChatCard key={`chat-${variant}`} copy={copy} className="w-full max-w-[380px]" />
+        <ScribeCard key={`scribe-${variant}`} copy={copy} className="w-full max-w-[380px]" />
       </motion.div>
     </section>
   );

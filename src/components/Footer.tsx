@@ -6,113 +6,182 @@ import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './LanguageSwitcher';
 
+const icon = 'mt-0.5 text-white/40 group-hover:text-[#5FD4E2] transition-colors shrink-0';
+
 const MailIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400 group-hover:text-[#06ACC1] transition-colors">
-    <rect width="20" height="16" x="2" y="4" rx="2"/>
-    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={icon}
+    aria-hidden="true"
+  >
+    <rect width="20" height="16" x="2" y="4" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
   </svg>
 );
 
 const PhoneIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400 group-hover:text-[#06ACC1] transition-colors">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={icon}
+    aria-hidden="true"
+  >
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
   </svg>
 );
 
 const LinkedinIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400 group-hover:text-[#06ACC1] transition-colors">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-    <rect width="4" height="12" x="2" y="9"/>
-    <circle cx="4" cy="4" r="2"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={icon}
+    aria-hidden="true"
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
   </svg>
 );
+
+const PinIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={icon}
+    aria-hidden="true"
+  >
+    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+    <circle cx="12" cy="10" r="3" />
+  </svg>
+);
+
+// The hover dot sits outside the text box (absolute), so nothing shifts on hover.
+const linkClass =
+  "relative inline-block text-sm text-white/65 hover:text-white transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity";
+const headingClass = 'text-white text-sm font-semibold mb-5';
 
 export default function Footer() {
   const t = useTranslations('Footer');
 
+  const columns = [
+    {
+      title: t('legal'),
+      links: [
+        { href: '/terms-conditions', label: t('termsAndConditions') },
+        { href: '/privacy-policy', label: t('privacyPolicy') },
+        { href: '/cookie-policy', label: t('cookiePolicy') },
+        { href: '/security', label: t('security') },
+      ],
+    },
+    {
+      title: t('help'),
+      links: [
+        { href: '/support', label: t('support') },
+        { href: '/contactus', label: t('contact') },
+      ],
+    },
+  ];
+
+  const contact = [
+    {
+      href: 'mailto:help@vesalius.health',
+      label: 'help@vesalius.health',
+      Icon: MailIcon,
+    },
+    { href: 'tel:+3294961478', label: '09 496 14 78', Icon: PhoneIcon },
+    {
+      href: 'https://www.linkedin.com/company/vesaliushealth/posts/?feedView=all',
+      label: 'LinkedIn',
+      Icon: LinkedinIcon,
+      external: true,
+    },
+    {
+      href: 'https://www.google.com/maps/search/?api=1&query=Ottergemsesteenweg+Zuid+808B+9000+Gent',
+      label: (
+        <>
+          {t('address.street')}, <span className="whitespace-nowrap">{t('address.city')}</span>
+        </>
+      ),
+      Icon: PinIcon,
+      external: true,
+    },
+  ];
+
   return (
-    <footer className="w-full bg-[#0B1B3D] pt-24 pb-12 relative overflow-hidden text-slate-300 rounded-t-[40px] md:rounded-t-[80px] mt-12 shadow-[0_-20px_40px_rgba(0,0,0,0.05)]">
-      {/* Background Ornaments */}
-      <div className="absolute top-0 right-0 w-[420px] h-[420px] md:w-[800px] md:h-[800px] bg-gradient-to-bl from-[#06ACC1]/10 to-transparent rounded-full blur-3xl pointer-events-none transform translate-x-1/4 -translate-y-1/4 md:translate-x-1/3 md:-translate-y-1/3" />
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+    <footer className="w-full bg-[#0B1B3D] pt-20 md:pt-24 pb-10 relative overflow-hidden text-slate-300 rounded-t-[40px] md:rounded-t-[80px] mt-12">
+      {/* Soft glow, top right */}
+      <div className="absolute top-0 right-0 w-[420px] h-[420px] md:w-[760px] md:h-[760px] bg-gradient-to-bl from-[#06ACC1]/10 to-transparent rounded-full blur-3xl pointer-events-none translate-x-1/4 -translate-y-1/4 md:translate-x-1/3 md:-translate-y-1/3" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[minmax(0,1.15fr)_minmax(220px,0.72fr)_minmax(280px,0.9fr)] gap-12 lg:gap-20 mb-20 items-start">
-          
-          {/* Brand & Contact */}
-          <div className="flex max-w-md flex-col space-y-8">
-            <Link
-              href="/"
-              className="group relative inline-flex max-w-full items-center rounded-[32px] border border-white/14 bg-white/[0.045] px-4 sm:px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_24px_60px_-32px_rgba(2,8,23,0.75)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/22 hover:bg-white/[0.06]"
-            >
-              <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/8 via-transparent to-[#06ACC1]/[0.06] opacity-90" />
-              <Image
-                src="/vesalius-logo-with-text-footer.svg"
-                alt="Vesalius.ai logo"
-                width={237}
-                height={41}
-                className="relative h-9 sm:h-10 w-auto shrink-0"
-              />
-            </Link>
-            
-            <div className="space-y-5">
-              <a href="mailto:help@vesalius.health" className="flex items-center gap-4 group w-fit">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#06ACC1]/50 group-hover:bg-[#06ACC1]/10 transition-all">
-                  <MailIcon />
-                </div>
-                <span className="text-sm md:text-base font-medium group-hover:text-white transition-colors">help@vesalius.health</span>
-              </a>
-              
-              <a href="tel:094961478" className="flex items-center gap-4 group w-fit">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#06ACC1]/50 group-hover:bg-[#06ACC1]/10 transition-all">
-                  <PhoneIcon />
-                </div>
-                <span className="text-sm md:text-base font-medium group-hover:text-white transition-colors">09 496 14 78</span>
-              </a>
-              
-              <a href="https://www.linkedin.com/company/vesaliushealth/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group w-fit">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-[#06ACC1]/50 group-hover:bg-[#06ACC1]/10 transition-all">
-                  <LinkedinIcon />
-                </div>
-                <span className="text-sm md:text-base font-medium group-hover:text-white transition-colors">Vesalius.health</span>
-              </a>
+      {/* Same edges as the navbar: 16px page gutter, then the bar's 24px padding + 1px border */}
+      <div className="relative z-10 px-4">
+        <div className="max-w-7xl mx-auto px-[25px]">
+          <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12 pb-16 md:pb-20">
+            {/* Brand: logo, where we are and how to reach us */}
+            <div className="col-span-2 lg:col-span-6">
+              <Link href="/" className="inline-block hover:opacity-80 transition-opacity" aria-label="Vesalius.ai">
+                <Image src="/vesalius-logo-with-text-footer.svg" alt="Vesalius.ai" width={237} height={41} className="h-8 w-auto" />
+              </Link>
+              <ul className="mt-8 space-y-3">
+                {contact.map(({ href, label, Icon, external }) => (
+                  <li key={href}>
+                    <a
+                      href={href}
+                      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      className="group inline-flex items-start gap-3 text-sm text-white/80 hover:text-white transition-colors"
+                    >
+                      <Icon />
+                      <span>{label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
+
+            {columns.map((column, i) => (
+              <nav key={column.title} aria-label={column.title} className={`lg:col-span-3 ${i === 0 ? 'lg:col-start-7' : ''}`}>
+                <h3 className={headingClass}>{column.title}</h3>
+                <ul className="space-y-3">
+                  {column.links.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className={linkClass}>
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
           </div>
 
-          {/* Legal Links */}
-          <div className="lg:justify-self-center">
-            <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('legal')}</h3>
-            <ul className="space-y-4">
-              <li><Link href="/terms-conditions" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('termsAndConditions')}</Link></li>
-              <li><Link href="/privacy-policy" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('privacyPolicy')}</Link></li>
-              <li><Link href="/cookie-policy" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('cookiePolicy')}</Link></li>
-              <li><Link href="/security" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('security')}</Link></li>
-            </ul>
-          </div>
-
-          {/* Help Links & Address */}
-          <div className="flex max-w-sm flex-col">
-            <h3 className="text-white font-bold text-lg mb-6 tracking-wide">{t('help')}</h3>
-            <ul className="space-y-4 mb-10">
-              <li><Link href="/support" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('support')}</Link></li>
-              <li><Link href="/contactus" className="relative inline-block text-sm font-medium hover:text-[#06ACC1] transition-colors before:content-[''] before:absolute before:-left-3.5 before:top-1/2 before:-translate-y-1/2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#06ACC1] before:opacity-0 hover:before:opacity-100 before:transition-opacity">{t('contact')}</Link></li>
-            </ul>
-
-            <div className="w-full p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-               <h4 className="text-white font-bold text-sm mb-2">{t('address.street')}</h4>
-               <p className="text-sm font-medium text-slate-400">{t('address.city')}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-sm font-medium">
-            {t('copyright')}
-          </div>
-          
-          <div className="opacity-80 hover:opacity-100 transition-opacity">
-             <LanguageSwitcher />
+          {/* Bottom bar */}
+          <div className="pt-8 border-t border-white/10 flex flex-col-reverse sm:flex-row justify-between items-center gap-5">
+            <p className="text-[13px] text-white/50">{t('copyright')}</p>
+            <LanguageSwitcher />
           </div>
         </div>
       </div>

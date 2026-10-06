@@ -14,6 +14,18 @@ import ModuleDock, { ModuleIcon } from './ModuleDock';
 import { AgendaDemo, PreConsultationDemo, TriageDemo, VoiceDemo } from './demos/before';
 import { MedicationDemo, ScribeDemo } from './demos/during';
 import { DocumentDemo, FollowUpDemo } from './demos/after';
+import {
+  OrthoAgendaDemo,
+  OrthoDocumentDemo,
+  OrthoFollowUpDemo,
+  OrthoMedicationDemo,
+  OrthoPreConsultationDemo,
+  OrthoScribeDemo,
+  OrthoTriageDemo,
+  OrthoVoiceDemo,
+} from './demos/ortho';
+import { ORTHO_STEPS, ORTHO_TRAJECTORY } from './ortho-content';
+import { useSpecialty } from '@/lib/specialty';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -28,6 +40,18 @@ const DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
   smartFollowUp: FollowUpDemo,
 };
 
+// Orthopaedics: the same pages, following Mrs Femur from triage to recovery.
+const ORTHO_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: OrthoTriageDemo,
+  agenda: OrthoAgendaDemo,
+  preConsultation: OrthoPreConsultationDemo,
+  voiceReception: OrthoVoiceDemo,
+  scribe: OrthoScribeDemo,
+  medication: OrthoMedicationDemo,
+  documentGeneration: OrthoDocumentDemo,
+  smartFollowUp: OrthoFollowUpDemo,
+};
+
 const reveal = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -36,12 +60,12 @@ const reveal = {
 };
 
 /** The live product demo in a window frame; Replay remounts it so the story plays again. */
-function DemoStage({ entry, ui }: { entry: ModuleEntry; ui: UiCopy }) {
+function DemoStage({ entry, ui, trajectory }: { entry: ModuleEntry; ui: UiCopy; trajectory: string | null }) {
   const t = useTranslations('Modules');
   const [run, setRun] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
-  const Demo = DEMOS[entry.key];
+  const Demo = (trajectory ? ORTHO_DEMOS : DEMOS)[entry.key];
 
   return (
     <div ref={ref} className="relative rounded-[36px] bg-gradient-to-b from-white to-[#F4F7F9] ring-1 ring-slate-200/80 shadow-[0_60px_120px_-60px_rgba(11,27,61,0.45)] p-4 md:p-6">
@@ -67,6 +91,7 @@ function DemoStage({ entry, ui }: { entry: ModuleEntry; ui: UiCopy }) {
         </span>
       </div>
       <div className="min-h-[300px]">{inView && <Demo key={run} />}</div>
+      {trajectory && <p className="px-2 pt-4 text-center text-[12px] text-slate-500">{trajectory}</p>}
     </div>
   );
 }
@@ -158,8 +183,13 @@ export default function ModulePage({ slug }: { slug: string }) {
   const locale = useLocale();
   const siteLocale: SiteLocale = locale === 'nl' || locale === 'fr' ? locale : 'en';
   const entry = moduleBySlug(slug) ?? MODULES[0];
-  const copy = MODULE_COPY[siteLocale][entry.key];
+  const { isOrthopedics } = useSpecialty();
+  const baseCopy = MODULE_COPY[siteLocale][entry.key];
+  const copy = isOrthopedics
+    ? { ...baseCopy, steps: baseCopy.steps.map((step, i) => ({ ...step, body: ORTHO_STEPS[siteLocale][entry.key][i] })) }
+    : baseCopy;
   const ui = UI[siteLocale];
+  const trajectory = isOrthopedics ? ORTHO_TRAJECTORY[siteLocale](MODULES.indexOf(entry) + 1, MODULES.length) : null;
 
   return (
     <MotionProvider>
@@ -181,7 +211,7 @@ export default function ModulePage({ slug }: { slug: string }) {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.1, ease: EASE }}>
-              <DemoStage key={entry.slug} entry={entry} ui={ui} />
+              <DemoStage key={`${entry.slug}-${isOrthopedics ? 'ortho' : 'general'}`} entry={entry} ui={ui} trajectory={trajectory} />
             </motion.div>
 
           </div>
