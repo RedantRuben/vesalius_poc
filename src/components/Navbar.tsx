@@ -106,6 +106,7 @@ export default function Navbar() {
             <NavItem href="/#pricing" isActive={isPricingActive} label={t('pricing')} />
             <NavItem href="/#contact" isActive={isContactActive} label={t('contact')} />
             <NavItem href="/security" isActive={pathname === '/security'} label={t('security')} />
+            <NavItem href="/about" isActive={pathname === '/about'} label={t('about')} />
           </div>
 
           {/* Desktop CTA */}
@@ -160,6 +161,7 @@ export default function Navbar() {
                 <MobileNavItem href="/#pricing" isActive={isPricingActive} label={t('pricing')} onClick={() => setIsOpen(false)} />
                 <MobileNavItem href="/#contact" isActive={isContactActive} label={t('contact')} onClick={() => setIsOpen(false)} />
                 <MobileNavItem href="/security" isActive={pathname === '/security'} label={t('security')} onClick={() => setIsOpen(false)} />
+                <MobileNavItem href="/about" isActive={pathname === '/about'} label={t('about')} onClick={() => setIsOpen(false)} />
                 
                 <SpecialtyPill
                   className="mt-2 self-start"

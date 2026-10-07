@@ -103,6 +103,7 @@ export default function Footer() {
       links: [
         { href: '/support', label: t('support') },
         { href: '/contactus', label: t('contact') },
+        { href: '/about', label: t('about') },
       ],
     },
   ];

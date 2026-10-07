@@ -6,7 +6,8 @@
     "contact": "Contact",
     "support": "Support",
     "security": "Sécurité",
-    "tryForFree": "Essayer gratuitement"
+    "tryForFree": "Essayer gratuitement",
+    "about": "À propos"
   },
   "Hero": {
     "titlePrefix": "Votre Assistant",
@@ -277,7 +278,8 @@
       "street": "Ottergemsesteenweg Zuid 808B",
       "city": "9000 Gent, Belgique"
     },
-    "copyright": "Copyright © Vesalius health"
+    "copyright": "Copyright © Vesalius health",
+    "about": "À propos de Vesalius"
   },
   "SharedForm": {
     "submitting": "Envoi...",

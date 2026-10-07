@@ -6,7 +6,8 @@
     "contact": "Contact",
     "support": "Support",
     "security": "Beveiliging",
-    "tryForFree": "Probeer gratis"
+    "tryForFree": "Probeer gratis",
+    "about": "Over ons"
   },
   "Hero": {
     "titlePrefix": "Uw Digitale",
@@ -277,7 +278,8 @@
       "street": "Ottergemsesteenweg Zuid 808B",
       "city": "9000 Gent, België"
     },
-    "copyright": "Copyright © Vesalius health"
+    "copyright": "Copyright © Vesalius health",
+    "about": "Over Vesalius"
   },
   "SharedForm": {
     "submitting": "Verzenden...",
