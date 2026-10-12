@@ -21,8 +21,8 @@
   },
   "TheProblem": {
     "eyebrow": "Le défi",
-    "title": "Les médecins passent plus de temps sur la paperasse que sur leurs patients",
-    "subtitle": "La charge administrative est devenue le principal frein dans les soins de santé. Elle pèse directement sur le bien-être des médecins et sur la qualité des soins.",
+    "title": "Les médecins passent plus de temps à la paperasse qu’avec leurs patients",
+    "subtitle": "L’administratif est devenu l’un des principaux freins dans les soins. Il pèse sur les médecins et sur les soins qu’ils peuvent offrir.",
     "cards": {
       "time": {
         "stat": "±4 h",
@@ -48,23 +48,23 @@
     "bridge": "Vesalius résout ce problème."
   },
   "WhyChooseVesalius": {
-    "title": "Aidez les équipes de soins à se concentrer sur les patients, pas sur la paperasse.",
+    "title": "Plus de temps pour vos patients.",
     "features": {
       "language": {
-        "title": "Faites tomber la barrière de la langue",
-        "description": "Vesalius vous aide à comprendre vos patients, quelle que soit la langue."
+        "title": "Dans la langue de votre patient",
+        "description": "Les patients répondent dans leur langue. Vous lisez le résumé dans la vôtre."
       },
       "liability": {
-        "title": "Traçabilité",
-        "description": "Vesalius conserve un historique clair des échanges afin de réduire le risque et de soutenir votre conformité."
+        "title": "Entièrement documenté",
+        "description": "Chaque anamnèse, conversation et document reste clairement conservé. Vous retrouvez toujours ce qui a été dit."
       },
       "care": {
-        "title": "Une meilleure qualité de soins",
-        "description": "Automatisez les recueils d'informations pour alléger l'administratif et vous concentrer sur l'essentiel."
+        "title": "De meilleurs soins",
+        "description": "L’anamnèse est faite avant l’arrivée du patient. Votre temps va à l’examen et à la conversation."
       },
       "accuracy": {
-        "title": "Gagnez en précision",
-        "description": "Éliminez les erreurs manuelles et assurez la cohérence des dossiers patients."
+        "title": "Des dossiers précis",
+        "description": "Ce que le patient raconte arrive directement dans un dossier structuré. Moins d’erreurs, toujours la même structure."
       },
       "caregiver": {
         "title": "Redevenez soignant.",
@@ -81,65 +81,65 @@
       "tag1": "Planification intelligente",
       "tag2": "Fluide",
       "title": "Agenda",
-      "description": "Gérez intelligemment les rendez-vous et optimisez votre emploi du temps en fonction des besoins individuels des patients."
+      "description": "Les rendez-vous de l’anamnèse, du triage et du téléphone arrivent dans un seul agenda, avec priorité aux cas urgents."
     },
     "preConsultation": {
       "tag1": "Whatsapp",
       "tag2": "50+ Langues",
       "title": "Pré-consultation",
-      "description": "Un entretien conversationnel intelligent qui structure l'anamnèse avant même l'arrivée du patient en consultation."
+      "description": "Une anamnèse via WhatsApp, dans la langue du patient. Vous la lisez avant le début de la consultation."
     },
     "scribe": {
       "tag1": "Ordinateur",
       "tag2": "Mobile",
       "title": "Scribe",
-      "description": "Le module Scribe écoute en arrière-plan pendant la consultation, sur mobile ou sur ordinateur, et capture fidèlement l'intégralité de l'échange clinique."
+      "description": "Écoute pendant la consultation, sur smartphone ou ordinateur. La note est prête quand le patient part."
     },
     "documentGeneration": {
       "tag1": "Automatisé",
       "tag2": "Intégré",
       "title": "Génération de documents",
-      "description": "Faites travailler vos données. Vesalius ne se contente pas de capter l'information : la plateforme génère aussi votre documentation."
+      "description": "Rapports, lettres de référence et explications pour le patient, rédigés à partir de la consultation et prêts à relire."
     },
     "smartTriage": {
       "tag1": "Priorisation",
       "tag2": "Routage Automatisé",
       "title": "Triage intelligent",
-      "description": "Une évaluation intelligente de l'urgence et une orientation adaptée pour offrir le bon niveau de soins au bon moment. Optimisez votre planning et vos priorités.",
+      "description": "Évalue l’urgence de chaque demande et oriente les patients vers les bons soins. Votre équipe voit pourquoi.",
       "routing": "Routage..."
     },
     "voiceReception": {
       "tag1": "Beta",
       "tag2": "Triage Téléphonique",
       "title": "Voice Reception",
-      "description": "Un assistant téléphonique IA qui répond aux appels, pose les bonnes questions pour évaluer l'urgence et oriente les patients vers les soins adaptés ou réserve directement un rendez-vous."
+      "description": "Répond au téléphone, pose les bonnes questions et planifie directement les rendez-vous de routine. Les appels urgents vont à votre équipe."
     },
     "smartFollowUp": {
       "tag1": "Automatisé",
       "tag2": "Alertes",
       "title": "Suivis intelligents",
-      "description": "Des suivis automatisés qui repèrent les patients à risque. Recevez une alerte dès qu'une réponse s'écarte de la trajectoire attendue."
+      "description": "De courts suivis après une intervention. Si une réponse s’écarte de la convalescence attendue, votre équipe reçoit une alerte."
     },
     "medication": {
       "tag1": "OCR",
       "tag2": "Instantané",
       "title": "Gestion des traitements",
-      "description": "Numérisez instantanément les traitements à partir d'une photo de boîte, d'une liste imprimée ou de notes manuscrites. L'IA extrait directement la posologie, la forme et les détails de prescription."
+      "description": "Une photo d’une boîte, d’une liste ou d’une note manuscrite devient une liste de médicaments structurée."
     }
   },
   "SecuritySection": {
-    "title": "Sécurité et confidentialité de confiance",
-    "description": "Vesalius protège les données sensibles des patients grâce au chiffrement, à des contrôles d'accès stricts et à des évaluations de sécurité régulières. Nous respectons les exigences du RGPD, sommes conçus pour répondre aux normes HIPAA et offrons aux utilisateurs une visibilité et un contrôle clairs sur la manière dont leurs données sont traitées.",
-    "cta": "Explorer la sécurité et la confidentialité",
+    "title": "Conçu pour protéger les données des patients.",
+    "description": "Chiffrement, contrôle d’accès strict et évaluations de sécurité régulières. Nous respectons le RGPD, et vous voyez toujours comment vos données sont traitées.",
+    "cta": "Découvrez comment nous protégeons vos données",
     "points": {
-      "gdpr": "Chiffrement de bout en bout",
+      "gdpr": "Chiffrées en transit et au repos",
       "access": "Contrôles d'accès stricts",
-      "audit": "Pratiques de données transparentes"
+      "audit": "Vous voyez ce que deviennent vos données"
     }
   },
   "Testimonials": {
-    "title": "Ce que les équipes de soins disent de Vesalius",
-    "statsTitle": "Plébiscité par les patients comme par les médecins dans tout le secteur",
+    "title": "Ce que les médecins disent de Vesalius",
+    "statsTitle": "Comment patients et médecins évaluent Vesalius",
     "adoptionRate": "Taux d'adoption",
     "roi": "Retour sur investissement",
     "completionTime": "Temps moyen de réalisation",

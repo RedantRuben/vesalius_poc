@@ -52,7 +52,7 @@ export default function Pricing({
   const copy =
     locale === 'fr'
       ? {
-          title: 'Tarification transparente et équitable',
+          title: 'Des tarifs pour chaque pratique',
           subtitle: 'Choisissez l’offre adaptée à votre cabinet',
           monthlyLabel: 'Mensuel',
           yearlyLabel: 'Annuel',
@@ -91,7 +91,7 @@ export default function Pricing({
         }
       : locale === 'nl'
         ? {
-            title: 'Transparante en eerlijke prijzen',
+            title: 'Prijzen voor elke praktijk',
             subtitle: 'Kies het plan dat bij uw praktijk past',
             monthlyLabel: 'Maandelijks',
             yearlyLabel: 'Jaarlijks',
@@ -129,7 +129,7 @@ export default function Pricing({
             ],
           }
         : {
-            title: 'Transparent and fair pricing',
+            title: 'Pricing for every practice',
             subtitle: 'Choose the plan that fits your practice',
             monthlyLabel: 'Monthly',
             yearlyLabel: 'Yearly',

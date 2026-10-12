@@ -20,22 +20,22 @@ export default function Contact({ sourcePage = '/' }: { sourcePage?: string }) {
   const copy =
     locale === 'fr'
       ? {
-          titleBefore: 'Nous sommes là ',
-          titleAccent: 'pour vous aider',
-          subtitle: 'Vous avez une question ? Notre équipe est là pour vous répondre.',
+          titleBefore: 'Parlez à ',
+          titleAccent: 'notre équipe',
+          subtitle: 'Posez votre question. Quelqu’un de notre équipe à Gand vous répondra.',
           city: '9000 Gand, Belgique',
         }
       : locale === 'nl'
         ? {
-            titleBefore: 'We zijn er om ',
-            titleAccent: 'te helpen',
-            subtitle: 'Heeft u vragen? Ons team staat klaar om u verder te helpen.',
+            titleBefore: 'Spreek met ',
+            titleAccent: 'ons team',
+            subtitle: 'Stel uw vraag. Iemand van ons team in Gent antwoordt.',
             city: '9000 Gent, België',
           }
         : {
-            titleBefore: 'We are here ',
-            titleAccent: 'to help',
-            subtitle: 'Have any questions? Our team is ready to assist you.',
+            titleBefore: 'Talk to ',
+            titleAccent: 'our team',
+            subtitle: 'Ask your question. Someone from our team in Ghent will reply.',
             city: '9000 Gent, Belgium',
           };
   return (

@@ -22,7 +22,7 @@
   "TheProblem": {
     "eyebrow": "The Challenge",
     "title": "Doctors spend more time on paperwork than on patients",
-    "subtitle": "Administrative burden has become the biggest bottleneck in healthcare. It weighs directly on physician well-being and on the quality of care.",
+    "subtitle": "Administration has become one of the biggest bottlenecks in healthcare. It weighs on doctors, and on the care they can give.",
     "cards": {
       "time": {
         "stat": "±4 hrs",
@@ -48,23 +48,23 @@
     "bridge": "Vesalius solves this."
   },
   "WhyChooseVesalius": {
-    "title": "Help care teams focus on patients, not paperwork.",
+    "title": "More time for your patients.",
     "features": {
       "language": {
-        "title": "Break the language barrier",
-        "description": "Vesalius helps you understand your patients, no matter the language."
+        "title": "In your patient’s language",
+        "description": "Patients answer in their own language. You read the summary in yours."
       },
       "liability": {
-        "title": "Liability",
-        "description": "Vesalius keeps a clear record of interactions, reducing liability and ensuring compliance."
+        "title": "Fully documented",
+        "description": "Every intake, conversation and document is kept in one clear record. You can always find what was said."
       },
       "care": {
         "title": "Better care",
-        "description": "Automate intakes to reduce administration so you can focus on what matters."
+        "description": "The intake is done before the patient walks in. Your time goes to the examination and the conversation."
       },
       "accuracy": {
-        "title": "Improve your accuracy",
-        "description": "Eliminate manual errors and ensure consistent patient records."
+        "title": "Accurate records",
+        "description": "What the patient tells you goes straight into a structured record. Fewer errors, the same structure every time."
       },
       "caregiver": {
         "title": "Be a caregiver again.",
@@ -81,65 +81,65 @@
       "tag1": "Smart Scheduling",
       "tag2": "Seamless",
       "title": "Agenda",
-      "description": "Intelligently manage appointments and optimize your schedule based on individual patient needs."
+      "description": "Bookings from intake, triage and the phone come together in one agenda, with priority for urgent cases."
     },
     "preConsultation": {
       "tag1": "Whatsapp",
       "tag2": "50+ Languages",
       "title": "Pre Consultation",
-      "description": "Intelligent conversational intake that structures patient history before they enter the room."
+      "description": "An intake over WhatsApp, in the patient’s language. You read the history before the consultation starts."
     },
     "scribe": {
       "tag1": "Desktop",
       "tag2": "Mobile",
       "title": "Scribe",
-      "description": "The Scribe Bot listens in the background during the consultation (via mobile or desktop) and accurately captures the entire clinical conversation."
+      "description": "Listens during the consultation, on your phone or computer. The note is ready when the patient leaves."
     },
     "documentGeneration": {
       "tag1": "Automated",
       "tag2": "Integrated",
       "title": "Document Generation",
-      "description": "Put your data to work. Vesalius stops not at capturing info but uses it to generate your administration."
+      "description": "Reports, referral letters and explanations for the patient, drafted from the consultation and ready to review."
     },
     "smartTriage": {
       "tag1": "Prioritization",
       "tag2": "Automated Routing",
       "title": "Smart Triage",
-      "description": "Intelligent urgency assessment and routing to ensure patients get the right care at the right time. Optimize your schedule and prioritize effectively.",
+      "description": "Assesses the urgency of every question and routes patients to the right care. Your team can see why.",
       "routing": "Routing..."
     },
     "voiceReception": {
       "tag1": "Beta",
       "tag2": "Phone Triage",
       "title": "Voice Reception",
-      "description": "An AI phone assistant that answers patient calls, asks the right questions to assess urgency, and guides them to the correct care or books an appointment directly in your agenda."
+      "description": "Answers the phone, asks the right questions and books routine appointments straight away. Urgent calls go to your team."
     },
     "smartFollowUp": {
       "tag1": "Automated",
       "tag2": "Alerts",
       "title": "Smart Follow-ups",
-      "description": "Automated check-ins that flag at-risk patients. Get alerts when responses deviate, enabling early intervention."
+      "description": "Short check-ins after a procedure. When an answer deviates from the expected recovery, your team gets an alert."
     },
     "medication": {
       "tag1": "OCR",
       "tag2": "Instant",
       "title": "Medication Manager",
-      "description": "Instantly digitize medication from photos of boxes, printed lists, or handwritten notes. Our AI extracts dosage, form, and prescription details directly into the platform."
+      "description": "A photo of a box, a list or a handwritten note becomes a structured medication list."
     }
   },
   "SecuritySection": {
-    "title": "Security and privacy you can trust",
-    "description": "Vesalius protects sensitive patient data with encryption, strict access controls, and regular security assessments. We support GDPR requirements, are designed to meet HIPAA standards, and give users clear visibility and control over how their data is handled.",
-    "cta": "Explore security & privacy",
+    "title": "Built to protect patient data.",
+    "description": "Encryption, strict access control and regular security assessments. We follow the GDPR, and you can always see how your data is processed.",
+    "cta": "Read how we protect your data",
     "points": {
-      "gdpr": "End-to-end encryption",
+      "gdpr": "Encrypted in transit and at rest",
       "access": "Strict access controls",
-      "audit": "Transparent data practices"
+      "audit": "You see what happens to your data"
     }
   },
   "Testimonials": {
-    "title": "What healthcare teams say about Vesalius",
-    "statsTitle": "Highly rated by patients and physicians throughout the entire industry",
+    "title": "What doctors say about Vesalius",
+    "statsTitle": "How patients and doctors rate Vesalius",
     "adoptionRate": "Adoption Rate",
     "roi": "Return On Investment",
     "completionTime": "Average Completion Time",
