@@ -3,7 +3,10 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { ENT_SUBDOMAINS } from '@/content/ent';
+import type { SiteLocale } from '@/content/orthopedics';
+import { useSpecialty } from '@/lib/specialty';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -163,6 +166,33 @@ function DoctorWall() {
   const t = useTranslations('Testimonials');
   const name = (d: Doctor) => d.name ?? t(`doctors.${d.id}.name`);
   const { boedts, ortho, byn, rasschaert } = DOCTORS;
+  // ENT visitors meet Dr Boedts first, tagged with the ear chip used on the ENT module pages.
+  const ent = useSpecialty().tailored === 'ent';
+  const locale = useLocale() as SiteLocale;
+  const ear = ENT_SUBDOMAINS.ear;
+
+  const boedtsCard = (
+    <motion.figure {...reveal(ent ? 0 : 0.1)} className="lg:col-span-7 lg:row-span-2 bg-white rounded-[28px] ring-1 ring-slate-200/70 p-8 md:p-12 flex flex-col gap-10">
+      {ent && (
+        <span className="-mb-4 self-start inline-flex items-center rounded-full px-3 py-1 text-[13px] font-semibold" style={{ backgroundColor: ear.bg, color: ear.text }}>
+          {ear.label[locale] ?? ear.label.en}
+        </span>
+      )}
+      <blockquote className="text-[1.6rem] md:text-[2.15rem] xl:text-[2.5rem] font-semibold text-[#0B1B3D] tracking-[-0.03em] leading-[1.16] text-balance">
+        {t('doctors.boedts.quote')}
+      </blockquote>
+      <Attribution doctor={boedts} name={name(boedts)} role={t('doctors.boedts.role')} size={64} />
+      <CardFooter>
+        <div>
+          <p className="text-5xl md:text-6xl font-semibold text-[#0B1B3D] tracking-[-0.05em] tabular-nums leading-none">
+            5+<span className="text-2xl md:text-3xl text-slate-400 ml-1">min</span>
+          </p>
+          <p className="text-sm text-slate-500 mt-2">{t('metrics.timeSaved')}</p>
+        </div>
+        <RecommendMeter score={boedts.recommends} label={t('metrics.recommends')} />
+      </CardFooter>
+    </motion.figure>
+  );
 
   return (
     <>
@@ -171,6 +201,9 @@ function DoctorWall() {
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5">
+        {/* ENT: the same wall mirrored, Dr Boedts' card first and on the left */}
+        {ent && boedtsCard}
+
         {/* 1 · one-liner, top left */}
         <motion.figure {...reveal()} className="lg:col-span-5 bg-white rounded-[28px] ring-1 ring-slate-200/70 p-8 md:p-10 flex flex-col gap-8">
           <blockquote className="font-display italic text-6xl md:text-7xl text-[#06ACC1] leading-none tracking-[-0.01em]">{t('doctors.byn.quote')}</blockquote>
@@ -187,21 +220,7 @@ function DoctorWall() {
         </motion.figure>
 
         {/* 2 · the longest, most specific quote, in the large card on the right */}
-        <motion.figure {...reveal(0.1)} className="lg:col-span-7 lg:row-span-2 bg-white rounded-[28px] ring-1 ring-slate-200/70 p-8 md:p-12 flex flex-col gap-10">
-          <blockquote className="text-[1.6rem] md:text-[2.15rem] xl:text-[2.5rem] font-semibold text-[#0B1B3D] tracking-[-0.03em] leading-[1.16] text-balance">
-            {t('doctors.boedts.quote')}
-          </blockquote>
-          <Attribution doctor={boedts} name={name(boedts)} role={t('doctors.boedts.role')} size={64} />
-          <CardFooter>
-            <div>
-              <p className="text-5xl md:text-6xl font-semibold text-[#0B1B3D] tracking-[-0.05em] tabular-nums leading-none">
-                5+<span className="text-2xl md:text-3xl text-slate-400 ml-1">min</span>
-              </p>
-              <p className="text-sm text-slate-500 mt-2">{t('metrics.timeSaved')}</p>
-            </div>
-            <RecommendMeter score={boedts.recommends} label={t('metrics.recommends')} />
-          </CardFooter>
-        </motion.figure>
+        {!ent && boedtsCard}
 
         {/* 3 · one-liner under card 1 */}
         <motion.figure {...reveal(0.2)} className="lg:col-span-5 bg-[#0B1B3D] rounded-[28px] p-8 md:p-10 flex flex-col gap-8">

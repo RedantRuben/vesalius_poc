@@ -4,7 +4,7 @@ import { useEffect, useId, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { ORTHO_HOME, type SiteLocale } from '@/content/orthopedics';
+import { useTailoredHome } from '@/content/tailored';
 import { useSpecialty } from '@/lib/specialty';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -325,7 +325,8 @@ function HeroStage({ copy }: { copy: HeroCopy }) {
 
 export default function Hero() {
   const locale = useLocale();
-  const { isOrthopedics } = useSpecialty();
+  const tailored = useTailoredHome();
+  const { tailored: variantId } = useSpecialty();
   const baseCopy =
     locale === 'fr'
       ? {
@@ -393,18 +394,18 @@ export default function Hero() {
               'Patient reports severe, worsening headaches over the past two weeks. Pain is localized in the frontal region and is accompanied by mild photophobia...',
           };
 
-  // Orthopaedics variant: sales' title, a knee-pain-from-the-hip intake and the matching note.
-  const ortho = (ORTHO_HOME[locale as SiteLocale] ?? ORTHO_HOME.en).hero;
-  const copy = isOrthopedics
+  // Tailored specialty: sales' title, an intake for that specialty and the matching note.
+  const hero = tailored?.hero;
+  const copy = hero
     ? {
         ...baseCopy,
-        line1: ortho.line1,
-        line2: ortho.line2,
-        intakeMessages: [baseCopy.intakeMessages[0], ortho.patientMessage, ortho.assistantMessage] as [string, string, string],
-        clinicalNoteBody: ortho.noteBody,
+        line1: hero.line1,
+        line2: hero.line2,
+        intakeMessages: [hero.greeting ?? baseCopy.intakeMessages[0], hero.patientMessage, hero.assistantMessage] as [string, string, string],
+        clinicalNoteBody: hero.noteBody,
       }
     : baseCopy;
-  const variant = isOrthopedics ? 'orthopedics' : 'general';
+  const variant = variantId ?? 'general';
 
   const words = copy.line1.split(' ');
 

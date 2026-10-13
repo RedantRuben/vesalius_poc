@@ -24,8 +24,32 @@ import {
   OrthoTriageDemo,
   OrthoVoiceDemo,
 } from './demos/ortho';
+import {
+  NeuroAgendaDemo,
+  NeuroDocumentDemo,
+  NeuroFollowUpDemo,
+  NeuroMedicationDemo,
+  NeuroPreConsultationDemo,
+  NeuroScribeDemo,
+  NeuroTriageDemo,
+  NeuroVoiceDemo,
+} from './demos/neuro';
+import { EntAgendaDemo, EntDocumentDemo, EntFollowUpDemo, EntMedicationDemo, EntPreConsultationDemo, EntScribeDemo, EntTriageDemo, EntVoiceDemo } from './demos/ent';
+import {
+  PhysioAgendaDemo,
+  PhysioDocumentDemo,
+  PhysioFollowUpDemo,
+  PhysioMedicationDemo,
+  PhysioPreConsultationDemo,
+  PhysioScribeDemo,
+  PhysioTriageDemo,
+  PhysioVoiceDemo,
+} from './demos/physio';
 import { ORTHO_STEPS, ORTHO_TRAJECTORY } from './ortho-content';
-import { useSpecialty } from '@/lib/specialty';
+import { NEURO_STEPS, NEURO_TRAJECTORY } from './neuro-content';
+import { ENT_STEPS, ENT_TRAJECTORY } from './ent-content';
+import { PHYSIO_STEPS, PHYSIO_TRAJECTORY } from './physio-content';
+import { useSpecialty, type TailoredId } from '@/lib/specialty';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -52,6 +76,57 @@ const ORTHO_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
   smartFollowUp: OrthoFollowUpDemo,
 };
 
+// Neurosurgery: the same pages, following Tom Atlas from triage to recovery.
+const NEURO_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: NeuroTriageDemo,
+  agenda: NeuroAgendaDemo,
+  preConsultation: NeuroPreConsultationDemo,
+  voiceReception: NeuroVoiceDemo,
+  scribe: NeuroScribeDemo,
+  medication: NeuroMedicationDemo,
+  documentGeneration: NeuroDocumentDemo,
+  smartFollowUp: NeuroFollowUpDemo,
+};
+
+// ENT: the same pages, following Sven Septum from triage to recovery after sinus surgery.
+const ENT_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: EntTriageDemo,
+  agenda: EntAgendaDemo,
+  preConsultation: EntPreConsultationDemo,
+  voiceReception: EntVoiceDemo,
+  scribe: EntScribeDemo,
+  medication: EntMedicationDemo,
+  documentGeneration: EntDocumentDemo,
+  smartFollowUp: EntFollowUpDemo,
+};
+
+// Physical medicine: the same pages, following Sofie Fascia from triage to a year of follow-up.
+const PHYSIO_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: PhysioTriageDemo,
+  agenda: PhysioAgendaDemo,
+  preConsultation: PhysioPreConsultationDemo,
+  voiceReception: PhysioVoiceDemo,
+  scribe: PhysioScribeDemo,
+  medication: PhysioMedicationDemo,
+  documentGeneration: PhysioDocumentDemo,
+  smartFollowUp: PhysioFollowUpDemo,
+};
+
+/** Per tailored specialty: its demos, "How it works" bodies and the trajectory line under each mock-up. */
+const VARIANTS: Record<
+  TailoredId,
+  {
+    demos: Record<ModuleKey, () => React.JSX.Element>;
+    steps: Record<SiteLocale, Record<ModuleKey, [string, string, string]>>;
+    trajectory: Record<SiteLocale, (step: number, total: number) => string>;
+  }
+> = {
+  orthopedics: { demos: ORTHO_DEMOS, steps: ORTHO_STEPS, trajectory: ORTHO_TRAJECTORY },
+  neurosurgery: { demos: NEURO_DEMOS, steps: NEURO_STEPS, trajectory: NEURO_TRAJECTORY },
+  ent: { demos: ENT_DEMOS, steps: ENT_STEPS, trajectory: ENT_TRAJECTORY },
+  physicalMedicine: { demos: PHYSIO_DEMOS, steps: PHYSIO_STEPS, trajectory: PHYSIO_TRAJECTORY },
+};
+
 const reveal = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -60,12 +135,15 @@ const reveal = {
 };
 
 /** The live product demo in a window frame; Replay remounts it so the story plays again. */
-function DemoStage({ entry, ui, trajectory }: { entry: ModuleEntry; ui: UiCopy; trajectory: string | null }) {
+function DemoStage({ entry, ui, variant }: { entry: ModuleEntry; ui: UiCopy; variant: TailoredId | null }) {
   const t = useTranslations('Modules');
   const [run, setRun] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
-  const Demo = (trajectory ? ORTHO_DEMOS : DEMOS)[entry.key];
+  const locale = useLocale();
+  const siteLocale: SiteLocale = locale === 'nl' || locale === 'fr' ? locale : 'en';
+  const Demo = (variant ? VARIANTS[variant].demos : DEMOS)[entry.key];
+  const trajectory = variant ? VARIANTS[variant].trajectory[siteLocale](MODULES.indexOf(entry) + 1, MODULES.length) : null;
 
   return (
     <div ref={ref} className="relative rounded-[36px] bg-gradient-to-b from-white to-[#F4F7F9] ring-1 ring-slate-200/80 shadow-[0_60px_120px_-60px_rgba(11,27,61,0.45)] p-4 md:p-6">
@@ -183,13 +261,11 @@ export default function ModulePage({ slug }: { slug: string }) {
   const locale = useLocale();
   const siteLocale: SiteLocale = locale === 'nl' || locale === 'fr' ? locale : 'en';
   const entry = moduleBySlug(slug) ?? MODULES[0];
-  const { isOrthopedics } = useSpecialty();
+  const { tailored } = useSpecialty();
   const baseCopy = MODULE_COPY[siteLocale][entry.key];
-  const copy = isOrthopedics
-    ? { ...baseCopy, steps: baseCopy.steps.map((step, i) => ({ ...step, body: ORTHO_STEPS[siteLocale][entry.key][i] })) }
-    : baseCopy;
+  const tailoredSteps = tailored ? VARIANTS[tailored].steps[siteLocale][entry.key] : null;
+  const copy = tailoredSteps ? { ...baseCopy, steps: baseCopy.steps.map((step, i) => ({ ...step, body: tailoredSteps[i] })) } : baseCopy;
   const ui = UI[siteLocale];
-  const trajectory = isOrthopedics ? ORTHO_TRAJECTORY[siteLocale](MODULES.indexOf(entry) + 1, MODULES.length) : null;
 
   return (
     <MotionProvider>
@@ -211,7 +287,7 @@ export default function ModulePage({ slug }: { slug: string }) {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.1, ease: EASE }}>
-              <DemoStage key={`${entry.slug}-${isOrthopedics ? 'ortho' : 'general'}`} entry={entry} ui={ui} trajectory={trajectory} />
+              <DemoStage key={`${entry.slug}-${tailored ?? 'general'}`} entry={entry} ui={ui} variant={tailored} />
             </motion.div>
 
           </div>

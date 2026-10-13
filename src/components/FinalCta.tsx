@@ -3,11 +3,10 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
 import FreeMonthForm from '@/components/forms/FreeMonthForm';
-import { ORTHO_HOME, type SiteLocale } from '@/content/orthopedics';
-import { useSpecialty } from '@/lib/specialty';
+import { useTailoredHome } from '@/content/tailored';
 
 /** Anchor used by the pricing card ("1 month free") to jump here with the form open. */
 export const FREE_MONTH_ANCHOR = 'free-month';
@@ -16,10 +15,9 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function FinalCta() {
   const t = useTranslations('FinalCta');
-  const locale = useLocale() as SiteLocale;
   const pathname = usePathname();
-  const { isOrthopedics } = useSpecialty();
-  const ortho = (ORTHO_HOME[locale] ?? ORTHO_HOME.en).finalCta;
+  // Tailored specialty: a free month set up by Customer Success instead of self-service sign-up.
+  const tailored = useTailoredHome()?.finalCta;
   const [formOpen, setFormOpen] = useState(false);
 
   // Opened from elsewhere on the site via #free-month (e.g. the "Free" pricing card).
@@ -72,11 +70,11 @@ export default function FinalCta() {
           <h2 className="text-[2.75rem] md:text-7xl lg:text-[5.5rem] font-semibold text-white tracking-[-0.05em] leading-[1] max-w-4xl text-balance">
             {t('title')}
           </h2>
-          <p className="mt-6 md:mt-8 text-lg md:text-2xl text-white/60 tracking-tight max-w-3xl text-balance">{isOrthopedics ? ortho.subtitle : t('subtitle')}</p>
+          <p className="mt-6 md:mt-8 text-lg md:text-2xl text-white/60 tracking-tight max-w-3xl text-balance">{tailored ? tailored.subtitle : t('subtitle')}</p>
 
 
           <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            {isOrthopedics ? (
+            {tailored ? (
               <>
                 <button
                   type="button"
@@ -84,7 +82,7 @@ export default function FinalCta() {
                   onClick={() => setFormOpen((open) => !open)}
                   className="group px-8 py-4 rounded-full bg-white text-[#0B1B3D] font-semibold hover:bg-slate-100 transition-colors flex items-center justify-center gap-2"
                 >
-                  {ortho.primary}
+                  {tailored.primary}
                   <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </button>
                 <a
@@ -93,7 +91,7 @@ export default function FinalCta() {
                   rel="noopener noreferrer"
                   className="px-8 py-4 rounded-full text-white font-semibold ring-1 ring-white/25 hover:bg-white/10 transition-colors flex items-center justify-center"
                 >
-                  {ortho.secondary}
+                  {tailored.secondary}
                 </a>
               </>
             ) : (
@@ -117,16 +115,16 @@ export default function FinalCta() {
             )}
           </div>
 
-          {isOrthopedics && (
+          {tailored && (
             // Signed by the person who sets it up: a quiet line under the actions, not another block above them
             <figure className="mt-8 flex items-center gap-3 text-left">
               <Image src="/team/quinten.jpg" alt="Quinten Schietecatte" width={40} height={40} className="w-10 h-10 rounded-full object-cover ring-1 ring-white/20 shrink-0" />
               <div className="text-[13px] md:text-sm leading-snug">
-                <blockquote className="font-display italic text-white/85 text-[15px] md:text-base text-balance">“{ortho.personLine}”</blockquote>
+                <blockquote className="font-display italic text-white/85 text-[15px] md:text-base text-balance">“{tailored.personLine}”</blockquote>
                 <figcaption className="text-white/45">
                   Quinten Schietecatte
                   <span className="hidden sm:inline"> · </span>
-                  <span className="block sm:inline">{ortho.personRole}</span>
+                  <span className="block sm:inline">{tailored.personRole}</span>
                 </figcaption>
               </div>
             </figure>

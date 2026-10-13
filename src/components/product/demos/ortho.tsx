@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { APP, AppButton, AppCard, AppFrame, AppIcon, DetailRow, Initials, StatusChip, type ScreeningStatus } from '../app-ui';
 import { Check, EASE, useLocalized, useSteps } from './shared';
+import { MedicationChatDemo, medicationCopy } from './medication';
 
 /** Mrs Femur keeps one avatar colour on every page, so visitors recognise her. */
 const FEMUR = '#7E5BC2';
@@ -1037,8 +1038,8 @@ const SCRIBE = {
   },
 };
 
-/** The template button: a click shows that the template is set up per joint. */
-function TemplatePicker({ label, options }: { label: string; options: string[] }) {
+/** The template button: a click shows that the template is set up per body region. */
+export function TemplatePicker({ label, options, selected = 0 }: { label: string; options: string[]; selected?: number }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
 
@@ -1063,12 +1064,12 @@ function TemplatePicker({ label, options }: { label: string; options: string[] }
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full mt-1 z-20 w-40 rounded-lg bg-white ring-1 ring-[#E8EAEC] shadow-[0_12px_24px_-12px_rgba(42,58,81,0.4)] py-1"
+            className="absolute right-0 top-full mt-1 z-20 w-max min-w-40 rounded-lg bg-white ring-1 ring-[#E8EAEC] shadow-[0_12px_24px_-12px_rgba(42,58,81,0.4)] py-1"
           >
             {options.map((option, i) => (
-              <span key={option} className={`flex items-center justify-between px-3 py-1.5 text-[11.5px] ${i === 0 ? 'text-[#06ACC1] font-medium' : 'text-[#2A3A51]'}`}>
+              <span key={option} className={`flex items-center justify-between gap-3 whitespace-nowrap px-3 py-1.5 text-[11.5px] ${i === selected ? 'text-[#06ACC1] font-medium' : 'text-[#2A3A51]'}`}>
                 {label} · {option}
-                {i === 0 && <Check size={11} color={APP.primary} />}
+                {i === selected && <Check size={11} color={APP.primary} />}
               </span>
             ))}
           </motion.span>
@@ -1162,167 +1163,41 @@ export function OrthoScribeDemo() {
 }
 
 /* ------------------------------------------------------------------ */
-/* 6 · Medication: her photo becomes a list, the anticoagulant marked  */
+/* 6 · Medication: her photo becomes a list, the anticoagulant marked */
 /* ------------------------------------------------------------------ */
 
-const MEDICATION = {
+const MEDICATION = medicationCopy({
   nl: {
-    title: 'Medicatie',
-    upload: 'Upload',
-    takePhoto: 'Maak een foto',
-    drag: 'of sleep een afbeelding hiernaartoe',
-    process: 'Verwerk',
-    list: 'Medicatie lijst',
-    copy: 'Kopieer naar het klembord',
-    prescription: 'Voorschrift',
-    dose: 'Dosering',
-    mandatory: 'Verplicht',
-    yes: 'Ja',
-    no: 'Nee',
-    marker: 'Bloedverdunner',
+    found: 'Dank u, ik herken 3 geneesmiddelen:',
+    confirm: 'Ja, dat klopt.',
     meds: [
-      { name: 'Apixaban 5 mg', prescription: '2× per dag', dose: '1 tablet', mandatory: true, anticoagulant: true },
-      { name: 'Bisoprolol 2,5 mg', prescription: '1× per dag, ’s ochtends', dose: '1 tablet', mandatory: true, anticoagulant: false },
-      { name: 'Paracetamol 1 g', prescription: 'Tot 3× per dag, bij pijn', dose: '1 tablet', mandatory: false, anticoagulant: false },
+      { name: 'Apixaban', strength: '5 mg', substance: 'Apixaban', frequency: '2× per dag', indication: 'Antistolling', tag: { label: 'Bloedverdunner', tone: 'red' } },
+      { name: 'Bisoprolol', strength: '2,5 mg', substance: 'Bisoprolol', frequency: '1× per dag, ’s ochtends', indication: 'Hartritme' },
+      { name: 'Paracetamol', strength: '1 g', substance: 'Paracetamol', frequency: 'Tot 3× per dag, bij pijn', indication: 'Pijn' },
     ],
   },
   en: {
-    title: 'Medication',
-    upload: 'Upload',
-    takePhoto: 'Take a photo',
-    drag: 'Or drag and drop an image here.',
-    process: 'Process',
-    list: 'Medication list',
-    copy: 'Copy to clipboard',
-    prescription: 'Prescription',
-    dose: 'Dosage',
-    mandatory: 'Mandatory',
-    yes: 'Yes',
-    no: 'No',
-    marker: 'Anticoagulant',
+    found: 'Thank you, I recognise 3 medicines:',
+    confirm: 'Yes, that’s right.',
     meds: [
-      { name: 'Apixaban 5 mg', prescription: 'Twice daily', dose: '1 tablet', mandatory: true, anticoagulant: true },
-      { name: 'Bisoprolol 2.5 mg', prescription: 'Once daily, in the morning', dose: '1 tablet', mandatory: true, anticoagulant: false },
-      { name: 'Paracetamol 1 g', prescription: 'Up to 3× daily, for pain', dose: '1 tablet', mandatory: false, anticoagulant: false },
+      { name: 'Apixaban', strength: '5 mg', substance: 'Apixaban', frequency: 'Twice a day', indication: 'Anticoagulation', tag: { label: 'Anticoagulant', tone: 'red' } },
+      { name: 'Bisoprolol', strength: '2.5 mg', substance: 'Bisoprolol', frequency: 'Once a day, in the morning', indication: 'Heart rhythm' },
+      { name: 'Paracetamol', strength: '1 g', substance: 'Paracetamol', frequency: 'Up to 3× a day, for pain', indication: 'Pain' },
     ],
   },
   fr: {
-    title: 'Médicaments',
-    upload: 'Charger',
-    takePhoto: 'Prendre une photo',
-    drag: 'Ou faites glisser une image ici.',
-    process: 'Traiter',
-    list: 'Liste de médicaments',
-    copy: 'Copier dans le presse-papiers',
-    prescription: 'Ordonnance',
-    dose: 'Dosage',
-    mandatory: 'Obligatoire',
-    yes: 'Oui',
-    no: 'Non',
-    marker: 'Anticoagulant',
+    found: 'Merci, je reconnais 3 médicaments :',
+    confirm: 'Oui, c’est exact.',
     meds: [
-      { name: 'Apixaban 5 mg', prescription: '2× par jour', dose: '1 comprimé', mandatory: true, anticoagulant: true },
-      { name: 'Bisoprolol 2,5 mg', prescription: '1× par jour, le matin', dose: '1 comprimé', mandatory: true, anticoagulant: false },
-      { name: 'Paracétamol 1 g', prescription: 'Jusqu’à 3× par jour, en cas de douleur', dose: '1 comprimé', mandatory: false, anticoagulant: false },
+      { name: 'Apixaban', strength: '5 mg', substance: 'Apixaban', frequency: '2× par jour', indication: 'Anticoagulation', tag: { label: 'Anticoagulant', tone: 'red' } },
+      { name: 'Bisoprolol', strength: '2,5 mg', substance: 'Bisoprolol', frequency: '1× par jour, le matin', indication: 'Rythme cardiaque' },
+      { name: 'Paracétamol', strength: '1 g', substance: 'Paracétamol', frequency: 'Jusqu’à 3× par jour, en cas de douleur', indication: 'Douleur' },
     ],
   },
-};
+});
 
 export function OrthoMedicationDemo() {
-  const c = useLocalized(MEDICATION);
-  // 1 photo arrives from the chat, 2 processing, 3–5 results
-  const step = useSteps(5, 900, 500);
-
-  return (
-    <AppFrame
-      active="medication"
-      title={c.title}
-      subtitle={
-        <span className="inline-flex items-center gap-1.5">
-          <PatientAvatar initials="HF" size={14} />
-          Hilde Femur · 14-03-1959
-        </span>
-      }
-    >
-      <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
-        <div className="flex flex-col gap-3">
-          <div className="relative w-full aspect-[4/3] rounded-xl bg-white border border-[#E8EAEC] overflow-hidden flex items-center justify-center">
-            <AnimatePresence mode="wait">
-              {step === 0 ? (
-                <motion.div key="empty" exit={{ opacity: 0 }} className="flex flex-col items-center gap-1 text-center px-3">
-                  <AppIcon name="upload" size={26} color={APP.darkGrey} />
-                  <span className="text-[11px] text-[#06ACC1] flex items-center gap-1">
-                    <AppIcon name="upload" size={11} color={APP.primary} />
-                    {c.upload}
-                  </span>
-                  <span className="text-[11px] text-[#06ACC1] flex items-center gap-1">
-                    <AppIcon name="camera" size={11} color={APP.primary} />
-                    {c.takePhoto}
-                  </span>
-                  <span className="text-[10px] text-[#4E5670]">{c.drag}</span>
-                </motion.div>
-              ) : (
-                <motion.div key="photo" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="absolute inset-2 rounded-lg bg-[#FBF8F1] -rotate-2 p-3 flex flex-col gap-1.5">
-                  {c.meds.map((med) => (
-                    <p key={med.name} className="font-display italic text-[15px] leading-tight text-slate-700">{med.name}</p>
-                  ))}
-                  {step === 2 && (
-                    <motion.span
-                      className="absolute inset-x-0 h-[2px] bg-[#06ACC1] shadow-[0_0_12px_3px_rgba(6,172,193,0.5)]"
-                      animate={{ top: ['8%', '92%', '8%'] }}
-                      transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-                    />
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-          <AppButton className="w-fit py-2" variant={step >= 1 ? 'primary' : 'subtle'}>
-            {step === 2 ? (
-              <motion.span animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
-                <AppIcon name="refresh-double" size={13} color="#fff" />
-              </motion.span>
-            ) : null}
-            {c.process}
-          </AppButton>
-        </div>
-
-        <AppCard bodyClassName="p-4 flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-3">
-            <span className="text-[14px] font-bold">{c.list}</span>
-            <AppButton variant="subtle" icon="copy">{c.copy}</AppButton>
-          </div>
-          {c.meds.map((med, i) =>
-            step >= 3 + i ? (
-              <motion.div key={med.name} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: EASE }} className="flex flex-col gap-0.5 text-[12.5px] border-b border-[#E8EAEC] pb-3 last:border-0 last:pb-0">
-                <span className="flex flex-wrap items-center gap-2">
-                  <strong>
-                    {i + 1}. {med.name}
-                  </strong>
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#37C18D]" />
-                  {med.anticoagulant && <Marker>{c.marker}</Marker>}
-                </span>
-                <span>
-                  {c.prescription}: {med.prescription}
-                </span>
-                <span>
-                  {c.dose}: {med.dose}
-                </span>
-                <span>
-                  {c.mandatory}: {med.mandatory ? c.yes : c.no}
-                </span>
-              </motion.div>
-            ) : (
-              <div key={med.name} className="flex flex-col gap-1.5 pb-3">
-                <span className="h-3 w-40 rounded-full bg-[#F4F5F8]" />
-                <span className="h-2.5 w-56 rounded-full bg-[#F4F5F8]" />
-              </div>
-            ),
-          )}
-        </AppCard>
-      </div>
-    </AppFrame>
-  );
+  return <MedicationChatDemo copy={MEDICATION} patient={{ name: 'Hilde Femur', initials: 'HF', dob: '14-03-1959', color: FEMUR }} />;
 }
 
 /* ------------------------------------------------------------------ */

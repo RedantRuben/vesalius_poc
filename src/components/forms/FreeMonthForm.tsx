@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 
 import TurnstileWidget from '@/components/forms/TurnstileWidget';
 import { FREE_MONTH_FORM, SPECIALTY_UI, type SiteLocale } from '@/content/orthopedics';
+import { useTailoredHome } from '@/content/tailored';
 import {
   FORM_HONEYPOT_FIELD,
   FORM_SUBMITTED_AT_FIELD,
@@ -25,7 +26,10 @@ type State = { name: string; email: string; phone: string; specialty: string; fo
  */
 export default function FreeMonthForm({ sourcePage }: { sourcePage: string }) {
   const locale = useLocale() as SiteLocale;
-  const c = FREE_MONTH_FORM[locale] ?? FREE_MONTH_FORM.en;
+  const base = FREE_MONTH_FORM[locale] ?? FREE_MONTH_FORM.en;
+  // The focus example follows the visitor's specialty (knee/hip for orthopaedics, spine/cranial for neurosurgery).
+  const focus = useTailoredHome()?.finalCta.focus;
+  const c = focus ? { ...base, focus } : base;
   const shared = useTranslations('SharedForm');
   const { specialty } = useSpecialty();
   const labels = (SPECIALTY_UI[locale] ?? SPECIALTY_UI.en).specialties;

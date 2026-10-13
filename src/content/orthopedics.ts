@@ -6,7 +6,7 @@
 
 export type SiteLocale = 'en' | 'nl' | 'fr';
 
-type ModuleKey =
+export type ModuleKey =
   | 'smartTriage'
   | 'agenda'
   | 'preConsultation'
@@ -115,16 +115,23 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
   },
 };
 
-export interface OrthoHomeCopy {
+/** Icons for the five timeline steps, so a variant can start with triage instead of the intake. */
+export type JourneyIcon = 'chat' | 'flag' | 'route' | 'mic' | 'doc' | 'pulse';
+
+/** Homepage copy for a tailored specialty; anything not listed stays as on the standard site. */
+export interface TailoredHomeCopy {
   hero: {
     line1: string;
     line2: string;
+    /** The assistant's opening line; the standard one is used when absent. */
+    greeting?: string;
     patientMessage: string;
     assistantMessage: string;
     noteBody: string;
   };
   journey: {
     subtitle: string;
+    icons?: JourneyIcon[];
     steps: { moment: string; title: string; detail: string; part: string }[];
   };
   modules: {
@@ -137,10 +144,14 @@ export interface OrthoHomeCopy {
     personLine: string;
     primary: string;
     secondary: string;
+    /** Example in the free-month form's "focus" field. */
+    focus?: string;
   };
 }
 
-export const ORTHO_HOME: Record<SiteLocale, OrthoHomeCopy> = {
+export type OrthoHomeCopy = TailoredHomeCopy;
+
+export const ORTHO_HOME: Record<SiteLocale, TailoredHomeCopy> = {
   nl: {
     hero: {
       line1: 'Wees opnieuw',

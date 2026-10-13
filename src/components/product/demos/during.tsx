@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { APP, AppButton, AppCard, AppFrame, AppIcon, DetailRow } from '../app-ui';
 import { EASE, useLocalized, useSteps } from './shared';
+import { MedicationChatDemo, medicationCopy } from './medication';
 
 /* ------------------------------------------------------------------ */
 /* Scribe: the "Consultatie" card while recording, then the summary     */
@@ -184,156 +185,39 @@ export function ScribeDemo() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Medication: "Medicatie" upload → Verwerk → Medicatie lijst          */
+/* Medication: one photo of the boxes becomes a structured list       */
 /* ------------------------------------------------------------------ */
 
-// Labels from assistant-frontend i18n (pages.medicationOverview.*, components.upload.*)
-const MEDICATION = {
-  en: {
-    title: 'Medication',
-    upload: 'Upload',
-    takePhoto: 'Take a photo',
-    drag: 'Or drag and drop an image here.',
-    process: 'Process',
-    list: 'Medication list',
-    copy: 'Copy to clipboard',
-    prescription: 'Prescription',
-    dose: 'Dosage',
-    mandatory: 'Mandatory',
-    yes: 'Yes',
-    no: 'No',
+const MEDICATION = medicationCopy({
+  nl: {
+    found: 'Dank u, ik herken 3 geneesmiddelen:',
+    confirm: 'Ja, dat klopt.',
     meds: [
-      { name: 'Amoxicillin 500 mg', prescription: '3× daily, 7 days', dose: '1 capsule', mandatory: true, confidence: 'high' },
-      { name: 'Metformin 850 mg', prescription: '2× daily with meals', dose: '1 tablet', mandatory: true, confidence: 'high' },
-      { name: 'Atorvastatin 20 mg', prescription: 'In the evening', dose: '1 tablet', mandatory: false, confidence: 'medium' },
+      { name: 'Amoxicilline', strength: '500 mg', substance: 'Amoxicilline', frequency: '3× per dag, 7 dagen', indication: 'Infectie' },
+      { name: 'Metformine', strength: '850 mg', substance: 'Metformine', frequency: '2× per dag, bij de maaltijd', indication: 'Diabetes type 2' },
+      { name: 'Atorvastatine', strength: '20 mg', substance: 'Atorvastatine', frequency: '1× per dag, ’s avonds', indication: 'Cholesterol' },
     ],
   },
-  nl: {
-    title: 'Medicatie',
-    upload: 'Upload',
-    takePhoto: 'Maak een foto',
-    drag: 'of sleep een afbeelding hiernaartoe',
-    process: 'Verwerk',
-    list: 'Medicatie lijst',
-    copy: 'Kopieer naar het klembord',
-    prescription: 'Voorschrift',
-    dose: 'Dosering',
-    mandatory: 'Verplicht',
-    yes: 'Ja',
-    no: 'Nee',
+  en: {
+    found: 'Thank you, I recognise 3 medicines:',
+    confirm: 'Yes, that’s right.',
     meds: [
-      { name: 'Amoxicilline 500 mg', prescription: '3× per dag, 7 dagen', dose: '1 capsule', mandatory: true, confidence: 'high' },
-      { name: 'Metformine 850 mg', prescription: '2× per dag bij de maaltijd', dose: '1 tablet', mandatory: true, confidence: 'high' },
-      { name: 'Atorvastatine 20 mg', prescription: '’s Avonds', dose: '1 tablet', mandatory: false, confidence: 'medium' },
+      { name: 'Amoxicillin', strength: '500 mg', substance: 'Amoxicillin', frequency: '3× a day, 7 days', indication: 'Infection' },
+      { name: 'Metformin', strength: '850 mg', substance: 'Metformin', frequency: 'Twice a day, with meals', indication: 'Type 2 diabetes' },
+      { name: 'Atorvastatin', strength: '20 mg', substance: 'Atorvastatin', frequency: 'Once a day, in the evening', indication: 'Cholesterol' },
     ],
   },
   fr: {
-    title: 'Médicaments',
-    upload: 'Charger',
-    takePhoto: 'Prendre une photo',
-    drag: 'Ou faites glisser une image ici.',
-    process: 'Traiter',
-    list: 'Liste de médicaments',
-    copy: 'Copier dans le presse-papiers',
-    prescription: 'Ordonnance',
-    dose: 'Dosage',
-    mandatory: 'Obligatoire',
-    yes: 'Oui',
-    no: 'Non',
+    found: 'Merci, je reconnais 3 médicaments :',
+    confirm: 'Oui, c’est exact.',
     meds: [
-      { name: 'Amoxicilline 500 mg', prescription: '3× par jour, 7 jours', dose: '1 gélule', mandatory: true, confidence: 'high' },
-      { name: 'Metformine 850 mg', prescription: '2× par jour au repas', dose: '1 comprimé', mandatory: true, confidence: 'high' },
-      { name: 'Atorvastatine 20 mg', prescription: 'Le soir', dose: '1 comprimé', mandatory: false, confidence: 'medium' },
+      { name: 'Amoxicilline', strength: '500 mg', substance: 'Amoxicilline', frequency: '3× par jour, 7 jours', indication: 'Infection' },
+      { name: 'Metformine', strength: '850 mg', substance: 'Metformine', frequency: '2× par jour, au repas', indication: 'Diabète de type 2' },
+      { name: 'Atorvastatine', strength: '20 mg', substance: 'Atorvastatine', frequency: '1× par jour, le soir', indication: 'Cholestérol' },
     ],
   },
-};
-
-// Confidence dot colours from medication-overview-page (success / warning / error).
-const CONFIDENCE = { high: '#37C18D', medium: '#F59E0C', low: '#DE3C4B' } as const;
+});
 
 export function MedicationDemo() {
-  const c = useLocalized(MEDICATION);
-  // 1 photo picked, 2 processing, 3–5 results
-  const step = useSteps(5, 900, 500);
-
-  return (
-    <AppFrame active="medication" title={c.title}>
-      <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 items-start">
-        <div className="flex flex-col gap-3">
-          <div className="relative w-full aspect-[4/3] rounded-xl bg-white border border-[#E8EAEC] overflow-hidden flex items-center justify-center">
-            <AnimatePresence mode="wait">
-              {step === 0 ? (
-                <motion.div key="empty" exit={{ opacity: 0 }} className="flex flex-col items-center gap-1 text-center px-3">
-                  <AppIcon name="upload" size={26} color={APP.darkGrey} />
-                  <span className="text-[11px] text-[#06ACC1] flex items-center gap-1">
-                    <AppIcon name="upload" size={11} color={APP.primary} />
-                    {c.upload}
-                  </span>
-                  <span className="text-[11px] text-[#06ACC1] flex items-center gap-1">
-                    <AppIcon name="camera" size={11} color={APP.primary} />
-                    {c.takePhoto}
-                  </span>
-                  <span className="text-[10px] text-[#4E5670]">{c.drag}</span>
-                </motion.div>
-              ) : (
-                <motion.div key="photo" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="absolute inset-2 rounded-lg bg-[#FBF8F1] -rotate-2 p-3 flex flex-col gap-1.5">
-                  {c.meds.map((med) => (
-                    <p key={med.name} className="font-display italic text-[15px] leading-tight text-slate-700">{med.name}</p>
-                  ))}
-                  {step === 2 && (
-                    <motion.span
-                      className="absolute inset-x-0 h-[2px] bg-[#06ACC1] shadow-[0_0_12px_3px_rgba(6,172,193,0.5)]"
-                      animate={{ top: ['8%', '92%', '8%'] }}
-                      transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-                    />
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-          <AppButton className="w-fit py-2" variant={step >= 1 ? 'primary' : 'subtle'}>
-            {step === 2 ? (
-              <motion.span animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
-                <AppIcon name="refresh-double" size={13} color="#fff" />
-              </motion.span>
-            ) : null}
-            {c.process}
-          </AppButton>
-        </div>
-
-        <AppCard bodyClassName="p-4 flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-3">
-            <span className="text-[14px] font-bold">{c.list}</span>
-            <AppButton variant="subtle" icon="copy">{c.copy}</AppButton>
-          </div>
-          {c.meds.map((med, i) =>
-            step >= 3 + i ? (
-              <motion.div key={med.name} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: EASE }} className="flex flex-col gap-0.5 text-[12.5px] border-b border-[#E8EAEC] pb-3 last:border-0 last:pb-0">
-                <span className="flex items-center gap-2">
-                  <strong>
-                    {i + 1}. {med.name}
-                  </strong>
-                  <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: CONFIDENCE[med.confidence as keyof typeof CONFIDENCE] }} />
-                </span>
-                <span>
-                  {c.prescription}: {med.prescription}
-                </span>
-                <span>
-                  {c.dose}: {med.dose}
-                </span>
-                <span>
-                  {c.mandatory}: {med.mandatory ? c.yes : c.no}
-                </span>
-              </motion.div>
-            ) : (
-              <div key={med.name} className="flex flex-col gap-1.5 pb-3">
-                <span className="h-3 w-40 rounded-full bg-[#F4F5F8]" />
-                <span className="h-2.5 w-56 rounded-full bg-[#F4F5F8]" />
-              </div>
-            ),
-          )}
-        </AppCard>
-      </div>
-    </AppFrame>
-  );
+  return <MedicationChatDemo copy={MEDICATION} patient={{ name: 'David Maes', initials: 'DM', dob: '13-02-1984' }} />;
 }

@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
-/** Specialties offered in the chooser. Only orthopaedics has tailored content so far; the others see the standard site. */
+/** Specialties offered in the chooser. Only the TAILORED ones have their own content so far; the others see the standard site. */
 export const SPECIALTY_IDS = [
   'orthopedics',
   'generalPractice',
@@ -24,7 +24,10 @@ export const SPECIALTY_IDS = [
 export type SpecialtyId = (typeof SPECIALTY_IDS)[number];
 
 /** Specialties with their own homepage and demos. */
-export const TAILORED: readonly SpecialtyId[] = ['orthopedics'];
+export const TAILORED = ['orthopedics', 'neurosurgery', 'ent', 'physicalMedicine'] as const satisfies readonly SpecialtyId[];
+export type TailoredId = (typeof TAILORED)[number];
+
+const isTailored = (value: Specialty | null): value is TailoredId => TAILORED.includes(value as TailoredId);
 
 /**
  * The visitor's specialty. `null` means they have not chosen yet (the prompt is shown);
@@ -43,6 +46,16 @@ const URL_VALUES: Record<string, Specialty> = {
   orthopédie: 'orthopedics',
   orthopedics: 'orthopedics',
   orthopaedics: 'orthopedics',
+  neurochirurgie: 'neurosurgery',
+  neurosurgery: 'neurosurgery',
+  nko: 'ent',
+  ent: 'ent',
+  orl: 'ent',
+  'fysische-geneeskunde': 'physicalMedicine',
+  fysiater: 'physicalMedicine',
+  'physical-medicine': 'physicalMedicine',
+  'medecine-physique': 'physicalMedicine',
+  'médecine-physique': 'physicalMedicine',
   algemeen: 'general',
   general: 'general',
 };
@@ -51,6 +64,8 @@ interface SpecialtyContextValue {
   specialty: Specialty | null;
   /** True once the stored choice has been read, so the prompt never flashes for returning visitors. */
   ready: boolean;
+  /** The variant with its own content, or null for the standard site. */
+  tailored: TailoredId | null;
   isOrthopedics: boolean;
   setSpecialty: (value: Specialty) => void;
   /** The chooser panel in the navbar. */
@@ -65,6 +80,7 @@ interface SpecialtyContextValue {
 const SpecialtyContext = createContext<SpecialtyContextValue>({
   specialty: null,
   ready: false,
+  tailored: null,
   isOrthopedics: false,
   setSpecialty: () => {},
   menuOpen: false,
@@ -150,7 +166,7 @@ export function SpecialtyProvider({ children }: { children: React.ReactNode }) {
   const choose = useCallback(
     (value: Specialty) => {
       setSpecialty(value);
-      if (value === 'general' || TAILORED.includes(value)) closeMenu();
+      if (value === 'general' || isTailored(value)) closeMenu();
       else setNotice(value);
     },
     [setSpecialty, closeMenu],
@@ -164,7 +180,18 @@ export function SpecialtyProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <SpecialtyContext.Provider
-      value={{ specialty, ready, isOrthopedics: specialty === 'orthopedics', setSpecialty, menuOpen, openMenu, closeMenu, choose, notice }}
+      value={{
+        specialty,
+        ready,
+        tailored: isTailored(specialty) ? specialty : null,
+        isOrthopedics: specialty === 'orthopedics',
+        setSpecialty,
+        menuOpen,
+        openMenu,
+        closeMenu,
+        choose,
+        notice,
+      }}
     >
       {children}
     </SpecialtyContext.Provider>

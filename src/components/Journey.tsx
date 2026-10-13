@@ -1,39 +1,52 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
-import { ORTHO_HOME, type SiteLocale } from '@/content/orthopedics';
+import { useTranslations } from 'next-intl';
+import type { JourneyIcon } from '@/content/orthopedics';
+import { useTailoredHome } from '@/content/tailored';
 import { useSpecialty } from '@/lib/specialty';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const ICONS = [
+const ICONS: Record<JourneyIcon, React.ReactNode> = {
   // Intake chat
-  <path key="chat" d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z" />,
+  chat: <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z" />,
   // Triage flag
-  <path key="flag" d="M5 21V4m0 0h11l-2 4 2 4H5" />,
+  flag: <path d="M5 21V4m0 0h11l-2 4 2 4H5" />,
+  // Routing: one path, two destinations
+  route: <path d="M12 21v-8m0 0L6 7m6 6 6-6M6 11V7h4m8 4V7h-4" />,
   // Scribe mic
-  <g key="mic"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></g>,
+  mic: (
+    <g>
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
+    </g>
+  ),
   // Document
-  <g key="doc"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" /><path d="M14 3v5h5M9 13h6M9 17h4" /></g>,
+  doc: (
+    <g>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" />
+      <path d="M14 3v5h5M9 13h6M9 17h4" />
+    </g>
+  ),
   // Follow-up pulse
-  <path key="pulse" d="M3 12h4l2-5 4 10 2-5h6" />,
-];
+  pulse: <path d="M3 12h4l2-5 4 10 2-5h6" />,
+};
+const DEFAULT_ICONS: JourneyIcon[] = ['chat', 'flag', 'mic', 'doc', 'pulse'];
 
 export default function Journey() {
   const t = useTranslations('Journey');
-  const locale = useLocale() as SiteLocale;
-  const { isOrthopedics } = useSpecialty();
-  const ortho = (ORTHO_HOME[locale] ?? ORTHO_HOME.en).journey;
-  // Orthopaedics: moments in the care path instead of weekdays, plus a concrete detail per step.
-  const steps = ICONS.map((icon, i) => ({
-    icon,
-    day: isOrthopedics ? ortho.steps[i].moment : t(`steps.${i}.day`),
-    title: isOrthopedics ? ortho.steps[i].title : t(`steps.${i}.title`),
-    detail: isOrthopedics ? ortho.steps[i].detail : null,
-    part: isOrthopedics ? ortho.steps[i].part : t(`steps.${i}.part`),
+  const { tailored: variantId } = useSpecialty();
+  const journey = useTailoredHome()?.journey;
+  // Tailored specialty: moments in the care path instead of weekdays, plus a concrete detail per step.
+  const steps = (journey?.icons ?? DEFAULT_ICONS).map((icon, i) => ({
+    icon: ICONS[icon],
+    day: journey ? journey.steps[i].moment : t(`steps.${i}.day`),
+    title: journey ? journey.steps[i].title : t(`steps.${i}.title`),
+    detail: journey ? journey.steps[i].detail : null,
+    part: journey ? journey.steps[i].part : t(`steps.${i}.part`),
   }));
-  const subtitle = isOrthopedics ? ortho.subtitle : t('subtitle');
+  const subtitle = journey ? journey.subtitle : t('subtitle');
 
   return (
     <section className="w-full py-24 md:py-32">
@@ -64,7 +77,7 @@ export default function Journey() {
           <ol className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-6">
             {steps.map((step, i) => (
               <motion.li
-                key={`${isOrthopedics ? 'o' : 'g'}-${i}`}
+                key={`${variantId ?? 'general'}-${i}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
