@@ -343,15 +343,13 @@
     "urgentBody": "Soumettez le ticket avec les étapes de reproduction les plus claires possible afin que l'équipe support dispose du bon contexte dès le départ."
   },
   "DemoPage": {
-    "eyebrow": "Démo",
-    "title": "Demandez une démonstration ciblée",
-    "subtitle": "Expliquez pour qui la démo est prévue et ce que vous souhaitez évaluer afin que nous orientions correctement la demande.",
-    "whatToExpectTitle": "À quoi s'attendre",
-    "whatToExpectBody": "Partagez votre rôle, votre organisation et ce que vous souhaitez voir. Nous utiliserons ce contexte pour préparer la suite du flux démo.",
-    "tailoredTitle": "Adapté à votre workflow",
-    "tailoredBody": "Que vous évaluiez la pré-consultation, le scribe ou des workflows plateforme plus larges, nous voulons que la session corresponde à votre pratique.",
-    "platformTitle": "Accès direct à la plateforme",
-    "platformBody": "Si vous êtes prêt à démarrer immédiatement, le parcours d'onboarding reste disponible sans changement via le CTA principal vers la plateforme."
+    "title": "Réservez une démo",
+    "subtitle": "Choisissez le moment qui vous convient. L'invitation arrive dans votre agenda.",
+    "bookingFrameTitle": "Agenda pour réserver une démo",
+    "bookingOpen": "Ouvrir l'agenda",
+    "formPrompt": "Vous préférez nous écrire ?",
+    "formToggle": "Remplir le formulaire",
+    "backToCalendar": "Retour à l'agenda"
   },
   "SuccessPages": {
     "contact": {
@@ -454,9 +452,24 @@
       }
     }
   },
+  "BookDemo": {
+    "role": "Customer Success, Vesalius.ai",
+    "title": "Voyez Vesalius dans votre propre pratique.",
+    "body": "Un appel d'une demi-heure, entre deux consultations. Vous voyez comment Vesalius fonctionne pour votre discipline et obtenez des réponses à vos questions.",
+    "cta": "Choisir un créneau",
+    "meta": "30 min · Google Meet · sans engagement",
+    "dialogTitle": "Réservez une démo",
+    "close": "Fermer"
+  },
+  "DemoNudge": {
+    "label": "Message de Quinten",
+    "message": "Vous aimeriez voir comment Vesalius fonctionnerait dans votre pratique ? Je vous le montre volontiers, en 30 minutes.",
+    "cta": "Réserver une démo",
+    "close": "Fermer"
+  },
   "FinalCta": {
-    "title": "Consacrez demain à vos patients.",
-    "subtitle": "Testez Vesalius gratuitement pendant un mois. Sans carte de crédit.",
+    "title": "Plus de temps pour vos patients.",
+    "subtitle": "Essayez Vesalius gratuitement pendant un mois. Sans carte de crédit.",
     "primary": "Créez votre assistant",
     "secondary": "Demander une démo"
   },

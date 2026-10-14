@@ -10,6 +10,7 @@ import SecuritySection from "@/components/SecuritySection";
 import PricingSection from "@/components/PricingSection";
 import Contact from "@/components/Contact";
 import Journey from "@/components/Journey";
+import BookDemo from '@/components/BookDemo';
 import FinalCta from "@/components/FinalCta";
 import MobileApp from "@/components/MobileApp";
 import Footer from "@/components/Footer";
@@ -113,6 +114,7 @@ export default async function Home({
       <section className="w-full">
         <Testimonials />
       </section>
+      <BookDemo />
 
       <SecuritySection />
 

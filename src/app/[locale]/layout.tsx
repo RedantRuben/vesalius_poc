@@ -3,7 +3,9 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
+import BookingDialog from '@/components/BookingDialog';
 import CookieConsent from '@/components/CookieConsent';
+import DemoNudge from '@/components/DemoNudge';
 import MatomoAnalytics from '@/components/MatomoAnalytics';
 import SpecialtyPrompt from '@/components/SpecialtyPrompt';
 import { SpecialtyProvider } from '@/lib/specialty';
@@ -34,7 +36,9 @@ export default async function LocaleLayout({
       <SpecialtyProvider>
         {children}
         <SpecialtyPrompt />
+        <DemoNudge />
       </SpecialtyProvider>
+      <BookingDialog />
       <MatomoAnalytics />
       <CookieConsent />
     </NextIntlClientProvider>

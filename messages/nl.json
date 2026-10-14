@@ -343,15 +343,13 @@
     "urgentBody": "Dien het ticket in met zo duidelijk mogelijke reproductiestappen zodat het supportteam meteen de juiste context heeft."
   },
   "DemoPage": {
-    "eyebrow": "Demo",
-    "title": "Vraag een gerichte walkthrough aan",
-    "subtitle": "Vertel ons voor wie de demo is en wat u wilt evalueren, zodat we de aanvraag correct kunnen routeren.",
-    "whatToExpectTitle": "Wat u kunt verwachten",
-    "whatToExpectBody": "Deel uw rol, organisatie en wat u wilt zien. We gebruiken die context om de volgende stap in de demo-flow vorm te geven.",
-    "tailoredTitle": "Aangepast aan uw workflow",
-    "tailoredBody": "Of u nu pre-consultatie, scribe of bredere platformworkflows evalueert, we willen dat de sessie past bij uw praktijk.",
-    "platformTitle": "Direct platformtoegang",
-    "platformBody": "Als u meteen wilt starten, blijft de onboardingflow ongewijzigd beschikbaar via de hoofd-CTA naar het platform."
+    "title": "Plan een demo",
+    "subtitle": "Kies een moment dat u past. De uitnodiging komt in uw agenda.",
+    "bookingFrameTitle": "Agenda om een demo te plannen",
+    "bookingOpen": "Open de agenda",
+    "formPrompt": "Liever een bericht sturen?",
+    "formToggle": "Vul het formulier in",
+    "backToCalendar": "Terug naar de agenda"
   },
   "SuccessPages": {
     "contact": {
@@ -454,9 +452,24 @@
       }
     }
   },
+  "BookDemo": {
+    "role": "Customer Success, Vesalius.ai",
+    "title": "Zie Vesalius in uw eigen praktijk.",
+    "body": "Een gesprek van een halfuur, tussen twee consultaties door. U ziet hoe Vesalius werkt voor uw discipline en krijgt antwoord op uw vragen.",
+    "cta": "Kies een moment",
+    "meta": "30 min · Google Meet · vrijblijvend",
+    "dialogTitle": "Plan een demo",
+    "close": "Sluiten"
+  },
+  "DemoNudge": {
+    "label": "Bericht van Quinten",
+    "message": "Wilt u zien hoe Vesalius zou werken in uw praktijk? Ik toon het u graag, in 30 minuten.",
+    "cta": "Plan een demo",
+    "close": "Sluiten"
+  },
   "FinalCta": {
-    "title": "Besteed morgen aan uw patiënten.",
-    "subtitle": "Test Vesalius een maand gratis. Geen kredietkaart nodig.",
+    "title": "Meer tijd voor uw patiënten.",
+    "subtitle": "Probeer Vesalius een maand gratis. Zonder kredietkaart.",
     "primary": "Maak uw assistent aan",
     "secondary": "Vraag een demo aan"
   },

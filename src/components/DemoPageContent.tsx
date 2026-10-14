@@ -1,49 +1,63 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 
 import DemoRequestForm from '@/components/forms/DemoRequestForm';
+import { BOOKING_URL, bookingEmbedUrl } from '@/lib/booking';
 
 export default function DemoPageContent() {
   const t = useTranslations('DemoPage');
+  const embed = bookingEmbedUrl(BOOKING_URL, useLocale());
+  // The calendar is the page; the request form is the fallback for people who would rather write first.
+  const [formOpen, setFormOpen] = useState(!BOOKING_URL);
+
+  const toggle = BOOKING_URL ? (
+    <p className="text-slate-500 text-[15px]">
+      {formOpen ? null : <>{t('formPrompt')} </>}
+      <button
+        type="button"
+        onClick={() => setFormOpen((open) => !open)}
+        className="font-semibold text-[#0B1B3D] underline underline-offset-4 decoration-slate-300 hover:decoration-[#0B1B3D]"
+      >
+        {formOpen ? t('backToCalendar') : t('formToggle')}
+      </button>
+    </p>
+  ) : null;
 
   return (
-    <section className="px-4 sm:px-6 py-8 md:py-12">
+    <section className="px-4 pb-12 md:pb-16">
+      {/* Same frame as the navbar pill: card edges on the pill, text on the logo and CTA */}
       <div className="max-w-7xl mx-auto">
-        <div className="max-w-3xl mb-12">
-          <span className="text-[#06ACC1] font-semibold tracking-wider uppercase text-sm mb-4 block">
-            {t('eyebrow')}
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-[#0B1B3D] tracking-tight mb-5">
-            {t('title')}
-          </h1>
-          <p className="text-lg md:text-xl text-slate-500 font-light leading-relaxed">
-            {t('subtitle')}
-          </p>
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-6 mb-5 px-6">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-semibold text-[#0B1B3D] tracking-[-0.03em]">{t('title')}</h1>
+            <p className="mt-1.5 text-slate-500">{t('subtitle')}</p>
+          </div>
+          {toggle}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          <div className="lg:col-span-7 glass-panel bg-white/70 p-8 md:p-12 rounded-[32px]">
+        {formOpen ? (
+          <div className="bg-white rounded-[28px] ring-1 ring-slate-200 p-6 md:p-10">
             <DemoRequestForm sourcePage="/demo" />
           </div>
-
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <article className="glass-panel bg-white/70 rounded-[32px] p-8">
-              <h2 className="text-[#0B1B3D] text-xl font-bold tracking-tight mb-4">{t('whatToExpectTitle')}</h2>
-              <p className="text-slate-600 leading-relaxed">{t('whatToExpectBody')}</p>
-            </article>
-
-            <article className="glass-panel bg-white/70 rounded-[32px] p-8">
-              <h2 className="text-[#0B1B3D] text-xl font-bold tracking-tight mb-4">{t('tailoredTitle')}</h2>
-              <p className="text-slate-600 leading-relaxed">{t('tailoredBody')}</p>
-            </article>
-
-            <article className="glass-panel bg-[#0B1B3D] rounded-[32px] p-8 text-white">
-              <h2 className="text-xl font-bold tracking-tight mb-4">{t('platformTitle')}</h2>
-              <p className="text-slate-200 leading-relaxed">{t('platformBody')}</p>
-            </article>
-          </div>
-        </div>
+        ) : embed ? (
+          <iframe
+            src={embed}
+            title={t('bookingFrameTitle')}
+            className="block w-full h-[calc(100svh-18.5rem)] md:h-[calc(100svh-15.5rem)] min-h-[520px] rounded-[28px] bg-white ring-1 ring-slate-200"
+          />
+        ) : (
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#0B1B3D] text-white font-semibold hover:bg-[#13285a] transition-colors"
+          >
+            {t('bookingOpen')}
+            <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </a>
+        )}
       </div>
     </section>
   );

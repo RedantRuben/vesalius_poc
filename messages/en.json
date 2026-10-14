@@ -343,15 +343,13 @@
     "urgentBody": "Submit the ticket with the clearest reproduction steps you can share so the support team has the right context from the start."
   },
   "DemoPage": {
-    "eyebrow": "Demo",
-    "title": "Request a tailored walkthrough",
-    "subtitle": "Tell us who the demo is for and what you want to evaluate so we can route the request correctly.",
-    "whatToExpectTitle": "What to expect",
-    "whatToExpectBody": "Share your role, organisation, and what you want to see. We will use that context to shape the next step in the demo flow.",
-    "tailoredTitle": "Tailored to your workflow",
-    "tailoredBody": "Whether you are validating pre-consultation, scribe, or broader platform workflows, we want the session to match your practice.",
-    "platformTitle": "Live platform access",
-    "platformBody": "If you are ready to start directly, the onboarding flow remains available unchanged through the main platform CTA."
+    "title": "Book a demo",
+    "subtitle": "Pick a time that suits you. The invitation lands in your calendar.",
+    "bookingFrameTitle": "Calendar for booking a demo",
+    "bookingOpen": "Open the calendar",
+    "formPrompt": "Prefer to send a message?",
+    "formToggle": "Fill in the form",
+    "backToCalendar": "Back to the calendar"
   },
   "SuccessPages": {
     "contact": {
@@ -454,9 +452,24 @@
       }
     }
   },
+  "BookDemo": {
+    "role": "Customer Success, Vesalius.ai",
+    "title": "See Vesalius in your own practice.",
+    "body": "A half-hour call, between two consultations. You see how Vesalius works for your discipline and get answers to your questions.",
+    "cta": "Choose a time",
+    "meta": "30 min · Google Meet · no commitment",
+    "dialogTitle": "Book a demo",
+    "close": "Close"
+  },
+  "DemoNudge": {
+    "label": "Message from Quinten",
+    "message": "Would you like to see how Vesalius would work in your practice? I'm happy to show you, in 30 minutes.",
+    "cta": "Book a demo",
+    "close": "Close"
+  },
   "FinalCta": {
-    "title": "Spend tomorrow with your patients.",
-    "subtitle": "Try Vesalius free for a month. No credit card needed.",
+    "title": "More time for your patients.",
+    "subtitle": "Try Vesalius free for one month. No credit card required.",
     "primary": "Create your assistant",
     "secondary": "Request a demo"
   },
