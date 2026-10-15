@@ -105,7 +105,7 @@ export default async function Home({
         <WhyChooseVesalius />
       </section>
 
-      <section id="modules" className="w-full py-20 md:py-28">
+      <section id="modules" className="w-full pt-20 md:pt-28">
         <Modules />
       </section>
 

@@ -45,6 +45,8 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
       generalPractice: 'Huisartsgeneeskunde',
       ent: 'NKO',
       neurosurgery: 'Neurochirurgie',
+      bariatrics: 'Bariatrie',
+      vascularSurgery: 'Vaatchirurgie',
       neurology: 'Neurologie',
       cardiology: 'Cardiologie',
       dermatology: 'Dermatologie',
@@ -55,6 +57,7 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
       gastroenterology: 'Gastro-enterologie',
       internalMedicine: 'Inwendige geneeskunde',
       psychiatry: 'Psychiatrie',
+      mentalHealth: 'Geestelijke gezondheidszorg',
       physicalMedicine: 'Fysische geneeskunde',
       other: 'Andere',
     },
@@ -72,6 +75,8 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
       generalPractice: 'General practice',
       ent: 'ENT',
       neurosurgery: 'Neurosurgery',
+      bariatrics: 'Bariatric surgery',
+      vascularSurgery: 'Vascular surgery',
       neurology: 'Neurology',
       cardiology: 'Cardiology',
       dermatology: 'Dermatology',
@@ -82,6 +87,7 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
       gastroenterology: 'Gastroenterology',
       internalMedicine: 'Internal medicine',
       psychiatry: 'Psychiatry',
+      mentalHealth: 'Mental health',
       physicalMedicine: 'Physical medicine',
       other: 'Other',
     },
@@ -99,6 +105,8 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
       generalPractice: 'Médecine générale',
       ent: 'ORL',
       neurosurgery: 'Neurochirurgie',
+      bariatrics: 'Chirurgie bariatrique',
+      vascularSurgery: 'Chirurgie vasculaire',
       neurology: 'Neurologie',
       cardiology: 'Cardiologie',
       dermatology: 'Dermatologie',
@@ -109,6 +117,7 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
       gastroenterology: 'Gastro-entérologie',
       internalMedicine: 'Médecine interne',
       psychiatry: 'Psychiatrie',
+      mentalHealth: 'Santé mentale',
       physicalMedicine: 'Médecine physique',
       other: 'Autre',
     },
@@ -128,10 +137,14 @@ export interface TailoredHomeCopy {
     patientMessage: string;
     assistantMessage: string;
     noteBody: string;
+    /** Status line under the intake card; the standard one ("ready for the doctor") is used when absent. */
+    intakeReady?: string;
   };
   journey: {
     subtitle: string;
     icons?: JourneyIcon[];
+    /** Label before each step's part; the standard "Your part" is used when absent. */
+    partLabel?: string;
     steps: { moment: string; title: string; detail: string; part: string }[];
   };
   modules: {

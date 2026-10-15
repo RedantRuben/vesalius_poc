@@ -403,6 +403,7 @@ export default function Hero() {
         line2: hero.line2,
         intakeMessages: [hero.greeting ?? baseCopy.intakeMessages[0], hero.patientMessage, hero.assistantMessage] as [string, string, string],
         clinicalNoteBody: hero.noteBody,
+        intakeReady: hero.intakeReady ?? baseCopy.intakeReady,
       }
     : baseCopy;
   const variant = variantId ?? 'general';

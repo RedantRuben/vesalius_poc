@@ -8,6 +8,8 @@ export const SPECIALTY_IDS = [
   'generalPractice',
   'ent',
   'neurosurgery',
+  'bariatrics',
+  'vascularSurgery',
   'neurology',
   'cardiology',
   'dermatology',
@@ -18,13 +20,14 @@ export const SPECIALTY_IDS = [
   'gastroenterology',
   'internalMedicine',
   'psychiatry',
+  'mentalHealth',
   'physicalMedicine',
   'other',
 ] as const;
 export type SpecialtyId = (typeof SPECIALTY_IDS)[number];
 
 /** Specialties with their own homepage and demos. */
-export const TAILORED = ['orthopedics', 'neurosurgery', 'ent', 'physicalMedicine'] as const satisfies readonly SpecialtyId[];
+export const TAILORED = ['orthopedics', 'neurosurgery', 'ent', 'physicalMedicine', 'bariatrics', 'mentalHealth', 'vascularSurgery'] as const satisfies readonly SpecialtyId[];
 export type TailoredId = (typeof TAILORED)[number];
 
 const isTailored = (value: Specialty | null): value is TailoredId => TAILORED.includes(value as TailoredId);
@@ -56,6 +59,24 @@ const URL_VALUES: Record<string, Specialty> = {
   'physical-medicine': 'physicalMedicine',
   'medecine-physique': 'physicalMedicine',
   'médecine-physique': 'physicalMedicine',
+  bariatrie: 'bariatrics',
+  bariatrics: 'bariatrics',
+  'bariatric-surgery': 'bariatrics',
+  'chirurgie-bariatrique': 'bariatrics',
+  obesitas: 'bariatrics',
+  vaatchirurgie: 'vascularSurgery',
+  'vascular-surgery': 'vascularSurgery',
+  'chirurgie-vasculaire': 'vascularSurgery',
+  vasculaire: 'vascularSurgery',
+  ggz: 'mentalHealth',
+  'geestelijke-gezondheidszorg': 'mentalHealth',
+  psychologie: 'mentalHealth',
+  psycholoog: 'mentalHealth',
+  psychology: 'mentalHealth',
+  'mental-health': 'mentalHealth',
+  'sante-mentale': 'mentalHealth',
+  'santé-mentale': 'mentalHealth',
+  psychologue: 'mentalHealth',
   algemeen: 'general',
   general: 'general',
 };

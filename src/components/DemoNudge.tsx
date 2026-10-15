@@ -12,7 +12,7 @@ import { useSpecialty } from '@/lib/specialty';
 /** Local dev only: the message shows right away and comes back after closing, so it is easy to review. */
 const DEV = process.env.NODE_ENV === 'development';
 /** Visible time on the site (across pages, this visit) before Quinten's message appears. */
-const SHOW_AFTER_MS = DEV ? 1_000 : 45_000;
+const SHOW_AFTER_MS = DEV ? 1_000 : 30_000;
 /** Once closed or used, it stays away this long (in dev: comes back after a few seconds). */
 const QUIET_FOR_MS = 14 * 24 * 60 * 60 * 1000;
 const DEV_RETURN_MS = 3_000;

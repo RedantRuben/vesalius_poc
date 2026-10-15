@@ -45,10 +45,43 @@ import {
   PhysioTriageDemo,
   PhysioVoiceDemo,
 } from './demos/physio';
+import {
+  BariatricAgendaDemo,
+  BariatricDocumentDemo,
+  BariatricFollowUpDemo,
+  BariatricMedicationDemo,
+  BariatricPreConsultationDemo,
+  BariatricScribeDemo,
+  BariatricTriageDemo,
+  BariatricVoiceDemo,
+} from './demos/bariatric';
+import {
+  MentalAgendaDemo,
+  MentalDocumentDemo,
+  MentalFollowUpDemo,
+  MentalMedicationDemo,
+  MentalPreConsultationDemo,
+  MentalScribeDemo,
+  MentalTriageDemo,
+  MentalVoiceDemo,
+} from './demos/mental';
+import {
+  VascularAgendaDemo,
+  VascularDocumentDemo,
+  VascularFollowUpDemo,
+  VascularMedicationDemo,
+  VascularPreConsultationDemo,
+  VascularScribeDemo,
+  VascularTriageDemo,
+  VascularVoiceDemo,
+} from './demos/vascular';
 import { ORTHO_STEPS, ORTHO_TRAJECTORY } from './ortho-content';
 import { NEURO_STEPS, NEURO_TRAJECTORY } from './neuro-content';
 import { ENT_STEPS, ENT_TRAJECTORY } from './ent-content';
 import { PHYSIO_STEPS, PHYSIO_TRAJECTORY } from './physio-content';
+import { BARIATRIC_STEPS, BARIATRIC_TRAJECTORY } from './bariatric-content';
+import { MENTAL_STEPS, MENTAL_TRAJECTORY } from './mental-content';
+import { VASCULAR_STEPS, VASCULAR_TRAJECTORY } from './vascular-content';
 import { useSpecialty, type TailoredId } from '@/lib/specialty';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -112,6 +145,42 @@ const PHYSIO_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
   smartFollowUp: PhysioFollowUpDemo,
 };
 
+// Bariatric surgery: the same pages, following Mia Fundus from referral to a year after her bypass.
+const BARIATRIC_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: BariatricTriageDemo,
+  agenda: BariatricAgendaDemo,
+  preConsultation: BariatricPreConsultationDemo,
+  voiceReception: BariatricVoiceDemo,
+  scribe: BariatricScribeDemo,
+  medication: BariatricMedicationDemo,
+  documentGeneration: BariatricDocumentDemo,
+  smartFollowUp: BariatricFollowUpDemo,
+};
+
+// Mental health: the same pages, following Lotte Amygdala from a short intake to her check-ins between sessions.
+const MENTAL_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: MentalTriageDemo,
+  agenda: MentalAgendaDemo,
+  preConsultation: MentalPreConsultationDemo,
+  voiceReception: MentalVoiceDemo,
+  scribe: MentalScribeDemo,
+  medication: MentalMedicationDemo,
+  documentGeneration: MentalDocumentDemo,
+  smartFollowUp: MentalFollowUpDemo,
+};
+
+// Vascular surgery: the same pages, following Greet Saphena from triage to three months after her ablation.
+const VASCULAR_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: VascularTriageDemo,
+  agenda: VascularAgendaDemo,
+  preConsultation: VascularPreConsultationDemo,
+  voiceReception: VascularVoiceDemo,
+  scribe: VascularScribeDemo,
+  medication: VascularMedicationDemo,
+  documentGeneration: VascularDocumentDemo,
+  smartFollowUp: VascularFollowUpDemo,
+};
+
 /** Per tailored specialty: its demos, "How it works" bodies and the trajectory line under each mock-up. */
 const VARIANTS: Record<
   TailoredId,
@@ -125,6 +194,9 @@ const VARIANTS: Record<
   neurosurgery: { demos: NEURO_DEMOS, steps: NEURO_STEPS, trajectory: NEURO_TRAJECTORY },
   ent: { demos: ENT_DEMOS, steps: ENT_STEPS, trajectory: ENT_TRAJECTORY },
   physicalMedicine: { demos: PHYSIO_DEMOS, steps: PHYSIO_STEPS, trajectory: PHYSIO_TRAJECTORY },
+  bariatrics: { demos: BARIATRIC_DEMOS, steps: BARIATRIC_STEPS, trajectory: BARIATRIC_TRAJECTORY },
+  mentalHealth: { demos: MENTAL_DEMOS, steps: MENTAL_STEPS, trajectory: MENTAL_TRAJECTORY },
+  vascularSurgery: { demos: VASCULAR_DEMOS, steps: VASCULAR_STEPS, trajectory: VASCULAR_TRAJECTORY },
 };
 
 const reveal = {

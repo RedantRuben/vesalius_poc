@@ -535,7 +535,7 @@ export default function Modules() {
   ];
 
   return (
-    <section className="w-full relative pb-12">
+    <section className="w-full relative pb-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

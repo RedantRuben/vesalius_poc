@@ -393,29 +393,29 @@
   },
   "CookieConsent": {
     "title": "We use cookies",
-    "description": "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content.",
+    "description": "We use cookies to improve your browsing experience, analyse site traffic and personalise content.",
     "learnMore": "Learn more",
-    "acceptAll": "Accept All",
-    "customize": "Customize",
-    "rejectAll": "Reject All",
-    "savePreferences": "Save Preferences",
+    "acceptAll": "Accept all",
+    "customize": "Customise",
+    "rejectAll": "Reject all",
+    "savePreferences": "Save preferences",
     "settings": {
-      "title": "Cookie Preferences",
+      "title": "Cookie preferences",
       "required": "Required",
       "necessary": {
-        "title": "Necessary Cookies",
+        "title": "Necessary cookies",
         "description": "Essential for the website to function. Cannot be disabled."
       },
       "functionality": {
-        "title": "Functionality Cookies",
+        "title": "Functionality cookies",
         "description": "Remember your preferences like language and region."
       },
       "analytics": {
-        "title": "Analytics Cookies",
+        "title": "Analytics cookies",
         "description": "Help us understand how visitors use our site."
       },
       "advertisement": {
-        "title": "Advertisement Cookies",
+        "title": "Advertising cookies",
         "description": "Used to show relevant ads based on your interests."
       }
     }

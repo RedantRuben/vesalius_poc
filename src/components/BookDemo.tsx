@@ -18,7 +18,7 @@ export default function BookDemo() {
   if (!BOOKING_URL) return null;
 
   return (
-    <section className="w-full py-12 md:py-16">
+    <section className="w-full pt-12 pb-8 md:pb-4">
       {/* Same frame as the testimonials and security cards: max-w-7xl with the padding inside */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <motion.div

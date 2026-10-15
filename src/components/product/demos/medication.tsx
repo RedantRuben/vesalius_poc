@@ -44,6 +44,10 @@ export type MedicationCopy = {
   recognised: (count: number) => string;
   confirmed: string;
   meds: Med[];
+  /** Optional extra question after the confirmation, e.g. about anticoagulants. */
+  followUp?: { question: string; choices: [string, string]; answer: string };
+  /** Optional status lines under the list, shown in the end frame; `ok` ones get a green tick. */
+  notes?: { label: string; value: string; tone?: 'ok' | 'warn' }[];
 };
 
 export type MedicationPatient = { name: string; initials: string; dob: string; color?: string };
@@ -142,8 +146,10 @@ const GRID = 'grid grid-cols-[1.25fr_1fr] md:grid-cols-[1.35fr_1fr_1.35fr_1fr] g
 
 export function MedicationChatDemo({ copy, patient }: { copy: Record<SiteLocale, MedicationCopy>; patient: MedicationPatient }) {
   const c = useLocalized(copy);
-  // 1 the assistant asks, 2 the photo arrives, 3 it is read, 4 the list (in the chat and in the record), 5 confirmed
-  const step = useSteps(5, 1500, 600);
+  // 1 the assistant asks, 2 the photo arrives, 3 it is read, 4 the list (in the chat and in the record), 5 confirmed,
+  // then optionally 6 a follow-up question and 7 its answer
+  const total = c.followUp ? 7 : 5;
+  const step = useSteps(total, 1500, 600);
   const scanning = step === 3;
   const read = step >= 4;
 
@@ -175,6 +181,9 @@ export function MedicationChatDemo({ copy, patient }: { copy: Record<SiteLocale,
         )}
         {step === 4 && <Choices options={c.choices} />}
         {step >= 5 && <PatientBubble>{c.confirm}</PatientBubble>}
+        {c.followUp && step >= 6 && <BotBubble>{c.followUp.question}</BotBubble>}
+        {c.followUp && step === 6 && <Choices options={c.followUp.choices} />}
+        {c.followUp && step >= 7 && <PatientBubble>{c.followUp.answer}</PatientBubble>}
       </Phone>
 
       <AppFrame
@@ -251,6 +260,23 @@ export function MedicationChatDemo({ copy, patient }: { copy: Record<SiteLocale,
               {c.confirmed}
             </span>
           </div>
+          {c.notes && step >= total && (
+            <motion.dl initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} transition={{ duration: 0.4, ease: EASE }} className="overflow-hidden px-4 pb-1 border-t border-[#E8EAEC]">
+              {c.notes.map((note) => (
+                <div key={note.label} className="grid grid-cols-[8.5rem_1fr] gap-3 py-2 border-b border-[#E8EAEC] last:border-0 text-[11.5px]">
+                  <dt className="text-[#4E5670]">{note.label}</dt>
+                  <dd className={`flex items-start gap-1.5 font-medium ${note.tone === 'warn' ? 'text-[#B4531A]' : ''}`}>
+                    {note.tone === 'ok' && (
+                      <span className="mt-px w-3.5 h-3.5 rounded-full bg-[#37C18D] flex items-center justify-center shrink-0">
+                        <Check size={8} color="#fff" />
+                      </span>
+                    )}
+                    {note.value}
+                  </dd>
+                </div>
+              ))}
+            </motion.dl>
+          )}
         </AppCard>
       </AppFrame>
     </div>
@@ -313,7 +339,9 @@ export const MED_UI: Record<
 };
 
 /** Builds a page's copy from the shared strings plus its own story. */
-export function medicationCopy(perLocale: Record<SiteLocale, Pick<MedicationCopy, 'found' | 'confirm' | 'meds'>>): Record<SiteLocale, MedicationCopy> {
+export function medicationCopy(
+  perLocale: Record<SiteLocale, Pick<MedicationCopy, 'found' | 'confirm' | 'meds'> & Partial<Pick<MedicationCopy, 'ask' | 'followUp' | 'notes' | 'confirmed'>>>,
+): Record<SiteLocale, MedicationCopy> {
   return {
     nl: { ...MED_UI.nl, ...perLocale.nl },
     en: { ...MED_UI.en, ...perLocale.en },

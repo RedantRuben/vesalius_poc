@@ -6,6 +6,7 @@ import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 
 const CONSENT_EVENT = 'cookie-consent-updated';
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 type CookiePreferences = {
   necessary: boolean;
@@ -21,6 +22,30 @@ const defaultPreferences: CookiePreferences = {
   advertisement: false,
 };
 
+const OPTIONAL = ['functionality', 'analytics', 'advertisement'] as const;
+
+/** A small switch in the site's navy; the label sits next to it, so the switch itself only needs its state. */
+function Switch({ on, onChange, disabled = false, label }: { on: boolean; onChange?: () => void; disabled?: boolean; label: string }) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      aria-label={label}
+      disabled={disabled}
+      onClick={onChange}
+      className={`relative shrink-0 w-10 h-6 rounded-full transition-colors duration-300 ${on ? 'bg-[#0B1B3D]' : 'bg-slate-200 hover:bg-slate-300'} disabled:cursor-not-allowed disabled:opacity-40`}
+    >
+      <motion.span
+        className="absolute top-1 left-1 w-4 h-4 rounded-full bg-white shadow-sm"
+        animate={{ x: on ? 16 : 0 }}
+        transition={{ type: 'spring', stiffness: 500, damping: 32 }}
+      />
+    </button>
+  );
+}
+
+/** Cookie choice, bottom right (where Quinten’s message appears later, once a choice is made): the same quiet card as the rest of the site, with equal weight for accept and decline. */
 export default function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -44,188 +69,90 @@ export default function CookieConsent() {
     setIsVisible(false);
   };
 
-  const acceptAll = () => {
-    const allAccepted: CookiePreferences = {
-      necessary: true,
-      functionality: true,
-      analytics: true,
-      advertisement: true,
-    };
-    saveConsent(allAccepted);
-  };
+  const acceptAll = () => saveConsent({ necessary: true, functionality: true, analytics: true, advertisement: true });
+  const acceptSelected = () => saveConsent(preferences);
+  const rejectAll = () => saveConsent(defaultPreferences);
 
-  const acceptSelected = () => {
-    saveConsent(preferences);
-  };
-
-  const rejectAll = () => {
-    saveConsent(defaultPreferences);
-  };
-
-  const togglePreference = (key: keyof CookiePreferences) => {
-    if (key === 'necessary') return; // Can't toggle necessary cookies
-    setPreferences(prev => ({ ...prev, [key]: !prev[key] }));
-  };
+  const togglePreference = (key: (typeof OPTIONAL)[number]) => setPreferences((prev) => ({ ...prev, [key]: !prev[key] }));
 
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-          className="fixed bottom-0 left-0 right-0 z-[100] p-4 md:p-6"
+        <motion.section
+          role="dialog"
+          aria-label={t('title')}
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 16, scale: 0.98 }}
+          transition={{ duration: 0.5, ease: EASE }}
+          className="fixed z-[100] left-4 right-4 bottom-4 sm:left-auto sm:right-6 sm:bottom-6 sm:w-[400px] max-h-[calc(100svh-2rem)] overflow-y-auto rounded-[24px] bg-white ring-1 ring-slate-200/80 shadow-[0_24px_60px_-20px_rgba(11,27,61,0.35)] p-5"
         >
-          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
-            {/* Main Banner */}
-            <div className="p-6">
-              <div className="flex items-start gap-4">
-                {/* Cookie Icon */}
-                <div className="hidden sm:flex w-12 h-12 rounded-full bg-[#06ACC1]/10 items-center justify-center flex-shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <circle cx="8" cy="9" r="1" fill="#06ACC1"/>
-                    <circle cx="15" cy="8" r="1" fill="#06ACC1"/>
-                    <circle cx="10" cy="14" r="1" fill="#06ACC1"/>
-                    <circle cx="16" cy="14" r="1" fill="#06ACC1"/>
-                    <circle cx="12" cy="11" r="1" fill="#06ACC1"/>
-                  </svg>
-                </div>
-                
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-[#2B3B53] mb-2">
-                    {t('title')}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    {t('description')}{' '}
-                    <Link href="/cookie-policy" className="text-[#06ACC1] hover:underline">
-                      {t('learnMore')}
-                    </Link>
-                  </p>
-                  
-                  {/* Buttons */}
-                  <div className="flex flex-wrap gap-3">
-                    <button
-                      onClick={acceptAll}
-                      className="px-6 py-2.5 rounded-full bg-[#06ACC1] text-white font-semibold text-sm hover:bg-[#0597a9] transition-colors shadow-lg shadow-[#06ACC1]/20"
-                    >
-                      {t('acceptAll')}
-                    </button>
-                    <button
-                      onClick={() => setShowSettings(!showSettings)}
-                      className="px-6 py-2.5 rounded-full bg-white border border-gray-200 text-[#2B3B53] font-semibold text-sm hover:border-gray-300 hover:bg-gray-50 transition-colors"
-                    >
-                      {t('customize')}
-                    </button>
-                    <button
-                      onClick={rejectAll}
-                      className="px-6 py-2.5 rounded-full text-gray-500 font-medium text-sm hover:text-gray-700 transition-colors"
-                    >
-                      {t('rejectAll')}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <p className="text-[15px] font-semibold text-[#0B1B3D] tracking-tight">{t('title')}</p>
+          <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
+            {t('description')}{' '}
+            <Link href="/cookie-policy" className="font-medium text-[#0B1B3D] underline underline-offset-4 decoration-slate-300 hover:decoration-[#0B1B3D]">
+              {t('learnMore')}
+            </Link>
+          </p>
 
-            {/* Cookie Settings Panel */}
-            <AnimatePresence>
-              {showSettings && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="border-t border-gray-100 overflow-hidden"
-                >
-                  <div className="p-6 bg-[#F9FBFC]">
-                    <h4 className="font-semibold text-[#2B3B53] mb-4">{t('settings.title')}</h4>
-                    
-                    <div className="space-y-4">
-                      {/* Necessary Cookies */}
-                      <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100">
-                        <div className="flex-1 pr-4">
-                          <div className="flex items-center gap-2">
-                            <span className="font-medium text-[#2B3B53]">{t('settings.necessary.title')}</span>
-                            <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-500 rounded-full">{t('settings.required')}</span>
-                          </div>
-                          <p className="text-sm text-gray-500 mt-1">{t('settings.necessary.description')}</p>
-                        </div>
-                        <div className="w-12 h-7 bg-[#06ACC1] rounded-full relative cursor-not-allowed opacity-70">
-                          <div className="absolute right-1 top-1 w-5 h-5 bg-white rounded-full shadow" />
-                        </div>
-                      </div>
+          <AnimatePresence initial={false}>
+            {showSettings && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.35, ease: EASE }}
+                className="overflow-hidden"
+              >
+                <ul className="mt-4 divide-y divide-slate-100 border-y border-slate-100">
+                  <li className="flex items-start justify-between gap-4 py-3">
+                    <span className="min-w-0">
+                      <span className="flex items-center gap-2 text-sm font-medium text-[#0B1B3D]">
+                        {t('settings.necessary.title')}
+                        <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-500">{t('settings.required')}</span>
+                      </span>
+                      <span className="block mt-0.5 text-[13px] leading-snug text-slate-500">{t('settings.necessary.description')}</span>
+                    </span>
+                    <Switch on disabled label={t('settings.necessary.title')} />
+                  </li>
+                  {OPTIONAL.map((key) => (
+                    <li key={key} className="flex items-start justify-between gap-4 py-3">
+                      <span className="min-w-0">
+                        <span className="block text-sm font-medium text-[#0B1B3D]">{t(`settings.${key}.title`)}</span>
+                        <span className="block mt-0.5 text-[13px] leading-snug text-slate-500">{t(`settings.${key}.description`)}</span>
+                      </span>
+                      <Switch on={preferences[key]} onChange={() => togglePreference(key)} label={t(`settings.${key}.title`)} />
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-                      {/* Functionality Cookies */}
-                      <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100">
-                        <div className="flex-1 pr-4">
-                          <span className="font-medium text-[#2B3B53]">{t('settings.functionality.title')}</span>
-                          <p className="text-sm text-gray-500 mt-1">{t('settings.functionality.description')}</p>
-                        </div>
-                        <button
-                          onClick={() => togglePreference('functionality')}
-                          className={`w-12 h-7 rounded-full relative transition-colors ${preferences.functionality ? 'bg-[#06ACC1]' : 'bg-gray-200'}`}
-                        >
-                          <motion.div 
-                            className="absolute top-1 w-5 h-5 bg-white rounded-full shadow"
-                            animate={{ left: preferences.functionality ? '22px' : '4px' }}
-                            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                          />
-                        </button>
-                      </div>
-
-                      {/* Analytics Cookies */}
-                      <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100">
-                        <div className="flex-1 pr-4">
-                          <span className="font-medium text-[#2B3B53]">{t('settings.analytics.title')}</span>
-                          <p className="text-sm text-gray-500 mt-1">{t('settings.analytics.description')}</p>
-                        </div>
-                        <button
-                          onClick={() => togglePreference('analytics')}
-                          className={`w-12 h-7 rounded-full relative transition-colors ${preferences.analytics ? 'bg-[#06ACC1]' : 'bg-gray-200'}`}
-                        >
-                          <motion.div 
-                            className="absolute top-1 w-5 h-5 bg-white rounded-full shadow"
-                            animate={{ left: preferences.analytics ? '22px' : '4px' }}
-                            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                          />
-                        </button>
-                      </div>
-
-                      {/* Advertisement Cookies */}
-                      <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100">
-                        <div className="flex-1 pr-4">
-                          <span className="font-medium text-[#2B3B53]">{t('settings.advertisement.title')}</span>
-                          <p className="text-sm text-gray-500 mt-1">{t('settings.advertisement.description')}</p>
-                        </div>
-                        <button
-                          onClick={() => togglePreference('advertisement')}
-                          className={`w-12 h-7 rounded-full relative transition-colors ${preferences.advertisement ? 'bg-[#06ACC1]' : 'bg-gray-200'}`}
-                        >
-                          <motion.div 
-                            className="absolute top-1 w-5 h-5 bg-white rounded-full shadow"
-                            animate={{ left: preferences.advertisement ? '22px' : '4px' }}
-                            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                          />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 flex justify-end">
-                      <button
-                        onClick={acceptSelected}
-                        className="px-6 py-2.5 rounded-full bg-[#06ACC1] text-white font-semibold text-sm hover:bg-[#0597a9] transition-colors"
-                      >
-                        {t('savePreferences')}
-                      </button>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          {/* Accept and decline side by side, with the same size; in the settings, saving the choice takes the place of declining */}
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={showSettings ? acceptSelected : rejectAll}
+              className="px-4 py-2.5 rounded-full bg-white ring-1 ring-slate-200 text-sm font-semibold text-[#0B1B3D] hover:ring-slate-300 hover:bg-slate-50 transition"
+            >
+              {showSettings ? t('savePreferences') : t('rejectAll')}
+            </button>
+            <button type="button" onClick={acceptAll} className="px-4 py-2.5 rounded-full bg-[#0B1B3D] text-sm font-semibold text-white hover:bg-[#13285a] transition-colors">
+              {t('acceptAll')}
+            </button>
           </div>
-        </motion.div>
+          {!showSettings && (
+            <button
+              type="button"
+              onClick={() => setShowSettings(true)}
+              aria-expanded={showSettings}
+              className="mt-3 w-full text-center text-[13px] font-medium text-slate-500 hover:text-[#0B1B3D] transition-colors"
+            >
+              {t('customize')}
+            </button>
+          )}
+        </motion.section>
       )}
     </AnimatePresence>
   );

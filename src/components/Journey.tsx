@@ -94,7 +94,7 @@ export default function Journey() {
                   <h3 className="text-lg font-semibold text-[#0B1B3D] tracking-tight leading-snug md:max-w-[14rem] md:mx-auto text-balance">{step.title}</h3>
                   {step.detail && <p className="mt-2 text-sm text-slate-600 leading-relaxed md:max-w-[15rem] md:mx-auto">{step.detail}</p>}
                   <p className="mt-3 text-sm text-slate-500">
-                    {t('yourPart')}: <span className="font-semibold text-[#0B1B3D]">{step.part}</span>
+                    {journey?.partLabel ?? t('yourPart')}: <span className="font-semibold text-[#0B1B3D]">{step.part}</span>
                   </p>
                 </div>
               </motion.li>
