@@ -40,11 +40,10 @@ export default function middleware(request: NextRequest) {
   const choice = legacy ?? request.cookies.get(CHOICE_COOKIE)?.value;
   if (!isTailoredId(choice)) return response;
 
-  // Other parameters are kept as written (a flag such as ?demo-nudge gets no "=")
-  const kept = request.nextUrl.search
-    .slice(1)
-    .split('&')
-    .filter((part) => part && !SPECIALTY_URL_PARAMS.includes(decodeURIComponent(part.split('=')[0])));
+  // Other parameters are kept; a bare flag such as ?demo-nudge becomes ?demo-nudge=1, as hosts drop empty values on redirect
+  const kept = [...request.nextUrl.searchParams.entries()]
+    .filter(([key]) => !SPECIALTY_URL_PARAMS.includes(key))
+    .map(([key, value]) => `${encodeURIComponent(key)}=${value === '' ? '1' : encodeURIComponent(value)}`);
   const target = `${getLocalizedPath(locale, disciplinePath(choice, locale, rest))}${kept.length ? `?${kept.join('&')}` : ''}`;
   const redirect = NextResponse.redirect(new URL(target, request.url), legacy ? 308 : 307);
   if (legacy) redirect.cookies.set(CHOICE_COOKIE, choice, { path: '/', maxAge: 31536000, sameSite: 'lax' });
