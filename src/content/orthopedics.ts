@@ -16,7 +16,7 @@ export type ModuleKey =
   | 'documentGeneration'
   | 'smartFollowUp';
 
-import type { SpecialtyId } from '@/lib/specialty';
+import type { SpecialtyId } from '@/lib/disciplines';
 
 export interface SpecialtyUiCopy {
   promptTitle: string;
@@ -27,6 +27,8 @@ export interface SpecialtyUiCopy {
   untailored: (label: string) => string;
   untailoredOther: string;
   ok: string;
+  /** Under the chips: more disciplines are on the way, with a link that opens the demo booking. */
+  more: { before: string; link: string; after: string };
   specialties: Record<SpecialtyId, string>;
 }
 
@@ -40,6 +42,7 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
     untailored: (label) => `Bedankt! Voor ${label} tonen we voorlopig onze algemene voorbeelden.`,
     untailoredOther: 'Bedankt! U ziet nu onze algemene voorbeelden.',
     ok: 'Oké',
+    more: { before: 'Er komen elke dag disciplines bij. Kom snel terug, of ', link: 'vraag een persoonlijke demo aan', after: '.' },
     specialties: {
       orthopedics: 'Orthopedie',
       generalPractice: 'Huisartsgeneeskunde',
@@ -70,6 +73,7 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
     untailored: (label) => `Thanks! For ${label} we show our general examples for now.`,
     untailoredOther: 'Thanks! You are now seeing our general examples.',
     ok: 'OK',
+    more: { before: 'New disciplines are added every day. Check back soon, or ', link: 'book a personalised demo', after: '.' },
     specialties: {
       orthopedics: 'Orthopaedics',
       generalPractice: 'General practice',
@@ -100,6 +104,7 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
     untailored: (label) => `Merci ! Pour la discipline ${label}, nous montrons pour l’instant nos exemples généraux.`,
     untailoredOther: 'Merci ! Vous voyez maintenant nos exemples généraux.',
     ok: 'OK',
+    more: { before: 'De nouvelles disciplines s’ajoutent chaque jour. Revenez bientôt, ou ', link: 'demandez une démo personnalisée', after: '.' },
     specialties: {
       orthopedics: 'Orthopédie',
       generalPractice: 'Médecine générale',

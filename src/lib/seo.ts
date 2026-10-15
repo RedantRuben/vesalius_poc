@@ -62,6 +62,7 @@ export function buildPageMetadata({
   keywords,
   noindex = false,
   includeLanguageAlternates = true,
+  languages,
 }: {
   locale: SiteLocale;
   pathname: string;
@@ -70,6 +71,8 @@ export function buildPageMetadata({
   keywords?: string[];
   noindex?: boolean;
   includeLanguageAlternates?: boolean;
+  /** Per-language URLs when the path differs between languages (discipline pages); defaults to the same path in each. */
+  languages?: Record<string, string>;
 }): Metadata {
   const canonical = getAbsoluteUrl(locale, pathname);
   const fullTitle = buildPageTitle(title);
@@ -97,7 +100,7 @@ export function buildPageMetadata({
     keywords,
     alternates: {
       canonical,
-      languages: includeLanguageAlternates ? getLanguageAlternates(pathname) : undefined,
+      languages: includeLanguageAlternates ? (languages ?? getLanguageAlternates(pathname)) : undefined,
     },
     openGraph: {
       type: 'website',

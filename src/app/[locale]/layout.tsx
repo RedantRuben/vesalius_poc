@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -39,7 +40,10 @@ export default async function LocaleLayout({
         <DemoNudge />
       </SpecialtyProvider>
       <BookingDialog />
-      <MatomoAnalytics />
+      {/* Reads the query string; the boundary lets pages that are rendered ahead of time (the discipline pages) stay static */}
+      <Suspense fallback={null}>
+        <MatomoAnalytics />
+      </Suspense>
       <CookieConsent />
     </NextIntlClientProvider>
   );

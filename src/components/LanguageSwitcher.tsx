@@ -3,12 +3,18 @@
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from '@/i18n/routing';
 import { useTransition } from 'react';
+import { localizePath, parseDisciplinePath, type SiteLocale } from '@/lib/disciplines';
 
 const LANGUAGES = [
   { code: 'nl', label: 'Nederlands' },
   { code: 'en', label: 'English' },
   { code: 'fr', label: 'Français' },
 ] as const;
+
+/** English has no /en prefix, so the server goes by this cookie; update it before switching, or it sends the visitor back. */
+function rememberLocale(locale: string) {
+  document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=31536000; samesite=lax`;
+}
 
 /** Segmented language control for the dark footer. */
 export default function LanguageSwitcher() {
@@ -18,8 +24,16 @@ export default function LanguageSwitcher() {
   const [isPending, startTransition] = useTransition();
 
   const onSelectChange = (nextLocale: string) => {
+    rememberLocale(nextLocale);
+    // A discipline page loads afresh at the explicit address (/en/ent → /ent), so the server sets the language
+    // itself; a soft navigation can be sent back to the old language by the router cache
+    if (parseDisciplinePath(locale as SiteLocale, pathname)) {
+      window.location.assign(`/${nextLocale}${localizePath(pathname, locale as SiteLocale, nextLocale as SiteLocale)}${window.location.hash}`);
+      return;
+    }
     startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
+      // A discipline page keeps its discipline, in the other language's word: /nl/nko → /fr/orl
+      router.replace(localizePath(pathname, locale as SiteLocale, nextLocale as SiteLocale), { locale: nextLocale });
     });
   };
 

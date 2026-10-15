@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/i18n/routing';
 import { MODULES, PHASE_MESSAGE_KEY, PHASES, type ModuleEntry } from '@/lib/modules';
 import type { UiCopy } from './content';
+import { useSpecialty } from '@/lib/specialty';
 
 export const ModuleIcon = ({ entry, size = 20 }: { entry: ModuleEntry; size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -26,6 +27,8 @@ const Arrow = ({ direction }: { direction: 'left' | 'right' }) => (
 export default function ModuleDock({ current, ui }: { current: ModuleEntry; ui: UiCopy }) {
   const t = useTranslations('Modules');
   const router = useRouter();
+  // Inside a discipline, the dock stays in it: /orthopaedics/product/…
+  const { href } = useSpecialty();
   const index = MODULES.findIndex((m) => m.slug === current.slug);
   const prev = MODULES[(index - 1 + MODULES.length) % MODULES.length];
   const next = MODULES[(index + 1) % MODULES.length];
@@ -52,11 +55,11 @@ export default function ModuleDock({ current, ui }: { current: ModuleEntry; ui: 
       const at = MODULES.findIndex((m) => m.slug === slug);
       if (at === -1) return;
       const step = event.key === 'ArrowLeft' ? -1 : 1;
-      router.push(`/product/${MODULES[(at + step + MODULES.length) % MODULES.length].slug}`);
+      router.push(href(`/product/${MODULES[(at + step + MODULES.length) % MODULES.length].slug}`));
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [router]);
+  }, [router, href]);
 
   return (
     <motion.nav
@@ -69,7 +72,7 @@ export default function ModuleDock({ current, ui }: { current: ModuleEntry; ui: 
     >
       <div className="flex items-center gap-1 p-1.5 rounded-full bg-white/80 backdrop-blur-xl backdrop-saturate-150 ring-1 ring-slate-200/80 shadow-[0_20px_50px_-20px_rgba(11,27,61,0.45)]">
         <Link
-          href={`/product/${prev.slug}`}
+          href={href(`/product/${prev.slug}`)}
           aria-label={`${ui.previous}: ${t(`${prev.key}.title`)}`}
           className="hidden sm:flex w-10 h-10 rounded-full items-center justify-center text-slate-500 hover:text-[#0B1B3D] hover:bg-slate-100 transition-colors"
         >
@@ -85,7 +88,7 @@ export default function ModuleDock({ current, ui }: { current: ModuleEntry; ui: 
                 return (
                   <Link
                     key={entry.slug}
-                    href={`/product/${entry.slug}`}
+                    href={href(`/product/${entry.slug}`)}
                     aria-current={active ? 'page' : undefined}
                     className={`group relative w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-colors ${
                       active ? 'text-white' : 'text-slate-500 hover:text-[#0B1B3D] hover:bg-slate-100'
@@ -113,7 +116,7 @@ export default function ModuleDock({ current, ui }: { current: ModuleEntry; ui: 
         ))}
 
         <Link
-          href={`/product/${next.slug}`}
+          href={href(`/product/${next.slug}`)}
           aria-label={`${ui.next}: ${t(`${next.key}.title`)}`}
           className="hidden sm:flex w-10 h-10 rounded-full items-center justify-center text-slate-500 hover:text-[#0B1B3D] hover:bg-slate-100 transition-colors"
         >

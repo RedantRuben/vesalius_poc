@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import ContactForm from '@/components/forms/ContactForm';
@@ -67,7 +67,10 @@ export default function Contact({ sourcePage = '/' }: { sourcePage?: string }) {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="lg:col-span-7 bg-white ring-1 ring-slate-200/70 p-8 md:p-12 rounded-[28px]"
           >
-            <ContactForm sourcePage={sourcePage} />
+            {/* The form reads ?plan= from the URL; the boundary keeps pages rendered ahead of time static */}
+            <Suspense fallback={null}>
+              <ContactForm sourcePage={sourcePage} />
+            </Suspense>
           </motion.div>
 
           {/* Contact Info & Map */}

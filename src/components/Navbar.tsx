@@ -10,13 +10,14 @@ import { useSpecialty } from '@/lib/specialty';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { specialty, openMenu } = useSpecialty();
+  const { specialty, openMenu, tailored, href } = useSpecialty();
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations('Navbar');
   const pathname = usePathname();
 
-  const isHomePage = pathname === '/';
+  // A discipline's homepage (/orthopaedics) counts as the homepage too
+  const isHomePage = pathname === '/' || (tailored !== null && pathname === href('/'));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,7 +88,7 @@ export default function Navbar() {
       >
         <nav className="flex items-center justify-between px-6 w-full">
           <div className="flex items-center z-50">
-            <Link href="/">
+            <Link href={href('/')}>
               <Image
                 src="/vesalius-logo-with-text.svg"
                 alt="Vesalius.ai Logo"
@@ -101,10 +102,10 @@ export default function Navbar() {
         
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            <NavItem href="/" isActive={isOverviewActive} label={t('overview')} />
-            <NavItem href="/#product" isActive={isProductActive} label={t('product')} />
-            <NavItem href="/#pricing" isActive={isPricingActive} label={t('pricing')} />
-            <NavItem href="/#contact" isActive={isContactActive} label={t('contact')} />
+            <NavItem href={href('/')} isActive={isOverviewActive} label={t('overview')} />
+            <NavItem href={href('/#product')} isActive={isProductActive} label={t('product')} />
+            <NavItem href={href('/#pricing')} isActive={isPricingActive} label={t('pricing')} />
+            <NavItem href={href('/#contact')} isActive={isContactActive} label={t('contact')} />
             <NavItem href="/security" isActive={pathname === '/security'} label={t('security')} />
             <NavItem href="/about" isActive={pathname === '/about'} label={t('about')} />
           </div>
@@ -156,10 +157,10 @@ export default function Navbar() {
                 transition={{ duration: 0.2 }}
                 className="absolute top-[120%] left-0 right-0 bg-white rounded-2xl shadow-xl md:hidden p-6 flex flex-col gap-2 mt-2 border border-slate-100"
               >
-                <MobileNavItem href="/" isActive={isOverviewActive} label={t('overview')} onClick={() => setIsOpen(false)} />
-                <MobileNavItem href="/#product" isActive={isProductActive} label={t('product')} onClick={() => setIsOpen(false)} />
-                <MobileNavItem href="/#pricing" isActive={isPricingActive} label={t('pricing')} onClick={() => setIsOpen(false)} />
-                <MobileNavItem href="/#contact" isActive={isContactActive} label={t('contact')} onClick={() => setIsOpen(false)} />
+                <MobileNavItem href={href('/')} isActive={isOverviewActive} label={t('overview')} onClick={() => setIsOpen(false)} />
+                <MobileNavItem href={href('/#product')} isActive={isProductActive} label={t('product')} onClick={() => setIsOpen(false)} />
+                <MobileNavItem href={href('/#pricing')} isActive={isPricingActive} label={t('pricing')} onClick={() => setIsOpen(false)} />
+                <MobileNavItem href={href('/#contact')} isActive={isContactActive} label={t('contact')} onClick={() => setIsOpen(false)} />
                 <MobileNavItem href="/security" isActive={pathname === '/security'} label={t('security')} onClick={() => setIsOpen(false)} />
                 <MobileNavItem href="/about" isActive={pathname === '/about'} label={t('about')} onClick={() => setIsOpen(false)} />
                 

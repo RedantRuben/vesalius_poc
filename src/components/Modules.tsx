@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
+import { useSpecialty } from '@/lib/specialty';
 import { useLocale, useTranslations } from 'next-intl';
 import { useTailoredHome } from '@/content/tailored';
 
@@ -422,7 +423,7 @@ interface ModuleConfig {
 
 function ModuleCard({ module, index }: { module: ModuleConfig; index: number }) {
   const t = useTranslations('Modules');
-  const locale = useLocale();
+  const { href } = useSpecialty();
   // Tailored specialty: each card follows the same patient.
   const tailoredCard = useTailoredHome()?.modules.cards[module.key] ?? null;
 
@@ -435,7 +436,7 @@ function ModuleCard({ module, index }: { module: ModuleConfig; index: number }) 
       className={module.span}
     >
       <Link
-        href={`/${locale}/product/${module.slug}`}
+        href={href(`/product/${module.slug}`)}
         scroll={true}
         className="group flex flex-col h-full min-h-[460px] bg-white rounded-[28px] p-8 md:p-10 relative overflow-hidden ring-1 ring-slate-200/70 hover:ring-slate-300 hover:shadow-[0_40px_80px_-40px_rgba(11,27,61,0.35)] transition-[box-shadow,transform] duration-500 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06ACC1]"
       >

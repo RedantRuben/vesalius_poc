@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useSpecialty } from '@/lib/specialty';
 
 const icon = 'mt-0.5 text-white/40 group-hover:text-[#5FD4E2] transition-colors shrink-0';
 
@@ -86,6 +87,7 @@ const linkClass =
 const headingClass = 'text-white text-sm font-semibold mb-5';
 
 export default function Footer() {
+  const { href } = useSpecialty();
   const t = useTranslations('Footer');
 
   const columns = [
@@ -144,7 +146,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12 pb-16 md:pb-20">
             {/* Brand: logo, where we are and how to reach us */}
             <div className="col-span-2 lg:col-span-6">
-              <Link href="/" className="inline-block hover:opacity-80 transition-opacity" aria-label="Vesalius.ai">
+              <Link href={href('/')} className="inline-block hover:opacity-80 transition-opacity" aria-label="Vesalius.ai">
                 <Image src="/vesalius-logo-with-text-footer.svg" alt="Vesalius.ai" width={237} height={41} className="h-8 w-auto" />
               </Link>
               <ul className="mt-8 space-y-3">

@@ -5,7 +5,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import { usePathname } from '@/i18n/routing';
 import { SPECIALTY_UI, type SiteLocale } from '@/content/orthopedics';
-import { SPECIALTY_IDS, askedThisVisit, useSpecialty } from '@/lib/specialty';
+import { openBooking } from '@/components/BookingDialog';
+import { TAILORED, askedThisVisit, useSpecialty } from '@/lib/specialty';
 
 const COOKIE_EVENT = 'cookie-consent-updated';
 /** Elements that belong to the chooser; a press anywhere else closes it. */
@@ -112,6 +113,9 @@ export function SpecialtyPill({ className = '', onClick }: { className?: string;
 export function SpecialtyPanel({ anchor, className = '' }: { anchor: 'pill' | 'bar'; className?: string }) {
   const { specialty, menuOpen, notice, choose, closeMenu } = useSpecialty();
   const copy = useCopy();
+  const locale = useLocale();
+  // Only the disciplines that have their own pages, alphabetically in the site language
+  const offered = [...TAILORED].sort((a, b) => copy.specialties[a].localeCompare(copy.specialties[b], locale));
   const position = anchor === 'pill' ? 'right-0 w-[400px] origin-top-right' : 'left-2 right-2 sm:left-auto sm:w-[400px] origin-top';
 
   return (
@@ -156,7 +160,8 @@ export function SpecialtyPanel({ anchor, className = '' }: { anchor: 'pill' | 'b
             <>
               <p className="mt-0.5 text-[14px] text-slate-500 leading-snug">{copy.promptBody}</p>
               <div className="mt-3 -mx-1 flex flex-wrap gap-1.5 max-h-[52vh] overflow-y-auto p-1">
-                {SPECIALTY_IDS.map((id) => {
+                {/* The disciplines with their own pages, then the standard site as the last option */}
+                {[...offered, 'general' as const].map((id) => {
                   const selected = specialty === id;
                   return (
                     <button
@@ -168,18 +173,25 @@ export function SpecialtyPanel({ anchor, className = '' }: { anchor: 'pill' | 'b
                         selected ? 'bg-[#0B1B3D] text-white' : 'ring-1 ring-slate-200 text-[#0B1B3D] hover:ring-[#0B1B3D] hover:bg-slate-50'
                       }`}
                     >
-                      {copy.specialties[id]}
+                      {id === 'general' ? copy.browse : copy.specialties[id]}
                     </button>
                   );
                 })}
               </div>
-              <button
-                type="button"
-                onClick={() => choose('general')}
-                className="mt-3 w-full rounded-full text-slate-500 text-[13px] font-medium py-2 hover:text-[#0B1B3D] hover:bg-slate-50 transition-colors"
-              >
-                {copy.browse}
-              </button>
+              <p className="mt-3 text-[13px] text-slate-500 leading-snug">
+                {copy.more.before}
+                <button
+                  type="button"
+                  onClick={() => {
+                    closeMenu();
+                    openBooking('Discipline picker');
+                  }}
+                  className="font-medium text-[#0B1B3D] underline underline-offset-4 decoration-slate-300 hover:decoration-[#0B1B3D]"
+                >
+                  {copy.more.link}
+                </button>
+                {copy.more.after}
+              </p>
             </>
           )}
         </motion.div>
