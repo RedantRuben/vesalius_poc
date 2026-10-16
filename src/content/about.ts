@@ -38,10 +38,12 @@ export interface AboutCopy {
     surgeon: string;
     customerSuccess: string;
     origin: string;
+    manyMore: string;
     careersTitle: string;
     careersBody: string;
     careersCta: string;
   };
+  board: { title: string; body: string; cta: string; subject: string };
   ghent: { title: string; paragraphs: string[]; contactTitle: string; mapLabel: string };
 }
 
@@ -126,7 +128,9 @@ export const ABOUT: Record<SiteLocale, AboutCopy> = {
         { when: 'The beginning', what: 'A first prototype of AI-assisted anamnesis, built with hip and knee surgeons in Ghent.' },
         { when: 'July 2024', what: 'Vesalius Health is founded in Ghent.' },
         { when: 'September 2024', what: 'Vesalius launches for doctors.' },
-        { when: 'March 2025', what: 'At Medical Update in the Mountains, we show how Vesalius automates clinical workflows with AI agents.' },
+        { when: 'March 2025', what: 'We bring Vesalius to the AAOS Annual Meeting in San Diego.' },
+        { when: 'May 2025', what: 'Vesalius is approved by its first hospital.' },
+        { when: 'July 2026', what: 'The Vesalius mobile app launches on iOS and Android.' },
         { when: 'Today', what: 'Eight modules, one assistant: from the first patient message to the last follow-up.' },
       ],
     },
@@ -137,9 +141,16 @@ export const ABOUT: Record<SiteLocale, AboutCopy> = {
       surgeon: 'Orthopaedic surgeon, hip & knee',
       customerSuccess: 'Customer Success',
       origin: 'Vesalius grew out of the engineering team at Endare, a Ghent software studio founded in 2012.',
+      manyMore: 'And many more',
       careersTitle: 'Want to build this with us?',
       careersBody: 'We’re always happy to hear from engineers, designers and clinicians who care about better care.',
       careersCta: 'Say hello',
+    },
+    board: {
+      title: 'Our medical advisory board is taking shape.',
+      body: 'We’re bringing together clinicians from every discipline we build for, to review how Vesalius handles their field. The first conversations are under way.',
+      cta: 'Get in touch',
+      subject: 'Medical advisory board',
     },
     ghent: {
       title: 'Made in Ghent',
@@ -231,7 +242,9 @@ export const ABOUT: Record<SiteLocale, AboutCopy> = {
         { when: 'Het begin', what: 'Een eerste prototype van AI-ondersteunde anamnese, gebouwd met heup- en kniechirurgen in Gent.' },
         { when: 'Juli 2024', what: 'Vesalius Health wordt opgericht in Gent.' },
         { when: 'September 2024', what: 'Vesalius gaat live voor artsen.' },
-        { when: 'Maart 2025', what: 'Op Medical Update in the Mountains tonen we hoe Vesalius klinische workflows automatiseert met AI-agents.' },
+        { when: 'Maart 2025', what: 'We brengen Vesalius naar het AAOS-jaarcongres in San Diego.' },
+        { when: 'Mei 2025', what: 'Het eerste ziekenhuis keurt Vesalius goed.' },
+        { when: 'Juli 2026', what: 'De Vesalius-app verschijnt voor iOS en Android.' },
         { when: 'Vandaag', what: 'Acht modules, één assistent: van het eerste bericht van de patiënt tot de laatste opvolging.' },
       ],
     },
@@ -242,9 +255,16 @@ export const ABOUT: Record<SiteLocale, AboutCopy> = {
       surgeon: 'Orthopedisch chirurg, heup en knie',
       customerSuccess: 'Customer Success',
       origin: 'Vesalius groeide uit het ingenieursteam van Endare, een Gentse softwarestudio opgericht in 2012.',
+      manyMore: 'En vele anderen',
       careersTitle: 'Wilt u dit mee bouwen?',
       careersBody: 'We horen graag van ingenieurs, designers en clinici die betere zorg belangrijk vinden.',
       careersCta: 'Stuur ons een bericht',
+    },
+    board: {
+      title: 'Onze medische adviesraad is in opbouw.',
+      body: 'We brengen zorgverleners samen uit elke discipline waarvoor we bouwen, om te toetsen hoe Vesalius met hun vak omgaat. De eerste gesprekken lopen.',
+      cta: 'Neem contact op',
+      subject: 'Medische adviesraad',
     },
     ghent: {
       title: 'Gemaakt in Gent',
@@ -336,7 +356,9 @@ export const ABOUT: Record<SiteLocale, AboutCopy> = {
         { when: 'Les débuts', what: 'Un premier prototype d’anamnèse assistée par l’IA, conçu avec des chirurgiens de la hanche et du genou à Gand.' },
         { when: 'Juillet 2024', what: 'Vesalius Health est fondée à Gand.' },
         { when: 'Septembre 2024', what: 'Vesalius est lancé pour les médecins.' },
-        { when: 'Mars 2025', what: 'À Medical Update in the Mountains, nous montrons comment Vesalius automatise les flux cliniques avec des agents d’IA.' },
+        { when: 'Mars 2025', what: 'Nous présentons Vesalius au congrès annuel de l’AAOS à San Diego.' },
+        { when: 'Mai 2025', what: 'Un premier hôpital approuve Vesalius.' },
+        { when: 'Juillet 2026', what: 'L’application mobile Vesalius sort sur iOS et Android.' },
         { when: 'Aujourd’hui', what: 'Huit modules, un assistant : du premier message du patient au dernier suivi.' },
       ],
     },
@@ -347,9 +369,16 @@ export const ABOUT: Record<SiteLocale, AboutCopy> = {
       surgeon: 'Chirurgien orthopédiste, hanche et genou',
       customerSuccess: 'Customer Success',
       origin: 'Vesalius est né de l’équipe d’ingénieurs d’Endare, un studio logiciel gantois fondé en 2012.',
+      manyMore: 'Et bien d’autres',
       careersTitle: 'Envie de le construire avec nous ?',
       careersBody: 'Nous sommes toujours heureux d’entendre des ingénieurs, designers et cliniciens qui tiennent à de meilleurs soins.',
       careersCta: 'Écrivez-nous',
+    },
+    board: {
+      title: 'Notre conseil consultatif médical prend forme.',
+      body: 'Nous réunissons des cliniciens de chaque discipline pour laquelle nous construisons, afin d’examiner la façon dont Vesalius traite leur domaine. Les premiers échanges sont en cours.',
+      cta: 'Contactez-nous',
+      subject: 'Conseil consultatif médical',
     },
     ghent: {
       title: 'Fabriqué à Gand',
@@ -367,13 +396,11 @@ export const ABOUT: Record<SiteLocale, AboutCopy> = {
  * The team grid. Add people here (with their consent); `photo` is optional and falls back to initials, so a card can
  * go live before its portrait is taken. Portraits: square-ish, at least 600px wide, in /public/team.
  */
-export const TEAM: { name: string; initials: string; role?: 'cofounder' | 'customerSuccess'; surgeon?: boolean; photo?: string }[] = [
-  { name: 'Sander Goossens', initials: 'SG', role: 'cofounder' },
-  { name: 'Hans Peerlinck', initials: 'HP', role: 'cofounder' },
-  { name: 'Dr. Philippe Van Overschelde', initials: 'PV', role: 'cofounder', surgeon: true },
+export const TEAM: { name: string; initials: string; role?: 'cofounder' | 'customerSuccess'; title?: string; surgeon?: boolean; photo?: string }[] = [
+  // `title` is the job title, the same in every language
+  { name: 'Hans Peerlinck', initials: 'HP', role: 'cofounder', title: 'CEO', photo: '/team/hans-peerlinck.jpg' },
+  { name: 'Sander Goossens', initials: 'SG', role: 'cofounder', title: 'CTO/CIO', photo: '/team/sander-goossens.jpg' },
+  { name: 'Dr. Philippe Van Overschelde', initials: 'PV', role: 'cofounder', surgeon: true, photo: '/team/philippe-van-overschelde.jpg' },
   { name: 'Quinten Schietecatte', initials: 'QS', role: 'customerSuccess', photo: '/team/quinten-portrait.jpg' },
-  // Titles still to confirm: the cards show just the name until then.
-  { name: 'Axel Jonckheere', initials: 'AJ' },
-  { name: 'Navaron Bracke', initials: 'NB' },
-  { name: 'Ruben Redant', initials: 'RR' },
+  { name: 'Axel Jonckheere', initials: 'AJ', title: 'Tech Lead', photo: '/team/axel-jonckheere.jpg' },
 ];

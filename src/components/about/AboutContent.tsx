@@ -27,6 +27,14 @@ const H2 = ({ children, className = '' }: { children: React.ReactNode; className
   <h2 className={`text-[2.25rem] md:text-5xl font-semibold text-[#0B1B3D] tracking-[-0.04em] leading-[1.05] text-balance ${className}`}>{children}</h2>
 );
 
+/** Heading on the left, its introduction on the right: the text uses the width instead of trailing under the heading. */
+const SplitIntro = ({ title, children }: { title: React.ReactNode; children: React.ReactNode }) => (
+  <motion.div {...reveal()} className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-16">
+    <H2 className="lg:col-span-6">{title}</H2>
+    <div className="lg:col-span-6 lg:pt-2">{children}</div>
+  </motion.div>
+);
+
 const MAPS = 'https://www.google.com/maps/search/?api=1&query=Ottergemsesteenweg+Zuid+808B+9000+Gent';
 
 /* ------------------------------------------------------------------ */
@@ -80,9 +88,9 @@ function Hero({ c }: { c: AboutCopy }) {
 function Origin({ c }: { c: AboutCopy }) {
   return (
     <section className={SECTION}>
-      <motion.div {...reveal()} className="max-w-6xl mx-auto px-4 sm:px-6">
-        <H2>{c.origin.title}</H2>
-        <div className={`${AFTER_HEADING} space-y-6 text-xl md:text-2xl leading-relaxed tracking-[-0.01em] text-pretty`}>
+      <motion.div {...reveal()} className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16">
+        <H2 className="lg:col-span-5">{c.origin.title}</H2>
+        <div className="lg:col-span-7 space-y-6 text-xl md:text-2xl leading-relaxed tracking-[-0.01em] text-pretty">
           {c.origin.paragraphs.map((paragraph, i) => (
             <p key={i} className="text-slate-500">
               {paragraph}
@@ -205,10 +213,9 @@ function Doctors({ c }: { c: AboutCopy }) {
   return (
     <section className={SECTION}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div {...reveal()} className="max-w-3xl">
-          <H2>{c.doctors.title}</H2>
-          <p className="mt-5 text-lg md:text-xl text-slate-500 leading-relaxed">{c.doctors.body}</p>
-        </motion.div>
+        <SplitIntro title={c.doctors.title}>
+          <p className="text-lg md:text-xl text-slate-500 leading-relaxed">{c.doctors.body}</p>
+        </SplitIntro>
         <div className={`${AFTER_HEADING} grid grid-cols-1 md:grid-cols-3 gap-5`}>
           {DOCTORS.map((doctor, i) => {
             const quote = t(`doctors.${doctor.id}.quote`);
@@ -329,34 +336,37 @@ function Timeline({ c }: { c: AboutCopy }) {
   const items = c.timeline.items;
   return (
     <section className={SECTION}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div {...reveal()}>
-          <H2>{c.timeline.title}</H2>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+        <motion.div {...reveal()} className="lg:col-span-5">
+          <H2 className="lg:sticky lg:top-32">{c.timeline.title}</H2>
         </motion.div>
-        <div className={`relative ${AFTER_HEADING}`}>
-          {/* Rail: draws across once in view */}
-          <div className="hidden md:block absolute left-[7px] right-[calc(20%-26px)] top-[7px] h-px bg-slate-200" aria-hidden="true">
-            <motion.div
-              className="h-full bg-[#06ACC1] origin-left"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 1.6, ease: 'easeInOut', delay: 0.2 }}
-            />
-          </div>
-          <ol className="relative grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-6 border-l border-slate-200 md:border-0 pl-6 md:pl-0">
+
+        <div className="lg:col-span-7 lg:pt-3">
+          <ol className="space-y-8 md:space-y-10">
             {items.map((item, i) => {
               const now = i === items.length - 1;
               return (
-                <motion.li key={item.when} {...reveal(0.15 + i * 0.18)} className="relative">
+                <motion.li key={item.when} {...reveal(0.1 + i * 0.08)} className="relative pl-10 sm:grid sm:grid-cols-[8.5rem_1fr] sm:gap-4">
+                  {/* Rail to the next milestone, filling in as it enters */}
+                  {!now && (
+                    <span aria-hidden="true" className="absolute left-[7px] top-6 -bottom-8 md:-bottom-10 w-px bg-slate-200">
+                      <motion.span
+                        className="block w-full h-full bg-[#06ACC1] origin-top"
+                        initial={{ scaleY: 0 }}
+                        whileInView={{ scaleY: 1 }}
+                        viewport={{ once: true, margin: '-80px' }}
+                        transition={{ duration: 0.6, ease: 'easeInOut', delay: 0.25 }}
+                      />
+                    </span>
+                  )}
                   <span
                     aria-hidden="true"
-                    className={`absolute -left-[31px] md:left-0 top-0.5 md:top-0 w-[15px] h-[15px] rounded-full ring-4 ring-[#FAFAFB] ${now ? 'bg-[#06ACC1]' : 'bg-white border-2 border-[#06ACC1]'}`}
+                    className={`absolute left-0 top-[5px] w-[15px] h-[15px] rounded-full ring-4 ring-[#FAFAFB] ${now ? 'bg-[#06ACC1]' : 'bg-white border-2 border-[#06ACC1]'}`}
                   >
                     {now && <span className="absolute inset-0 rounded-full bg-[#06ACC1] animate-ping opacity-40 [animation-duration:2.4s]" />}
                   </span>
-                  <p className="md:mt-8 text-sm font-semibold text-[#0597a9]">{item.when}</p>
-                  <p className="mt-2 text-[15px] md:text-base text-[#0B1B3D] leading-relaxed md:pr-4">{item.what}</p>
+                  <p className="text-[15px] md:text-base font-semibold text-[#0597a9] leading-relaxed">{item.when}</p>
+                  <p className={`mt-1 sm:mt-0 text-lg md:text-xl leading-relaxed text-pretty ${now ? 'font-semibold text-[#0B1B3D]' : 'text-[#0B1B3D]'}`}>{item.what}</p>
                 </motion.li>
               );
             })}
@@ -374,7 +384,7 @@ function PersonCard({ person, c }: { person: (typeof TEAM)[number]; c: AboutCopy
     <div className="h-full bg-white rounded-[24px] ring-1 ring-slate-200/70 p-2 pb-5">
       <div className="relative aspect-square rounded-[18px] overflow-hidden bg-gradient-to-br from-[#EBF6F8] to-[#F1F4F7]">
         {person.photo ? (
-          <Image src={person.photo} alt={person.name} fill sizes="(min-width: 1024px) 270px, 50vw" className="object-cover object-top" />
+          <Image src={person.photo} alt={person.name} fill sizes="(min-width: 1024px) 370px, 50vw" className="object-cover object-top" />
         ) : (
           // Placeholder until the portrait is taken
           <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center text-4xl md:text-5xl font-semibold tracking-[-0.04em] text-[#0B1B3D]/15">
@@ -384,15 +394,13 @@ function PersonCard({ person, c }: { person: (typeof TEAM)[number]; c: AboutCopy
       </div>
       <div className="px-3 pt-4">
         <p className="text-[15px] md:text-base font-semibold text-[#0B1B3D] tracking-[-0.01em] leading-snug">{person.name}</p>
-        {person.role && (
+        {(person.role || person.title) && (
           <p className="mt-1 text-[13px] md:text-sm text-slate-500 leading-snug">
-            {c.people[person.role]}
-            {person.surgeon && (
-              <>
-                <br />
-                {c.people.surgeon}
-              </>
-            )}
+            {[person.role && c.people[person.role], person.title, person.surgeon && c.people.surgeon].filter(Boolean).map((line, i) => (
+              <span key={i} className="block">
+                {line}
+              </span>
+            ))}
           </p>
         )}
       </div>
@@ -404,24 +412,26 @@ function People({ c }: { c: AboutCopy }) {
   return (
     <section className={SECTION}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div {...reveal()} className="max-w-3xl">
-          <H2>{c.people.title}</H2>
-          <p className="mt-5 text-lg md:text-xl text-slate-500 leading-relaxed">{c.people.body}</p>
+        <SplitIntro title={c.people.title}>
+          <p className="text-lg md:text-xl text-slate-500 leading-relaxed">{c.people.body}</p>
           <p className="mt-3 text-[15px] text-slate-400 leading-relaxed">{c.people.origin}</p>
-        </motion.div>
+        </SplitIntro>
 
-        <ul className={`${AFTER_HEADING} grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4`}>
+        <ul className={`${AFTER_HEADING} grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4`}>
           {TEAM.map((person, i) => (
-            <motion.li key={person.name} {...reveal((i % 4) * 0.06)}>
+            <motion.li key={person.name} {...reveal((i % 3) * 0.06)}>
               <PersonCard person={person} c={c} />
             </motion.li>
           ))}
           {/* An open seat at the end */}
           <motion.li {...reveal(0.18)}>
             <div className="h-full rounded-[24px] bg-[#0B1B3D] p-5 md:p-6 flex flex-col">
-              <span aria-hidden="true" className="w-10 h-10 rounded-full ring-1 ring-white/20 text-white/70 flex items-center justify-center text-xl font-light">
-                +
-              </span>
+              <div className="flex items-center gap-3">
+                <span aria-hidden="true" className="w-10 h-10 shrink-0 rounded-full ring-1 ring-white/25 text-white/80 flex items-center justify-center text-xl font-light">
+                  +
+                </span>
+                <p className="text-[15px] md:text-base font-semibold text-white leading-snug">{c.people.manyMore}</p>
+              </div>
               <p className="mt-auto pt-8 text-lg font-semibold text-white tracking-[-0.01em] leading-snug text-balance">{c.people.careersTitle}</p>
               <p className="mt-2 text-[14px] text-white/60 leading-relaxed">{c.people.careersBody}</p>
               <a href="mailto:help@vesalius.health" className="group mt-4 inline-flex items-center gap-2 text-[14px] font-semibold text-[#5FD4E2] hover:text-white transition-colors w-fit">
@@ -431,8 +441,33 @@ function People({ c }: { c: AboutCopy }) {
             </div>
           </motion.li>
         </ul>
+
+        <AdvisoryBoard c={c} />
       </div>
     </section>
+  );
+}
+
+/** The medical advisory board, being formed: what it is, where it stands, and a way to take part. */
+function AdvisoryBoard({ c }: { c: AboutCopy }) {
+  const b = c.board;
+  return (
+    <motion.div
+      {...reveal(0.1)}
+      className="mt-3 md:mt-4 bg-white rounded-[24px] ring-1 ring-slate-200/70 p-6 sm:p-8 md:p-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-12"
+    >
+      <div className="max-w-2xl">
+        <h3 className="text-2xl md:text-[1.75rem] font-semibold text-[#0B1B3D] tracking-[-0.03em] leading-tight text-balance">{b.title}</h3>
+        <p className="mt-3 text-[15px] md:text-base text-slate-500 leading-relaxed">{b.body}</p>
+      </div>
+      <a
+        href={`mailto:help@vesalius.health?subject=${encodeURIComponent(b.subject)}`}
+        className="group shrink-0 inline-flex items-center gap-2 self-start md:self-auto rounded-full bg-[#0B1B3D] px-5 py-2.5 text-[14px] font-semibold text-white hover:bg-[#13285a] transition-colors"
+      >
+        {b.cta}
+        <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+      </a>
+    </motion.div>
   );
 }
 
