@@ -400,7 +400,6 @@ export const TEAM: { name: string; initials: string; role?: 'cofounder' | 'custo
   // `title` is the job title, the same in every language
   { name: 'Hans Peerlinck', initials: 'HP', role: 'cofounder', title: 'CEO', photo: '/team/hans-peerlinck.jpg' },
   { name: 'Sander Goossens', initials: 'SG', role: 'cofounder', title: 'CTO/CIO', photo: '/team/sander-goossens.jpg' },
-  { name: 'Dr. Philippe Van Overschelde', initials: 'PV', role: 'cofounder', surgeon: true, photo: '/team/philippe-van-overschelde.jpg' },
   { name: 'Quinten Schietecatte', initials: 'QS', role: 'customerSuccess', photo: '/team/quinten-portrait.jpg' },
   { name: 'Axel Jonckheere', initials: 'AJ', title: 'Tech Lead', photo: '/team/axel-jonckheere.jpg' },
 ];

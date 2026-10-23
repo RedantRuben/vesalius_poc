@@ -42,7 +42,6 @@ export default async function AboutPage() {
     founder: [
       { '@type': 'Person', name: 'Sander Goossens' },
       { '@type': 'Person', name: 'Hans Peerlinck' },
-      { '@type': 'Person', name: 'Philippe Van Overschelde' },
     ],
     sameAs: ['https://www.linkedin.com/company/vesaliushealth'],
   };
