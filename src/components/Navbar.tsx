@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Link, usePathname } from '@/i18n/routing';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { QuestionDot, SpecialtyPanel, SpecialtyPill } from '@/components/SpecialtyPrompt';
+import { QuestionDot, SpecialtyPill } from '@/components/SpecialtyPrompt';
 import { useSpecialty } from '@/lib/specialty';
 
 export default function Navbar() {
@@ -114,7 +114,6 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <div className="relative hidden lg:block">
               <SpecialtyPill />
-              <SpecialtyPanel anchor="pill" />
             </div>
             <a href="https://assistant.vesalius.ai/onboarding/credentials" target="_blank" rel="noopener noreferrer" className="rounded-full bg-[#0B1B3D] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#13285a] transition-colors flex items-center gap-1.5">
               {t('tryForFree')}
@@ -144,8 +143,6 @@ export default function Navbar() {
               </svg>
             )}
           </button>
-
-          <SpecialtyPanel anchor="bar" className="lg:hidden" />
 
           {/* Mobile Navigation Overlay */}
           <AnimatePresence>

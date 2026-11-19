@@ -21,13 +21,16 @@ import type { SpecialtyId } from '@/lib/disciplines';
 export interface SpecialtyUiCopy {
   promptTitle: string;
   promptBody: string;
+  search: string;
+  noResults: string;
+  close: string;
   browse: string;
   switchLabel: string;
   /** Shown after picking a specialty without tailored content yet. */
   untailored: (label: string) => string;
   untailoredOther: string;
   ok: string;
-  /** Under the chips: more disciplines are on the way, with a link that opens the demo booking. */
+  /** Under the choices: more disciplines are on the way, with a link that opens the demo booking. */
   more: { before: string; link: string; after: string };
   specialties: Record<SpecialtyId, string>;
 }
@@ -37,6 +40,9 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
   nl: {
     promptTitle: 'Hallo! Wat is uw discipline?',
     promptBody: 'Zo stemmen we de voorbeelden af op uw praktijk.',
+    search: 'Zoek uw discipline…',
+    noResults: 'Geen discipline gevonden. Probeer een andere zoekterm.',
+    close: 'Sluiten',
     browse: 'Gewoon rondkijken',
     switchLabel: 'Discipline',
     untailored: (label) => `Bedankt! Voor ${label} tonen we voorlopig onze algemene voorbeelden.`,
@@ -53,21 +59,36 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
       neurology: 'Neurologie',
       cardiology: 'Cardiologie',
       dermatology: 'Dermatologie',
+      anaesthesia: 'Anesthesie',
+      dietetics: 'Diëtiek',
+      generalSurgery: 'Algemene en abdominale heelkunde',
+      podiatry: 'Podologie',
       gynaecology: 'Gynaecologie',
+      nephrology: 'Nefrologie',
+      endocrinology: 'Endocrinologie',
       paediatrics: 'Pediatrie',
-      ophthalmology: 'Oftalmologie',
+      ophthalmology: 'Oogheelkunde',
+      maxillofacialSurgery: 'MKA-chirurgie',
       urology: 'Urologie',
       gastroenterology: 'Gastro-enterologie',
       internalMedicine: 'Inwendige geneeskunde',
       psychiatry: 'Psychiatrie',
       mentalHealth: 'Geestelijke gezondheidszorg',
       physicalMedicine: 'Fysische geneeskunde',
+      physiotherapy: 'Kinesitherapie',
+      sportsMedicine: 'Sportgeneeskunde',
+      rheumatology: 'Reumatologie',
+      painClinic: 'Pijnkliniek',
+      pneumology: 'Pneumologie',
       other: 'Andere',
     },
   },
   en: {
     promptTitle: 'Hi! What is your discipline?',
     promptBody: 'So we can match the examples to your practice.',
+    search: 'Search for your discipline…',
+    noResults: 'No discipline found. Try another search term.',
+    close: 'Close',
     browse: 'Just browsing',
     switchLabel: 'Discipline',
     untailored: (label) => `Thanks! For ${label} we show our general examples for now.`,
@@ -84,21 +105,36 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
       neurology: 'Neurology',
       cardiology: 'Cardiology',
       dermatology: 'Dermatology',
+      anaesthesia: 'Anaesthesia',
+      dietetics: 'Dietetics',
+      generalSurgery: 'General and abdominal surgery',
+      podiatry: 'Podiatry',
       gynaecology: 'Gynaecology',
+      nephrology: 'Nephrology',
+      endocrinology: 'Endocrinology',
       paediatrics: 'Paediatrics',
       ophthalmology: 'Ophthalmology',
+      maxillofacialSurgery: 'Oral and maxillofacial surgery',
       urology: 'Urology',
       gastroenterology: 'Gastroenterology',
       internalMedicine: 'Internal medicine',
       psychiatry: 'Psychiatry',
       mentalHealth: 'Mental health',
       physicalMedicine: 'Physical medicine',
+      physiotherapy: 'Physiotherapy',
+      sportsMedicine: 'Sports medicine',
+      rheumatology: 'Rheumatology',
+      painClinic: 'Pain clinic',
+      pneumology: 'Respiratory medicine',
       other: 'Other',
     },
   },
   fr: {
     promptTitle: 'Bonjour ! Quelle est votre discipline ?',
     promptBody: 'Pour adapter les exemples à votre pratique.',
+    search: 'Rechercher votre discipline…',
+    noResults: 'Aucune discipline trouvée. Essayez un autre terme.',
+    close: 'Fermer',
     browse: 'Simplement visiter',
     switchLabel: 'Discipline',
     untailored: (label) => `Merci ! Pour la discipline ${label}, nous montrons pour l’instant nos exemples généraux.`,
@@ -115,15 +151,27 @@ export const SPECIALTY_UI: Record<SiteLocale, SpecialtyUiCopy> = {
       neurology: 'Neurologie',
       cardiology: 'Cardiologie',
       dermatology: 'Dermatologie',
+      anaesthesia: 'Anesthésie',
+      dietetics: 'Diététique',
+      generalSurgery: 'Chirurgie générale et abdominale',
+      podiatry: 'Podologie',
       gynaecology: 'Gynécologie',
+      nephrology: 'Néphrologie',
+      endocrinology: 'Endocrinologie',
       paediatrics: 'Pédiatrie',
       ophthalmology: 'Ophtalmologie',
+      maxillofacialSurgery: 'Chirurgie maxillo-faciale',
       urology: 'Urologie',
       gastroenterology: 'Gastro-entérologie',
       internalMedicine: 'Médecine interne',
       psychiatry: 'Psychiatrie',
       mentalHealth: 'Santé mentale',
       physicalMedicine: 'Médecine physique',
+      physiotherapy: 'Kinésithérapie',
+      sportsMedicine: 'Médecine du sport',
+      rheumatology: 'Rhumatologie',
+      painClinic: 'Clinique de la douleur',
+      pneumology: 'Pneumologie',
       other: 'Autre',
     },
   },
@@ -155,6 +203,8 @@ export interface TailoredHomeCopy {
   modules: {
     subtitle: string;
     cards: Record<ModuleKey, string>;
+    tags?: Partial<Record<ModuleKey, string>>;
+    groupLabels?: [string, string, string];
   };
   finalCta: {
     subtitle: string;

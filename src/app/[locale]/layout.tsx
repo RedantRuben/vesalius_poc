@@ -21,7 +21,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.some(supportedLocale => supportedLocale === locale)) {
     notFound();
   }
 
@@ -38,13 +38,13 @@ export default async function LocaleLayout({
         {children}
         <SpecialtyPrompt />
         <DemoNudge />
+        <CookieConsent />
       </SpecialtyProvider>
       <BookingDialog />
       {/* Reads the query string; the boundary lets pages that are rendered ahead of time (the discipline pages) stay static */}
       <Suspense fallback={null}>
         <MatomoAnalytics />
       </Suspense>
-      <CookieConsent />
     </NextIntlClientProvider>
   );
 }

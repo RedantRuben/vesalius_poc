@@ -412,6 +412,7 @@ export default function Hero() {
 
   return (
     <section
+      data-demo-hero
       className="relative flex flex-col items-center justify-center w-full pt-28 md:pt-32 pb-16 lg:pb-20 min-h-[80vh] md:min-h-[92vh] overflow-x-clip"
     >
       {/* Soft brand light and lines, faded out at the bottom so the hero melts into the next section */}

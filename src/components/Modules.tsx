@@ -425,7 +425,11 @@ function ModuleCard({ module, index }: { module: ModuleConfig; index: number }) 
   const t = useTranslations('Modules');
   const { href } = useSpecialty();
   // Tailored specialty: each card follows the same patient.
-  const tailoredCard = useTailoredHome()?.modules.cards[module.key] ?? null;
+  const tailored = useTailoredHome()?.modules;
+  const tailoredCard = tailored?.cards[module.key] ?? null;
+  const tags = [t(`${module.key}.tag1`), t(`${module.key}.tag2`)];
+  const tailoredTag = tailored?.tags?.[module.key];
+  if (tailoredTag) tags.push(tailoredTag);
 
   return (
     <motion.div
@@ -442,7 +446,7 @@ function ModuleCard({ module, index }: { module: ModuleConfig; index: number }) 
       >
         <div className="flex justify-between items-start gap-4 mb-5">
           <div className="flex gap-2 flex-wrap">
-            {[t(`${module.key}.tag1`), t(`${module.key}.tag2`)].map((tag) => (
+            {tags.map((tag) => (
               <span key={tag} className="bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap">
                 {tag}
               </span>
@@ -492,7 +496,8 @@ function Chapter({ number, label, modules }: { number: string; label: string; mo
 export default function Modules() {
   const t = useTranslations('Modules');
   const locale = useLocale();
-  const tailoredSubtitle = useTailoredHome()?.modules.subtitle ?? null;
+  const tailored = useTailoredHome()?.modules;
+  const tailoredSubtitle = tailored?.subtitle ?? null;
   const copy =
     locale === 'fr'
       ? {
@@ -552,9 +557,9 @@ export default function Modules() {
         </motion.div>
 
         <div className="flex flex-col gap-20 md:gap-28">
-          <Chapter number="01" label={t('beforeConsultation')} modules={before} />
-          <Chapter number="02" label={t('duringConsultation')} modules={during} />
-          <Chapter number="03" label={t('afterConsultation')} modules={after} />
+          <Chapter number="01" label={tailored?.groupLabels?.[0] ?? t('beforeConsultation')} modules={before} />
+          <Chapter number="02" label={tailored?.groupLabels?.[1] ?? t('duringConsultation')} modules={during} />
+          <Chapter number="03" label={tailored?.groupLabels?.[2] ?? t('afterConsultation')} modules={after} />
         </div>
       </div>
     </section>

@@ -40,7 +40,9 @@ interface SpecialtyContextValue {
   setSpecialty: (value: Specialty) => void;
   /** Turns a homepage or module path into the visitor's discipline version: "/product/scribe" → "/orthopaedics/product/scribe". */
   href: (path: string) => string;
-  /** The chooser panel in the navbar. */
+  /** Whether the first-visit discipline prompt is still pending. */
+  promptPending: boolean;
+  /** The discipline chooser dialog. */
   menuOpen: boolean;
   openMenu: () => void;
   closeMenu: () => void;
@@ -56,6 +58,7 @@ const SpecialtyContext = createContext<SpecialtyContextValue>({
   isOrthopedics: false,
   setSpecialty: () => {},
   href: (path) => path,
+  promptPending: false,
   menuOpen: false,
   openMenu: () => {},
   closeMenu: () => {},
@@ -66,7 +69,7 @@ const SpecialtyContext = createContext<SpecialtyContextValue>({
 const ASKED_KEY = 'vesalius-specialty-asked';
 
 /** The panel opens by itself at most once per visit. */
-export function askedThisVisit() {
+function askedThisVisit() {
   try {
     return window.sessionStorage.getItem(ASKED_KEY) === '1';
   } catch {
@@ -112,6 +115,7 @@ export function SpecialtyProvider({ children }: { children: React.ReactNode }) {
   const route = useMemo(() => parseDisciplinePath(locale, pathname), [locale, pathname]);
   const [stored, setStored] = useState<Specialty | null>(null);
   const [ready, setReady] = useState(false);
+  const [asked, setAsked] = useState(false);
 
   const setSpecialty = useCallback((value: Specialty) => {
     setStored(value);
@@ -138,6 +142,7 @@ export function SpecialtyProvider({ children }: { children: React.ReactNode }) {
     const fromUrl = readFromUrl();
     const initial = fromUrl ?? route?.id ?? readStored();
     if (initial) setSpecialty(initial);
+    setAsked(askedThisVisit());
     setReady(true);
     // Reading browser-only state after mount keeps server and client markup identical.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -160,6 +165,7 @@ export function SpecialtyProvider({ children }: { children: React.ReactNode }) {
   const closeMenu = useCallback(() => {
     setMenuOpen(false);
     setNotice(null);
+    setAsked(true);
     try {
       window.sessionStorage.setItem(ASKED_KEY, '1');
     } catch {
@@ -200,6 +206,7 @@ export function SpecialtyProvider({ children }: { children: React.ReactNode }) {
         isOrthopedics: route?.id === 'orthopedics',
         setSpecialty,
         href,
+        promptPending: ready && specialty === null && !asked && hasDisciplineVersion(pathname),
         menuOpen,
         openMenu,
         closeMenu,

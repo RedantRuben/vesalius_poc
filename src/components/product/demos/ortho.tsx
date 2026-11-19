@@ -1039,7 +1039,7 @@ const SCRIBE = {
 };
 
 /** The template button: a click shows that the template is set up per body region. */
-export function TemplatePicker({ label, options, selected = 0 }: { label: string; options: string[]; selected?: number }) {
+export function TemplatePicker({ label, options, selected = 0, optionPrefix = label }: { label: string; options: string[]; selected?: number; optionPrefix?: string }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
 
@@ -1068,7 +1068,7 @@ export function TemplatePicker({ label, options, selected = 0 }: { label: string
           >
             {options.map((option, i) => (
               <span key={option} className={`flex items-center justify-between gap-3 whitespace-nowrap px-3 py-1.5 text-[11.5px] ${i === selected ? 'text-[#06ACC1] font-medium' : 'text-[#2A3A51]'}`}>
-                {label} · {option}
+                {optionPrefix} · {option}
                 {i === selected && <Check size={11} color={APP.primary} />}
               </span>
             ))}

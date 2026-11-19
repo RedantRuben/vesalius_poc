@@ -1,73 +1,30 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useId, useRef, useState } from 'react';
 import { useLocale } from 'next-intl';
-import { usePathname } from '@/i18n/routing';
 import { SPECIALTY_UI, type SiteLocale } from '@/content/orthopedics';
 import { openBooking } from '@/components/BookingDialog';
-import { TAILORED, askedThisVisit, useSpecialty } from '@/lib/specialty';
-
-const COOKIE_EVENT = 'cookie-consent-updated';
-/** Elements that belong to the chooser; a press anywhere else closes it. */
-const MENU_ATTR = 'data-specialty-menu';
+import { TAILORED, useSpecialty } from '@/lib/specialty';
 
 /** "Cardiologie" reads as "cardiologie" mid-sentence; abbreviations such as NKO stay as they are. */
 const inSentence = (label: string) => (label === label.toUpperCase() ? label : label.toLowerCase());
-
-function cookieChoiceMade() {
-  try {
-    return Boolean(window.localStorage.getItem('cookie-consent'));
-  } catch {
-    return true;
-  }
-}
 
 function useCopy() {
   const locale = useLocale() as SiteLocale;
   return SPECIALTY_UI[locale] ?? SPECIALTY_UI.en;
 }
 
-/**
- * Headless controller, mounted once in the layout: opens the navbar panel by itself on a first visit (homepage and
- * module pages, once per visit, after the cookie banner), and closes it on a press outside or Escape.
- */
+/** Opens the discipline dialog once per visit, independently of the cookie decision. */
 export default function SpecialtyPrompt() {
-  const { specialty, ready, menuOpen, openMenu, closeMenu } = useSpecialty();
-  const pathname = usePathname();
-  const onTargetPage = pathname === '/' || pathname.startsWith('/product/');
-  const [cookieDone, setCookieDone] = useState(false);
+  const { promptPending, menuOpen, openMenu } = useSpecialty();
 
   useEffect(() => {
-    const update = () => setCookieDone(cookieChoiceMade());
-    update();
-    window.addEventListener(COOKIE_EVENT, update);
-    return () => window.removeEventListener(COOKIE_EVENT, update);
-  }, []);
-
-  useEffect(() => {
-    if (!ready || specialty !== null || !cookieDone || !onTargetPage || askedThisVisit()) return;
+    if (!promptPending || menuOpen) return;
     const id = setTimeout(openMenu, 1400);
     return () => clearTimeout(id);
-  }, [ready, specialty, cookieDone, onTargetPage, openMenu]);
+  }, [promptPending, menuOpen, openMenu]);
 
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onPointer = (event: PointerEvent) => {
-      if (!(event.target as Element | null)?.closest(`[${MENU_ATTR}]`)) closeMenu();
-    };
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') closeMenu();
-    };
-    document.addEventListener('pointerdown', onPointer);
-    document.addEventListener('keydown', onKey);
-    return () => {
-      document.removeEventListener('pointerdown', onPointer);
-      document.removeEventListener('keydown', onKey);
-    };
-  }, [menuOpen, closeMenu]);
-
-  return null;
+  return <SpecialtyPanel />;
 }
 
 /** The small "?" badge shown until the visitor has made any choice. */
@@ -91,7 +48,6 @@ export function SpecialtyPill({ className = '', onClick }: { className?: string;
   return (
     <button
       type="button"
-      {...{ [MENU_ATTR]: '' }}
       aria-haspopup="dialog"
       aria-expanded={menuOpen}
       onClick={onClick ?? (() => (menuOpen ? closeMenu() : openMenu()))}
@@ -106,96 +62,104 @@ export function SpecialtyPill({ className = '', onClick }: { className?: string;
   );
 }
 
-/**
- * The chooser itself, attached to the navigation: under the pill on desktop (`pill`), or under the whole bar on
- * smaller screens (`bar`), so it reads as part of the menu rather than a popup over the page.
- */
-export function SpecialtyPanel({ anchor, className = '' }: { anchor: 'pill' | 'bar'; className?: string }) {
+/** A single native modal keeps focus and pointer interaction inside the chooser at every screen size. */
+function SpecialtyPanel() {
   const { specialty, menuOpen, notice, choose, closeMenu } = useSpecialty();
   const copy = useCopy();
   const locale = useLocale();
-  // Only the disciplines that have their own pages, alphabetically in the site language
-  const offered = [...TAILORED].sort((a, b) => copy.specialties[a].localeCompare(copy.specialties[b], locale));
-  const position = anchor === 'pill' ? 'right-0 w-[400px] origin-top-right' : 'left-2 right-2 sm:left-auto sm:w-[400px] origin-top';
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const searchRef = useRef<HTMLInputElement>(null);
+  const titleId = useId();
+  const descriptionId = useId();
+  const [query, setQuery] = useState('');
+  const normalise = (value: string) => value.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLocaleLowerCase(locale);
+  const offered = [...TAILORED]
+    .sort((a, b) => copy.specialties[a].localeCompare(copy.specialties[b], locale))
+    .filter(id => normalise(copy.specialties[id]).includes(normalise(query.trim())));
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (!menuOpen) {
+      dialog.close();
+      return;
+    }
+    const previousOverflow = document.documentElement.style.overflow;
+    dialog.showModal();
+    document.documentElement.style.overflow = 'hidden';
+    // Avoid opening the software keyboard automatically on a phone.
+    if (window.matchMedia('(min-width: 640px)').matches) searchRef.current?.focus();
+    return () => {
+      document.documentElement.style.overflow = document.querySelector('dialog[open]') && !dialog.open ? 'hidden' : previousOverflow;
+    };
+  }, [menuOpen]);
 
   return (
-    <AnimatePresence>
-      {menuOpen && (
-        <motion.div
-          {...{ [MENU_ATTR]: '' }}
-          role="dialog"
-          aria-label={copy.promptTitle}
-          initial={{ opacity: 0, y: -8, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -6, scale: 0.98, transition: { duration: 0.15 } }}
-          transition={{ type: 'spring', stiffness: 420, damping: 32 }}
-          className={`absolute top-full mt-3 z-50 rounded-[22px] bg-white ring-1 ring-slate-200 shadow-[0_24px_48px_-20px_rgba(11,27,61,0.35)] p-5 text-left ${position} ${className}`}
-        >
-          {anchor === 'pill' && <span aria-hidden="true" className="absolute -top-[7px] right-10 w-3 h-3 rotate-45 bg-white border-l border-t border-slate-200" />}
-
+    <dialog
+      ref={dialogRef}
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
+      onCancel={(event) => { event.preventDefault(); closeMenu(); }}
+      onClose={() => { setQuery(''); closeMenu(); }}
+      onClick={(event) => { if (event.target === event.currentTarget) closeMenu(); }}
+      className="m-auto h-[min(680px,calc(100svh-2rem))] w-[min(640px,calc(100vw-2rem))] max-h-none max-w-none overflow-hidden rounded-[22px] bg-white p-0 text-left text-[#0B1B3D] shadow-[0_24px_80px_-20px_rgba(11,27,61,0.35)] backdrop:bg-[#0B1B3D]/25 backdrop:backdrop-blur-[4px]"
+    >
+      <div className="flex h-full flex-col">
+        <div className="shrink-0 px-5 pt-5 sm:px-6 sm:pt-6">
           <div className="flex items-start justify-between gap-3">
-            <p className="text-[17px] font-semibold text-[#0B1B3D] tracking-tight leading-snug">{copy.promptTitle}</p>
+            <h2 id={titleId} className="text-[20px] font-semibold tracking-tight leading-snug">{copy.promptTitle}</h2>
             <button
-              type="button"
-              onClick={closeMenu}
-              aria-label="Close"
-              className="shrink-0 -mr-1.5 -mt-1 w-8 h-8 rounded-full text-slate-400 hover:text-[#0B1B3D] hover:bg-slate-100 flex items-center justify-center transition-colors"
+              type="button" onClick={closeMenu} aria-label={copy.close}
+              className="-mr-1 -mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-[#0B1B3D] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06ACC1]"
             >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
-                <path d="M6 6l12 12M18 6 6 18" />
-              </svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
             </button>
           </div>
+          <p id={descriptionId} className="mt-1 text-[14px] leading-snug text-slate-500">{copy.promptBody}</p>
+          {!notice && (
+            <div className="relative my-5">
+              <svg className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 4 4" /></svg>
+              <input
+                ref={searchRef} type="search" value={query} onChange={event => setQuery(event.target.value)}
+                aria-label={copy.search} placeholder={copy.search}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50/70 py-2.5 pl-10 pr-3 text-[14px] outline-none placeholder:text-slate-400 focus:border-[#06ACC1] focus:ring-2 focus:ring-[#06ACC1]/15"
+              />
+            </div>
+          )}
+        </div>
 
-          {notice ? (
-            <motion.div initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
-              <p className="mt-1 text-[14px] text-slate-600 leading-snug">
-                {notice === 'other' ? copy.untailoredOther : copy.untailored(inSentence(copy.specialties[notice]))}
-              </p>
-              <button type="button" onClick={closeMenu} className="mt-4 w-full rounded-full bg-[#0B1B3D] text-white text-[14px] font-medium py-2.5 hover:bg-[#13285a] transition-colors">
-                {copy.ok}
-              </button>
-            </motion.div>
-          ) : (
-            <>
-              <p className="mt-0.5 text-[14px] text-slate-500 leading-snug">{copy.promptBody}</p>
-              <div className="mt-3 -mx-1 flex flex-wrap gap-1.5 max-h-[52vh] overflow-y-auto p-1">
-                {/* The disciplines with their own pages, then the standard site as the last option */}
-                {[...offered, 'general' as const].map((id) => {
-                  const selected = specialty === id;
-                  return (
-                    <button
-                      key={id}
-                      type="button"
-                      aria-pressed={selected}
-                      onClick={() => choose(id)}
-                      className={`rounded-full px-3 py-1.5 text-[13px] font-medium transition active:scale-[0.98] ${
-                        selected ? 'bg-[#0B1B3D] text-white' : 'ring-1 ring-slate-200 text-[#0B1B3D] hover:ring-[#0B1B3D] hover:bg-slate-50'
-                      }`}
-                    >
-                      {id === 'general' ? copy.browse : copy.specialties[id]}
-                    </button>
-                  );
-                })}
+        {notice ? (
+          <div className="px-5 py-5 sm:px-6">
+            <p className="text-[14px] leading-snug text-slate-600">{notice === 'other' ? copy.untailoredOther : copy.untailored(inSentence(copy.specialties[notice]))}</p>
+            <button type="button" onClick={closeMenu} className="mt-4 w-full rounded-full bg-[#0B1B3D] py-2.5 text-[14px] font-medium text-white hover:bg-[#13285a]">{copy.ok}</button>
+          </div>
+        ) : (
+          <>
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-3 sm:px-6" role="group" aria-label={copy.switchLabel}>
+              <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                {offered.map(id => (
+                  <button
+                    key={id} type="button" aria-pressed={specialty === id} onClick={() => choose(id)}
+                    className={`flex min-h-11 items-center justify-between gap-2 rounded-xl px-3 py-2.5 text-left text-[14px] font-medium leading-snug transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#06ACC1] ${specialty === id ? 'bg-[#E8EEF5] text-[#0B1B3D]' : 'bg-slate-50 text-[#0B1B3D] hover:bg-slate-100'}`}
+                  >
+                    <span>{copy.specialties[id]}</span>
+                    {specialty === id && <svg className="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>}
+                  </button>
+                ))}
               </div>
-              <p className="mt-3 text-[13px] text-slate-500 leading-snug">
+              {offered.length === 0 && <p role="status" className="py-6 text-center text-[14px] text-slate-500">{copy.noResults}</p>}
+            </div>
+            <div className="shrink-0 border-t border-slate-100 px-5 py-4 sm:px-6">
+              <button type="button" aria-pressed={specialty === 'general'} onClick={() => choose('general')} className="rounded-full bg-[#0B1B3D] px-4 py-2.5 text-[14px] font-medium text-white transition-colors hover:bg-[#13285a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06ACC1] focus-visible:ring-offset-2">{copy.browse}</button>
+              <p className="mt-3 text-[12px] leading-snug text-slate-500">
                 {copy.more.before}
-                <button
-                  type="button"
-                  onClick={() => {
-                    closeMenu();
-                    openBooking('Discipline picker');
-                  }}
-                  className="font-medium text-[#0B1B3D] underline underline-offset-4 decoration-slate-300 hover:decoration-[#0B1B3D]"
-                >
-                  {copy.more.link}
-                </button>
+                <button type="button" onClick={() => { dialogRef.current?.close(); closeMenu(); openBooking('Discipline picker'); }} className="font-medium text-[#0B1B3D] underline decoration-slate-300 underline-offset-4 hover:decoration-[#0B1B3D]">{copy.more.link}</button>
                 {copy.more.after}
               </p>
-            </>
-          )}
-        </motion.div>
-      )}
-    </AnimatePresence>
+            </div>
+          </>
+        )}
+      </div>
+    </dialog>
   );
 }

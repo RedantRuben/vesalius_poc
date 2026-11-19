@@ -93,11 +93,11 @@ export function PatientBubble({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function Choices({ options }: { options: string[] }) {
+export function Choices({ options, selected }: { options: string[]; selected?: string }) {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="flex justify-center gap-2 pt-1">
       {options.map((s) => (
-        <span key={s} className="px-4 py-1.5 rounded-lg ring-1 ring-[#06ACC1] text-[#06ACC1] text-[11px] font-medium">
+        <span key={s} className={`px-4 py-1.5 rounded-lg ring-1 ring-[#06ACC1] text-[#06ACC1] text-[11px] font-medium ${s === selected ? 'bg-[#EBF6F8]' : ''}`}>
           {s}
         </span>
       ))}

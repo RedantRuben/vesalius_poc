@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
+import { useSpecialty } from '@/lib/specialty';
 
 const CONSENT_EVENT = 'cookie-consent-updated';
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -51,16 +52,19 @@ export default function CookieConsent() {
   const [showSettings, setShowSettings] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>(defaultPreferences);
   const t = useTranslations('CookieConsent');
+  const { ready, promptPending, menuOpen } = useSpecialty();
+  const deferred = !ready || promptPending || menuOpen;
 
   useEffect(() => {
-    // Check if user has already made a choice
+    if (deferred) return;
+    // Show cookies only after the first-visit discipline choice or dismissal.
     const consent = localStorage.getItem('cookie-consent');
     if (!consent) {
       // Small delay to prevent flash on page load
       const timer = setTimeout(() => setIsVisible(true), 1000);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [deferred]);
 
   const saveConsent = (prefs: CookiePreferences) => {
     localStorage.setItem('cookie-consent', JSON.stringify(prefs));
@@ -77,7 +81,7 @@ export default function CookieConsent() {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && !deferred && (
         <motion.section
           role="dialog"
           aria-label={t('title')}

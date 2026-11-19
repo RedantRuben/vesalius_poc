@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { NextIntlClientProvider, useLocale, useTranslations } from 'next-intl';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FinalCta from '@/components/FinalCta';
@@ -75,6 +75,211 @@ import {
   VascularTriageDemo,
   VascularVoiceDemo,
 } from './demos/vascular';
+import {
+  OphthalmologyAgendaDemo,
+  OphthalmologyDocumentDemo,
+  OphthalmologyFollowUpDemo,
+  OphthalmologyMedicationDemo,
+  OphthalmologyPreConsultationDemo,
+  OphthalmologyScribeDemo,
+  OphthalmologyTriageDemo,
+  OphthalmologyVoiceDemo,
+} from './demos/ophthalmology';
+import {
+  GynaecologyAgendaDemo,
+  GynaecologyDocumentDemo,
+  GynaecologyFollowUpDemo,
+  GynaecologyMedicationDemo,
+  GynaecologyPreConsultationDemo,
+  GynaecologyScribeDemo,
+  GynaecologyTriageDemo,
+  GynaecologyVoiceDemo,
+} from './demos/gynaecology';
+import {
+  NephrologyAgendaDemo,
+  NephrologyDocumentDemo,
+  NephrologyFollowUpDemo,
+  NephrologyMedicationDemo,
+  NephrologyPreConsultationDemo,
+  NephrologyScribeDemo,
+  NephrologyTriageDemo,
+  NephrologyVoiceDemo,
+} from './demos/nephrology';
+import {
+  EndocrinologyAgendaDemo,
+  EndocrinologyDocumentDemo,
+  EndocrinologyFollowUpDemo,
+  EndocrinologyMedicationDemo,
+  EndocrinologyPreConsultationDemo,
+  EndocrinologyScribeDemo,
+  EndocrinologyTriageDemo,
+  EndocrinologyVoiceDemo,
+} from './demos/endocrinology';
+import {
+  MkaAgendaDemo,
+  MkaDocumentDemo,
+  MkaFollowUpDemo,
+  MkaMedicationDemo,
+  MkaPreConsultationDemo,
+  MkaScribeDemo,
+  MkaTriageDemo,
+  MkaVoiceDemo,
+} from './demos/maxillofacial-surgery';
+import {
+  DermatologyAgendaDemo,
+  DermatologyDocumentDemo,
+  DermatologyFollowUpDemo,
+  DermatologyMedicationDemo,
+  DermatologyPreConsultationDemo,
+  DermatologyScribeDemo,
+  DermatologyTriageDemo,
+  DermatologyVoiceDemo,
+} from './demos/dermatology';
+import { DERMATOLOGY_STEPS, DERMATOLOGY_TRAJECTORY } from './dermatology-content';
+import {
+  AnaesthesiaAgendaDemo,
+  AnaesthesiaDocumentDemo,
+  AnaesthesiaFollowUpDemo,
+  AnaesthesiaMedicationDemo,
+  AnaesthesiaPreConsultationDemo,
+  AnaesthesiaScribeDemo,
+  AnaesthesiaTriageDemo,
+  AnaesthesiaVoiceDemo,
+} from './demos/anaesthesia';
+import { ANAESTHESIA_STEPS, ANAESTHESIA_TRAJECTORY } from './anaesthesia-content';
+import {
+  PodiatryAgendaDemo,
+  PodiatryDocumentDemo,
+  PodiatryFollowUpDemo,
+  PodiatryMedicationDemo,
+  PodiatryPreConsultationDemo,
+  PodiatryScribeDemo,
+  PodiatryTriageDemo,
+  PodiatryVoiceDemo,
+} from './demos/podiatry';
+import { PODIATRY_STEPS, PODIATRY_TRAJECTORY } from './podiatry-content';
+import {
+  UrologyAgendaDemo,
+  UrologyDocumentDemo,
+  UrologyFollowUpDemo,
+  UrologyMedicationDemo,
+  UrologyPreConsultationDemo,
+  UrologyScribeDemo,
+  UrologyTriageDemo,
+  UrologyVoiceDemo,
+} from './demos/urology';
+import { UROLOGY_STEPS, UROLOGY_TRAJECTORY } from './urology-content';
+import {
+  DieteticsAgendaDemo,
+  DieteticsDocumentDemo,
+  DieteticsFollowUpDemo,
+  DieteticsMedicationDemo,
+  DieteticsPreConsultationDemo,
+  DieteticsScribeDemo,
+  DieteticsTriageDemo,
+  DieteticsVoiceDemo,
+} from './demos/dietetics';
+import { DIETETICS_STEPS, DIETETICS_TRAJECTORY } from './dietetics-content';
+import {
+  GeneralSurgeryAgendaDemo,
+  GeneralSurgeryDocumentDemo,
+  GeneralSurgeryFollowUpDemo,
+  GeneralSurgeryMedicationDemo,
+  GeneralSurgeryPreConsultationDemo,
+  GeneralSurgeryScribeDemo,
+  GeneralSurgeryTriageDemo,
+  GeneralSurgeryVoiceDemo,
+} from './demos/general-surgery';
+import {
+  GastroAgendaDemo,
+  GastroDocumentDemo,
+  GastroFollowUpDemo,
+  GastroMedicationDemo,
+  GastroPreConsultationDemo,
+  GastroScribeDemo,
+  GastroTriageDemo,
+  GastroVoiceDemo,
+} from './demos/gastroenterology';
+import {
+  KinesitherapyAgendaDemo,
+  KinesitherapyDocumentDemo,
+  KinesitherapyFollowUpDemo,
+  KinesitherapyMedicationDemo,
+  KinesitherapyPreConsultationDemo,
+  KinesitherapyScribeDemo,
+  KinesitherapyTriageDemo,
+  KinesitherapyVoiceDemo,
+} from './demos/physiotherapy';
+import {
+  SportsMedicineAgendaDemo,
+  SportsMedicineDocumentDemo,
+  SportsMedicineFollowUpDemo,
+  SportsMedicineMedicationDemo,
+  SportsMedicinePreConsultationDemo,
+  SportsMedicineScribeDemo,
+  SportsMedicineTriageDemo,
+  SportsMedicineVoiceDemo,
+} from './demos/sports-medicine';
+import {
+  RheumatologyAgendaDemo,
+  RheumatologyDocumentDemo,
+  RheumatologyFollowUpDemo,
+  RheumatologyMedicationDemo,
+  RheumatologyPreConsultationDemo,
+  RheumatologyScribeDemo,
+  RheumatologyTriageDemo,
+  RheumatologyVoiceDemo,
+} from './demos/rheumatology';
+import {
+  PainClinicAgendaDemo,
+  PainClinicDocumentDemo,
+  PainClinicFollowUpDemo,
+  PainClinicMedicationDemo,
+  PainClinicPreConsultationDemo,
+  PainClinicScribeDemo,
+  PainClinicTriageDemo,
+  PainClinicVoiceDemo,
+} from './demos/pain-clinic';
+import {
+  PneumologyAgendaDemo,
+  PneumologyDocumentDemo,
+  PneumologyFollowUpDemo,
+  PneumologyMedicationDemo,
+  PneumologyPreConsultationDemo,
+  PneumologyScribeDemo,
+  PneumologyTriageDemo,
+  PneumologyVoiceDemo,
+} from './demos/pneumology';
+import {
+  CardiologyAgendaDemo,
+  CardiologyDocumentDemo,
+  CardiologyFollowUpDemo,
+  CardiologyMedicationDemo,
+  CardiologyPreConsultationDemo,
+  CardiologyScribeDemo,
+  CardiologyTriageDemo,
+  CardiologyVoiceDemo,
+} from './demos/cardiology';
+import { CARDIOLOGY_STEPS, CARDIOLOGY_TRAJECTORY } from './cardiology-content';
+import {
+  NeurologyAgendaDemo,
+  NeurologyDocumentDemo,
+  NeurologyFollowUpDemo,
+  NeurologyMedicationDemo,
+  NeurologyPreConsultationDemo,
+  NeurologyScribeDemo,
+  NeurologyTriageDemo,
+  NeurologyVoiceDemo,
+} from './demos/neurology';
+import { NEUROLOGY_STEPS, NEUROLOGY_TRAJECTORY } from './neurology-content';
+import { PNEUMOLOGY_STEPS, PNEUMOLOGY_TRAJECTORY } from './pneumology-content';
+import { PAIN_CLINIC_STEPS, PAIN_CLINIC_TRAJECTORY } from './pain-clinic-content';
+import { RHEUMATOLOGY_STEPS, RHEUMATOLOGY_TRAJECTORY } from './rheumatology-content';
+import { SPORTS_MEDICINE_STEPS, SPORTS_MEDICINE_TRAJECTORY } from './sports-medicine-content';
+import { KINESITHERAPY_STEPS, KINESITHERAPY_TRAJECTORY } from './physiotherapy-content';
+import { GASTRO_STEPS, GASTRO_TRAJECTORY } from './gastroenterology-content';
+import { GENERAL_SURGERY_STEPS, GENERAL_SURGERY_TRAJECTORY } from './general-surgery-content';
+import { MKA_STEPS, MKA_TRAJECTORY } from './maxillofacial-surgery-content';
 import { ORTHO_STEPS, ORTHO_TRAJECTORY } from './ortho-content';
 import { NEURO_STEPS, NEURO_TRAJECTORY } from './neuro-content';
 import { ENT_STEPS, ENT_TRAJECTORY } from './ent-content';
@@ -82,6 +287,10 @@ import { PHYSIO_STEPS, PHYSIO_TRAJECTORY } from './physio-content';
 import { BARIATRIC_STEPS, BARIATRIC_TRAJECTORY } from './bariatric-content';
 import { MENTAL_STEPS, MENTAL_TRAJECTORY } from './mental-content';
 import { VASCULAR_STEPS, VASCULAR_TRAJECTORY } from './vascular-content';
+import { OPHTHALMOLOGY_STEPS, OPHTHALMOLOGY_TRAJECTORY } from './ophthalmology-content';
+import { GYNAECOLOGY_STEPS, GYNAECOLOGY_TRAJECTORY } from './gynaecology-content';
+import { NEPHROLOGY_STEPS, NEPHROLOGY_TRAJECTORY } from './nephrology-content';
+import { ENDOCRINOLOGY_STEPS, ENDOCRINOLOGY_TRAJECTORY } from './endocrinology-content';
 import { useSpecialty, type TailoredId } from '@/lib/specialty';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -181,11 +390,225 @@ const VASCULAR_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
   smartFollowUp: VascularFollowUpDemo,
 };
 
+// Ophthalmology: the same pages, following Paul Lens from triage to clear sight in both eyes after cataract surgery.
+const OPHTHALMOLOGY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: OphthalmologyTriageDemo,
+  agenda: OphthalmologyAgendaDemo,
+  preConsultation: OphthalmologyPreConsultationDemo,
+  voiceReception: OphthalmologyVoiceDemo,
+  scribe: OphthalmologyScribeDemo,
+  medication: OphthalmologyMedicationDemo,
+  documentGeneration: OphthalmologyDocumentDemo,
+  smartFollowUp: OphthalmologyFollowUpDemo,
+};
+
+// Gynaecology: the same pages, following Lea Levator from triage to six weeks with her pessary.
+const GYNAECOLOGY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: GynaecologyTriageDemo,
+  agenda: GynaecologyAgendaDemo,
+  preConsultation: GynaecologyPreConsultationDemo,
+  voiceReception: GynaecologyVoiceDemo,
+  scribe: GynaecologyScribeDemo,
+  medication: GynaecologyMedicationDemo,
+  documentGeneration: GynaecologyDocumentDemo,
+  smartFollowUp: GynaecologyFollowUpDemo,
+};
+
+// Nephrology: the same pages, following Luc Nefron from triage to three months of kidney protection.
+const NEPHROLOGY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: NephrologyTriageDemo,
+  agenda: NephrologyAgendaDemo,
+  preConsultation: NephrologyPreConsultationDemo,
+  voiceReception: NephrologyVoiceDemo,
+  scribe: NephrologyScribeDemo,
+  medication: NephrologyMedicationDemo,
+  documentGeneration: NephrologyDocumentDemo,
+  smartFollowUp: NephrologyFollowUpDemo,
+};
+
+// Endocrinology: the same pages, following Paul Langerhans from triage to three months without hypos.
+const ENDOCRINOLOGY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: EndocrinologyTriageDemo,
+  agenda: EndocrinologyAgendaDemo,
+  preConsultation: EndocrinologyPreConsultationDemo,
+  voiceReception: EndocrinologyVoiceDemo,
+  scribe: EndocrinologyScribeDemo,
+  medication: EndocrinologyMedicationDemo,
+  documentGeneration: EndocrinologyDocumentDemo,
+  smartFollowUp: EndocrinologyFollowUpDemo,
+};
+
+const MKA_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: MkaTriageDemo,
+  agenda: MkaAgendaDemo,
+  preConsultation: MkaPreConsultationDemo,
+  voiceReception: MkaVoiceDemo,
+  scribe: MkaScribeDemo,
+  medication: MkaMedicationDemo,
+  documentGeneration: MkaDocumentDemo,
+  smartFollowUp: MkaFollowUpDemo,
+};
+
+const DERMATOLOGY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: DermatologyTriageDemo,
+  agenda: DermatologyAgendaDemo,
+  preConsultation: DermatologyPreConsultationDemo,
+  voiceReception: DermatologyVoiceDemo,
+  scribe: DermatologyScribeDemo,
+  medication: DermatologyMedicationDemo,
+  documentGeneration: DermatologyDocumentDemo,
+  smartFollowUp: DermatologyFollowUpDemo,
+};
+
+const ANAESTHESIA_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: AnaesthesiaTriageDemo,
+  agenda: AnaesthesiaAgendaDemo,
+  preConsultation: AnaesthesiaPreConsultationDemo,
+  voiceReception: AnaesthesiaVoiceDemo,
+  scribe: AnaesthesiaScribeDemo,
+  medication: AnaesthesiaMedicationDemo,
+  documentGeneration: AnaesthesiaDocumentDemo,
+  smartFollowUp: AnaesthesiaFollowUpDemo,
+};
+
+const PODIATRY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: PodiatryTriageDemo,
+  agenda: PodiatryAgendaDemo,
+  preConsultation: PodiatryPreConsultationDemo,
+  voiceReception: PodiatryVoiceDemo,
+  scribe: PodiatryScribeDemo,
+  medication: PodiatryMedicationDemo,
+  documentGeneration: PodiatryDocumentDemo,
+  smartFollowUp: PodiatryFollowUpDemo,
+};
+
+const UROLOGY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: UrologyTriageDemo,
+  agenda: UrologyAgendaDemo,
+  preConsultation: UrologyPreConsultationDemo,
+  voiceReception: UrologyVoiceDemo,
+  scribe: UrologyScribeDemo,
+  medication: UrologyMedicationDemo,
+  documentGeneration: UrologyDocumentDemo,
+  smartFollowUp: UrologyFollowUpDemo,
+};
+
+const DIETETICS_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: DieteticsTriageDemo,
+  agenda: DieteticsAgendaDemo,
+  preConsultation: DieteticsPreConsultationDemo,
+  voiceReception: DieteticsVoiceDemo,
+  scribe: DieteticsScribeDemo,
+  medication: DieteticsMedicationDemo,
+  documentGeneration: DieteticsDocumentDemo,
+  smartFollowUp: DieteticsFollowUpDemo,
+};
+
+const GENERAL_SURGERY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: GeneralSurgeryTriageDemo,
+  agenda: GeneralSurgeryAgendaDemo,
+  preConsultation: GeneralSurgeryPreConsultationDemo,
+  voiceReception: GeneralSurgeryVoiceDemo,
+  scribe: GeneralSurgeryScribeDemo,
+  medication: GeneralSurgeryMedicationDemo,
+  documentGeneration: GeneralSurgeryDocumentDemo,
+  smartFollowUp: GeneralSurgeryFollowUpDemo,
+};
+
+const GASTRO_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: GastroTriageDemo,
+  agenda: GastroAgendaDemo,
+  preConsultation: GastroPreConsultationDemo,
+  voiceReception: GastroVoiceDemo,
+  scribe: GastroScribeDemo,
+  medication: GastroMedicationDemo,
+  documentGeneration: GastroDocumentDemo,
+  smartFollowUp: GastroFollowUpDemo,
+};
+
+const KINESITHERAPY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: KinesitherapyTriageDemo,
+  agenda: KinesitherapyAgendaDemo,
+  preConsultation: KinesitherapyPreConsultationDemo,
+  voiceReception: KinesitherapyVoiceDemo,
+  scribe: KinesitherapyScribeDemo,
+  medication: KinesitherapyMedicationDemo,
+  documentGeneration: KinesitherapyDocumentDemo,
+  smartFollowUp: KinesitherapyFollowUpDemo,
+};
+
+const SPORTS_MEDICINE_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: SportsMedicineTriageDemo,
+  agenda: SportsMedicineAgendaDemo,
+  preConsultation: SportsMedicinePreConsultationDemo,
+  voiceReception: SportsMedicineVoiceDemo,
+  scribe: SportsMedicineScribeDemo,
+  medication: SportsMedicineMedicationDemo,
+  documentGeneration: SportsMedicineDocumentDemo,
+  smartFollowUp: SportsMedicineFollowUpDemo,
+};
+
+const RHEUMATOLOGY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: RheumatologyTriageDemo,
+  agenda: RheumatologyAgendaDemo,
+  preConsultation: RheumatologyPreConsultationDemo,
+  voiceReception: RheumatologyVoiceDemo,
+  scribe: RheumatologyScribeDemo,
+  medication: RheumatologyMedicationDemo,
+  documentGeneration: RheumatologyDocumentDemo,
+  smartFollowUp: RheumatologyFollowUpDemo,
+};
+
+const PAIN_CLINIC_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: PainClinicTriageDemo,
+  agenda: PainClinicAgendaDemo,
+  preConsultation: PainClinicPreConsultationDemo,
+  voiceReception: PainClinicVoiceDemo,
+  scribe: PainClinicScribeDemo,
+  medication: PainClinicMedicationDemo,
+  documentGeneration: PainClinicDocumentDemo,
+  smartFollowUp: PainClinicFollowUpDemo,
+};
+
+const PNEUMOLOGY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: PneumologyTriageDemo,
+  agenda: PneumologyAgendaDemo,
+  preConsultation: PneumologyPreConsultationDemo,
+  voiceReception: PneumologyVoiceDemo,
+  scribe: PneumologyScribeDemo,
+  medication: PneumologyMedicationDemo,
+  documentGeneration: PneumologyDocumentDemo,
+  smartFollowUp: PneumologyFollowUpDemo,
+};
+
+const CARDIOLOGY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: CardiologyTriageDemo,
+  agenda: CardiologyAgendaDemo,
+  preConsultation: CardiologyPreConsultationDemo,
+  voiceReception: CardiologyVoiceDemo,
+  scribe: CardiologyScribeDemo,
+  medication: CardiologyMedicationDemo,
+  documentGeneration: CardiologyDocumentDemo,
+  smartFollowUp: CardiologyFollowUpDemo,
+};
+
+const NEUROLOGY_DEMOS: Record<ModuleKey, () => React.JSX.Element> = {
+  smartTriage: NeurologyTriageDemo,
+  agenda: NeurologyAgendaDemo,
+  preConsultation: NeurologyPreConsultationDemo,
+  voiceReception: NeurologyVoiceDemo,
+  scribe: NeurologyScribeDemo,
+  medication: NeurologyMedicationDemo,
+  documentGeneration: NeurologyDocumentDemo,
+  smartFollowUp: NeurologyFollowUpDemo,
+};
+
 /** Per tailored specialty: its demos, "How it works" bodies and the trajectory line under each mock-up. */
 const VARIANTS: Record<
   TailoredId,
   {
     demos: Record<ModuleKey, () => React.JSX.Element>;
+    demoLocale?: SiteLocale;
     steps: Record<SiteLocale, Record<ModuleKey, [string, string, string]>>;
     trajectory: Record<SiteLocale, (step: number, total: number) => string>;
   }
@@ -197,6 +620,25 @@ const VARIANTS: Record<
   bariatrics: { demos: BARIATRIC_DEMOS, steps: BARIATRIC_STEPS, trajectory: BARIATRIC_TRAJECTORY },
   mentalHealth: { demos: MENTAL_DEMOS, steps: MENTAL_STEPS, trajectory: MENTAL_TRAJECTORY },
   vascularSurgery: { demos: VASCULAR_DEMOS, steps: VASCULAR_STEPS, trajectory: VASCULAR_TRAJECTORY },
+  ophthalmology: { demos: OPHTHALMOLOGY_DEMOS, steps: OPHTHALMOLOGY_STEPS, trajectory: OPHTHALMOLOGY_TRAJECTORY },
+  gynaecology: { demos: GYNAECOLOGY_DEMOS, steps: GYNAECOLOGY_STEPS, trajectory: GYNAECOLOGY_TRAJECTORY },
+  nephrology: { demos: NEPHROLOGY_DEMOS, steps: NEPHROLOGY_STEPS, trajectory: NEPHROLOGY_TRAJECTORY },
+  endocrinology: { demos: ENDOCRINOLOGY_DEMOS, steps: ENDOCRINOLOGY_STEPS, trajectory: ENDOCRINOLOGY_TRAJECTORY },
+  maxillofacialSurgery: { demos: MKA_DEMOS, steps: MKA_STEPS, trajectory: MKA_TRAJECTORY, demoLocale: 'nl' },
+  dermatology: { demos: DERMATOLOGY_DEMOS, steps: DERMATOLOGY_STEPS, trajectory: DERMATOLOGY_TRAJECTORY, demoLocale: 'nl' },
+  anaesthesia: { demos: ANAESTHESIA_DEMOS, steps: ANAESTHESIA_STEPS, trajectory: ANAESTHESIA_TRAJECTORY, demoLocale: 'nl' },
+  podiatry: { demos: PODIATRY_DEMOS, steps: PODIATRY_STEPS, trajectory: PODIATRY_TRAJECTORY, demoLocale: 'nl' },
+  urology: { demos: UROLOGY_DEMOS, steps: UROLOGY_STEPS, trajectory: UROLOGY_TRAJECTORY, demoLocale: 'nl' },
+  dietetics: { demos: DIETETICS_DEMOS, steps: DIETETICS_STEPS, trajectory: DIETETICS_TRAJECTORY, demoLocale: 'nl' },
+  cardiology: { demos: CARDIOLOGY_DEMOS, steps: CARDIOLOGY_STEPS, trajectory: CARDIOLOGY_TRAJECTORY, demoLocale: 'nl' },
+  neurology: { demos: NEUROLOGY_DEMOS, steps: NEUROLOGY_STEPS, trajectory: NEUROLOGY_TRAJECTORY, demoLocale: 'nl' },
+  pneumology: { demos: PNEUMOLOGY_DEMOS, steps: PNEUMOLOGY_STEPS, trajectory: PNEUMOLOGY_TRAJECTORY, demoLocale: 'nl' },
+  painClinic: { demos: PAIN_CLINIC_DEMOS, steps: PAIN_CLINIC_STEPS, trajectory: PAIN_CLINIC_TRAJECTORY, demoLocale: 'nl' },
+  rheumatology: { demos: RHEUMATOLOGY_DEMOS, steps: RHEUMATOLOGY_STEPS, trajectory: RHEUMATOLOGY_TRAJECTORY, demoLocale: 'nl' },
+  sportsMedicine: { demos: SPORTS_MEDICINE_DEMOS, steps: SPORTS_MEDICINE_STEPS, trajectory: SPORTS_MEDICINE_TRAJECTORY, demoLocale: 'nl' },
+  physiotherapy: { demos: KINESITHERAPY_DEMOS, steps: KINESITHERAPY_STEPS, trajectory: KINESITHERAPY_TRAJECTORY, demoLocale: 'nl' },
+  gastroenterology: { demos: GASTRO_DEMOS, steps: GASTRO_STEPS, trajectory: GASTRO_TRAJECTORY, demoLocale: 'nl' },
+  generalSurgery: { demos: GENERAL_SURGERY_DEMOS, steps: GENERAL_SURGERY_STEPS, trajectory: GENERAL_SURGERY_TRAJECTORY, demoLocale: 'nl' },
 };
 
 const reveal = {
@@ -214,8 +656,10 @@ function DemoStage({ entry, ui, variant }: { entry: ModuleEntry; ui: UiCopy; var
   const inView = useInView(ref, { once: true, margin: '-60px' });
   const locale = useLocale();
   const siteLocale: SiteLocale = locale === 'nl' || locale === 'fr' ? locale : 'en';
-  const Demo = (variant ? VARIANTS[variant].demos : DEMOS)[entry.key];
-  const trajectory = variant ? VARIANTS[variant].trajectory[siteLocale](MODULES.indexOf(entry) + 1, MODULES.length) : null;
+  const config = variant ? VARIANTS[variant] : null;
+  const Demo = (config?.demos ?? DEMOS)[entry.key];
+  const demoLocale = config?.demoLocale;
+  const trajectory = config?.trajectory[siteLocale](MODULES.indexOf(entry) + 1, MODULES.length);
 
   return (
     <div ref={ref} className="relative rounded-[36px] bg-gradient-to-b from-white to-[#F4F7F9] ring-1 ring-slate-200/80 shadow-[0_60px_120px_-60px_rgba(11,27,61,0.45)] p-4 md:p-6">
@@ -240,7 +684,11 @@ function DemoStage({ entry, ui, variant }: { entry: ModuleEntry; ui: UiCopy; var
           </button>
         </span>
       </div>
-      <div className="min-h-[300px]">{inView && <Demo key={run} />}</div>
+      <div className="min-h-[300px]" data-ui lang={demoLocale}>
+        {inView && (demoLocale && demoLocale !== siteLocale ? (
+          <NextIntlClientProvider locale={demoLocale}><Demo key={run} /></NextIntlClientProvider>
+        ) : <Demo key={run} />)}
+      </div>
       {trajectory && <p className="px-2 pt-4 text-center text-[12px] text-slate-500">{trajectory}</p>}
     </div>
   );
@@ -345,7 +793,7 @@ export default function ModulePage({ slug }: { slug: string }) {
         <Navbar />
 
         {/* Compact intro, then straight into the product; the actions follow once people have seen it */}
-        <section className="relative pt-32 md:pt-36 pb-12 md:pb-16">
+        <section data-demo-hero className="relative pt-32 md:pt-36 pb-12 md:pb-16">
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
             <motion.div
               key={entry.slug}

@@ -6,8 +6,9 @@ import { BOOKING_URL, bookingEmbedUrl } from '@/lib/booking';
 
 const OPEN_EVENT = 'vesalius:book-demo';
 const PRELOAD_EVENT = 'vesalius:book-demo-preload';
-/** Fired when the dialog actually opens, e.g. so Quinten's message knows the visitor already booked. */
+/** The floating invitation yields while the booking dialog is open. */
 export const BOOKING_OPENED_EVENT = 'vesalius:book-demo-opened';
+export const BOOKING_CLOSED_EVENT = 'vesalius:book-demo-closed';
 
 type MatomoWindow = Window & { _paq?: unknown[]; __vesaliusMatomoLoaded?: boolean };
 
@@ -70,6 +71,7 @@ export default function BookingDialog() {
     <dialog
       ref={dialogRef}
       aria-label={t('dialogTitle')}
+      onClose={() => { window.dispatchEvent(new Event(BOOKING_CLOSED_EVENT)); }}
       onClick={(event) => { if (event.target === event.currentTarget) event.currentTarget.close(); }}
       className="pointer-events-auto m-auto p-0 w-[min(1120px,calc(100vw-2rem))] h-[min(860px,calc(100svh-2rem))] max-w-none max-h-none rounded-[28px] bg-white shadow-2xl backdrop:bg-[#0B1B3D]/50 backdrop:backdrop-blur-sm"
     >
