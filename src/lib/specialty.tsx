@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
+import { hasAccountHint } from '@/lib/returning-user';
 import {
   CHOICE_COOKIE,
   SPECIALTY_IDS,
@@ -116,6 +117,8 @@ export function SpecialtyProvider({ children }: { children: React.ReactNode }) {
   const [stored, setStored] = useState<Specialty | null>(null);
   const [ready, setReady] = useState(false);
   const [asked, setAsked] = useState(false);
+  // Existing customers mostly come to get into the platform, not to pick a discipline
+  const [knownCustomer, setKnownCustomer] = useState(false);
 
   const setSpecialty = useCallback((value: Specialty) => {
     setStored(value);
@@ -143,6 +146,7 @@ export function SpecialtyProvider({ children }: { children: React.ReactNode }) {
     const initial = fromUrl ?? route?.id ?? readStored();
     if (initial) setSpecialty(initial);
     setAsked(askedThisVisit());
+    setKnownCustomer(hasAccountHint());
     setReady(true);
     // Reading browser-only state after mount keeps server and client markup identical.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -206,7 +210,7 @@ export function SpecialtyProvider({ children }: { children: React.ReactNode }) {
         isOrthopedics: route?.id === 'orthopedics',
         setSpecialty,
         href,
-        promptPending: ready && specialty === null && !asked && hasDisciplineVersion(pathname),
+        promptPending: ready && specialty === null && !asked && !knownCustomer && hasDisciplineVersion(pathname),
         menuOpen,
         openMenu,
         closeMenu,

@@ -291,19 +291,19 @@
   },
   "SupportForm": {
     "nameLabel": "Nom",
-    "namePlaceholder": "Votre nom *",
+    "namePlaceholder": "Dr An Peeters",
     "emailLabel": "E-mail",
-    "emailPlaceholder": "Votre E-mail *",
+    "emailPlaceholder": "vous@votrecabinet.be",
     "organisationLabel": "Organisation",
     "organisationPlaceholder": "Clinique, hôpital ou cabinet",
     "organisationHint": "S'il s'agit d'un incident, utilisez explicitement le nom de l'organisation tel qu'il apparaît dans la plateforme.",
     "subjectLabel": "Sujet",
-    "subjectPlaceholder": "De quoi avez-vous besoin ? *",
+    "subjectPlaceholder": "ex. Scribe arrête d'enregistrer après quelques minutes",
     "ticketTypeLabel": "Type de ticket",
     "descriptionLabel": "Description du problème",
-    "descriptionPlaceholder": "Décrivez le problème, le comportement attendu et tout contexte utile.",
+    "descriptionPlaceholder": "Qu'avez-vous fait, qu'attendiez-vous et que s'est-il passé à la place ?",
     "attachmentLabel": "Pièce jointe",
-    "attachmentHint": "Optionnel. PDF, image, fichier texte ou document Word jusqu'à 5 Mo.",
+    "attachmentHint": "PDF, image, fichier texte ou document Word jusqu'à 5 Mo.",
     "attachmentUnsupported": "Veuillez envoyer un PDF, une image, un fichier texte ou un document Word.",
     "attachmentTooLarge": "La pièce jointe est trop volumineuse.",
     "submit": "Envoyer le ticket",
@@ -316,7 +316,10 @@
       "billingDescription": "À utiliser pour les factures, paiements ou abonnements.",
       "featureRequest": "Demande d'amélioration",
       "featureRequestDescription": "À utiliser pour proposer une amélioration produit."
-    }
+    },
+    "optional": "(facultatif)",
+    "attachmentCta": "Ajouter une capture d'écran ou un fichier",
+    "replyNote": "Nous répondons à l'adresse e-mail indiquée ci-dessus."
   },
   "DemoForm": {
     "nameLabel": "Nom",
@@ -332,15 +335,24 @@
     "submit": "Demander une démo"
   },
   "SupportPage": {
-    "eyebrow": "Support client",
-    "title": "Soumettre un ticket support",
-    "subtitle": "Soumettez ici votre question ou votre problème et notre équipe support vous recontactera dès que possible.",
-    "responseTitle": "Ce qui se passe ensuite",
-    "responseBody": "Votre demande est validée, envoyée dans le flux Helpdesk Vesalius Support, puis confirmée uniquement après acceptation par le backend.",
-    "attachmentTitle": "Pièces jointes utiles",
-    "attachmentBody": "Ajoutez des captures d'écran, des exports ou un court document si cela peut nous aider à reproduire le problème plus vite.",
-    "urgentTitle": "Besoin d'un transfert plus rapide ?",
-    "urgentBody": "Soumettez le ticket avec les étapes de reproduction les plus claires possible afin que l'équipe support dispose du bon contexte dès le départ."
+    "title": "Comment pouvons-nous vous aider ?",
+    "subtitle": "Signalez un problème et nous vous répondons par e-mail, ou réservez un appel et nous parcourons la plateforme ensemble.",
+    "modeLabel": "Choisissez comment être aidé",
+    "ticketOption": "Envoyer un ticket support",
+    "ticketOptionBody": "Quelque chose ne fonctionne pas, ou vous avez une question sur votre compte ou votre facture.",
+    "callOption": "Réserver un appel",
+    "callOptionBody": "Un partage d'écran pour démarrer, découvrir un module ou intégrer Vesalius à votre pratique.",
+    "emailPrompt": "Vous préférez écrire directement ?",
+    "ticketTitle": "Envoyer un ticket support",
+    "ticketBody": "Plus vous donnez de détails, moins nous aurons de questions à vous poser.",
+    "callTitle": "Réservez un appel avec notre équipe",
+    "callBody": "Choisissez le moment qui vous convient. Nous partageons l'écran et avançons ensemble, à votre rythme.",
+    "callPoint1": "Configurer votre cabinet, vos utilisateurs et vos modèles",
+    "callPoint2": "La découverte d'un module que vous n'utilisez pas encore",
+    "callPoint3": "Vos questions sur l'intégration de Vesalius à votre journée",
+    "callMeta": "30 min · Google Meet",
+    "callFrameTitle": "Réserver un appel avec le support Vesalius",
+    "callOpen": "Choisir un créneau"
   },
   "DemoPage": {
     "title": "Réservez une démo",
@@ -408,7 +420,7 @@
       },
       "functionality": {
         "title": "Cookies de fonctionnalité",
-        "description": "Mémorisent vos préférences comme la langue et la région."
+        "description": "Vous reconnaissent comme client existant pour vous diriger vers la plateforme."
       },
       "analytics": {
         "title": "Cookies analytiques",
@@ -488,5 +500,13 @@
       "1": "Choisissez la langue de la consultation, ou laissez-la détecter",
       "2": "Envoie directement vers Vesalius, aucun fichier à déplacer"
     }
+  },
+  "WelcomeBack": {
+    "title": "Bon retour",
+    "body": "Vous cherchez votre espace Vesalius ? Accédez directement à la plateforme et reprenez là où vous vous étiez arrêté.",
+    "cta": "Ouvrir Vesalius",
+    "stay": "Je viens pour le site web",
+    "dontShowAgain": "Ne plus afficher",
+    "close": "Fermer"
   }
 }

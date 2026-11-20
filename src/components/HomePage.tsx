@@ -14,6 +14,7 @@ import MobileApp from '@/components/MobileApp';
 import Footer from '@/components/Footer';
 import SeoJsonLd from '@/components/SeoJsonLd';
 import MotionProvider from '@/components/MotionProvider';
+import WelcomeBackDialog from '@/components/WelcomeBackDialog';
 import { getAbsoluteUrl, SITE_DESCRIPTION, type SiteLocale } from '@/lib/seo';
 
 /**
@@ -63,6 +64,7 @@ export default function HomePage({ locale, schema }: { locale: SiteLocale; schem
       <main className="relative w-full max-w-full overflow-x-clip selection:bg-primary/20 bg-[#FAFAFB]">
         <SeoJsonLd data={organizationSchema} />
         <Navbar />
+        <WelcomeBackDialog />
 
         <section className="w-full relative z-0">
           <Hero />

@@ -8,6 +8,7 @@ import { usePathname } from '@/i18n/routing';
 import { BOOKING_CLOSED_EVENT, BOOKING_OPENED_EVENT, openBooking, trackBooking } from '@/components/BookingDialog';
 import { BOOKING_URL } from '@/lib/booking';
 import { useSpecialty } from '@/lib/specialty';
+import { hasAccountHint } from '@/lib/returning-user';
 
 const CONSENT_EVENT = 'cookie-consent-updated';
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -28,6 +29,8 @@ function subscribePreferences(onChange: () => void) {
 }
 
 function canShowInvitation() {
+  // Existing customers are past the demo stage
+  if (hasAccountHint()) return false;
   if (!read('cookie-consent')) return false;
   // Local previews should work again after a refresh, even when a previous preview was dismissed.
   if (process.env.NODE_ENV === 'development') return true;

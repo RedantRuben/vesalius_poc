@@ -291,19 +291,19 @@
   },
   "SupportForm": {
     "nameLabel": "Naam",
-    "namePlaceholder": "Uw naam *",
+    "namePlaceholder": "Dr. An Peeters",
     "emailLabel": "E-mail",
-    "emailPlaceholder": "Uw E-mail *",
+    "emailPlaceholder": "u@uwpraktijk.be",
     "organisationLabel": "Organisatie",
     "organisationPlaceholder": "Kliniek, ziekenhuis of praktijk",
     "organisationHint": "Gaat het om een issue? Gebruik dan expliciet de organisatienaam zoals die in het platform staat.",
     "subjectLabel": "Onderwerp",
-    "subjectPlaceholder": "Waarmee heeft u hulp nodig? *",
+    "subjectPlaceholder": "bv. Scribe stopt na enkele minuten met opnemen",
     "ticketTypeLabel": "Tickettype",
     "descriptionLabel": "Beschrijving",
-    "descriptionPlaceholder": "Beschrijf het probleem, het verwachte gedrag en nuttige context.",
+    "descriptionPlaceholder": "Wat deed u, wat verwachtte u en wat gebeurde er in de plaats?",
     "attachmentLabel": "Bijlage",
-    "attachmentHint": "Optioneel. PDF, afbeelding, tekst- of Word-bestand tot 5 MB.",
+    "attachmentHint": "PDF, afbeelding, tekst- of Word-bestand tot 5 MB.",
     "attachmentUnsupported": "Upload een PDF, afbeelding, tekstbestand of Word-document.",
     "attachmentTooLarge": "De bijlage is te groot.",
     "submit": "Ticket indienen",
@@ -316,7 +316,10 @@
       "billingDescription": "Gebruik dit voor facturen, betalingen of abonnementen.",
       "featureRequest": "Featureverzoek",
       "featureRequestDescription": "Gebruik dit om een productverbetering voor te stellen."
-    }
+    },
+    "optional": "(optioneel)",
+    "attachmentCta": "Voeg een screenshot of bestand toe",
+    "replyNote": "We antwoorden op het e-mailadres hierboven."
   },
   "DemoForm": {
     "nameLabel": "Naam",
@@ -332,15 +335,24 @@
     "submit": "Demo aanvragen"
   },
   "SupportPage": {
-    "eyebrow": "Klantenzorg",
-    "title": "Dien een supportticket in",
-    "subtitle": "Dien hier uw vraag of probleem in en ons supportteam neemt zo snel mogelijk contact met u op.",
-    "responseTitle": "Wat gebeurt er daarna",
-    "responseBody": "Uw aanvraag wordt gevalideerd, naar de Vesalius Support-helpdesk gestuurd en pas bevestigd nadat de backend ze heeft aanvaard.",
-    "attachmentTitle": "Handige bijlagen",
-    "attachmentBody": "Voeg screenshots, exportbestanden of een kort document toe als dat helpt om het probleem sneller te reproduceren.",
-    "urgentTitle": "Snelle overdracht nodig?",
-    "urgentBody": "Dien het ticket in met zo duidelijk mogelijke reproductiestappen zodat het supportteam meteen de juiste context heeft."
+    "title": "Hoe kunnen we helpen?",
+    "subtitle": "Meld een probleem en we volgen op per e-mail, of plan een gesprek en we lopen samen door het platform.",
+    "modeLabel": "Kies hoe u geholpen wilt worden",
+    "ticketOption": "Stuur een supportticket",
+    "ticketOptionBody": "Er werkt iets niet, of u heeft een vraag over uw account of factuur.",
+    "callOption": "Plan een gesprek",
+    "callOptionBody": "Een schermdeling om op te starten, een module te leren kennen of Vesalius in uw werking in te passen.",
+    "emailPrompt": "Liever meteen mailen?",
+    "ticketTitle": "Stuur een supportticket",
+    "ticketBody": "Hoe meer details u geeft, hoe minder we moeten navragen.",
+    "callTitle": "Plan een gesprek met ons team",
+    "callBody": "Kies een moment dat u past. We delen ons scherm en overlopen het samen, op uw tempo.",
+    "callPoint1": "Uw praktijk, gebruikers en sjablonen instellen",
+    "callPoint2": "Een rondleiding door een module die u nog niet gebruikt",
+    "callPoint3": "Vragen over hoe Vesalius in uw dag past",
+    "callMeta": "30 min · Google Meet",
+    "callFrameTitle": "Plan een gesprek met Vesalius support",
+    "callOpen": "Kies een moment"
   },
   "DemoPage": {
     "title": "Plan een demo",
@@ -408,7 +420,7 @@
       },
       "functionality": {
         "title": "Functionele cookies",
-        "description": "Onthouden uw voorkeuren zoals taal en regio."
+        "description": "Herkennen u als bestaande klant, zodat we u naar het platform kunnen leiden."
       },
       "analytics": {
         "title": "Analytische cookies",
@@ -488,5 +500,13 @@
       "1": "Kies de taal van het gesprek, of laat die automatisch detecteren",
       "2": "Streamt rechtstreeks naar Vesalius, geen bestanden te verplaatsen"
     }
+  },
+  "WelcomeBack": {
+    "title": "Welkom terug",
+    "body": "Op zoek naar uw Vesalius-omgeving? Ga meteen naar het platform en werk verder waar u gebleven was.",
+    "cta": "Open Vesalius",
+    "stay": "Ik kom voor de website",
+    "dontShowAgain": "Toon dit niet meer",
+    "close": "Sluiten"
   }
 }

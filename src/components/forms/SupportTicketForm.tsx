@@ -21,7 +21,7 @@ import {
 import type { FieldErrors, FormErrorResponse, FormSuccessResponse, PublicTicketType } from '@/lib/forms/types';
 
 const inputClassName =
-  'w-full px-5 py-4 rounded-2xl border border-transparent bg-white/60 backdrop-blur-sm focus:bg-white focus:ring-2 focus:ring-[#06ACC1]/30 focus:border-[#06ACC1]/20 shadow-sm outline-none transition-all text-slate-800 placeholder-slate-400';
+  'w-full px-4 py-3 rounded-xl bg-white border border-slate-200 hover:border-slate-300 focus:border-[#06ACC1] focus:ring-4 focus:ring-[#06ACC1]/10 outline-none transition-colors text-slate-800 placeholder:text-slate-400';
 
 type SupportFormState = {
   attachment?: File;
@@ -170,6 +170,8 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
     }
   }
 
+  const labelClassName = 'block text-sm font-medium text-slate-700 mb-2';
+
   return (
     <form className="space-y-6" onSubmit={handleSubmit} noValidate>
       <FormAlert message={formError} />
@@ -190,31 +192,68 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">
+      <fieldset>
+        <legend className={labelClassName}>{t('ticketTypeLabel')}</legend>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {TICKET_TYPE_CONFIG.map((ticketType) => {
+            const checked = formState.ticketType === ticketType.value;
+            return (
+              <label
+                key={ticketType.value}
+                className={`relative cursor-pointer select-none rounded-xl px-3 py-2.5 text-center text-sm font-medium transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#06ACC1]/40 ${
+                  checked
+                    ? 'bg-[#0B1B3D] text-white'
+                    : 'bg-slate-50 text-slate-600 ring-1 ring-inset ring-slate-200 hover:bg-slate-100'
+                }`}
+              >
+                <input
+                  checked={checked}
+                  className="sr-only"
+                  name="ticketType"
+                  onChange={() => updateField('ticketType', ticketType.value)}
+                  type="radio"
+                  value={ticketType.value}
+                />
+                {t(`ticketTypes.${ticketType.labelKey}`)}
+              </label>
+            );
+          })}
+        </div>
+        <p className="mt-2 text-sm text-slate-500">
+          {t(`ticketTypes.${selectedTicketType.descriptionKey}`)}
+        </p>
+        <FieldError message={fieldErrors.ticketType} />
+      </fieldset>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6">
+        <div>
+          <label className={labelClassName} htmlFor="support-name">
             {t('nameLabel')}
           </label>
           <input
             autoComplete="name"
             className={inputClassName}
+            id="support-name"
             onChange={(event) => updateField('name', event.target.value)}
             placeholder={t('namePlaceholder')}
+            required
             type="text"
             value={formState.name}
           />
           <FieldError message={fieldErrors.name} />
         </div>
 
-        <div className="space-y-2">
-          <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">
+        <div>
+          <label className={labelClassName} htmlFor="support-email">
             {t('emailLabel')}
           </label>
           <input
             autoComplete="email"
             className={inputClassName}
+            id="support-email"
             onChange={(event) => updateField('email', event.target.value)}
             placeholder={t('emailPlaceholder')}
+            required
             type="email"
             value={formState.email}
           />
@@ -222,64 +261,46 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
         </div>
       </div>
 
-      <div className="space-y-2">
-        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">
-          {t('organisationLabel')}
+      <div>
+        <label className={labelClassName} htmlFor="support-organisation">
+          {t('organisationLabel')} <span className="font-normal text-slate-400">{t('optional')}</span>
         </label>
         <input
+          aria-describedby="support-organisation-hint"
           autoComplete="organization"
           className={inputClassName}
+          id="support-organisation"
           onChange={(event) => updateField('organisation', event.target.value)}
           placeholder={t('organisationPlaceholder')}
           type="text"
           value={formState.organisation}
         />
-        <p className="text-sm text-slate-500">{t('organisationHint')}</p>
+        <p id="support-organisation-hint" className="mt-2 text-sm text-slate-500">{t('organisationHint')}</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">
-            {t('subjectLabel')}
-          </label>
-          <input
-            className={inputClassName}
-            onChange={(event) => updateField('subject', event.target.value)}
-            placeholder={t('subjectPlaceholder')}
-            type="text"
-            value={formState.subject}
-          />
-          <FieldError message={fieldErrors.subject} />
-        </div>
-
-        <div className="space-y-2">
-          <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">
-            {t('ticketTypeLabel')}
-          </label>
-          <select
-            className={inputClassName}
-            onChange={(event) => updateField('ticketType', event.target.value as PublicTicketType)}
-            value={formState.ticketType}
-          >
-            {TICKET_TYPE_CONFIG.map((ticketType) => (
-              <option key={ticketType.value} value={ticketType.value}>
-                {t(`ticketTypes.${ticketType.labelKey}`)}
-              </option>
-            ))}
-          </select>
-          <p className="text-sm text-slate-500">
-            {t(`ticketTypes.${selectedTicketType.descriptionKey}`)}
-          </p>
-          <FieldError message={fieldErrors.ticketType} />
-        </div>
+      <div>
+        <label className={labelClassName} htmlFor="support-subject">
+          {t('subjectLabel')}
+        </label>
+        <input
+          className={inputClassName}
+          id="support-subject"
+          onChange={(event) => updateField('subject', event.target.value)}
+          placeholder={t('subjectPlaceholder')}
+          required
+          type="text"
+          value={formState.subject}
+        />
+        <FieldError message={fieldErrors.subject} />
       </div>
 
-      <div className="space-y-2">
-        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">
+      <div>
+        <label className={labelClassName} htmlFor="support-description">
           {t('descriptionLabel')}
         </label>
         <textarea
-          className={`${inputClassName} resize-none`}
+          className={`${inputClassName} resize-y min-h-[148px]`}
+          id="support-description"
           onChange={(event) => updateField('description', event.target.value)}
           placeholder={t('descriptionPlaceholder')}
           rows={6}
@@ -288,24 +309,36 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
         <FieldError message={fieldErrors.description} />
       </div>
 
-      <div className="space-y-2">
-        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">
-          {t('attachmentLabel')}
+      <div>
+        <span className={labelClassName}>
+          {t('attachmentLabel')} <span className="font-normal text-slate-400">{t('optional')}</span>
+        </span>
+        <label className="flex items-center gap-4 cursor-pointer rounded-xl border border-dashed border-slate-300 bg-slate-50/60 px-4 py-4 hover:border-slate-400 hover:bg-slate-50 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#06ACC1]/40">
+          <input
+            className="sr-only"
+            onChange={(event) => updateField('attachment', event.target.files?.[0])}
+            type="file"
+          />
+          <span className="shrink-0 w-10 h-10 rounded-lg bg-white ring-1 ring-slate-200 flex items-center justify-center text-slate-500">
+            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="m21 12-8.5 8.5a5 5 0 0 1-7-7L14 5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4L15.5 8" />
+            </svg>
+          </span>
+          <span className="min-w-0 text-sm">
+            {formState.attachment ? (
+              <span className="block truncate font-medium text-[#0B1B3D]">{formState.attachment.name}</span>
+            ) : (
+              <span className="block font-medium text-[#0B1B3D]">{t('attachmentCta')}</span>
+            )}
+            <span className="block text-slate-500">{t('attachmentHint')}</span>
+          </span>
         </label>
-        <input
-          className={`${inputClassName} file:mr-4 file:rounded-full file:border-0 file:bg-[#0B1B3D] file:px-4 file:py-2 file:text-sm file:font-medium file:text-white`}
-          onChange={(event) => updateField('attachment', event.target.files?.[0])}
-          type="file"
-        />
-        <p className="text-sm text-slate-500">{t('attachmentHint')}</p>
         <FieldError message={fieldErrors.attachment} />
       </div>
 
       {turnstileEnabled ? (
-        <div className="space-y-3">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">
-            {shared('turnstileLabel')}
-          </p>
+        <div>
+          <p className={labelClassName}>{shared('turnstileLabel')}</p>
           <TurnstileWidget
             action="support_form"
             onTokenChange={setTurnstileToken}
@@ -314,14 +347,17 @@ export default function SupportTicketForm({ sourcePage }: { sourcePage: string }
         </div>
       ) : null}
 
-      <button
-        className="w-full md:w-auto bg-[#0B1B3D] text-white px-10 py-4 rounded-full font-bold tracking-wide hover:bg-slate-800 transition-all flex items-center justify-center gap-3 shadow-[0_8px_20px_-6px_rgba(11,27,61,0.5)] hover:-translate-y-1 group mt-4 disabled:cursor-not-allowed disabled:opacity-70"
-        disabled={isSubmitting}
-        type="submit"
-      >
-        {isSubmitting ? shared('submitting') : t('submit')}
-        <span className="transition-transform group-hover:translate-x-1 text-lg leading-none">→</span>
-      </button>
+      <div className="pt-2 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4">
+        <p className="text-sm text-slate-500">{t('replyNote')}</p>
+        <button
+          className="group shrink-0 inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#0B1B3D] text-white font-semibold hover:bg-[#13285a] transition-colors disabled:cursor-not-allowed disabled:opacity-70"
+          disabled={isSubmitting}
+          type="submit"
+        >
+          {isSubmitting ? shared('submitting') : t('submit')}
+          <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </button>
+      </div>
     </form>
   );
 }

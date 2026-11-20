@@ -291,19 +291,19 @@
   },
   "SupportForm": {
     "nameLabel": "Name",
-    "namePlaceholder": "Your Name *",
+    "namePlaceholder": "Dr. An Peeters",
     "emailLabel": "Email",
-    "emailPlaceholder": "Your Email *",
+    "emailPlaceholder": "you@yourpractice.be",
     "organisationLabel": "Organisation",
     "organisationPlaceholder": "Clinic, hospital, or practice",
     "organisationHint": "If this is an issue, please use the organisation name exactly as it appears in the platform.",
     "subjectLabel": "Subject",
-    "subjectPlaceholder": "What do you need help with? *",
+    "subjectPlaceholder": "e.g. Scribe stops recording after a few minutes",
     "ticketTypeLabel": "Ticket type",
     "descriptionLabel": "Description",
-    "descriptionPlaceholder": "Describe the issue, expected behaviour, and any useful context.",
+    "descriptionPlaceholder": "What did you do, what did you expect, and what happened instead?",
     "attachmentLabel": "Attachment",
-    "attachmentHint": "Optional. PDF, image, text, or Word file up to 5 MB.",
+    "attachmentHint": "PDF, image, text, or Word file up to 5 MB.",
     "attachmentUnsupported": "Please upload a PDF, image, text file, or Word document.",
     "attachmentTooLarge": "The attachment is too large.",
     "submit": "Submit ticket",
@@ -316,7 +316,10 @@
       "billingDescription": "Use this for invoices, payments, or subscription issues.",
       "featureRequest": "Feature request",
       "featureRequestDescription": "Use this to suggest a product improvement."
-    }
+    },
+    "optional": "(optional)",
+    "attachmentCta": "Add a screenshot or file",
+    "replyNote": "We reply to the email address above."
   },
   "DemoForm": {
     "nameLabel": "Name",
@@ -332,15 +335,24 @@
     "submit": "Request demo"
   },
   "SupportPage": {
-    "eyebrow": "Customer Care",
-    "title": "Submit a support ticket",
-    "subtitle": "Submit your question or issue here and our support team will follow up as quickly as possible.",
-    "responseTitle": "What happens next",
-    "responseBody": "Your request is validated, sent into the Vesalius Support helpdesk flow, and confirmed only after the backend accepts it.",
-    "attachmentTitle": "Helpful attachments",
-    "attachmentBody": "Add screenshots, exported files, or a short document if that helps us reproduce the issue faster.",
-    "urgentTitle": "Need a quicker handoff?",
-    "urgentBody": "Submit the ticket with the clearest reproduction steps you can share so the support team has the right context from the start."
+    "title": "How can we help?",
+    "subtitle": "Report a problem and we follow up by email, or book a call and we walk you through the platform together.",
+    "modeLabel": "Choose how you want help",
+    "ticketOption": "Send a support ticket",
+    "ticketOptionBody": "Something isn't working, or you have a question about your account or invoice.",
+    "callOption": "Book a call",
+    "callOptionBody": "A screen-share to get set up, learn a module, or fit Vesalius into your workflow.",
+    "emailPrompt": "Rather write directly? Email",
+    "ticketTitle": "Send a support ticket",
+    "ticketBody": "The more detail you give, the fewer questions we need to ask back.",
+    "callTitle": "Book a call with our team",
+    "callBody": "Pick a moment that suits you. We share screens and go through it together, at your pace.",
+    "callPoint1": "Setting up your practice, users, and templates",
+    "callPoint2": "A walkthrough of a module you haven't used yet",
+    "callPoint3": "Questions about how to fit Vesalius into your day",
+    "callMeta": "30 min · Google Meet",
+    "callFrameTitle": "Book a call with Vesalius support",
+    "callOpen": "Choose a time"
   },
   "DemoPage": {
     "title": "Book a demo",
@@ -408,7 +420,7 @@
       },
       "functionality": {
         "title": "Functionality cookies",
-        "description": "Remember your preferences like language and region."
+        "description": "Recognise you as an existing customer so we can link you to the platform."
       },
       "analytics": {
         "title": "Analytics cookies",
@@ -488,5 +500,13 @@
       "1": "Pick the consultation language, or let it auto-detect",
       "2": "Streams straight to Vesalius, no files to move"
     }
+  },
+  "WelcomeBack": {
+    "title": "Welcome back",
+    "body": "Looking for your Vesalius workspace? Go straight to the platform and pick up where you left off.",
+    "cta": "Open Vesalius",
+    "stay": "I'm here for the website",
+    "dontShowAgain": "Don't show me this again",
+    "close": "Close"
   }
 }

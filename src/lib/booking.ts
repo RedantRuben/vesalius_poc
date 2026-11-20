@@ -17,3 +17,9 @@ export function bookingEmbedUrl(url: string, locale: string): string | null {
   embed.searchParams.set('hl', locale);
   return embed.toString();
 }
+
+/**
+ * Google Calendar appointment schedule for platform help calls (onboarding, walkthroughs) on the support page.
+ * NEXT_PUBLIC_SUPPORT_BOOKING_URL sets it; until a dedicated schedule exists it falls back to the demo calendar.
+ */
+export const SUPPORT_BOOKING_URL = process.env.NEXT_PUBLIC_SUPPORT_BOOKING_URL || BOOKING_URL;
