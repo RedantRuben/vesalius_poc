@@ -420,7 +420,7 @@
       },
       "functionality": {
         "title": "Cookies de fonctionnalité",
-        "description": "Vous reconnaissent comme client existant pour vous diriger vers la plateforme."
+        "description": "Mémorisent vos préférences comme la langue et la région."
       },
       "analytics": {
         "title": "Cookies analytiques",

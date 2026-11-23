@@ -7,8 +7,6 @@ import { useTranslations } from 'next-intl';
 import { useSpecialty } from '@/lib/specialty';
 
 const CONSENT_EVENT = 'cookie-consent-updated';
-/** Dispatched by the cookie policy page to reopen the settings. */
-export const OPEN_SETTINGS_EVENT = 'cookie-consent-open';
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 type CookiePreferences = {
@@ -25,8 +23,7 @@ const defaultPreferences: CookiePreferences = {
   advertisement: false,
 };
 
-// No advertising cookies are used, so there is no switch for them; the stored field stays for older saved choices.
-const OPTIONAL = ['functionality', 'analytics'] as const;
+const OPTIONAL = ['functionality', 'analytics', 'advertisement'] as const;
 
 /** A small switch in the site's navy; the label sits next to it, so the switch itself only needs its state. */
 function Switch({ on, onChange, disabled = false, label }: { on: boolean; onChange?: () => void; disabled?: boolean; label: string }) {
@@ -68,22 +65,6 @@ export default function CookieConsent() {
       return () => clearTimeout(timer);
     }
   }, [deferred]);
-
-  // The cookie policy's "Change cookie settings" button reopens this card with the current choices.
-  useEffect(() => {
-    const open = () => {
-      try {
-        const stored = localStorage.getItem('cookie-consent');
-        if (stored) setPreferences({ ...defaultPreferences, ...(JSON.parse(stored) as Partial<CookiePreferences>), necessary: true });
-      } catch {
-        // Unreadable choice: start from the defaults.
-      }
-      setShowSettings(true);
-      setIsVisible(true);
-    };
-    window.addEventListener(OPEN_SETTINGS_EVENT, open);
-    return () => window.removeEventListener(OPEN_SETTINGS_EVENT, open);
-  }, []);
 
   const saveConsent = (prefs: CookiePreferences) => {
     localStorage.setItem('cookie-consent', JSON.stringify(prefs));
