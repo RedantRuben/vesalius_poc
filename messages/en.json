@@ -145,7 +145,7 @@
     "completionTime": "Average Completion Time",
     "perceivedQuality": "Perceived Quality",
     "patientRating": "Patient Rating",
-    "physiciansRating": "Physicians Rating",
+    "physiciansRating": "Physician Rating",
     "doctors": {
       "boedts": {
         "quote": "The quality of my consultations has improved spectacularly. If a patient happens not to have filled in Vesalius, I notice that my consultation is significantly less good.",

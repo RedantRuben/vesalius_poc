@@ -4,6 +4,7 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
+import { useProfessionCopy } from '@/content/tailored';
 import { FREE_MONTH_ANCHOR } from '@/components/FinalCta';
 
 const CheckIcon = () => (
@@ -49,7 +50,7 @@ export default function Pricing({
   onBillingCycleChange,
 }: PricingProps) {
   const locale = useLocale();
-  const copy =
+  const baseCopy =
     locale === 'fr'
       ? {
           title: 'Des tarifs pour chaque pratique',
@@ -166,6 +167,7 @@ export default function Pricing({
               },
             ],
           };
+  const copy = useProfessionCopy(baseCopy);
   return (
     <section className="w-full relative py-12 md:py-16">
 

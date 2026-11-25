@@ -4,7 +4,7 @@ import { useEffect, useId, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { useTailoredHome } from '@/content/tailored';
+import { useProfessionCopy, useTailoredHome } from '@/content/tailored';
 import { useSpecialty } from '@/lib/specialty';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -327,7 +327,7 @@ export default function Hero() {
   const locale = useLocale();
   const tailored = useTailoredHome();
   const { tailored: variantId } = useSpecialty();
-  const baseCopy =
+  const genericCopy =
     locale === 'fr'
       ? {
           line1: 'Redevenez',
@@ -393,6 +393,8 @@ export default function Hero() {
             clinicalNoteBody:
               'Patient reports severe, worsening headaches over the past two weeks. Pain is localized in the frontal region and is accompanied by mild photophobia...',
           };
+
+  const baseCopy = useProfessionCopy(genericCopy);
 
   // Tailored specialty: sales' title, an intake for that specialty and the matching note.
   const hero = tailored?.hero;

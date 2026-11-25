@@ -4,6 +4,7 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
+import { useProfessionCopy } from '@/content/tailored';
 
 const CheckIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06ACC1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#06ACC1]">
@@ -37,7 +38,7 @@ interface TeamPricingProps {
 
 export default function TeamPricing({ billingCycle }: TeamPricingProps) {
   const locale = useLocale();
-  const copy =
+  const baseCopy =
     locale === 'fr'
       ? {
           eyebrow: 'Entreprise',
@@ -109,6 +110,7 @@ export default function TeamPricing({ billingCycle }: TeamPricingProps) {
               },
             ],
           };
+  const copy = useProfessionCopy(baseCopy);
   return (
     <section className="w-full relative">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 h-full flex flex-col justify-center">
