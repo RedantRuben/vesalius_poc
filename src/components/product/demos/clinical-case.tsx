@@ -7,6 +7,7 @@ import { BotBubble, Choices, PatientBubble } from './neuro';
 import { TemplatePicker } from './ortho';
 import { Check, EASE, useSteps } from './shared';
 import { MED_UI, Phone } from './medication';
+import { useProfessionCopy } from '@/content/tailored';
 
 type DemoPatient = { name: string; initials: string; dob: string; color: string; stage?: string };
 type TriageRow = { name: string; initials: string; channel: string; summary: string; referral: string; referralTitle?: string; tasks: number; moment?: string; status?: ScreeningStatus; attention?: boolean };
@@ -476,6 +477,7 @@ export function ScribeCaseDemo({ patient, chat, note, template, options, questio
   sessionLabel?: string;
   noteTables?: Partial<Record<string, { headers: string[]; rows: string[][] }>>;
 }) {
+  const professionalRole = useProfessionCopy(clinicianRole, 'reader');
   const lines = chat.length;
   const step = useSteps(lines + 2, 1300, 500);
   const recording = step <= lines;
@@ -514,7 +516,7 @@ export function ScribeCaseDemo({ patient, chat, note, template, options, questio
               <motion.div key="transcript" exit={{ opacity: 0 }} className="flex min-h-[190px] flex-col gap-2.5 rounded-lg border border-[#E8EAEC] bg-[#F9FAFB] p-3">
                 {chat.slice(0, step).map((message, index) => (
                   <motion.p key={message} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="text-[12px] leading-snug">
-                    <span className={`font-semibold ${index % 2 ? 'text-[#0B759F]' : 'text-[#06ACC1]'}`}>{speakers?.[index] ?? (index % 2 ? 'Patiënt' : clinicianRole)}: </span>
+                    <span className={`font-semibold ${index % 2 ? 'text-[#0B759F]' : 'text-[#06ACC1]'}`}>{speakers?.[index] ?? (index % 2 ? 'Patiënt' : professionalRole)}: </span>
                     {message}
                   </motion.p>
                 ))}
@@ -771,6 +773,8 @@ export function FollowUpCaseDemo({ patient, rows, initials, alert, chat, checkIn
   planNote?: string;
   plansTitle?: string;
 }) {
+  const professionalPlanIntro = useProfessionCopy(planIntro, 'reader');
+  const professionalScores = useProfessionCopy(scores, 'reader');
   const step = useSteps(rows.length + 2, 720, 450);
   const hasAlert = step > rows.length;
   const [showLotte, setShowLotte] = useState<boolean | null>(null);
@@ -872,13 +876,13 @@ export function FollowUpCaseDemo({ patient, rows, initials, alert, chat, checkIn
                     <ExampleTable
                       caption="Herstel · Voorbeelddata"
                       headers={scoreHeaders}
-                      rows={scores}
+                      rows={professionalScores}
                     />
                   </div>
                 </AppCard>
 
                 <AppCard icon="list-checked" title={plansTitle}>
-                  <p className="mb-3 max-w-xl text-[11.5px] leading-snug text-[#4E5670]">{planIntro}</p>
+                  <p className="mb-3 max-w-xl text-[11.5px] leading-snug text-[#4E5670]">{professionalPlanIntro}</p>
                   <div className="grid grid-cols-1 items-start gap-3 md:grid-cols-3">
                     {[...new Set(questionnaires.map(([name]) => name))].map((name) => (
                       <div key={name} className={`rounded-xl border px-3 py-2.5 ${name === treatment ? 'border-[#2C766A]/30 bg-[#E6F4F1]/70' : 'border-[#E8EAEC]'}`}>

@@ -194,7 +194,7 @@ function DermatologyTrends() {
     <div className="mb-3">
       <RecoveryScoreBars measures={MEASURES} period="Baseline → week 16" color={KOEN.color} />
       <div className="mt-3 rounded-lg border border-[#E8EAEC] px-2.5 py-1.5">
-        <p className="text-[10px] leading-tight text-[#949CB1]">PASI · door de arts gescoord · 0–72, lager = beter</p>
+        <p className="text-[10px] leading-tight text-[#949CB1]">PASI · door de dermatoloog gescoord · 0–72, lager = beter</p>
         <p className="text-[12px] tabular-nums">
           <span className="text-[#949CB1]">16,4</span> → <b style={{ color: KOEN.color }}>1,4</b>
         </p>
