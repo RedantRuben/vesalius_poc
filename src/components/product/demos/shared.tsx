@@ -1,9 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import type { SiteLocale } from '../content';
+import { withProfession } from '@/lib/profession';
+import { useSpecialty } from '@/lib/specialty';
 
 export const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -21,10 +23,12 @@ export function useSteps(count: number, stepMs: number, startDelayMs = 400) {
   return reduceMotion ? count : step;
 }
 
-/** Picks the copy for the active site locale, falling back to English. */
+/** Picks localized demo copy and tailors references to the owning clinician. */
 export function useLocalized<T>(byLocale: Record<SiteLocale, T>): T {
-  const locale = useLocale();
-  return byLocale[(locale as SiteLocale) in byLocale ? (locale as SiteLocale) : 'en'];
+  const activeLocale = useLocale();
+  const locale: SiteLocale = activeLocale === 'nl' || activeLocale === 'fr' ? activeLocale : 'en';
+  const { tailored } = useSpecialty();
+  return useMemo(() => withProfession(byLocale[locale], tailored, locale, 'reader'), [byLocale, tailored, locale]);
 }
 
 export const Check = ({ size = 14, color = 'currentColor' }: { size?: number; color?: string }) => (

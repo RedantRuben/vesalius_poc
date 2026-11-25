@@ -21,8 +21,8 @@ export function useTailoredHome(): TailoredHomeCopy | null {
 }
 
 /** Shared copy kept in a component (pricing, hero), in the words of the visitor's profession. */
-export function useProfessionCopy<T>(copy: T): T {
+export function useProfessionCopy<T>(copy: T, scope: 'any' | 'reader' = 'any'): T {
   const locale = useLocale() as SiteLocale;
   const { tailored } = useSpecialty();
-  return withProfession(copy, tailored, locale, 'any');
+  return withProfession(copy, tailored, locale, scope);
 }

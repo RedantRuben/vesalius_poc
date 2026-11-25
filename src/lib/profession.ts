@@ -34,14 +34,14 @@ const PROFESSIONS: Record<TailoredId, Record<SiteLocale, [string, string]>> = {
 const ANY: Record<SiteLocale, RegExp> = {
   nl: /(?<![\p{L}-])()(arts)(en)?(?![\p{L}-])/giu,
   en: /(?<![\p{L}-])()(doctor|physician|clinician)(s)?(?![\p{L}-])/giu,
-  fr: /(?<![\p{L}-])(le )?(médecin)(s)?(?![\p{L}-])/giu,
+  fr: /(?<![\p{L}-])(le |du |au )?(médecin)(s)?(?![\p{L}-])/giu,
 };
 
 /** A discipline's own copy also names GPs and other doctors, so only phrases that mean the reader are replaced. */
 const READER: Record<SiteLocale, RegExp> = {
-  nl: /(?<=gewoon |klaar voor de |help de |juiste |blijft de |bezoek met de |bezoek aan de |afspraak met de )()(arts)()(?![\p{L}-])/giu,
-  en: /(?<=be the |ready for the |help the |stay the |the right |visit with the )()(doctor|clinician)()(?![\p{L}-])/giu,
-  fr: /(?<=être |pour |aider |aide |visite avec |restez |bon )(le )?(médecin)()(?![\p{L}-]| traitant| du | généraliste| conseil)/giu,
+  nl: /(?<=gewoon |klaar voor de |help de |juiste |blijft de |bezoek met de |bezoek aan de |afspraak met de |agenda van de |behandeling die de |kiest de |wilt u dat de |goed om te weten voor de |door de |diagnose blijft bij de |eerste consult bij de |consult ingepland bij de )()(arts)()(?![\p{L}-])/giu,
+  en: /(?<=be the |ready for the |help the |stay the |the right |visit with the |agenda of the |treatment the |would you like the |good for the |by the |diagnosis stays with the )()(doctor|clinician)()(?![\p{L}-])/giu,
+  fr: /(?<=être |pour |aider |aide |visite avec |restez |bon |agenda |traitement choisi par |souhaitez-vous que |bon à savoir pour |mesurée par |diagnostic par |diagnostic reste celui |première consultation chez |consultation planifiée chez )(le |du |au )?(médecin)()(?![\p{L}-]| traitant| du | physique| généraliste| conseil| référent)/giu,
 };
 
 const capitalise = (word: string) => word.charAt(0).toUpperCase() + word.slice(1);
@@ -53,17 +53,21 @@ export function withProfession<T>(copy: T, id: TailoredId | null, locale: SiteLo
   const pattern = (scope === 'any' ? ANY : READER)[locale];
   const swap = (value: unknown): unknown => {
     if (typeof value === 'string') {
-      return value.replace(pattern, (_, article: string | undefined, word: string, ending: string | undefined) => {
+      const matcher = scope === 'reader' && /^(arts|doctor|physician|clinician|médecin)$/iu.test(value) ? ANY[locale] : pattern;
+      return value.replace(matcher, (_, article: string | undefined, word: string, ending: string | undefined) => {
         const noun = ending ? plural : singular;
         const cased = /^\p{Lu}/u.test(word) ? capitalise(noun) : noun;
         if (!article) return cased;
-        return /^[aeiouéo]/i.test(noun) ? `${article.startsWith('L') ? 'L' : 'l'}’${cased}` : article + cased;
+        if (!/^[aeiouéo]/i.test(noun)) return article + cased;
+        const prefix = article.toLowerCase() === 'du ' ? 'de l' : article.toLowerCase() === 'au ' ? 'à l' : 'l';
+        return `${/^\p{Lu}/u.test(article) ? capitalise(prefix) : prefix}’${cased}`;
       });
     }
     if (Array.isArray(value)) return value.map(swap);
     // Only plain data: anything else (React elements, dates) passes through untouched
     if (value && Object.getPrototypeOf(value) === Object.prototype) {
-      return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, swap(item)]));
+      // Chat speaker identifiers drive rendering; only their display labels are translated.
+      return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, key === 'who' || key === 'from' ? item : swap(item)]));
     }
     return value;
   };
@@ -85,6 +89,10 @@ export function messagesForProfession<T>(messages: T, id: TailoredId | null, loc
     // Research figures about doctors stay about doctors: they were not measured per discipline
     TheProblem: { ...swap(TheProblem), cards: { ...swap(cards), burnout: cards.burnout, stress: cards.stress } },
     // The doctors' own titles and quotes stay as they gave them
-    Testimonials: { ...swap(Testimonials), doctors: Testimonials.doctors },
+    Testimonials: {
+      ...swap(Testimonials),
+      ...(locale === 'nl' ? { physiciansRating: `Beoordeling door ${PROFESSIONS[id].nl[1]}` } : {}),
+      doctors: Testimonials.doctors,
+    },
   } as unknown as T;
 }
