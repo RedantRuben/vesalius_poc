@@ -1,8 +1,9 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { useLocale } from 'next-intl';
+import { NextIntlClientProvider, useLocale, useMessages } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
+import { messagesForProfession } from '@/lib/profession';
 import { hasAccountHint } from '@/lib/returning-user';
 import {
   CHOICE_COOKIE,
@@ -114,6 +115,9 @@ export function SpecialtyProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   // The URL decides the content, so the server already renders the discipline's page for search engines.
   const route = useMemo(() => parseDisciplinePath(locale, pathname), [locale, pathname]);
+  // Shared sections speak to the discipline's profession instead of "doctors"
+  const siteMessages = useMessages();
+  const messages = useMemo(() => messagesForProfession(siteMessages, route?.id ?? null, locale), [siteMessages, route, locale]);
   const [stored, setStored] = useState<Specialty | null>(null);
   const [ready, setReady] = useState(false);
   const [asked, setAsked] = useState(false);
@@ -218,7 +222,7 @@ export function SpecialtyProvider({ children }: { children: React.ReactNode }) {
         notice,
       }}
     >
-      {children}
+      <NextIntlClientProvider locale={locale} messages={messages}>{children}</NextIntlClientProvider>
     </SpecialtyContext.Provider>
   );
 }
